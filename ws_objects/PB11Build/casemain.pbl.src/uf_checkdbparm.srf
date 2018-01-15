@@ -1,0 +1,43 @@
+﻿$PBExportHeader$uf_checkdbparm.srf
+$PBExportComments$Checks DBParm for additional parameters and reformats accordingly
+global type uf_checkdbparm from function_object
+end type
+
+forward prototypes
+global function integer uf_checkdbparm (transaction a_ttransobject)
+end prototypes
+
+global function integer uf_checkdbparm (transaction a_ttransobject);/*****************************************************************************************
+	Function: 	uf_CheckDBParm
+	Purpose:		Check for special ODBC parameters in DBParm and correct the format of
+					DBParm if there are.
+	Parameters:	TRANSACTION		a_tTransObject - the transaction object to verify
+	Returns:		INTEGER			0 - Success
+	
+	Revisions:
+	Date		Developer	  Description
+	======== ============= ================================================================
+	8/5/99	M. Caruso     Created.
+*****************************************************************************************/
+
+LONG		l_nStart, l_nEnd
+STRING	l_cDBParm1, l_cDBParm2, l_cDBParm3
+
+IF Pos (UPPER (a_tTransObject.DBParm), "CONNECTSTRING") > 0 THEN
+
+	l_nStart = Pos (a_tTransObject.DBParm, '[')
+	l_nEnd = Pos (a_tTransObject.DBParm, ']')
+	IF l_nStart > 0 THEN
+		
+		l_cDBParm1 = Left (a_tTransObject.DBParm, l_nStart - 1)
+		l_cDBParm3 = Mid (a_tTransObject.DBParm, l_nStart + 1, l_nEnd - l_nStart - 1)
+		l_cDBParm2 = Right (a_tTransObject.DBParm, Len (a_tTransObject.DBParm) - l_nEnd)
+		a_tTransObject.DBParm = l_cDBParm1 + l_cDBParm2 + ',' + l_cDBParm3
+		
+	END IF
+	
+END IF
+
+RETURN 0
+end function
+

@@ -1,0 +1,10 @@
+﻿$PBExportHeader$s_category_info.srs
+$PBExportComments$Structure to hold basic category information
+global type s_category_info from structure
+	integer		level
+	string		lineage
+	string		parent_id
+	string		category_id
+	string		case_type
+end type
+

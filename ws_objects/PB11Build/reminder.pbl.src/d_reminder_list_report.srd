@@ -1,0 +1,59 @@
+﻿$PBExportHeader$d_reminder_list_report.srd
+$PBExportComments$Reminder List Nested Report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=172 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=reminder_id dbname="reminders.reminder_id" )
+ column=(type=char(40) updatewhereclause=yes name=reminder_type_desc dbname="reminder_types.reminder_type_desc" )
+ column=(type=char(10) updatewhereclause=yes name=case_number dbname="reminders.case_number" )
+ column=(type=datetime updatewhereclause=yes name=reminder_set_date dbname="reminders.reminder_set_date" )
+ column=(type=char(40) updatewhereclause=yes name=reminder_subject dbname="reminders.reminder_subject" )
+ column=(type=char(10) updatewhereclause=yes name=reminder_author dbname="reminders.reminder_author" )
+ column=(type=char(150) updatewhereclause=yes name=case_type_desc dbname="case_type_desc" )
+ column=(type=char(1) updatewhereclause=yes name=reminders_case_reminder dbname="reminders.case_reminder" )
+ column=(type=char(30) updatewhereclause=yes name=author dbname="cusfocus_user.user_last_name" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.reminders.reminder_id,   
+         cusfocus.reminder_types.reminder_type_desc,   
+         cusfocus.reminders.case_number,   
+         cusfocus.reminders.reminder_set_date,   
+         cusfocus.reminders.reminder_subject,   
+         cusfocus.reminders.reminder_author,   
+           CASE cusfocus.reminders.case_type 
+              WHEN 'M' THEN cusfocus.system_options.option_value 
+              WHEN 'I' THEN 'Inquiry'
+              WHEN 'C' THEN 'Issue/Concern'
+              WHEN 'P' THEN 'Proactive'
+           END AS case_type_desc,
+         cusfocus.reminders.case_reminder,   
+         cusfocus.cusfocus_user.user_last_name,   
+         cusfocus.cusfocus_user.active  
+    FROM cusfocus.cusfocus_user,   
+         cusfocus.reminders,   
+         cusfocus.reminder_types,
+         cusfocus.system_options
+   WHERE ( cusfocus.reminders.reminder_type_id = cusfocus.reminder_types.reminder_type_id ) and  
+         ( cusfocus.reminders.reminder_author = cusfocus.cusfocus_user.user_id ) and  
+         (  cusfocus.reminders.reminder_recipient = :user_id ) and
+         ( cusfocus.system_options.option_name = 'configurable case type' )" arguments=(("user_id", string))  sort="reminder_set_date A case_number A " )
+line(band=header x1="645" y1="4" x2="4059" y2="0"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Date" border="6" color="0" x="9" y="92" height="72" width="448"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Subject" border="6" color="0" x="466" y="92" height="72" width="590"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Author" border="6" color="0" x="1065" y="92" height="72" width="512"  name=reminder_author_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Reminder Type" border="6" color="0" x="1586" y="92" height="72" width="677"  name=t_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="64" width="448" format="m/d/yyyy"  name=reminder_set_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="466" y="4" height="64" width="590" format="[general]"  name=reminder_subject edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1586" y="4" height="64" width="677" format="[general]"  name=reminder_type_desc edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if ( (  cusfocus_user_active = 'N' ),  reminder_author + ' (inactive)' , 
+ reminder_author )"border="0" color="0" x="1065" y="4" height="64" width="512" format="[GENERAL]"  name=cc_reminder_author  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=foreground alignment="0" text="Reminder History" border="0" color="0" x="0" y="8" height="76" width="3410"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Case Type Desc" border="0" color="0" x="2743" y="4" height="76" width="640"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="2272" y="4" height="64" width="462" format="[general]"  name=case_number edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=0 border="0" color="0" x="2747" y="4" height="64" width="635"  name=case_type_desc  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Case Number" border="6" color="0" x="2272" y="92" height="72" width="462"  name=reminders_case_number_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+text(band=header alignment="2" text="Case Type" border="6" color="0" x="2743" y="92" height="72" width="640"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

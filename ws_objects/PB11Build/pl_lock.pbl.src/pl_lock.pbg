@@ -1,0 +1,33 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "pl_lock.pbl" "";
+@end;
+@begin Objects 
+ "d_dddw_db_name.srd" "pl_lock.pbl";
+ "d_login.srd" "pl_lock.pbl";
+ "d_plmanager.srd" "pl_lock.pbl";
+ "d_register.srd" "pl_lock.pbl";
+ "d_secca_def_main.srd" "pl_lock.pbl";
+ "d_secca_def_std.srd" "pl_lock.pbl";
+ "d_secca_init_main.srd" "pl_lock.pbl";
+ "d_secca_init_std.srd" "pl_lock.pbl";
+ "d_secca_msg_main.srd" "pl_lock.pbl";
+ "d_secca_msg_std.srd" "pl_lock.pbl";
+ "d_update_files.srd" "pl_lock.pbl";
+ "f_pl_pwd_restrictions.srf" "pl_lock.pbl";
+ "s_secca_def.srs" "pl_lock.pbl";
+ "n_cst_kernel32.sru" "pl_lock.pbl";
+ "n_secca_def.sru" "pl_lock.pbl";
+ "n_secca_init.sru" "pl_lock.pbl";
+ "n_secca_main.sru" "pl_lock.pbl";
+ "n_secca_mgr.sru" "pl_lock.pbl";
+ "n_secca_msg.sru" "pl_lock.pbl";
+ "u_registerbutton.sru" "pl_lock.pbl";
+ "w_pl_connections.srw" "pl_lock.pbl";
+ "w_pl_deleteobjs.srw" "pl_lock.pbl";
+ "w_pl_login_main.srw" "pl_lock.pbl";
+ "w_pl_newpwd_main.srw" "pl_lock.pbl";
+ "w_pl_password.srw" "pl_lock.pbl";
+ "w_pl_register.srw" "pl_lock.pbl";
+ "w_pl_registerbutton.srw" "pl_lock.pbl";
+@end;

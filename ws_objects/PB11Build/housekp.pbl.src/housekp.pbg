@@ -1,0 +1,10 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "housekp.pbl" "";
+@end;
+@begin Objects 
+ "d_case_housekeeping.srd" "housekp.pbl";
+ "m_case_housekeeping.srm" "housekp.pbl";
+ "u_case_housekeeping.sru" "housekp.pbl";
+ "w_case_housekeeping.srw" "housekp.pbl";
+@end;

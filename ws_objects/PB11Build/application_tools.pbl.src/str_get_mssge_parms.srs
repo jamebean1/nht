@@ -1,0 +1,9 @@
+﻿$PBExportHeader$str_get_mssge_parms.srs
+global type str_get_mssge_parms from structure
+    long message_code
+    icon icon_type
+    button button_type
+    integer def_button
+    string message_text[]
+end type
+

@@ -1,0 +1,15 @@
+﻿$PBExportHeader$ddlb_format_alignment.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(1) updatewhereclause=yes name=datavalue dbname="datavalue" )
+ column=(type=char(1000) updatewhereclause=yes name=displayvalue dbname="displayvalue" )
+ column=(type=char(1000) updatewhereclause=yes name=bitmapname dbname="bitmapname" )
+ )
+data("0","Left (0)","PowerBuilder Icons - Left!.bmp","1","Right (1)","PowerBuilder Icons - Right!.bmp","2","Center (2)","PowerBuilder Icons - Center!.bmp","3","Justify (3)","PowerBuilder Icons - Justify!.bmp",) 
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="105" y="4" height="56" width="635" format="[general]"  name=displayvalue edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="0" height="64" width="73" format="[general]"  name=bitmapname bitmapname=yes edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

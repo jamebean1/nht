@@ -1,0 +1,45 @@
+﻿$PBExportHeader$s_report_parms.srs
+$PBExportComments$Generic report parameter structure.
+global type s_report_parms from structure
+	string		string_parm1
+	string		string_parm2
+	string		string_parm3
+	string		string_parm4
+	string		string_parm5
+	string		string_parm6
+	string		string_parm7
+	string		string_parm8
+	datetime		date_parm1
+	datetime		date_parm2
+	long		num_parm1
+	date		date_parm3
+	date		date_parm4
+	long		long_parm1[]
+	string		datawindow_name
+	string		user_or_dept
+	string		user_list
+	string		user_array[]
+	string		source_type
+	datetime		start_date
+	datetime		end_date
+	string		category_id
+	string		category_array[]
+	string		case_status
+	string		case_type
+	string		case_number[]
+	string		case_selected
+	string		category_selected
+	string		user_type
+	string		received_resolved
+	string		lob
+	string		region
+	string		consolidated_group
+	string		group
+	string		pcp
+	string		report_type
+	string		appeal_level
+	string		note_selection
+	string		start_date_string
+	string		end_date_string
+end type
+

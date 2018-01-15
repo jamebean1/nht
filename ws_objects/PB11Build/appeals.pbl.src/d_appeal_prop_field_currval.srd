@@ -1,0 +1,88 @@
+﻿$PBExportHeader$d_appeal_prop_field_currval.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=156 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=updated_by dbname="appeal_properties.updated_by" )
+ column=(type=datetime updatewhereclause=yes name=updated_timestamp dbname="appeal_properties.updated_timestamp" )
+ column=(type=long updatewhereclause=yes name=source_type dbname="appeal_properties.source_type" )
+ column=(type=char(50) updatewhereclause=yes name=generic_1 dbname="appeal_properties.generic_1" )
+ column=(type=char(50) updatewhereclause=yes name=generic_2 dbname="appeal_properties.generic_2" )
+ column=(type=char(50) updatewhereclause=yes name=generic_3 dbname="appeal_properties.generic_3" )
+ column=(type=char(50) updatewhereclause=yes name=generic_4 dbname="appeal_properties.generic_4" )
+ column=(type=char(50) updatewhereclause=yes name=generic_5 dbname="appeal_properties.generic_5" )
+ column=(type=char(50) updatewhereclause=yes name=generic_6 dbname="appeal_properties.generic_6" )
+ column=(type=char(50) updatewhereclause=yes name=generic_7 dbname="appeal_properties.generic_7" )
+ column=(type=char(50) updatewhereclause=yes name=generic_8 dbname="appeal_properties.generic_8" )
+ column=(type=char(50) updatewhereclause=yes name=generic_9 dbname="appeal_properties.generic_9" )
+ column=(type=char(50) updatewhereclause=yes name=generic_10 dbname="appeal_properties.generic_10" )
+ column=(type=char(50) updatewhereclause=yes name=generic_11 dbname="appeal_properties.generic_11" )
+ column=(type=char(50) updatewhereclause=yes name=generic_12 dbname="appeal_properties.generic_12" )
+ column=(type=char(50) updatewhereclause=yes name=generic_13 dbname="appeal_properties.generic_13" )
+ column=(type=char(50) updatewhereclause=yes name=generic_14 dbname="appeal_properties.generic_14" )
+ column=(type=char(50) updatewhereclause=yes name=generic_15 dbname="appeal_properties.generic_15" )
+ column=(type=char(50) updatewhereclause=yes name=generic_16 dbname="appeal_properties.generic_16" )
+ column=(type=char(50) updatewhereclause=yes name=generic_17 dbname="appeal_properties.generic_17" )
+ column=(type=char(50) updatewhereclause=yes name=generic_18 dbname="appeal_properties.generic_18" )
+ column=(type=char(50) updatewhereclause=yes name=generic_19 dbname="appeal_properties.generic_19" )
+ column=(type=char(50) updatewhereclause=yes name=generic_20 dbname="appeal_properties.generic_20" )
+ column=(type=char(50) updatewhereclause=yes name=generic_21 dbname="appeal_properties.generic_21" )
+ column=(type=char(50) updatewhereclause=yes name=generic_22 dbname="appeal_properties.generic_22" )
+ column=(type=char(50) updatewhereclause=yes name=generic_23 dbname="appeal_properties.generic_23" )
+ column=(type=char(50) updatewhereclause=yes name=generic_24 dbname="appeal_properties.generic_24" )
+ column=(type=char(50) updatewhereclause=yes name=generic_25 dbname="appeal_properties.generic_25" )
+ column=(type=char(50) updatewhereclause=yes name=generic_26 dbname="appeal_properties.generic_26" )
+ column=(type=char(50) updatewhereclause=yes name=generic_27 dbname="appeal_properties.generic_27" )
+ column=(type=char(50) updatewhereclause=yes name=generic_28 dbname="appeal_properties.generic_28" )
+ column=(type=char(50) updatewhereclause=yes name=generic_29 dbname="appeal_properties.generic_29" )
+ column=(type=char(50) updatewhereclause=yes name=generic_30 dbname="appeal_properties.generic_30" )
+ column=(type=char(60) updatewhereclause=yes name=eventname dbname="appealevent.eventname" )
+ retrieve="SELECT  cusfocus.appeal_properties.updated_by, 
+			cusfocus.appeal_properties.updated_timestamp, 
+			source_type,
+			appeal_generic_1 generic_1, 
+			appeal_generic_2 generic_2, 
+			appeal_generic_3 generic_3, 
+			appeal_generic_4 generic_4, 
+			appeal_generic_5 generic_5, 
+			appeal_generic_6 generic_6, 
+			appeal_generic_7 generic_7, 
+			appeal_generic_8 generic_8, 
+			appeal_generic_9 generic_9, 
+			appeal_generic_10 generic_10, 
+			appeal_generic_11 generic_11, 
+			appeal_generic_12 generic_12,  
+			appeal_generic_13 generic_13, 
+			appeal_generic_14 generic_14, 
+			appeal_generic_15 generic_15, 
+			appeal_generic_16 generic_16, 
+			appeal_generic_17 generic_17, 
+			appeal_generic_18 generic_18, 
+			appeal_generic_19 generic_19, 
+			appeal_generic_20 generic_20, 
+			appeal_generic_21 generic_21, 
+			appeal_generic_22 generic_22, 
+			appeal_generic_23 generic_23, 
+			appeal_generic_24 generic_24, 
+			appeal_generic_25 generic_25, 
+			appeal_generic_26 generic_26, 
+			appeal_generic_27 generic_27, 
+			appeal_generic_28 generic_28, 
+			appeal_generic_29 generic_29, 
+			appeal_generic_30 generic_30,
+			cusfocus.appealevent.eventname
+FROM cusfocus.appeal_properties,
+		cusfocus.appealevent
+WHERE case_number = :a_cCaseNumber 
+and	cusfocus.appeal_properties.source_type = cusfocus.appealevent.appealeventid
+ORDER BY source_type DESC, cusfocus.appeal_properties.updated_timestamp DESC" arguments=(("a_cCaseNumber", string)) )
+text(band=detail alignment="0" text="Value(s):" border="0" color="0" x="119" y="72" height="64" width="315" html.valueishtml="0"  name=change_desc_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="119" y1="148" x2="3506" y2="148"  name=l_1 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" 'Current Value(s).  Change(s) performed by ' + Upper ( updated_by ) + ' on ' + String (Date ( updated_timestamp ), 'mm/dd/yyyy') + ' at ' + String (Time ( updated_timestamp ), 'h:mm:ss AM/PM')+'.  Appeal Event - '+    eventname "border="0" color="0" x="119" y="4" height="64" width="3378" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="(If( NOT IsNull(  generic_1 ), (f_column_label( 'case_generic_1', a_cCaseNumber)+': '+ generic_1+' '), ''))+(If( NOT IsNull(  generic_2 ), (f_column_label( 'case_generic_2', a_cCaseNumber)+': '+ generic_2+' '), ''))+(If( NOT IsNull(  generic_3 ), (f_column_label( 'case_generic_3', a_cCaseNumber)+': '+ generic_3+' '), ''))+(If( NOT IsNull(  generic_4 ), (f_column_label( 'case_generic_4', a_cCaseNumber)+': '+ generic_4+' '), ''))+(If( NOT IsNull(  generic_5 ), (f_column_label( 'case_generic_5', a_cCaseNumber)+': '+ generic_5+' '), ''))+(If( NOT IsNull(  generic_6 ), (f_column_label( 'case_generic_6', a_cCaseNumber)+': '+ generic_6+' '), ''))+(If( NOT IsNull(  generic_7 ), (f_column_label( 'case_generic_7', a_cCaseNumber)+': '+ generic_7+' '), ''))+(If( NOT IsNull(  generic_8 ), (f_column_label( 'case_generic_8', a_cCaseNumber)+': '+ generic_8+' '), ''))+(If( NOT IsNull(  generic_9 ), (f_column_label( 'case_generic_9', a_cCaseNumber)+': '+ generic_9+' '), ''))+(If( NOT IsNull(  generic_10 ), (f_column_label( 'case_generic_10', a_cCaseNumber)+': '+ generic_10+' '), ''))+(If( NOT IsNull(  generic_11 ), (f_column_label( 'case_generic_11', a_cCaseNumber)+': '+ generic_11+' '), ''))+(If( NOT IsNull(  generic_12 ), (f_column_label( 'case_generic_12', a_cCaseNumber)+': '+ generic_12+' '), ''))+(If( NOT IsNull(  generic_13 ), (f_column_label( 'case_generic_13', a_cCaseNumber)+': '+ generic_13+' '), ''))+(If( NOT IsNull(  generic_14 ), (f_column_label( 'case_generic_14', a_cCaseNumber)+': '+ generic_14+' '), ''))+(If( NOT IsNull(  generic_15 ), (f_column_label( 'case_generic_15', a_cCaseNumber)+': '+ generic_15+' '), ''))+(If( NOT IsNull(  generic_16 ), (f_column_label( 'case_generic_16', a_cCaseNumber)+': '+ generic_16+' '), ''))+(If( NOT IsNull(  generic_17 ), (f_column_label( 'case_generic_17', a_cCaseNumber)+': '+ generic_17+' '), ''))+(If( NOT IsNull(  generic_18 ), (f_column_label( 'case_generic_18', a_cCaseNumber)+': '+ generic_18+' '), ''))+(If( NOT IsNull(  generic_19 ), (f_column_label( 'case_generic_19', a_cCaseNumber)+': '+ generic_19+' '), ''))+(If( NOT IsNull(  generic_20 ), (f_column_label( 'case_generic_20', a_cCaseNumber)+': '+ generic_20+' '), ''))+(If( NOT IsNull(  generic_21 ), (f_column_label( 'case_generic_21', a_cCaseNumber)+': '+ generic_21+' '), ''))+(If( NOT IsNull(  generic_22 ), (f_column_label( 'case_generic_22', a_cCaseNumber)+': '+ generic_22+' '), ''))+(If( NOT IsNull(  generic_23 ), (f_column_label( 'case_generic_23', a_cCaseNumber)+': '+ generic_23+' '), ''))+(If( NOT IsNull(  generic_24 ), (f_column_label( 'case_generic_24', a_cCaseNumber)+': '+ generic_24+' '), ''))+(If( NOT IsNull(  generic_25 ), (f_column_label( 'case_generic_25', a_cCaseNumber)+': '+ generic_25+' '), ''))+(If( NOT IsNull(  generic_26 ), (f_column_label( 'case_generic_26', a_cCaseNumber)+': '+ generic_26+' '), ''))+(If( NOT IsNull(  generic_27 ), (f_column_label( 'case_generic_27', a_cCaseNumber)+': '+ generic_27+' '), ''))+(If( NOT IsNull(  generic_28 ), (f_column_label( 'case_generic_28', a_cCaseNumber)+': '+ generic_28+' '), ''))+(If( NOT IsNull(  generic_29 ), (f_column_label( 'case_generic_29', a_cCaseNumber)+': '+ generic_29+' '), ''))+(If( NOT IsNull(  generic_30 ), (f_column_label( 'case_generic_30', a_cCaseNumber)+': '+ generic_30+' '), ''))"border="0" color="0" x="439" y="72" height="64" width="3058" format="[GENERAL]" html.valueishtml="0"  name=change_desc visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,16 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "dwpaintr.pbl" "";
+@end;
+@begin Objects 
+ "d_args.srd" "dwpaintr.pbl";
+ "d_convert_fields.srd" "dwpaintr.pbl";
+ "d_iim_reports.srd" "dwpaintr.pbl";
+ "f_stringreplaceall.srf" "dwpaintr.pbl";
+ "f_wordcap.srf" "dwpaintr.pbl";
+ "s_dwpainter_parms.srs" "dwpaintr.pbl";
+ "u_tab_args_conv.sru" "dwpaintr.pbl";
+ "u_tabpage_args.sru" "dwpaintr.pbl";
+ "u_tabpage_convert.sru" "dwpaintr.pbl";
+ "w_iim_dw_assoc.srw" "dwpaintr.pbl";
+@end;

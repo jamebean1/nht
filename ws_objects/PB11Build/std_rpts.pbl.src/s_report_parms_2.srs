@@ -1,0 +1,17 @@
+﻿$PBExportHeader$s_report_parms_2.srs
+global type s_report_parms_2 from structure
+	string		user_or_dept
+	string		user_list
+	string		user_array[]
+	string		source_type
+	datetime		start_date
+	datetime		end_date
+	string		category_id
+	string		category_array[]
+	string		case_status
+	string		case_type
+	string		case_number
+	string		case_selected
+	string		category_selected
+end type
+

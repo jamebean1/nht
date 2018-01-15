@@ -1,0 +1,69 @@
+﻿$PBExportHeader$d_customer_contact_activity_nested_phcs.srd
+$PBExportComments$Customer Contact Activity Report (Detail) nested summary section for PHCS
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=176 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(2) updatewhereclause=yes name=case_log_case_type dbname="case_log.case_type" )
+ column=(type=char(30) updatewhereclause=yes name=case_types_case_type_desc dbname="case_log.case_type_desc" )
+ column=(type=char(82) updatewhereclause=yes name=category_name dbname="category_name" )
+ column=(type=long updatewhereclause=yes name=total_contacts dbname="Total_Contacts" )
+ column=(type=long updatewhereclause=yes name=total_resolved dbname="Total_Resolved" )
+ column=(type=long updatewhereclause=yes name=avg_time_to_close dbname="avg_time_to_close" )
+ column=(type=decimal(13) updatewhereclause=yes name=percent_open dbname="percent_open" )
+ column=(type=long updatewhereclause=yes name=avg_days_open dbname="avg_days_open" )
+ retrieve="  SELECT c.case_type,   
+         ct.case_type_desc,   
+         CASE
+				WHEN ctg_sel.category_level <= 2 THEN ctg_sel.category_name
+				ELSE ctg_root.category_name + ': ' + ctg_sel.category_name
+			END as category_name,
+         COUNT(c.case_number) as 'Total_Contacts',   
+         SUM(CASE c.case_status_id WHEN 'C' THEN 1 ELSE 0 END) as 'Total_Resolved',   
+         AVG(CASE WHEN c.case_status_id = 'C' and ((DatePart (dw, c.case_log_opnd_date) = 1 OR DatePart (dw, c.case_log_opnd_date) = 7) AND 					 (DatePart (dw, c.case_log_clsd_date) = 1 OR DatePart (dw, c.case_log_clsd_date) = 7)) THEN DateDiff (day, c.case_log_opnd_date, c.case_log_clsd_date) - ((DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) * 2) - 2) 					WHEN c.case_status_id = 'C' and (DatePart (dw, c.case_log_opnd_date) = 1 OR DatePart (dw, c.case_log_opnd_date) = 7) THEN DateDiff (day, c.case_log_opnd_date, c.case_log_clsd_date) - ((DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) * 2) - 1) 					WHEN c.case_status_id = 'C' and (DatePart (dw, c.case_log_clsd_date) = 1 OR DatePart (dw, c.case_log_clsd_date) = 7) THEN DateDiff (day, c.case_log_opnd_date, c.case_log_clsd_date) - ((DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) * 2) - 1) 					WHEN c.case_status_id = 'C' and (DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) > 1) THEN DateDiff (day, c.case_log_opnd_date, c.case_log_clsd_date) - ((DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) * 2) - 2) 					WHEN c.case_status_id = 'C' and (DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) <= 1) THEN DateDiff (day, c.case_log_opnd_date, c.case_log_clsd_date) - (DateDiff (week, c.case_log_opnd_date, c.case_log_clsd_date) * 2) 					ELSE NULL 			 END) as 'avg_time_to_close',   
+         ROUND((CONVERT (decimal(10,2),SUM(CASE c.case_status_id WHEN 'O' THEN 1 ELSE 0 END))/(CONVERT (decimal(10,2),COUNT(c.case_number)))),2) as 'percent_open',   
+         AVG(CASE WHEN c.case_status_id = 'O' and ((DatePart (dw, c.case_log_opnd_date) = 1 OR DatePart (dw, c.case_log_opnd_date) = 7) AND 					 (DatePart (dw, GetDate()) = 1 OR DatePart (dw, GetDate()) = 7)) THEN DateDiff (day, c.case_log_opnd_date, GetDate()) - ((DateDiff (week, c.case_log_opnd_date, GetDate()) * 2) - 2) 					WHEN c.case_status_id = 'O' and (DatePart (dw, c.case_log_opnd_date) = 1 OR DatePart (dw, c.case_log_opnd_date) = 7) THEN DateDiff (day, c.case_log_opnd_date, GetDate()) - ((DateDiff (week, c.case_log_opnd_date, GetDate()) * 2) - 1) 					WHEN c.case_status_id = 'O' and (DatePart (dw, GetDate()) = 1 OR DatePart (dw, GetDate()) = 7) THEN DateDiff (day, c.case_log_opnd_date, GetDate()) - ((DateDiff (week, c.case_log_opnd_date, GetDate()) * 2) - 1) 					WHEN c.case_status_id = 'O' and (DateDiff (week, c.case_log_opnd_date, GetDate()) > 1) THEN DateDiff (day, c.case_log_opnd_date, GetDate()) - ((DateDiff (week, c.case_log_opnd_date, GetDate()) * 2) - 2) 					WHEN c.case_status_id = 'O' and (DateDiff (week, c.case_log_opnd_date, GetDate()) <= 1) THEN DateDiff (day, c.case_log_opnd_date, GetDate()) - (DateDiff (week, c.case_log_opnd_date, GetDate()) * 2) 					ELSE NULL 			 END) as 'avg_days_open'  
+    FROM cusfocus.case_log c,   
+         cusfocus.case_types ct,
+			cusfocus.categories ctg_root,
+			cusfocus.categories ctg_sel
+   WHERE ( c.case_type = ct.case_type ) and 
+			( c.category_id = ctg_sel.category_id ) and
+			( ctg_root.category_lineage = substring (ctg_sel.category_lineage, 1, 4)) and
+         ( c.source_type = 'E' ) AND  
+         ( c.case_status_id in ('C','O') ) AND  
+         ( c.case_log_opnd_date between :startDate and :endDate ) AND
+			( c.case_subject_id in (:customers) ) 
+GROUP BY c.case_type,
+         ct.case_type_desc,
+			ctg_root.category_name,
+			ctg_sel.category_name,
+			ctg_sel.category_level
+   " arguments=(("startDate", datetime),("endDate", datetime),("customers", stringlist)) )
+group(level=1 header.height=80 trailer.height=48 by=("case_log_case_type" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="Summary for all customers by case type:" border="0" color="0" x="9" y="12" height="56" width="2098"  name=t_1  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Case Type / Categories" border="0" color="0" x="306" y="116" height="56" width="1015"  name=case_types_case_type_desc_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="# Contacts" border="0" color="0" x="1947" y="116" height="56" width="329"  name=total_contacts_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="# Resolved" border="0" color="0" x="2290" y="116" height="56" width="329"  name=total_resolved_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Avg. Days To Resolution" border="0" color="0" x="2633" y="116" height="56" width="667"  name=avg_time_to_close_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="% Outstanding" border="0" color="0" x="3314" y="116" height="56" width="407"  name=percent_open_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Avg. Days Outstanding" border="0" color="0" x="3735" y="116" height="56" width="594"  name=avg_days_open_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="0" x="306" y="12" height="56" width="850" format="[general]"  name=case_types_case_type_desc edit.limit=30 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header.1 x1="302" y1="4" x2="4352" y2="4"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header.1 x1="302" y1="76" x2="4352" y2="76"  name=l_2 pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="1" expression="sum( total_contacts for group 1 )"border="0" color="0" x="1947" y="12" height="56" width="329" format="[GENERAL]"  name=total_contacts_summary  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="sum( total_resolved for group 1 )"border="0" color="0" x="2290" y="12" height="56" width="329" format="[GENERAL]"  name=total_resolved_summary  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="avg( avg_time_to_close for group 1 )"border="0" color="0" x="2633" y="12" height="56" width="667" format="0.00"  name=avg_avg_time_to_close  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="( total_contacts_summary - total_resolved_summary ) / total_contacts_summary"border="0" color="0" x="3314" y="12" height="56" width="407" format="0%"  name=total_percent_open  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="1" expression="avg( avg_days_open for group 1 )"border="0" color="0" x="3735" y="12" height="56" width="594" format="0.00"  name=avg_avg_days_open  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="56" width="82" format="[general]"  name=case_log_case_type visible="1~t0" edit.limit=2 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="366" y="4" height="56" width="1513" format="[general]"  name=category_name edit.limit=82 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="2290" y="4" height="56" width="329" format="[general]"  name=total_resolved edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1947" y="4" height="56" width="329" format="[general]"  name=total_contacts edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="2633" y="4" height="56" width="667" format="0.00"  name=avg_time_to_close edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="3314" y="4" height="56" width="407" format="0%"  name=percent_open edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="0" x="3735" y="4" height="56" width="594" format="[general]"  name=avg_days_open edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

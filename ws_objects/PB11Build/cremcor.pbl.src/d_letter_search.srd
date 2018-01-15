@@ -1,0 +1,53 @@
+﻿$PBExportHeader$d_letter_search.srd
+release 11;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=204 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" height.autosize=yes )
+table(column=(type=char(10) updatewhereclause=yes key=yes name=letter_id dbname="letter_types.letter_id" )
+ column=(type=char(40) updatewhereclause=yes name=letter_name dbname="letter_types.letter_name" )
+ column=(type=char(100) updatewhereclause=yes name=letter_desc dbname="letter_types.letter_desc" )
+ column=(type=char(4) updatewhereclause=yes name=case_types dbname="letter_types.case_types" )
+ column=(type=char(4) updatewhereclause=yes name=source_types dbname="letter_types.source_types" )
+ column=(type=long updatewhereclause=yes name=line_of_business_id dbname="letter_types.line_of_business_id" )
+ column=(type=char(1) updatewhereclause=yes name=rowfocusindicator dbname="rowfocusindicator" )
+ column=(type=char(1) updatewhereclause=yes name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=yes name=expanded dbname="expanded" )
+ column=(type=long updatewhereclause=yes name=sortcolumn dbname="sortcolumn" )
+ retrieve="  SELECT cusfocus.letter_types.letter_id,   
+         cusfocus.letter_types.letter_name,   
+         cusfocus.letter_types.letter_desc,   
+         cusfocus.letter_types.case_types,   
+         cusfocus.letter_types.source_types,   
+         cusfocus.letter_types.line_of_business_id,   
+         '' as rowfocusindicator,   
+         '' as selectrowindicator,   
+         '' as expanded,   
+         0 as sortcolumn  
+    FROM cusfocus.letter_types  
+   WHERE cusfocus.letter_types.active = 'Y' 
+     AND		letter_survey = 'N'
+     AND    charindex (:as_case_type, cusfocus.letter_types.case_types ) > 0
+     AND    charindex (:as_source_type, cusfocus.letter_types.source_types ) > 0
+" update="cusfocus.letter_types" updatewhere=1 updatekeyinplace=no arguments=(("as_case_type", string),("as_source_type", string)) )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=report_bitmap visible="1" )
+text(band=header alignment="0" text="Letters" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Description" border="0" color="33554432" x="1952" y="144" height="56" width="4325" html.valueishtml="0"  name=letter_desc_srt visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="0" y="8" height="68" width="8165"  name=r_1 visible="1" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), 536870912 )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1952" y="12" height="56" width="4325" format="[general]" html.valueishtml="0"  name=letter_desc visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Line of Business" border="0" color="33554432" x="55" y="140" height="56" width="576" html.valueishtml="0"  name=line_of_business_id_srt visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="55" y="8" height="56" width="576" format="[general]" html.valueishtml="0"  name=line_of_business_id visible="1" dddw.name=dddw_line_of_business dddw.displaycolumn=line_of_business_name dddw.datacolumn=line_of_business_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Name" border="0" color="33554432" x="649" y="140" height="56" width="1285" html.valueishtml="0"  name=letter_name_srt visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="649" y="12" height="56" width="1285" format="[general]" html.valueishtml="0"  name=letter_name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

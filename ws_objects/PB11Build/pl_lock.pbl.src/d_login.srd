@@ -1,0 +1,40 @@
+﻿$PBExportHeader$d_login.srd
+$PBExportComments$DataWindow for displaying the login window's database connections
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=db_key dbname="pl_db.db_key" )
+ column=(type=char(40) updatewhereclause=yes name=db_name dbname="pl_db.db_name" )
+ column=(type=long updatewhereclause=yes name=db_updatefiles_active dbname="pl_db.db_updatefiles_active" )
+ retrieve="SELECT pl_db.db_key, pl_db.db_name, pl_db.db_updatefiles_active  
+  FROM pl_db, pl_app_db 
+ WHERE pl_app_db.app_key = :app_key 
+   AND pl_app_db.db_key = pl_db.db_key  
+
+UNION  
+
+SELECT pl_db.db_key, pl_db.db_name, pl_db.db_updatefiles_active 
+  FROM pl_db, pl_grp_db
+ WHERE pl_grp_db.grp_key IN  
+      (SELECT pl_grp_usr.grp_key
+         FROM pl_grp_usr, pl_app_grp
+        WHERE pl_grp_usr.usr_key = :usr_key 
+          AND pl_grp_usr.grp_key = pl_app_grp.grp_key
+          AND pl_app_grp.app_key = :app_key)
+   AND pl_grp_db.db_key = pl_db.db_key  
+
+UNION  
+
+SELECT pl_db.db_key, pl_db.db_name, pl_db.db_updatefiles_active 
+  FROM pl_db, pl_usr_db, pl_app_usr, pl_usr
+ WHERE pl_usr_db.db_key = pl_db.db_key 
+   AND pl_usr_db.usr_key = :usr_key 
+   AND pl_app_usr.app_key = :app_key 
+   AND pl_app_usr.usr_key = pl_usr.usr_key 
+
+" arguments=(("app_key", number),("usr_key", number)) )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="5" y="0" height="76" width="709" format="[general]"  name=db_name dddw.name=d_dddw_db_name dddw.displaycolumn=db_name dddw.datacolumn=db_key dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

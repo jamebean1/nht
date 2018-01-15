@@ -1,0 +1,21 @@
+﻿$PBExportHeader$dddw_surveys.srd
+$PBExportComments$Table Maintenance Surveys DropDown DataWindow.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=letter_id dbname="letter_types.letter_id" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=letter_name dbname="letter_types.letter_name" )
+ column=(type=char(100) updatewhereclause=yes name=letter_desc dbname="letter_types.letter_desc" )
+ retrieve="  SELECT cusfocus.letter_types.letter_id,   
+         cusfocus.letter_types.letter_name,   
+         cusfocus.letter_types.letter_desc  
+    FROM cusfocus.letter_types  
+   WHERE ( cusfocus.letter_types.active = 'Y' ) AND  
+         ( cusfocus.letter_types.letter_survey = 'Y' )" update="cusfocus.letter_types" updatewhere=0 updatekeyinplace=no )
+compute(band=detail alignment="0" expression="if(isnull(letter_desc) OR Trim(letter_desc) = ~"~", letter_name, letter_desc)"border="0" color="0" x="9" y="96" height="76" width="2528" format="[GENERAL]"  name=cc_letter_info  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="68" width="850" format="[general]"  name=letter_name edit.limit=20 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="184" height="64" width="2702" format="[general]"  name=letter_desc edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

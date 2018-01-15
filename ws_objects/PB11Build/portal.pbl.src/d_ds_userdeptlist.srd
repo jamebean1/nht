@@ -1,0 +1,41 @@
+﻿$PBExportHeader$d_ds_userdeptlist.srd
+$PBExportComments$UserList DataStore
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=user_id dbname="cusfocus_user.user_id" dbalias="u.user_id" )
+ column=(type=char(25) updatewhereclause=yes name=user_first_name dbname="cusfocus_user.user_first_name" dbalias="u.user_first_name" )
+ column=(type=char(30) updatewhereclause=yes name=user_last_name dbname="cusfocus_user.user_last_name" dbalias="u.user_last_name" )
+ column=(type=char(50) updatewhereclause=yes name=out_of_office_bmp dbname="cusfocus_user.out_of_office_bmp" dbalias="u.out_of_office_bmp" )
+ column=(type=char(10) updatewhereclause=yes name=user_dept_id dbname="cusfocus_user.user_dept_id" dbalias="u.user_dept_id" )
+ column=(type=char(40) updatewhereclause=yes name=dept_desc dbname="cusfocus_user_dept.dept_desc" dbalias="d.dept_desc" )
+ retrieve="  SELECT u.user_id,   
+         u.user_first_name,   
+         u.user_last_name,   
+         u.out_of_office_bmp,   
+         u.user_dept_id  ,
+         d.dept_desc
+    FROM cusfocus.cusfocus_user u
+    INNER JOIN cusfocus.cusfocus_user_dept d on u.user_dept_id = d.user_dept_id   
+   WHERE u.active <> 'N'     and u.user_dept_id = :as_dept
+" arguments=(("as_dept", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="14" y="12" height="76" width="302" format="[general]" html.valueishtml="0"  name=user_id visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="338" y="12" height="76" width="713" format="[general]" html.valueishtml="0"  name=user_first_name visible="1" edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="1074" y="12" height="76" width="713" format="[general]" html.valueishtml="0"  name=user_last_name visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1810" y="12" height="76" width="709" format="[general]" html.valueishtml="0"  name=out_of_office_bmp visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2542" y="12" height="76" width="270" format="[general]" html.valueishtml="0"  name=user_dept_id visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=40 border="0" color="0" x="2811" y="0" height="64" width="1083" format="[general]" html.valueishtml="0"  name=dept_desc visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

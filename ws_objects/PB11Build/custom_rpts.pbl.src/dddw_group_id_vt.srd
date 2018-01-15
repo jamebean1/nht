@@ -1,0 +1,25 @@
+﻿$PBExportHeader$dddw_group_id_vt.srd
+$PBExportComments$DropDownDatawindow for Distinct Case Log Generic 1 (Vermont)
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=all_group_id dbname="all_group_id" )
+ retrieve="SELECT DISTINCT substring(cusfocus.case_log.case_log_generic_4,1,20) as all_group_id
+    FROM cusfocus.case_log
+   WHERE cusfocus.case_log.case_log_generic_4 is not null
+     AND ltrim(rtrim(cusfocus.case_log.case_log_generic_4)) <> ''
+
+UNION
+
+SELECT DISTINCT cusfocus.case_log.group_id as all_group_id
+    FROM cusfocus.case_log
+   WHERE cusfocus.case_log.group_id is not null
+     AND ltrim(rtrim(cusfocus.case_log.group_id)) <> ''
+
+
+ORDER BY all_group_id" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="704" format="[general]"  name=all_group_id edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

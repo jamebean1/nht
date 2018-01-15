@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_iim_dsn_info.srd
+$PBExportComments$Detail information for a specified datasource.
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=552 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=iim_source_id dbname="iim_datasources.iim_source_id" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=iim_source_name dbname="iim_datasources.iim_source_name" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=iim_source_uid dbname="iim_datasources.iim_source_uid" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=iim_source_pwd dbname="iim_datasources.iim_source_pwd" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=iim_source_active dbname="iim_datasources.iim_source_active" values="Active?	Y/Active?	N" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.iim_datasources~" ) COLUMN(NAME=~"cusfocus.iim_datasources.iim_source_id~") COLUMN(NAME=~"cusfocus.iim_datasources.iim_source_name~") COLUMN(NAME=~"cusfocus.iim_datasources.iim_source_uid~") COLUMN(NAME=~"cusfocus.iim_datasources.iim_source_pwd~") COLUMN(NAME=~"cusfocus.iim_datasources.iim_source_active~")WHERE(    EXP1 =~"cusfocus.iim_datasources.iim_source_id~"   OP =~"=~"    EXP2 =~":dsn_id~" ) ) ARG(NAME = ~"dsn_id~" TYPE = number) " update="cusfocus.iim_datasources" updatewhere=1 updatekeyinplace=no arguments=(("dsn_id", number)) )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="343" y="52" height="64" width="850" format="[general]"  name=iim_source_name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="343" y="152" height="64" width="850" format="[general]"  name=iim_source_uid edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="343" y="252" height="64" width="850" format="*********"  name=iim_source_pwd edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.password=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="0" x="123" y="348" height="64" width="274" format="[general]"  name=iim_source_active checkbox.text="Active?" checkbox.on="Y" checkbox.off="N" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=detail alignment="1" text="Username:" border="0" color="0" x="9" y="152" height="64" width="311"  name=iim_source_uid_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Password:" border="0" color="0" x="9" y="252" height="64" width="311"  name=iim_source_pwd_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Name:" border="0" color="0" x="9" y="56" height="64" width="311"  name=iim_source_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

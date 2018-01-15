@@ -1,0 +1,76 @@
+﻿$PBExportHeader$f_days_case_opnd.srf
+$PBExportComments$Function for calculating the number of days opened
+global type f_days_case_opnd from function_object
+end type
+
+forward prototypes
+global function integer f_days_case_opnd (string a_start_num_day, string a_end_num_day)
+end prototypes
+
+global function integer f_days_case_opnd (string a_start_num_day, string a_end_num_day);//******************************************************************
+//  Function      : f_days_case_opnd
+//
+//  Description   : A function that returns the number of open cases
+//						  between a number range.
+//						  IF "INF" is pass as a_end_num_day then it gets all
+//							open cases starting with a_start_num_day
+//							Used in Standard Reporting.
+//
+//
+//  Parameters    : STRING				a_start_num_day 	- Start Num Day
+//						  STRING				a_end_num_day		- End Num Day 
+//
+//  Return Value  : INTEGER - Number of open cases between the two values.
+//						  
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//	 11/27/2001 K. Claver Added code to accomodate for Microsoft SQL
+//								 Server.
+//******************************************************************
+//  Copyright ServerLogic 1994-1995.  All Rights Reserved.
+//******************************************************************
+
+
+INTEGER l_start_num_day, l_end_num_day, l_nreturn
+
+l_start_num_day = Integer( a_start_num_day )
+
+IF a_end_num_day = "INF" THEN
+
+	CHOOSE CASE SQLCA.DBMS
+
+	CASE 'ODBC'
+
+//		SELECT COUNT(*) INTO :l_nReturn FROM cusfocus.case_log WHERE 
+//			MONTH(case_log_clsd_date) =:mont_arg and source_Type = 'E';
+	CASE 'SYC','SYB','MSS', 'SNC'
+	
+		SELECT COUNT(*) INTO :l_nReturn FROM cusfocus.case_log WHERE 
+			DATEDIFF(day, case_log_clsd_date, case_log_opnd_date) >= :l_end_num_day;
+			
+	END CHOOSE
+
+ELSE
+
+	l_end_num_day = Integer( a_end_num_day )
+
+	CHOOSE CASE SQLCA.DBMS
+
+	CASE 'ODBC'
+
+//		SELECT COUNT(*) INTO :l_nReturn FROM cusfocus.case_log WHERE 
+//			MONTH(case_log_clsd_date) =:mont_arg and source_Type = 'E';
+	CASE 'SYC','SYB','MSS'
+	
+		SELECT COUNT(*) INTO :l_nReturn FROM cusfocus.case_log WHERE 
+			DATEDIFF(day, case_log_clsd_date, case_log_opnd_date) >= :l_start_num_day AND 
+			DATEDIFF(day, case_log_clsd_date, case_log_opnd_date) <= :l_end_num_day;
+	END CHOOSE
+END IF
+
+RETURN l_nReturn
+end function
+

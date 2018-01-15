@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_show_fields_external_columns_aggregate.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=81324524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(1) updatewhereclause=no name=aggregate dbname="aggregate" initial="N" values="Join Directly to this Column	N/Aggregate this Column	Y/" )
+ column=(type=char(100) updatewhereclause=no name=aggregatefunction dbname="aggregatefunction" values="Sum	[Sum]/Count	[Count]/Distinct Count	[CountDistinct]/Average	[Avg]/Minimum	[Min]/Maximum	[Max]/Standard Deviation	[STDev]/Statistical Variance	[Var]/" )
+ column=(type=char(1) updatewhereclause=no name=allowonetomany dbname="allowonetomany" )
+ )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="18" y="8" height="64" width="763" format="[general]" protect="0~tIf (allowonetomany = 'Y', 0, 1)"  name=aggregate ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.useasborder=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf (allowonetomany = 'Y', 16777215, 553648127)" )
+text(band=detail alignment="0" text="by taking the " border="0" color="0" x="809" y="12" height="52" width="357"  name=t_1  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="1189" y="8" height="64" width="613" format="[general]" protect="0~tif(aggregate = 'N', 1, 0)"  name=aggregatefunction ddlb.limit=8 ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.useasborder=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf  ( aggregate = 'N', 553648127, 16777215)" )
+text(band=detail alignment="0" text="of the values." border="0" color="0" x="1829" y="12" height="52" width="347"  name=t_2  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

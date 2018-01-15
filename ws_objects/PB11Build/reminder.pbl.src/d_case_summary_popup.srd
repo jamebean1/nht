@@ -1,0 +1,162 @@
+﻿$PBExportHeader$d_case_summary_popup.srd
+release 11;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=yes print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=56 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=560 color="536870912" )
+table(column=(type=long updatewhereclause=yes identity=yes name=number_of_cases dbname="number_of_cases" )
+ column=(type=long updatewhereclause=yes identity=yes name=oldest_case dbname="oldest_case" )
+ column=(type=long updatewhereclause=yes identity=yes name=reminders_today dbname="reminders_today" )
+ column=(type=long updatewhereclause=yes identity=yes name=reminders_within_one_week dbname="reminders_within_one_week" )
+ column=(type=long updatewhereclause=yes identity=yes name=cases_opened_today dbname="cases_opened_today" )
+ column=(type=long updatewhereclause=yes identity=yes name=cases_opened_yesterday dbname="cases_opened_yesterday" )
+ column=(type=long updatewhereclause=yes identity=yes name=cases_opened_within_last_week dbname="cases_opened_within_last_week" )
+ column=(type=long updatewhereclause=yes identity=yes name=reminders_overdue dbname="reminders_overdue" )
+ retrieve="select
+count(cl.case_number)  as number_of_cases,
+max(datediff(day,cl.case_log_opnd_date,getdate())) as oldest_case,
+max(r.reminders_today) as reminders_today,
+max(r3.reminders_within_one_week) as reminders_within_one_week,
+max(open1.opened_today) as cases_opened_today,
+max(open2.opened_yesterday) as cases_opened_yesterday,
+max(open3.opened_within_last_week) as cases_opened_within_last_week,
+max(r5.reminders_overdue) as reminders_overdue
+from 
+	cusfocus.case_log cl,
+	cusfocus.cusfocus_user cu,
+	(select count(r1.reminder_id) as reminders_today
+	from cusfocus.reminders r1
+	where floor(cast(r1.reminder_set_date as float)) = floor(cast( getdate() as float))
+	and r1.reminder_recipient in (:as_user)) as r,
+	(select count(r2.reminder_id) as reminders_within_one_week
+	from cusfocus.reminders r2
+	where floor(cast( r2.reminder_set_date as float)) <= floor(cast(dateadd(day, 7, getdate()) as float))
+     and floor(cast( r2.reminder_set_date as float)) >= floor(cast( getdate() as float))
+	and r2.reminder_recipient in (:as_user)) as r3,
+	(select count(r4.reminder_id) as reminders_overdue
+	from cusfocus.reminders r4
+	where floor(cast( r4.reminder_set_date as float)) < floor(cast( getdate() as float))
+	and r4.reminder_recipient in (:as_user)) as r5,
+    (SELECT 	count(case_number) as opened_today
+     FROM cusfocus.case_log  , cusfocus.cusfocus_user cu7
+    WHERE 
+         ( cusfocus.case_log.case_status_id = 'O' ) AND  
+		cu7.user_id = :as_current_user and
+		cu7.confidentiality_level >= cusfocus.case_log.confidentiality_level and
+		 floor(cast(cusfocus.case_log.case_log_opnd_date as float)) = floor(cast(getdate()  as float)) AND
+	     (	cusfocus.case_log.case_log_case_rep in (:as_user)
+		 OR
+         ( cusfocus.case_log.case_log_case_rep in 
+		    (SELECT 	cl7.case_log_case_rep
+			FROM cusfocus.case_log cl7,
+				 cusfocus.case_transfer ct7
+		    WHERE 
+	         ct7.case_number = cl7.case_number and  
+		     ct7.case_transfer_from in (:as_user) AND  
+			 ct7.case_transfer_deadline < getdate() AND 
+			 ct7.case_transfer_type = 'O' AND   
+		     cl7.case_log_clsd_date is null AND  
+			 cl7.case_status_id = 'O' AND  
+			 cl7.case_log_case_rep <> cl7.case_log_taken_by AND 
+			 cl7.case_log_case_rep not in (:as_user) ) ))
+		)  as open1,
+    (SELECT 	count(case_number) as opened_yesterday
+     FROM cusfocus.case_log , cusfocus.cusfocus_user cu5
+    WHERE 
+         ( cusfocus.case_log.case_status_id = 'O' ) AND  
+		cu5.user_id = :as_current_user and
+		cu5.confidentiality_level >= cusfocus.case_log.confidentiality_level and
+		 floor(cast(cusfocus.case_log.case_log_opnd_date as float)) = floor(cast(getdate() - 1 as float)) AND
+		 (
+         ( cusfocus.case_log.case_log_case_rep in (:as_user) ) 
+		 OR
+         ( cusfocus.case_log.case_log_case_rep in 
+		    (SELECT 	cl5.case_log_case_rep
+			FROM cusfocus.case_log cl5,
+				 cusfocus.case_transfer ct5
+		    WHERE 
+	         ct5.case_number = cl5.case_number and  
+		     ct5.case_transfer_from in (:as_user) AND  
+			 ct5.case_transfer_deadline < getdate() AND 
+			 ct5.case_transfer_type = 'O' AND   
+		     cl5.case_log_clsd_date is null AND  
+			 cl5.case_status_id = 'O' AND  
+			 cl5.case_log_case_rep <> cl5.case_log_taken_by AND 
+			 cl5.case_log_case_rep not in (:as_user) ) ))
+		 ) as open2,
+    (SELECT 	count(case_number) as opened_within_last_week
+     FROM cusfocus.case_log, cusfocus.cusfocus_user cu4
+    WHERE 
+         ( cusfocus.case_log.case_status_id = 'O' ) AND  
+		cu4.user_id = :as_current_user and
+		cu4.confidentiality_level >= cusfocus.case_log.confidentiality_level and
+		 floor(cast(cusfocus.case_log.case_log_opnd_date as float)) >= floor(cast(getdate() - 7 as float)) AND
+		 (
+         ( cusfocus.case_log.case_log_case_rep in (:as_user) ) 
+		 OR
+         ( cusfocus.case_log.case_log_case_rep in 
+		    (SELECT 	cl4.case_log_case_rep
+			FROM cusfocus.case_log cl4,
+				 cusfocus.case_transfer ct4
+		    WHERE 
+	         ct4.case_number = cl4.case_number and  
+		     ct4.case_transfer_from in (:as_user) AND  
+			 ct4.case_transfer_deadline < getdate() AND 
+			 ct4.case_transfer_type = 'O' AND   
+		     cl4.case_log_clsd_date is null AND  
+			 cl4.case_status_id = 'O' AND  
+			 cl4.case_log_case_rep <> cl4.case_log_taken_by AND 
+			 cl4.case_log_case_rep not in (:as_user) ) ))
+
+		 )  as open3
+where cl.case_status_id = 'O' 
+			and cu.user_id = :as_current_user
+			and cu.confidentiality_level >= cl.confidentiality_level and
+	     (	cl.case_log_case_rep in (:as_user)
+		 OR
+         ( cl.case_log_case_rep in 
+		    (SELECT 	cl6.case_log_case_rep
+			FROM cusfocus.case_log cl6,
+				 cusfocus.case_transfer ct6
+		    WHERE 
+	         ct6.case_number = cl6.case_number and  
+		     ct6.case_transfer_from in (:as_user) AND  
+			 ct6.case_transfer_deadline < getdate() AND 
+			 ct6.case_transfer_type = 'O' AND   
+		     cl6.case_log_clsd_date is null AND  
+			 cl6.case_status_id = 'O' AND  
+			 cl6.case_log_case_rep <> cl6.case_log_taken_by AND 
+			 cl6.case_log_case_rep not in (:as_user) ) ))
+
+
+
+" arguments=(("as_user", stringlist),("as_current_user", string)) )
+text(band=header alignment="0" text="Case Summary" border="0" color="0" x="416" y="0" height="52" width="389" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="4" height="56" width="233" format="[general]" html.valueishtml="0"  name=number_of_cases visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Number Of Cases:" border="0" color="33554432" x="169" y="4" height="56" width="658" html.valueishtml="0"  name=number_of_cases_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="76" height="56" width="233" format="[general]" html.valueishtml="0"  name=oldest_case visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Oldest Case ( in days ):" border="0" color="33554432" x="169" y="76" height="56" width="658" html.valueishtml="0"  name=oldest_case_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="148" height="56" width="233" format="[general]" html.valueishtml="0"  name=reminders_today visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reminders Today:" border="0" color="33554432" x="169" y="148" height="56" width="658" html.valueishtml="0"  name=reminders_today_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="220" height="56" width="233" format="[general]" html.valueishtml="0"  name=reminders_within_one_week visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reminders Within One Week:" border="0" color="33554432" x="169" y="220" height="56" width="658" html.valueishtml="0"  name=reminders_within_one_week_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="292" height="52" width="233" format="[general]" html.valueishtml="0"  name=reminders_overdue visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Reminders Overdue:" border="0" color="33554432" x="169" y="292" height="52" width="658" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="360" height="56" width="233" format="[general]" html.valueishtml="0"  name=cases_opened_today visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cases Opened Today:" border="0" color="33554432" x="169" y="360" height="56" width="658" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="428" height="56" width="233" format="[general]" html.valueishtml="0"  name=cases_opened_yesterday visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cases Opened Yesterday:" border="0" color="33554432" x="169" y="428" height="56" width="658" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="905" y="496" height="56" width="233" format="[general]" html.valueishtml="0"  name=cases_opened_within_last_week visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cases Opened Within Last Week:" border="0" color="33554432" x="169" y="496" height="56" width="731" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

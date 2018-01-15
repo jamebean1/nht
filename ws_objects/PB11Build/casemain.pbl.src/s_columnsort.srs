@@ -1,0 +1,7 @@
+﻿$PBExportHeader$s_columnsort.srs
+$PBExportComments$Column Sort Structure used in the Sort window
+global type s_columnsort from structure
+    string label_name[]
+    string column_name[]
+end type
+

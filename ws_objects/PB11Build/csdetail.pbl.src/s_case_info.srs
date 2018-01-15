@@ -1,0 +1,6 @@
+﻿$PBExportHeader$s_case_info.srs
+global type s_case_info from structure
+	string		case_number
+	string		case_type
+end type
+

@@ -1,0 +1,51 @@
+Outlaw Technologies - CustomerFocus
+
+Appeon Testing - Database & Product Installation Notes.
+
+-------------------------------------------------------
+
+We are providing you with a copy of our source code and databases in order to demonstrate some of the issues we are having with Appeon 6.2.  These notes should help you install the software.  We are giving you two databases (backups).
+
+Base Requirements:
+
+Database Server - Microsoft SQLServer 2005
+Workstation - Microsoft Client SQLServer 2005 (native drivers installed), Windows XP or newer release.
+
+
+Step 1:  You must re-create / import the databases into your server so you have an environment to connect to.  The databases have existing data so your testing should be easier.
+
+	a)  Using Microsoft SQLServer - create two databases:
+		PLOCK
+		CF61NEW
+	b)  Now import from the backup files the "plock.bak" file into the PLOCK database, and the "CF^!NEW.bak" file into the CF61NEW database.  *** Note you will probably have to modify the path to the physicial device locations (e.g. d:\sqlserver\...) because our machine is probably not configured as yours is.  You do this in the SQLServer tool.  
+	
+	c)  IMPORTANT!!! - there are users in the database that must be incorporated into your syslogins environment within SQLServer.  During the import process SQLServer will prompt to create the users/login accounts - you can say yes - if it doesn't work you have to establish the following users with full permissions to the tables in the database.
+	
+		PLOCK Database - requires the userid 'cfadmin', with password 'cfadmin'
+		
+		CF61NEW Database - will require the userid 'cfadmin', with password 'cfadmin'
+		                  - will require the userid 'cusfocus', with password 'cusfocus'
+		                  having the user cusfocus is critical as our tables are owned by this user and must be setup correctly as DBO.
+                                  - will require the userid 'rick' to access the cases through the app.
+		                
+		Once these are setup do a manual test in Query Analyzer/Isql tool.
+		
+			1)  You should be able to login to query analyzer as 'cfadmin/cfadmin'.
+			2)  You should have access to both the Plock and CF61NEW database(s).
+			3)  You should be able to perform the following query on the CF61NEW Database:
+				"select * from cusfocus.consumer" - this should produce results.
+			4)  You should be able to perform the following query on the PLOCK Database:
+				"select * from pl_usr" - this should produce results.
+
+		                  
+Step 2:  Adjust Powerlock Client Communications: In the PowerLock database, modify the table entry in pl_db for the PB11 database entry. The db_server column should point to the server where the CF61NEW database was restored.
+
+
+If you have any questions, please contact Rick Post at:
+rick.post@outlaw-tech.com
+
+
+
+
+
+	

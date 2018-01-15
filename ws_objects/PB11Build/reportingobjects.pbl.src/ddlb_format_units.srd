@@ -1,0 +1,13 @@
+﻿$PBExportHeader$ddlb_format_units.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=64 color="536870912" )
+table(column=(type=char(1) updatewhereclause=no name=datavalue dbname="datavalue" )
+ column=(type=char(1000) updatewhereclause=no name=displayvalue dbname="displayvalue" )
+ )
+data("0","PowerBuilder Units (0)","1","Pixels (1)","2","1/1000 Inch (2)","3","1/1000 Centimeter (3)",) 
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="56" width="1230" format="[general]"  name=displayvalue edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

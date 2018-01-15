@@ -1,0 +1,103 @@
+﻿$PBExportHeader$d_search_reminders.srd
+$PBExportComments$Reminder List DataWindow
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=188 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=76 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=reminder_id dbname="reminders.reminder_id" )
+ column=(type=char(40) updatewhereclause=yes name=reminder_type_desc dbname="reminder_types.reminder_type_desc" )
+ column=(type=char(10) updatewhereclause=yes name=case_number dbname="reminders.case_number" )
+ column=(type=datetime updatewhereclause=yes name=reminder_set_date dbname="reminders.reminder_set_date" )
+ column=(type=char(40) updatewhereclause=yes name=reminder_subject dbname="reminders.reminder_subject" )
+ column=(type=char(10) updatewhereclause=yes name=reminder_author dbname="reminders.reminder_author" )
+ column=(type=char(150) updatewhereclause=yes name=case_type_desc dbname="case_type_desc" )
+ column=(type=char(1) updatewhereclause=yes name=reminders_case_reminder dbname="reminders.case_reminder" )
+ column=(type=char(30) updatewhereclause=yes name=user_last_name dbname="cusfocus_user.user_last_name" )
+ column=(type=long updatewhereclause=yes name=late_reminder dbname="cusfocus_user.late_reminder" )
+ column=(type=long updatewhereclause=yes name=past_due_reminder dbname="cusfocus_user.past_due_reminder" )
+ column=(type=char(1) updatewhereclause=yes name=reminders_reminder_viewed dbname="reminders.reminder_viewed" )
+ column=(type=char(1) updatewhereclause=yes name=reminder_types_warning dbname="reminder_types.warning" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ column=(type=char(25) updatewhereclause=yes name=user_first_name dbname="cusfocus_user.user_first_name" )
+ column=(type=char(1) updatewhereclause=yes name=rowfocusindicator dbname="rowfocusindicator" )
+ column=(type=char(1) updatewhereclause=yes name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=yes name=expanded dbname="expanded" )
+ column=(type=long updatewhereclause=yes identity=yes name=sortcolumn dbname="sortcolumn" )
+ retrieve="SELECT  cusfocus.reminders.reminder_id ,
+           cusfocus.reminder_types.reminder_type_desc ,
+           cusfocus.reminders.case_number ,
+           cusfocus.reminders.reminder_set_date ,
+           cusfocus.reminders.reminder_subject ,
+           cusfocus.reminders.reminder_author ,
+           CASE cusfocus.reminders.case_type 
+              WHEN 'M' THEN cusfocus.system_options.option_value 
+              WHEN 'I' THEN 'Inquiry'
+              WHEN 'C' THEN 'Issue/Concern'
+              WHEN 'P' THEN 'Proactive'
+           END AS case_type_desc,
+           cusfocus.reminders.case_reminder ,
+           cf_user1.user_last_name ,
+           cf_user2.late_reminder late_reminder,
+           cf_user2.past_due_reminder past_due_reminder,
+           cusfocus.reminders.reminder_viewed ,
+           cusfocus.reminder_types.warning,
+           cf_user1.active     ,
+           cf_user1.user_first_name ,
+           ' ' as rowfocusindicator,
+           ' ' as selectrowindicator, 
+           ' ' as expanded, 
+           0 as sortcolumn 
+        FROM cusfocus.case_types ,
+           cusfocus.cusfocus_user cf_user1,
+			  cusfocus.cusfocus_user cf_user2,
+           cusfocus.reminders ,
+           cusfocus.reminder_types ,
+           cusfocus.system_options    
+        WHERE ( cusfocus.reminders.case_type  *= cusfocus.case_types.case_type) and 
+         ( cusfocus.reminders.reminder_type_id = cusfocus.reminder_types.reminder_type_id ) and 
+         ( cusfocus.reminders.reminder_author = cf_user1.user_id ) and 
+         ( cusfocus.system_options.option_name = 'configurable case type' ) and
+         ( ( cusfocus.reminders.reminder_recipient = :user_id ) and
+			  ( cf_user2.user_id = cusfocus.reminders.reminder_recipient ) and 
+   		(( cusfocus.reminders.case_reminder = CASE :case_reminder WHEN 'Y' 
+																THEN 'Y'
+																WHEN 'N'
+																THEN 'N'	
+																END ) OR 
+			(:case_reminder = '%' )))      
+													
+			
+" arguments=(("user_id", string),("case_reminder", string))  sort="reminder_set_date A " )
+line(band=header x1="73" y1="180" x2="5001" y2="180"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+bitmap(band=header filename="REPORT.BMP" x="105" y="28" height="64" width="73" border="0"  name=report_bitmap visible="1" )
+text(band=header alignment="0" text="Reminders" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Date" border="0" color="0" x="91" y="124" height="52" width="375" html.valueishtml="0"  name=reminder_set_date_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Case Type" border="0" color="0" x="2907" y="120" height="52" width="631" html.valueishtml="0"  name=case_type_desc_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Subject" border="0" color="0" x="475" y="120" height="52" width="590" html.valueishtml="0"  name=reminder_subject_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Author" border="0" color="0" x="1074" y="120" height="52" width="613" html.valueishtml="0"  name=cc_reminder_author_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Reminder Type" border="0" color="0" x="1696" y="120" height="52" width="713" html.valueishtml="0"  name=reminder_type_desc_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Case Number" border="0" color="0" x="2418" y="120" height="52" width="480" html.valueishtml="0"  name=numeric_casenum_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+rectangle(band=detail x="0" y="0" height="68" width="4983"  name=r_1 visible="1" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), rgb(255,255,255) )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="91" y="4" height="60" width="375" format="m/d/yyyy" html.valueishtml="0"  name=reminder_set_date  tag=" Date" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="475" y="4" height="60" width="590" format="[general]" html.valueishtml="0"  name=reminder_subject  tag=" Subject" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="1696" y="4" height="60" width="713" format="[general]" html.valueishtml="0"  name=reminder_type_desc  tag=" Reminder Type" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="2907" y="4" height="60" width="631" format="[general]" html.valueishtml="0"  name=case_type_desc  tag=" Case Type" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Long( case_number )"border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="2418" y="4" height="60" width="480" format="[GENERAL]" html.valueishtml="0"  name=numeric_casenum  tag=" Case Number" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if ( (  cusfocus_user_active = 'N' ),   user_last_name + ', ' + user_first_name + ' (inactive)', 
+ user_last_name + ', ' + user_first_name  )"border="0" color="0~tif(  cc_days_after >=  cusfocus_user_late_reminder , 255, if( cc_days_after >= cusfocus_user_past_due_reminder , 16711680, 0) )" x="1074" y="4" height="60" width="613" format="[GENERAL]" html.valueishtml="0"  name=cc_reminder_author  tag=" Author" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400~tif( ( isNull (  case_number  ) ), 400, ( if( (  reminders_reminder_viewed <> 'Y' ), 700, 400 ) ) )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="73" y1="0" x2="5001" y2="0"  name=l_footer visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="12632256" )
+compute(band=footer alignment="0" expression="'Reminders: ' + rowcount()"border="0" color="0" x="91" y="12" height="60" width="590" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="33554432" x="1499" y="12" height="60" width="2501" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

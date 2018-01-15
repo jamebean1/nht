@@ -1,0 +1,88 @@
+﻿$PBExportHeader$d_matched_appeals.srd
+$PBExportComments$Matching Case records based on search criteria DataWindow
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=208 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=case_number dbname="case_number" )
+ column=(type=long updatewhereclause=yes identity=yes name=appealheaderid dbname="appealheaderid" )
+ column=(type=long updatewhereclause=yes name=appealtype dbname="appealtype" )
+ column=(type=char(10) updatewhereclause=yes name=appealcreatedby dbname="appealcreatedby" )
+ column=(type=datetime updatewhereclause=yes name=appealcreateddate dbname="appealcreateddate" )
+ column=(type=long updatewhereclause=yes name=appealheaderstatusid dbname="appealheaderstatusid" )
+ column=(type=long updatewhereclause=yes name=appealoutcome dbname="appealoutcome" )
+ column=(type=datetime updatewhereclause=yes name=duedate dbname="duedate" )
+ column=(type=datetime updatewhereclause=yes name=completeddate dbname="completeddate" )
+ column=(type=long updatewhereclause=yes name=line_of_business_id dbname="line_of_business_id" )
+ column=(type=long updatewhereclause=yes name=service_type_id dbname="service_type_id" )
+ column=(type=decimal(0) updatewhereclause=yes name=key_word_1 dbname="key_word_1" )
+ column=(type=decimal(0) updatewhereclause=yes name=key_word_2 dbname="key_word_2" )
+ column=(type=char(1) updatewhereclause=yes name=rowfocusindicator dbname="rowfocusindicator" )
+ column=(type=char(1) updatewhereclause=yes name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=yes name=expanded dbname="expanded" )
+ column=(type=long updatewhereclause=yes identity=yes name=sortcolumn dbname="sortcolumn" )
+ retrieve="SELECT 
+		cusfocus.appealheader.case_number,   
+         cusfocus.appealheader.appealheaderid,   
+         cusfocus.appealheader.appealtype,   
+         cusfocus.appealheader.appealcreatedby,   
+         cusfocus.appealheader.appealcreateddate,   
+         cusfocus.appealheader.appealheaderstatusid,   
+         cusfocus.appealheader.appealoutcome,   
+         cusfocus.appealheader.duedate,   
+         cusfocus.appealheader.completeddate,   
+         cusfocus.appealheader.line_of_business_id,   
+         cusfocus.appealheader.service_type_id,   
+         cusfocus.appealheader.key_word_1,   
+         cusfocus.appealheader.key_word_2  ,
+           '' rowfocusindicator,
+           '' selectrowindicator,
+           '' expanded,
+           0 sortcolumn 
+    FROM cusfocus.appealheader
+
+"  sort="sort_case_number A " )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=report_bitmap visible="1" )
+text(band=header alignment="0" text="Matched Appeals" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="200" x2="5513" y2="200"  name=l_header visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="~"Cases: ~" + string(rowcount(), ~"#,##0~") + '                                                ' + 'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="0" x="91" y="12" height="64" width="4073" format="[GENERAL]" html.valueishtml="0"  name=report_footer visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+rectangle(band=detail x="0" y="0" height="68" width="5536"  name=r_1 visible="1" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), 536870912 )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+compute(band=detail alignment="1" expression="Long ( case_number )"border="0" color="0" x="91" y="4" height="60" width="338" format="[GENERAL]" html.valueishtml="0"  name=sort_case_number  tag=" Case Number" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="453" y="4" height="52" width="251" format="[general]" html.valueishtml="0"  name=appealheaderid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="731" y="4" height="52" width="430" format="[general]" html.valueishtml="0"  name=line_of_business_id visible="1" dddw.name=dddw_line_of_business dddw.displaycolumn=line_of_business_name dddw.datacolumn=line_of_business_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1179" y="4" height="52" width="430" format="[general]" html.valueishtml="0"  name=appealtype visible="1" dddw.name=dddw_appealtype dddw.displaycolumn=appealname dddw.datacolumn=appealtypeid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="1627" y="4" height="52" width="430" format="[general]" html.valueishtml="0"  name=service_type_id visible="1" dddw.name=dddw_service_types dddw.displaycolumn=service_type_name dddw.datacolumn=service_type_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2066" y="4" height="52" width="306" format="[general]" html.valueishtml="0"  name=appealcreatedby visible="1" dddw.name=dddw_cusfocus_users dddw.displaycolumn=case_rep dddw.datacolumn=user_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2395" y="4" height="52" width="343" format="[shortdate] [time]" html.valueishtml="0"  name=appealcreateddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2761" y="4" height="52" width="242" format="[general]" html.valueishtml="0"  name=appealheaderstatusid visible="1" dddw.name=dddw_appealstatus dddw.displaycolumn=name dddw.datacolumn=id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="3017" y="4" height="52" width="416" format="[general]" html.valueishtml="0"  name=appealoutcome visible="1" dddw.name=dddw_appealoutcome dddw.displaycolumn=appealoutcome dddw.datacolumn=id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="3451" y="4" height="52" width="507" format="[shortdate] [time]" html.valueishtml="0"  name=duedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="3982" y="4" height="52" width="507" format="[shortdate] [time]" html.valueishtml="0"  name=completeddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="4507" y="4" height="52" width="485" format="[general]" html.valueishtml="0"  name=key_word_1 visible="1" dddw.name=dddw_keywords dddw.displaycolumn=keyword dddw.datacolumn=keyword_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="5010" y="4" height="52" width="489" format="[general]" html.valueishtml="0"  name=key_word_2 visible="1" dddw.name=dddw_keywords dddw.displaycolumn=keyword dddw.datacolumn=keyword_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Case Number" border="0" color="0" x="91" y="132" height="52" width="338" html.valueishtml="0"  name=sort_case_number_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Appeal ID" border="0" color="0" x="453" y="132" height="52" width="251" html.valueishtml="0"  name=appealheaderid_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Line of Business" border="0" color="0" x="731" y="132" height="52" width="430" html.valueishtml="0"  name=line_of_business_id_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Appeal Type" border="0" color="0" x="1179" y="132" height="52" width="430" html.valueishtml="0"  name=appealtype_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Service Type" border="0" color="0" x="1623" y="132" height="52" width="430" html.valueishtml="0"  name=service_type_id_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Created By" border="0" color="0" x="2066" y="132" height="52" width="306" html.valueishtml="0"  name=appealcreatedby_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Created Date" border="0" color="0" x="2395" y="132" height="52" width="343" html.valueishtml="0"  name=appealcreateddate_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Status" border="0" color="0" x="2761" y="132" height="52" width="242" html.valueishtml="0"  name=appealheaderstatusid_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Outcome" border="0" color="0" x="3017" y="132" height="52" width="416" html.valueishtml="0"  name=appealoutcome_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Due Date" border="0" color="0" x="3451" y="132" height="52" width="507" html.valueishtml="0"  name=duedate_srt visible="1"  moveable=1  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Completed Date" border="0" color="0" x="3982" y="132" height="52" width="507" html.valueishtml="0"  name=completeddate_srt visible="1"  moveable=1  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Key Word 1" border="0" color="0" x="4507" y="132" height="52" width="485" html.valueishtml="0"  name=key_word_1_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Key Word 2" border="0" color="0" x="5010" y="132" height="52" width="489" html.valueishtml="0"  name=key_word_2_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

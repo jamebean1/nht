@@ -1,0 +1,25 @@
+﻿$PBExportHeader$d_report_entityconfig_dao.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=enttyrprtcnfgrprtcnfgid dbname="entityreportconfig.enttyrprtcnfgrprtcnfgid" )
+ column=(type=long update=yes updatewhereclause=yes key=yes name=enttyrprtcnfgenttyid dbname="entityreportconfig.enttyrprtcnfgenttyid" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=enttyrprtcnfgisdflt dbname="entityreportconfig.enttyrprtcnfgisdflt" initial="N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=enttyrprtcnfgissmartsearch dbname="entityreportconfig.enttyrprtcnfgissmartsearch" initial="N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isvisibleinsmartsearchtreeview dbname="entityreportconfig.isvisibleinsmartsearchtreeview" initial="N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isnavigationdestination dbname="entityreportconfig.isnavigationdestination" initial="N" )
+ retrieve="SELECT  	  enttyrprtcnfgrprtcnfgid ,
+           enttyrprtcnfgenttyid ,
+           enttyrprtcnfgisdflt ,
+           enttyrprtcnfgissmartsearch ,
+           isvisibleinsmartsearchtreeview ,
+           isnavigationdestination     
+        FROM cusfocus.entityreportconfig 
+        WHERE ( enttyrprtcnfgrprtcnfgid = :al_id )   " update="cusfocus.entityreportconfig" updatewhere=1 updatekeyinplace=no arguments=(("al_id", number)) )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,73 @@
+﻿$PBExportHeader$f_userdeptname.srf
+global type f_userdeptname from function_object
+end type
+
+forward prototypes
+global function string f_userdeptname (string a_cuserdept, string a_cuserdeptid)
+end prototypes
+
+global function string f_userdeptname (string a_cuserdept, string a_cuserdeptid);/*****************************************************************************************
+   Function:   f_UserDeptName
+   Purpose:    Get the user or department name for display in reports.
+	
+	Parameters:  a_cUserDept - String - User or Department indicator.
+					 a_cUserDeptID - String - User or Department ID
+					 
+	Returns: String - User or Department name
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	12/18/2001 K. Claver  Created.
+*****************************************************************************************/
+String l_cName = "", l_cActive, l_cFirstName, l_cLastName, l_cMI
+
+IF a_cUserDept = "D" THEN
+	//Get the department name
+	SELECT dept_desc
+	INTO :l_cName
+	FROM cusfocus.cusfocus_user_dept
+	WHERE user_dept_id = :a_cUserDeptID
+	USING SQLCA;
+ELSE
+	//Get if the user name and if the user is active
+	SELECT user_first_name,
+			 user_last_name,
+			 user_mi,
+			 active
+	INTO :l_cFirstName,
+		  :l_cLastName,
+		  :l_cMI,
+		  :l_cActive
+	FROM cusfocus.cusfocus_user
+	WHERE user_id = :a_cUserDeptID
+	USING SQLCA;
+	
+	IF NOT IsNull( l_cLastName ) THEN
+		l_cName += Trim( l_cLastName )
+	END IF
+	
+	IF NOT IsNull( l_cFirstName ) THEN
+		l_cName += ( ", "+Trim( l_cFirstName ) )
+	END IF
+	
+	IF NOT IsNull( l_cMI ) THEN
+		IF Pos( l_cName, "," ) > 1 THEN
+			l_cName += ( " "+Trim( l_cMI ) )
+		ELSE
+			l_cName += ( ", "+Trim( l_cMI ) )
+		END IF
+	END IF
+	
+	IF Upper( l_cActive ) <> "Y" THEN
+		l_cName += "(inactive)"
+	END IF
+END IF
+
+IF Trim( l_cName ) = "" THEN
+	l_cName = "Not Found"
+END IF
+
+RETURN l_cName
+end function
+

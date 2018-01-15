@@ -1,0 +1,74 @@
+﻿$PBExportHeader$d_tm_claims_examiners.srd
+$PBExportComments$Table Maintenance - Claims Examiners
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=claims_examiner_id dbname="claims_examiners.claims_examiner_id" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=claims_exam_first_name dbname="claims_examiners.claims_exam_first_name" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=claims_exam_last_name dbname="claims_examiners.claims_exam_last_name" )
+ column=(type=char(3) update=yes updatewhereclause=yes name=claims_exam_phone_ac dbname="claims_examiners.claims_exam_phone_ac" )
+ column=(type=char(7) update=yes updatewhereclause=yes name=claims_exam_phone_nmbr dbname="claims_examiners.claims_exam_phone_nmbr" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=claims_exam_phone_ext dbname="claims_examiners.claims_exam_phone_ext" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=active dbname="claims_examiners.active" initial="Y" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="claims_examiners.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="claims_examiners.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.claims_examiners.claims_examiner_id,   
+         cusfocus.claims_examiners.claims_exam_first_name,   
+         cusfocus.claims_examiners.claims_exam_last_name,   
+         cusfocus.claims_examiners.claims_exam_phone_ac,   
+         cusfocus.claims_examiners.claims_exam_phone_nmbr,   
+         cusfocus.claims_examiners.claims_exam_phone_ext,   
+         cusfocus.claims_examiners.active,   
+         cusfocus.claims_examiners.updated_by,   
+         cusfocus.claims_examiners.updated_timestamp,
+         cusfocus.cusfocus_user.active
+    FROM cusfocus.claims_examiners  , 
+         cusfocus.cusfocus_user
+   WHERE cusfocus.cusfocus_user.user_id = cusfocus.claims_examiners.updated_by
+
+
+UNION
+
+  SELECT cusfocus.claims_examiners.claims_examiner_id,   
+         cusfocus.claims_examiners.claims_exam_first_name,   
+         cusfocus.claims_examiners.claims_exam_last_name,   
+         cusfocus.claims_examiners.claims_exam_phone_ac,   
+         cusfocus.claims_examiners.claims_exam_phone_nmbr,   
+         cusfocus.claims_examiners.claims_exam_phone_ext,   
+         cusfocus.claims_examiners.active,   
+         cusfocus.claims_examiners.updated_by,   
+         cusfocus.claims_examiners.updated_timestamp,
+         ''
+    FROM cusfocus.claims_examiners  
+   WHERE cusfocus.claims_examiners.updated_by = 'cusfocus'
+
+
+
+
+" update="cusfocus.claims_examiners" updatewhere=1 updatekeyinplace=yes )
+text(band=header alignment="2" text="Examiner ID" border="6" color="0" x="9" y="8" height="64" width="384"  name=claims_examiner_id_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="1591" y="4" height="76" width="133" format="[general]"  name=claims_exam_phone_ac edit.name="Area Code" editmask.mask="(###)" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="1733" y="4" height="76" width="261" format="[general]"  name=claims_exam_phone_nmbr edit.name="Phone Number" editmask.mask="###-####" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="2002" y="4" height="76" width="133" format="[general]"  name=claims_exam_phone_ext edit.name="Ext" editmask.mask="######" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="0" color="0" x="2144" y="4" height="76" width="210" format="[general]"  name=active checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=9 alignment="0" tabsequence=80 border="0" color="0" x="2926" y="4" height="76" width="626" format="mm/dd/yyyy hh:mm:ss AM/PM"  name=updated_timestamp editmask.mask="mm/dd/yyyy hh:mm:ss AM/PM" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="76" width="384" format="[general]"  name=claims_examiner_id edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=30 border="0" color="0" x="997" y="4" height="76" width="585" format="[general]"  name=claims_exam_first_name edit.limit=25 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="0" x="402" y="4" height="76" width="585" format="[general]"  name=claims_exam_last_name edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="2363" y="4" height="76" width="553" format="[GENERAL]"  name=cc_updated_by  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="12" height="64" width="384" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="0~t1" y1="4" x2="3598~t3283" y2="4"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Last Name" border="6" color="0" x="402" y="8" height="64" width="585"  name=claims_exam_last_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="First Name" border="6" color="0" x="997" y="8" height="64" width="585"  name=claims_exam_first_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="AC" border="6" color="0" x="1591" y="8" height="64" width="133"  name=claims_exam_phone_ac_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Phone" border="6" color="0" x="1733" y="8" height="64" width="261"  name=claims_exam_phone_nmbr_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Ext" border="6" color="0" x="2002" y="8" height="64" width="133"  name=claims_exam_phone_ext_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="2144" y="8" height="64" width="210"  name=active_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2363" y="8" height="64" width="553"  name=updated_by_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="2926" y="8" height="64" width="626"  name=updated_timestamp_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

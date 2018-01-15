@@ -1,0 +1,45 @@
+﻿$PBExportHeader$s_parms.srs
+$PBExportComments$Structure used to pass parameters between calling function and utility windows.
+global type s_parms from structure
+	string		application_name
+	string		application_rev
+	string		application_bitmap
+	string		application_copyright
+	string		replace_file
+	string		with_file
+	boolean		multiple
+	integer		answer
+	string		from_directory
+	string		to_directory
+	string		files[]
+	boolean		copy_file
+	boolean		display
+	datawindow		dw_name
+	string		current_directory
+	string		login_title
+	integer		grace_logins
+	boolean		attempt_connection
+	string		login_bitmap
+	transaction		trans_object
+	string		message_title
+	string		message_text
+	boolean		display_only
+	unsignedlong		back_color
+	unsignedlong		text_color
+	window		mdi_frame
+	integer		update_seconds
+	boolean		show_clock
+	boolean		show_resources
+	string		title
+	string		label
+	string		action
+	boolean		window_sheet
+	string		window_type
+	powerobject		powerobject_parm
+	string		string_parm
+	double		double_parm
+	boolean		window_redraw
+	string		validation_id
+	datastore		ds_name
+end type
+

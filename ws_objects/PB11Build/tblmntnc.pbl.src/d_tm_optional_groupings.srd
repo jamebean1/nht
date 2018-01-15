@@ -1,0 +1,53 @@
+﻿$PBExportHeader$d_tm_optional_groupings.srd
+$PBExportComments$Table Maintenance Optional Grouping DataWindow.
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=68 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=optional_grouping_id dbname="optional_grouping.optional_grouping_id" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=description dbname="optional_grouping.optional_grouping_desc" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=optional_grouping_active dbname="optional_grouping.active" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=optional_grouping_updated_by dbname="optional_grouping.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=optional_grouping_updated_timestamp dbname="optional_grouping.updated_timestamp" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.optional_grouping.optional_grouping_id,   
+         cusfocus.optional_grouping.optional_grouping_desc,   
+         cusfocus.optional_grouping.active,   
+         cusfocus.optional_grouping.updated_by,   
+         cusfocus.optional_grouping.updated_timestamp,   
+         cusfocus.cusfocus_user.active
+    FROM cusfocus.optional_grouping,   
+         cusfocus.cusfocus_user  
+   WHERE ( cusfocus.optional_grouping.updated_by = cusfocus.cusfocus_user.user_id )    
+
+
+UNION
+
+  SELECT cusfocus.optional_grouping.optional_grouping_id,   
+         cusfocus.optional_grouping.optional_grouping_desc,   
+         cusfocus.optional_grouping.active,   
+         cusfocus.optional_grouping.updated_by,   
+         cusfocus.optional_grouping.updated_timestamp,   
+         ''
+    FROM cusfocus.optional_grouping
+   WHERE ( cusfocus.optional_grouping.updated_by = 'cusfocus') " update="cusfocus.optional_grouping" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Grouping Id" border="0" color="0" x="9" y="8" height="64" width="667" html.valueishtml="0"  name=optional_grouping_id_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+text(band=header alignment="2" text="Description" border="0" color="0" x="686" y="8" height="64" width="1125" html.valueishtml="0"  name=description_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+text(band=header alignment="2" text="Updated By" border="0" color="0" x="2098" y="8" height="64" width="475" html.valueishtml="0"  name=optional_grouping_updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+text(band=header alignment="2" text="Updated Timestamp" border="0" color="0" x="2583" y="8" height="64" width="603" html.valueishtml="0"  name=optional_grouping_updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+text(band=header alignment="2" text="Active" border="0" color="0" x="1819" y="8" height="64" width="270" html.valueishtml="0"  name=optional_grouping_active_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="667" format="[general]" html.valueishtml="0"  name=optional_grouping_id visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="686" y="8" height="76" width="1125" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="2098" y="8" height="76" width="475" format="[general]" html.valueishtml="0"  name=optional_grouping_updated_by visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2583" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=optional_grouping_updated_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=20 border="0" color="0" x="1819" y="8" height="76" width="270" format="[general]" html.valueishtml="0"  name=optional_grouping_active visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="82042848" )
+compute(band=summary alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="48" height="64" width="667" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="48" height="64" width="667" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="0" height="64" width="667" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,2591 @@
+﻿$PBExportHeader$m_supervisor_portal.srm
+$PBExportComments$Supervisor Portal Menu
+forward
+global type m_supervisor_portal from menu
+end type
+type m_file from menu within m_supervisor_portal
+end type
+type m_outofoffice from menu within m_file
+end type
+type m_clearsearchcriteria from menu within m_file
+end type
+type m_search from menu within m_file
+end type
+type m_cancelsearch from menu within m_file
+end type
+type m_-1 from menu within m_file
+end type
+type m_printsetup from menu within m_file
+end type
+type m_viewcasedetailreport from menu within m_file
+end type
+type m_casedetail from menu within m_file
+end type
+type m_-0 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_filesep1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_supervisor_portal
+m_outofoffice m_outofoffice
+m_clearsearchcriteria m_clearsearchcriteria
+m_search m_search
+m_cancelsearch m_cancelsearch
+m_-1 m_-1
+m_printsetup m_printsetup
+m_viewcasedetailreport m_viewcasedetailreport
+m_casedetail m_casedetail
+m_-0 m_-0
+m_close m_close
+m_filesep1 m_filesep1
+m_exit m_exit
+end type
+type m_features from menu within m_supervisor_portal
+end type
+type m_createmaintaincase from menu within m_features
+end type
+type m_workdesk from menu within m_features
+end type
+type m_documentsfullinterface from menu within m_features
+end type
+type m_recordsurveyresults from menu within m_features
+end type
+type m_sleepmode from menu within m_features
+end type
+type m_features from menu within m_supervisor_portal
+m_createmaintaincase m_createmaintaincase
+m_workdesk m_workdesk
+m_documentsfullinterface m_documentsfullinterface
+m_recordsurveyresults m_recordsurveyresults
+m_sleepmode m_sleepmode
+end type
+type m_administration from menu within m_supervisor_portal
+end type
+type m_managereports from menu within m_administration
+end type
+type m_addeditreports from menu within m_managereports
+end type
+type m_reportsecurity from menu within m_managereports
+end type
+type m_managereports from menu within m_administration
+m_addeditreports m_addeditreports
+m_reportsecurity m_reportsecurity
+end type
+type m_userlicenses from menu within m_administration
+end type
+type m_updatelicenseinformation from menu within m_userlicenses
+end type
+type m_manageuserlogins from menu within m_userlicenses
+end type
+type m_userlicenses from menu within m_administration
+m_updatelicenseinformation m_updatelicenseinformation
+m_manageuserlogins m_manageuserlogins
+end type
+type m_options from menu within m_administration
+end type
+type m_batchprocessing from menu within m_administration
+end type
+type m_casehousekeeping from menu within m_administration
+end type
+type m_tablemaintenance from menu within m_administration
+end type
+type m_lockedrecords from menu within m_administration
+end type
+type m_administration from menu within m_supervisor_portal
+m_managereports m_managereports
+m_userlicenses m_userlicenses
+m_options m_options
+m_batchprocessing m_batchprocessing
+m_casehousekeeping m_casehousekeeping
+m_tablemaintenance m_tablemaintenance
+m_lockedrecords m_lockedrecords
+end type
+type m_window from menu within m_supervisor_portal
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_windowsep1 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_windowsep2 from menu within m_window
+end type
+type m_closeall from menu within m_window
+end type
+type m_window from menu within m_supervisor_portal
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_windowsep1 m_windowsep1
+m_arrangeicons m_arrangeicons
+m_windowsep2 m_windowsep2
+m_closeall m_closeall
+end type
+type m_help from menu within m_supervisor_portal
+end type
+type m_index from menu within m_help
+end type
+type m_usinghelp from menu within m_help
+end type
+type m_helpsep1 from menu within m_help
+end type
+type m_about from menu within m_help
+end type
+type m_help from menu within m_supervisor_portal
+m_index m_index
+m_usinghelp m_usinghelp
+m_helpsep1 m_helpsep1
+m_about m_about
+end type
+global type m_supervisor_portal from menu
+m_file m_file
+m_features m_features
+m_administration m_administration
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_supervisor_portal from menu
+m_file m_file
+m_features m_features
+m_administration m_administration
+m_window m_window
+m_help m_help
+end type
+global m_supervisor_portal m_supervisor_portal
+
+type variables
+BOOLEAN i_bOutOfOffice
+STRING  i_cUserID
+
+
+end variables
+
+on m_supervisor_portal.create
+m_supervisor_portal=this
+call super::create
+this.text = "m_supervisor_portal"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_file=create m_file
+this.m_features=create m_features
+this.m_administration=create m_administration
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_features
+this.Item[UpperBound(this.Item)+1]=this.m_administration
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_supervisor_portal.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_features)
+destroy(this.m_administration)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_supervisor_portal
+m_outofoffice m_outofoffice
+m_clearsearchcriteria m_clearsearchcriteria
+m_search m_search
+m_cancelsearch m_cancelsearch
+m_-1 m_-1
+m_printsetup m_printsetup
+m_viewcasedetailreport m_viewcasedetailreport
+m_casedetail m_casedetail
+m_-0 m_-0
+m_close m_close
+m_filesep1 m_filesep1
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_outofoffice=create m_outofoffice
+this.m_clearsearchcriteria=create m_clearsearchcriteria
+this.m_search=create m_search
+this.m_cancelsearch=create m_cancelsearch
+this.m_-1=create m_-1
+this.m_printsetup=create m_printsetup
+this.m_viewcasedetailreport=create m_viewcasedetailreport
+this.m_casedetail=create m_casedetail
+this.m_-0=create m_-0
+this.m_close=create m_close
+this.m_filesep1=create m_filesep1
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_outofoffice
+this.Item[UpperBound(this.Item)+1]=this.m_clearsearchcriteria
+this.Item[UpperBound(this.Item)+1]=this.m_search
+this.Item[UpperBound(this.Item)+1]=this.m_cancelsearch
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_printsetup
+this.Item[UpperBound(this.Item)+1]=this.m_viewcasedetailreport
+this.Item[UpperBound(this.Item)+1]=this.m_casedetail
+this.Item[UpperBound(this.Item)+1]=this.m_-0
+this.Item[UpperBound(this.Item)+1]=this.m_close
+this.Item[UpperBound(this.Item)+1]=this.m_filesep1
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_outofoffice)
+destroy(this.m_clearsearchcriteria)
+destroy(this.m_search)
+destroy(this.m_cancelsearch)
+destroy(this.m_-1)
+destroy(this.m_printsetup)
+destroy(this.m_viewcasedetailreport)
+destroy(this.m_casedetail)
+destroy(this.m_-0)
+destroy(this.m_close)
+destroy(this.m_filesep1)
+destroy(this.m_exit)
+end on
+
+type m_outofoffice from menu within m_file
+end type
+
+on m_outofoffice.create
+call super::create
+this.visible = false
+this.text = "Out of Office"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_outofoffice.destroy
+call super::destroy
+end on
+
+event clicked;//**********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Add or Remove Out of Office
+//  
+//  Date     Developer   Description
+//  -------- ----------- -----------------------------------------------------------------------
+//  09/28/00 cjackson    Original Version
+//  12/08/00 cjackson    Update routed.bmp as necessary
+//  12/13/00 cjackson    Add logic to prevent marking out of office if cases are being routed
+//
+//**********************************************************************************************
+
+STRING l_cNewKey, l_cWindowTitle, l_cAssignedTo, l_cBMP, l_cOutUser
+LONG l_nCount, l_nIndex
+DATETIME l_dtCreateDate
+LONG l_nPos
+
+l_cWindowTitle = w_mdi.Title 
+
+IF w_supervisor_portal.i_bOutOfOffice THEN
+	// Check to see if this CSR's cases are being route to another CSR
+	SELECT assigned_to_user_id INTO :l_cAssignedTo
+	  FROM cusfocus.out_of_office
+	 WHERE out_user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+	 
+	IF NOT ISNULL(l_cAssignedTo) THEN
+		// See if this CSR is also being routed another CSR's cases
+		SELECT COUNT (*) INTO :l_nCount
+		  FROM cusfocus.out_of_office
+		 WHERE assigned_to_user_id = :l_cAssignedTo
+		 USING SQLCA;
+		
+		IF l_nCount = 1 THEN
+			// This is the only route record, set the icon back to person.bmp
+			UPDATE cusfocus.cusfocus_user
+				SET out_of_office_bmp = 'person.bmp'
+			 WHERE user_id = :l_cAssignedTo
+			 USING SQLCA;
+		END IF
+		 
+	END IF
+	
+	// Mark the CSR in the office
+	SELECT assigned_to_user_id INTO :l_cAssignedTo
+	  FROM cusfocus.out_of_office
+	 WHERE out_user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+	 
+	// Remove Out of Office
+	DELETE cusfocus.out_of_office
+	 WHERE out_user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+
+	// Determine if the icon should be 'routed.bmp' (if this CSR is being routed
+	// another CSR's cases) or 'person.bmp' (they are not)
+	SELECT COUNT (*) INTO :l_nCount
+	  FROM cusfocus.out_of_office
+	 WHERE assigned_to_user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+	 
+	IF l_nCount > 0 THEN 
+		l_cBMP = 'routed.bmp' 
+	ELSE
+		l_cBMP = 'person.bmp'
+	END IF
+	
+	UPDATE cusfocus.cusfocus_user
+	   SET out_of_office_bmp = :l_cBMP
+	 WHERE user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+	 
+	// Make sure window title is not already modified
+	l_nPos = POS(l_cWindowTitle,' ***')
+	IF l_nPos > 0 THEN
+		l_cWindowTitle = TRIM(MID(l_cWindowTitle,1,l_nPos))
+		w_mdi.Title = l_cWindowTitle
+	END IF
+	
+	THIS.UnCheck()
+	w_supervisor_portal.i_bOutOfOffice = FALSE
+	
+ELSE
+	// Make sure the user is not being routed cases from someone else before marking out of office
+	SELECT COUNT(*) INTO :l_nIndex
+	  FROM cusfocus.out_of_office
+	 WHERE assigned_to_user_id = :w_supervisor_portal.i_cUserID
+	 USING SQLCA;
+	 
+	IF l_nIndex > 0 THEN
+		// Can't mark out of office...
+		messagebox(gs_AppName, 'You are currently being routed cases, you cannot mark yourself out of office')
+		RETURN
+		
+	ELSE
+
+	
+		//Mark the user out of office
+		l_dtCreateDate = DateTime(Today())
+		l_cNewKey = w_supervisor_portal.fw_getkeyvalue('out_of_office')
+		
+		// Make sure this person hasn't been marked Out of Office in the meantime
+		SELECT count (*) INTO :l_nCount
+		  FROM cusfocus.out_of_office
+		 WHERE out_user_id = :w_supervisor_portal.i_cUserID
+		 USING SQLCA;
+		 
+		IF l_nCount = 0 THEN 
+		
+			INSERT INTO cusfocus.out_of_office (out_of_office_id, out_user_id, updated_by, updated_timestamp)
+			VALUES (:l_cNewKey, :w_supervisor_portal.i_cUserID, :w_supervisor_portal.i_cUserID, :l_dtCreateDate)
+			USING SQLCA;									 
+			
+			//Update the icon to out_of_office.bmp
+			UPDATE cusfocus.cusfocus_user
+				SET out_of_office_bmp = 'out_of_office.bmp'
+			 WHERE user_id = :w_supervisor_portal.i_cUserID
+			 USING SQLCA;
+		
+		END IF
+	
+		// Make sure window title is not already modified
+		l_nPos = POS(l_cWindowTitle,' ***')
+		IF l_nPos = 0 THEN
+			w_mdi.Title = w_mdi.Title + ' *** Out of Office'
+		END IF
+		
+	END IF
+
+	THIS.Check()
+	w_supervisor_portal.i_bOutOfOffice = TRUE
+	
+END IF
+
+
+end event
+
+type m_clearsearchcriteria from menu within m_file
+end type
+
+on m_clearsearchcriteria.create
+call super::create
+this.text = "&Clear Search Criteria~tCtrl+R"
+this.enabled = false
+this.shortcut = 338
+this.microhelp = "Clears the search criteria for a new search"
+this.toolbaritemname = "ei0087-48.ico"
+this.toolbaritemtext = "Clear Search Criteria"
+this.toolbaritemorder = 1
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_clearsearchcriteria.destroy
+call super::destroy
+end on
+
+event clicked;//***********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Clear the search criteria
+//  
+//  Date     Developer   Description
+//  -------- ----------- ------------------------------------------------------------------------
+//  10/10/00 C. Jackson  Original Version
+//  01/15/01 C. Jackosn  Disable the Case Detail History Report
+//
+//***********************************************************************************************
+
+w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.fu_clearcriteria()
+
+// Disable the Case Detail History Report until a new search is executed
+m_supervisor_portal.m_file.m_viewcasedetailreport.Enabled = FALSE
+m_supervisor_portal.m_file.m_casedetail.Enabled = FALSE
+
+end event
+
+type m_search from menu within m_file
+end type
+
+on m_search.create
+call super::create
+this.text = "&Search~tCtrl+L"
+this.enabled = false
+this.shortcut = 332
+this.microhelp = "Retrieves data based on search critiera"
+this.toolbaritemname = "ni0104-48.ico"
+this.toolbaritemtext = "Search"
+this.toolbaritemorder = 2
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_search.destroy
+call super::destroy
+end on
+
+event clicked;//**********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: retrieve the critical detail datawindow based on selected fields
+//  
+//  Date     Develop     Description
+//  -------- ----------- -----------------------------------------------------------------------
+//  10/05/00 C. Jackson  Original Version
+//  10/11/00 C. Jackson  Correct where clause for userid
+//  12/19/00 C. Jackson  Check to make sure a valid dept is selected before searching (SCR 1113)
+//  07/17/01 M. Caruso   Updated calculation for Aging to be older than X days.
+//  07/19/01 M. Caruso   Further corrected the aging date calculation.
+//  8/23/2001 K. Claver  Added code to default the aging number to 1 if the user cleared the value.
+//  12/03/01 C. Jackson  Added RETURN after date error message (SCR 2515)
+//  5/23/2002 K. Claver  Corrected for a case sensitive database.
+//**********************************************************************************************
+
+STRING l_cOldSelect, l_cNewSelect, l_cWhere, l_cDept[], l_cUserDept, l_cDates, l_cSourceType
+STRING l_cCaseType, l_cDeptDesc, l_cCaseNumber, l_cLoginID
+STRING l_cPriority, l_cFullName, l_cFirstName, l_cLastName, l_cUserID, l_cBegDate, l_cEndDate
+DATE l_dRelativeDate
+LONG l_nPos, l_nRow, l_nRtn, ll_line_of_business, ll_appeal_type, ll_service_type
+BOOLEAN l_bAccessOK
+//U_DW_STD l_dwResults
+//U_DW_STD l_dwPreview
+//U_CONTAINER_STD l_dwCritical
+string ls_source_type, ls_case_type, ls_priority, ls_date_type, ls_dept, ls_user
+date ld_aging_date, ld_from_date, ld_to_date
+
+//l_dwResults = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_results.dw_critical_detail
+//l_dwCritical = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases
+
+// Get the Source Type
+ls_source_type = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_sourcetype.Text)
+//w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cSourceType = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_sourcetype.Text)
+//IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cSourceType <> "(ALL)" THEN
+//	l_cSourceType = " and ( Upper( cusfocus.source_types.source_desc ) = '" + &
+//	w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cSourceType + "' ) "
+//END IF
+
+// Get the Case Priority
+ls_priority = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_priority.Text)
+IF ls_priority <> "(ALL)" THEN
+	ls_priority = left(ls_priority, 1)
+END IF
+//w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_priority.Text)
+//CHOOSE CASE w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority
+//	CASE 'NORMAL'
+//		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority = 'N'
+//	CASE 'HIGH'
+//		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority = 'H'
+//	CASE 'LOW'
+//		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority = 'L'
+//END CHOOSE
+//IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority <> "(ALL)" THEN
+//	l_cPriority = " and ( cusfocus.case_log.case_priority = '" + &
+//	w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cPriority + "' ) "
+//END IF
+
+// Get the Case Type
+ls_case_type = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_casetype.Text)
+//w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cCaseType = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.ddlb_casetype.Text)
+//IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cCaseType <> "(ALL)" THEN
+//	l_cCasetype = " and ( Upper( cusfocus.case_types.case_type_desc ) = '" + w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cCaseType + "' ) "
+//END IF
+
+ls_date_type = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cDateType
+CHOOSE CASE w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_cDateType
+	CASE 'Aging'
+		IF Trim( w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_aging.Text ) = "" OR &
+			Trim( w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_aging.Text ) = "0" THEN
+			w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_aging.Text = "1"
+		END IF
+		
+		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nDays = LONG(Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_aging.Text))
+		IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nDays > 0 THEN
+			// The date returned by Relative Date has no time component, so when compared in the SQL statement
+			// a time of 00:00:00.000 is implied.  This is why Aging days is subtracted from 1 and comparison is <.
+			l_dRelativeDate = RelativeDate (Today(), (1 - w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nDays))
+//			l_cDates = " and ( cusfocus.case_log.case_log_opnd_date < '" + string(l_dRelativeDate) + "' ) "
+		END IF
+		ld_aging_date = l_dRelativeDate
+	CASE 'DateRange'
+		// Check dates
+		l_cBegDate = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.Text) 
+		l_cEndDate = Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_dateto.Text)
+		IF (l_cBegDate = 'NONE' OR l_cEndDate = 'NONE') THEN
+			messagebox(gs_AppName,'Please enter a valid date range.')
+			w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.SetFocus()
+			RETURN
+		END IF
+		
+		ld_from_date = DATE(Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.Text))
+		ld_to_date = DATE(Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_dateto.Text))
+		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dBegDate = DATE(Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.Text))
+		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dEndDate = DATE(Upper(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_dateto.Text))
+		IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dEndDate < w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dBegDate THEN
+			messagebox(gs_AppName,'To Date must be after From Date, please correct dates')
+			w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.Text = ''
+			w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_dateto.Text = ''
+			w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.em_datefrom.SetFocus()
+			RETURN
+		END IF
+		IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dBegDate <> DATE('00/00/0000') THEN
+			IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dEndDate <> DATE('00/00/0000') THEN
+//				l_cDates = " and ( cusfocus.case_log.case_log_opnd_date between '" + &
+//				           string(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dBegDate) + " 00:00:00'"+ &
+//		                 " and '" + &
+//						  string(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_dEndDate) + " 23:59:59' ) "
+
+			END IF
+		END IF
+			
+END CHOOSE
+
+// Get old SELECT statement
+//l_dwResults.SetTransObject(SQLCA)
+
+//l_cOldSelect = l_dwResults.GetSQLSelect()
+
+// Pull out the old where clause
+//l_nPos = POS(l_cOldSelect, 'WHERE')
+//IF l_nPos > 0 THEN 
+//	l_cOldSelect = TRIM(MID(l_cOldSelect,1,(l_nPos - 1)))
+//END IF	
+
+// Add User/Dept Info to query
+l_nRow = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_csrlist.fu_HLGetSelectedRow(0)
+
+IF w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nLevel = 1 OR &
+w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nLevel = 0 OR &
+ISNULL(w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.i_nLevel) THEN
+	// Department
+	w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_csrlist.fu_HLGetRowKey(l_nRow,l_cDept[])
+	IF l_nRow = 0 THEN
+		// scroll to first row
+		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_csrlist.fu_HLSetSelectedRow(1)
+		l_cDeptDesc = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_csrlist.fu_HLGetRowDesc(1)
+		
+		SELECT user_dept_id INTO :l_cDept[1]
+		  FROM cusfocus.cusfocus_user_dept
+		 WHERE dept_desc = :l_cDeptDesc
+		 USING SQLCA;
+		 
+	END IF
+
+//	l_cUserDept = " and ( cusfocus_user_a.user_dept_id = '" + l_cDept[1] + "' )"
+	ls_dept = l_cDept[1]
+	ls_user = "(ALL)"
+ELSE
+	// User
+	l_cFullName = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_csrlist.fu_HLGetRowDesc(l_nRow)
+	l_nPos = POS(l_cFullName,', ')
+	IF l_nPos > 0 THEN
+		l_cFirstName = TRIM(MID(l_cFullName, l_nPos + 1 ))
+		l_cLastName = TRIM(MID(l_cFullName, 1, l_nPos - 1 ))
+		
+	END IF
+	
+	SELECT user_id INTO :l_cUserID
+	  FROM cusfocus.cusfocus_user
+	 WHERE user_first_name = :l_cFirstName
+	   AND user_last_name = :l_cLastName
+	 USING SQLCA;
+	
+//	l_cUserDept = " and ( cusfocus_user_a.user_id = '"+ l_cUserID + "') "
+	ls_dept = "(ALL)"
+	ls_user = l_cUserID
+
+END IF
+
+// Specify new WHERE clause
+//l_cWhere = " WHERE ( cusfocus_user_a.user_dept_id  *= cusfocus.cusfocus_user_dept.user_dept_id) and "+&
+//         "( cusfocus_user_b.user_id = cusfocus.case_log.case_log_taken_by) and " +&
+//         "( cusfocus.case_log.case_log_case_rep = cusfocus_user_a.user_id ) and  "+&
+//         "( cusfocus.case_log.source_type = cusfocus.source_types.source_type ) and  "+&
+//         "( cusfocus.case_log.confidentiality_level = cusfocus.confidentiality_levels.confidentiality_level ) and "+&
+//			"( cusfocus.case_log.case_status_id = 'O') and " +&
+//			"( cusfocus.case_log.case_type = cusfocus.case_types.case_type ) "+&
+//			l_cSourceType + l_cPriority + l_cCaseType + l_cDates + l_cUserDept
+//			
+// Add the new where clause to old_select
+//
+//l_cNewSelect = l_cOldSelect + l_cWhere
+//
+// Set the SELECT statement for the DW
+//l_dwResults.SetSQLSelect(l_cNewSelect)
+//
+//w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_results.of_SetStopQuery(FALSE)
+//
+//l_nRtn = l_dwResults.Retrieve()
+//IF l_nRtn = 0 THEN
+//	m_supervisor_portal.m_file.m_viewcasedetailreport.Enabled = FALSE
+//	m_supervisor_portal.m_file.m_casedetail.Enabled = FALSE
+//	MessageBox (gs_appname, 'There are not any records which meet~r~nthe search criteria.')
+//END IF
+//
+//l_nRow = l_dwResults.GetRow()
+//
+//IF l_nRow <> 0 THEN
+//	l_cCaseNumber = l_dwResults.GetItemString(l_nRow,'case_log_case_number')
+//	
+//	l_cLoginID = OBJCA.WIN.fu_GetLogin(SQLCA)
+//	
+//??? Need to add a function like this! - RAP
+//
+//	l_bAccessOK = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_results.fu_AccessOK(l_cCaseNumber,l_cLoginID)
+//	
+//	IF l_bAccessOK THEN
+//		m_supervisor_portal.m_file.m_viewcasedetailreport.Enabled = TRUE
+//		m_supervisor_portal.m_file.m_casedetail.Enabled = TRUE
+//		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_preview.Enabled = TRUE
+//		
+//	ELSE
+//		m_supervisor_portal.m_file.m_viewcasedetailreport.Enabled = FALSE
+//		m_supervisor_portal.m_file.m_casedetail.Enabled = FALSE
+//		w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_preview.Enabled = FALSE
+//		
+//	END IF
+		
+//END IF
+ll_line_of_business = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_appeal_criteria.object.line_of_business[1]
+ll_appeal_type = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_appeal_criteria.object.appeal_type[1]
+ll_service_type = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.dw_appeal_criteria.object.service_type[1]
+
+// Retrieve new user object
+w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.uo_search_criticalcases.of_retrieve(ls_source_type, ls_case_type, ls_priority, ls_date_type, String(ld_aging_date) + " 00:00:00", String(ld_from_date) + " 00:00:00", String(ld_to_date) + " 23:59:59", ls_dept, ls_user, ll_line_of_business, ll_appeal_type, ll_service_type)
+
+end event
+
+type m_cancelsearch from menu within m_file
+end type
+
+event clicked;//***********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: To cancel a query that is in progress
+//  
+//  Date     Developer   Description
+//  -------- ----------- ------------------------------------------------------------------------
+//  10/10/00 C. Jackson  Original Version
+//
+//***********************************************************************************************
+
+//w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_results.of_SetStopQuery(TRUE)
+end event
+
+on m_cancelsearch.create
+call super::create
+this.text = "Ca&ncel Search"
+this.enabled = false
+this.microhelp = "Cancels a search in progress"
+this.toolbaritemname = "ni0111-48.ico"
+this.toolbaritemtext = "Cancel Search"
+this.toolbaritemorder = 3
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_cancelsearch.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_file
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_printsetup from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_PrintSetup
+//  Event         : Clicked
+//  Description   : Modify or view the printer setup for this
+//                  Windows session.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+PrintSetUp()
+end event
+
+on m_printsetup.create
+call super::create
+this.text = "Print Set&up..."
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_printsetup.destroy
+call super::destroy
+end on
+
+type m_viewcasedetailreport from menu within m_file
+end type
+
+on m_viewcasedetailreport.create
+call super::create
+this.text = "&View Case Detail Report"
+this.enabled = false
+this.microhelp = "View the Case Detail Report"
+this.toolbaritemname = "wi0090-48.ico"
+this.toolbaritemtext = "View Case Detail Report"
+this.toolbaritemorder = 5
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_viewcasedetailreport.destroy
+call super::destroy
+end on
+
+event clicked;//********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Launch the Case detail report view window.
+//
+//  Date     Developer   Description
+//  -------- ----------- ---------------------------------------------------------------------
+//  09/28/00 C. Jackson  Original Version
+//
+//********************************************************************************************
+
+STRING	l_cCaseNumber
+LONG		l_nRow, l_nSecurityLevel
+BOOLEAN	l_bAlreadyOpen, l_bSaveCase, l_bContinue
+WINDOW	l_wSheet
+//U_DW_STD l_dwCritical, l_dwReassign
+
+//l_dwCritical = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.tab_details.tabpage_results.dw_critical_detail
+//l_dwReassign = w_supervisor_portal.tab_1.tabpage_reassign_cases.uo_reassigncases.tab_details.tabpage_results.dw_reassign_list
+
+l_cCaseNumber = ""
+
+i_cUserID = OBJCA.WIN.fu_GetLogin(SQLCA)
+
+SELECT confidentiality_level INTO :l_nSecurityLevel
+  FROM cusfocus.cusfocus_user
+ WHERE user_id = :i_cUserID
+ USING SQLCA;
+
+CHOOSE CASE w_supervisor_portal.i_cSelected
+	CASE 'Critical Cases'
+		l_cCaseNumber = w_supervisor_portal.tab_1.tabpage_critical_cases.uo_criticalcases.uo_search_criticalcases.of_get_case_number()
+//		l_nRow = l_dwCritical.GetRow ()
+//		l_cCaseNumber = l_dwCritical.GetItemString(l_nRow,"case_log_case_number")
+	CASE 'Reassign Cases'
+		l_cCaseNumber = w_supervisor_portal.tab_1.tabpage_reassign_cases.uo_reassigncases.uo_search_reassigncases.of_get_case_number()
+//		l_nRow = l_dwReassign.GetRow ()
+//		l_cCaseNumber = l_dwReassign.GetItemString (l_nRow, "case_log_case_number")
+END CHOOSE
+			
+		IF l_cCaseNumber = '' THEN
+			Messagebox (gs_appname, 'A case must be selected for this report to run.')
+			RETURN
+		ELSE
+			PCCA.Parm[1] = l_cCaseNumber
+		END IF
+		
+		// set the security level
+		PCCA.Parm[2] = STRING (w_supervisor_portal.i_nSuperConfidLevel)
+		
+		// If the reoprt window is already open, refresh it to show the selected case.
+		l_wSheet = w_mdi.GetFirstSheet ()
+		DO WHILE IsValid (l_wSheet)
+			IF Pos (l_wSheet.Title, "Complete Case History") > 0 THEN
+				l_bAlreadyOpen = TRUE
+				EXIT
+			ELSE
+				l_bAlreadyOpen = FALSE
+				l_wSheet = w_mdi.GetNextSheet (l_wSheet)
+			END IF
+		LOOP
+		
+		IF l_bAlreadyOpen THEN
+			w_case_detail_history.BringToTop = TRUE
+			w_case_detail_history.TriggerEvent ('pc_setvariables')
+			w_case_detail_history.dw_case_detail_history.fu_retrieve ( &
+							w_case_detail_history.dw_case_detail_history.c_IgnoreChanges, &
+							w_case_detail_history.dw_case_detail_history.c_NoReselectRows)
+		ELSE
+			SetPointer(HOURGLASS!)
+			FWCA.MGR.fu_OpenWindow (w_case_detail_history, -1)
+		END IF
+end event
+
+type m_casedetail from menu within m_file
+end type
+
+on m_casedetail.create
+call super::create
+this.text = "Print Case &Detail Report"
+this.enabled = false
+this.microhelp = "Prints the Case Detail Report"
+this.toolbaritemname = "wi0146-48.ico"
+this.toolbaritemtext = "Print Case Detail Report"
+this.toolbaritemorder = 6
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_casedetail.destroy
+call super::destroy
+end on
+
+event clicked;//**********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Print Case History Detail Report
+//  
+//  Date     Developer   Description
+//  -------- ----------- -----------------------------------------------------------------------
+//  09/28/00 C. Jackson  Original Version
+//
+//**********************************************************************************************
+
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   TriggerEvent(FWCA.MGR.i_WindowCurrent, "pc_Print")
+END IF
+
+
+end event
+
+type m_-0 from menu within m_file
+end type
+
+on m_-0.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_CloseFile
+//  Event         : Clicked
+//  Description   : Close the current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   Close(FWCA.MGR.i_WindowCurrent)
+END IF
+end on
+
+on m_close.create
+call super::create
+this.text = "&Close Window"
+this.microhelp = "Close the Table Maintenance window."
+this.toolbaritemvisible = false
+this.toolbaritemname = "exit!"
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 13
+this.toolbaritemspace = 5
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_filesep1 from menu within m_file
+end type
+
+on m_filesep1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_filesep1.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Exit
+//  Event         : Clicked
+//  Description   : Exit the application by closing the top
+//                  level window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+FWCA.MGR.fu_ExitApp()
+end event
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.microhelp = "Exits the application."
+this.toolbaritemvisible = false
+this.toolbaritemname = "exit!"
+this.toolbaritemtext = "Exit"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_features from menu within m_supervisor_portal
+m_createmaintaincase m_createmaintaincase
+m_workdesk m_workdesk
+m_documentsfullinterface m_documentsfullinterface
+m_recordsurveyresults m_recordsurveyresults
+m_sleepmode m_sleepmode
+end type
+
+on m_features.create
+call super::create
+this.text = "Fea&tures"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_createmaintaincase=create m_createmaintaincase
+this.m_workdesk=create m_workdesk
+this.m_documentsfullinterface=create m_documentsfullinterface
+this.m_recordsurveyresults=create m_recordsurveyresults
+this.m_sleepmode=create m_sleepmode
+this.Item[UpperBound(this.Item)+1]=this.m_createmaintaincase
+this.Item[UpperBound(this.Item)+1]=this.m_workdesk
+this.Item[UpperBound(this.Item)+1]=this.m_documentsfullinterface
+this.Item[UpperBound(this.Item)+1]=this.m_recordsurveyresults
+this.Item[UpperBound(this.Item)+1]=this.m_sleepmode
+end on
+
+on m_features.destroy
+call super::destroy
+destroy(this.m_createmaintaincase)
+destroy(this.m_workdesk)
+destroy(this.m_documentsfullinterface)
+destroy(this.m_recordsurveyresults)
+destroy(this.m_sleepmode)
+end on
+
+type m_createmaintaincase from menu within m_features
+event clicked ( )
+end type
+
+on clicked;/********************************************************************
+
+		Event:	Clicked
+		Purpose:	To open the Create/Maintain Case Window
+
+*********************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_create_maintain_case, -1)
+end on
+
+on m_createmaintaincase.create
+call super::create
+this.text = "&Create/Maintain Case"
+this.microhelp = "Opens the Create and Maintain Case window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_createmaintaincase.destroy
+call super::destroy
+end on
+
+type m_workdesk from menu within m_features
+event clicked ( )
+end type
+
+on clicked;/********************************************************************
+
+		Event:	Clicked
+		Purpose:	To open the Reminders Window
+
+*********************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_reminders, -1)
+end on
+
+on m_workdesk.create
+call super::create
+this.text = "&Work Desk"
+this.microhelp = "Opens the Work Desk window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_workdesk.destroy
+call super::destroy
+end on
+
+type m_documentsfullinterface from menu within m_features
+event clicked ( )
+end type
+
+event clicked;//***************************************************************************************
+//
+//  Event:    clicked
+//  Purpose:  Opens the Document Full Interface Window
+//
+//***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_docs_full_interface, -1)
+
+
+end event
+
+on m_documentsfullinterface.create
+call super::create
+this.text = "&Documents Full Interface"
+this.microhelp = "Opens the Documents Full Interface Window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_documentsfullinterface.destroy
+call super::destroy
+end on
+
+type m_recordsurveyresults from menu within m_features
+event clicked ( )
+end type
+
+on clicked;/********************************************************************
+
+		Event:	Clicked
+		Purpose:	To open the Record Survey Results Window
+
+*********************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_record_survey_results, -1)
+end on
+
+on m_recordsurveyresults.create
+call super::create
+this.text = "Record &Survey Results"
+this.microhelp = "Opens the Record Survey Results window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_recordsurveyresults.destroy
+call super::destroy
+end on
+
+type m_sleepmode from menu within m_features
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Place the application into sleep mode
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	05/25/01 M. Caruso    Created.
+*****************************************************************************************/
+
+w_mdi.fw_Sleep ()
+end event
+
+on m_sleepmode.create
+call super::create
+this.visible = false
+this.text = "Sleep Mode"
+this.enabled = false
+this.microhelp = "Place the application in Sleep Mode."
+this.toolbaritemvisible = false
+this.toolbaritemname = "custom015!"
+this.toolbaritemtext = "Enter Sleep Mode"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_sleepmode.destroy
+call super::destroy
+end on
+
+type m_administration from menu within m_supervisor_portal
+m_managereports m_managereports
+m_userlicenses m_userlicenses
+m_options m_options
+m_batchprocessing m_batchprocessing
+m_casehousekeeping m_casehousekeeping
+m_tablemaintenance m_tablemaintenance
+m_lockedrecords m_lockedrecords
+end type
+
+on m_administration.create
+call super::create
+this.text = "&Administration"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_managereports=create m_managereports
+this.m_userlicenses=create m_userlicenses
+this.m_options=create m_options
+this.m_batchprocessing=create m_batchprocessing
+this.m_casehousekeeping=create m_casehousekeeping
+this.m_tablemaintenance=create m_tablemaintenance
+this.m_lockedrecords=create m_lockedrecords
+this.Item[UpperBound(this.Item)+1]=this.m_managereports
+this.Item[UpperBound(this.Item)+1]=this.m_userlicenses
+this.Item[UpperBound(this.Item)+1]=this.m_options
+this.Item[UpperBound(this.Item)+1]=this.m_batchprocessing
+this.Item[UpperBound(this.Item)+1]=this.m_casehousekeeping
+this.Item[UpperBound(this.Item)+1]=this.m_tablemaintenance
+this.Item[UpperBound(this.Item)+1]=this.m_lockedrecords
+end on
+
+on m_administration.destroy
+call super::destroy
+destroy(this.m_managereports)
+destroy(this.m_userlicenses)
+destroy(this.m_options)
+destroy(this.m_batchprocessing)
+destroy(this.m_casehousekeeping)
+destroy(this.m_tablemaintenance)
+destroy(this.m_lockedrecords)
+end on
+
+type m_managereports from menu within m_administration
+m_addeditreports m_addeditreports
+m_reportsecurity m_reportsecurity
+end type
+
+on m_managereports.create
+call super::create
+this.text = "&Manage Reports"
+this.toolbaritemtext = "Manage Reports"
+this.toolbaritembarindex = 0
+this.toolbaritemspace = 1
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_addeditreports=create m_addeditreports
+this.m_reportsecurity=create m_reportsecurity
+this.Item[UpperBound(this.Item)+1]=this.m_addeditreports
+this.Item[UpperBound(this.Item)+1]=this.m_reportsecurity
+end on
+
+on m_managereports.destroy
+call super::destroy
+destroy(this.m_addeditreports)
+destroy(this.m_reportsecurity)
+end on
+
+type m_addeditreports from menu within m_managereports
+end type
+
+on m_addeditreports.create
+call super::create
+this.text = "&Add / Edit Reports"
+this.toolbaritemname = "ni0102-48.ico"
+this.toolbaritemtext = "Add / Edit Reports"
+this.toolbaritemorder = 7
+this.toolbaritemspace = 1
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_addeditreports.destroy
+call super::destroy
+end on
+
+event clicked;//**************************************************************************
+//
+//  Event:   clicked
+//  Purpose: To open the edit reports window
+//  
+//  Date     Developer   Description
+//  -------- ----------- --------------------------------------------------
+//  11/28/00 C. Jackson  Original Version
+//
+//**************************************************************************
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_edit_report, 0)
+end event
+
+type m_reportsecurity from menu within m_managereports
+end type
+
+event clicked;//***************************************************************************
+//
+//  Event:   clicked
+//  Purpose: To manage report security
+//  
+//  Date     Developer   Description
+//  -------- ----------- ----------------------------------------------------
+//  11/28/00 C. Jackson  Original Version
+//
+//***************************************************************************
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_report_security, 0)
+end event
+
+on m_reportsecurity.create
+call super::create
+this.text = "Report &Security"
+this.toolbaritemname = "wi0133-48.ico"
+this.toolbaritemtext = "Report Security"
+this.toolbaritemorder = 8
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_reportsecurity.destroy
+call super::destroy
+end on
+
+type m_userlicenses from menu within m_administration
+m_updatelicenseinformation m_updatelicenseinformation
+m_manageuserlogins m_manageuserlogins
+end type
+
+on m_userlicenses.create
+call super::create
+this.text = "&User Licenses"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_updatelicenseinformation=create m_updatelicenseinformation
+this.m_manageuserlogins=create m_manageuserlogins
+this.Item[UpperBound(this.Item)+1]=this.m_updatelicenseinformation
+this.Item[UpperBound(this.Item)+1]=this.m_manageuserlogins
+end on
+
+on m_userlicenses.destroy
+call super::destroy
+destroy(this.m_updatelicenseinformation)
+destroy(this.m_manageuserlogins)
+end on
+
+type m_updatelicenseinformation from menu within m_userlicenses
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Open the user license maintenance window
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	8/7/00   M. Caruso    Created.
+*****************************************************************************************/
+
+SetPointer (HOURGLASS!)
+
+FWCA.MGR.fu_OpenWindow (w_slu_main)
+end event
+
+on m_updatelicenseinformation.create
+call super::create
+this.text = "&Update License Information"
+this.microhelp = "Opens the Update License Information window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_updatelicenseinformation.destroy
+call super::destroy
+end on
+
+type m_manageuserlogins from menu within m_userlicenses
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Open the user login maintenance window
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	8/7/00   M. Caruso    Created.
+*****************************************************************************************/
+
+SetPointer (HOURGLASS!)
+
+FWCA.MGR.fu_OpenWindow (w_slu_login_mgr)
+end event
+
+on m_manageuserlogins.create
+call super::create
+this.text = "&Manage User Logins"
+this.microhelp = "Opens the User Login Management window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_manageuserlogins.destroy
+call super::destroy
+end on
+
+type m_options from menu within m_administration
+event clicked ( )
+end type
+
+event clicked;//*********************************************************************************************
+//  Event:   clicked
+//  Purpose: Acces the system options window.
+//  
+//  Date     Developer   Describe
+//  -------- ----------- ----------------------------------------------------------------------
+//  12/08/00 M. Caruso   Created.
+//*********************************************************************************************
+
+SetPointer (HOURGLASS!)
+FWCA.MGR.fu_OpenWindow (w_system_options)
+end event
+
+on m_options.create
+call super::create
+this.text = "&Options"
+this.toolbaritemvisible = false
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_options.destroy
+call super::destroy
+end on
+
+type m_batchprocessing from menu within m_administration
+event clicked ( )
+end type
+
+on clicked;/********************************************************************
+
+		Event:	Clicked
+		Purpose:	To open the Correspondence Window
+
+*********************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_batch_correspondence, -1)
+end on
+
+on m_batchprocessing.create
+call super::create
+this.text = "&Batch Correspondence"
+this.microhelp = "Opens the Batch Correspondence window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_batchprocessing.destroy
+call super::destroy
+end on
+
+type m_casehousekeeping from menu within m_administration
+event clicked ( )
+end type
+
+on clicked;/********************************************************************
+
+		Event:	Clicked
+		Purpose:	To open the Case Housekeeping Window
+
+*********************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_case_housekeeping, -1)
+end on
+
+on m_casehousekeeping.create
+call super::create
+this.text = "Case &Housekeeping"
+this.microhelp = "Opens the Case Housekeeping window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_casehousekeeping.destroy
+call super::destroy
+end on
+
+type m_tablemaintenance from menu within m_administration
+end type
+
+event clicked;/****************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Table Maintenance window.
+
+****************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_table_maintenance, -1)
+end event
+
+on m_tablemaintenance.create
+call super::create
+this.text = "&Table Maintenance"
+this.microhelp = "Opens the Table Maintenance window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_tablemaintenance.destroy
+call super::destroy
+end on
+
+type m_lockedrecords from menu within m_administration
+end type
+
+event clicked;/**************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Record Lock Administration window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_lock_admin, -1)
+end event
+
+on m_lockedrecords.create
+call super::create
+this.text = "&Locked Records"
+this.microhelp = "Locked Records"
+this.toolbaritemtext = "Locked Records"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_lockedrecords.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_supervisor_portal
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_windowsep1 m_windowsep1
+m_arrangeicons m_arrangeicons
+m_windowsep2 m_windowsep2
+m_closeall m_closeall
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Window
+//  Event         : Clicked
+//  Description   : Enable the window menus
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+m_Window.m_ArrangeIcons.Enabled = FWCA.MGR.i_MDIValid
+m_Window.m_Cascade.Enabled      = FWCA.MGR.i_MDIValid
+m_Window.m_Layer.Enabled        = FWCA.MGR.i_MDIValid
+m_Window.m_Tile.Enabled         = FWCA.MGR.i_MDIValid
+m_Window.m_Closeall.Enabled     = FWCA.MGR.i_MDIValid
+end on
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_windowsep1=create m_windowsep1
+this.m_arrangeicons=create m_arrangeicons
+this.m_windowsep2=create m_windowsep2
+this.m_closeall=create m_closeall
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_windowsep1
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_windowsep2
+this.Item[UpperBound(this.Item)+1]=this.m_closeall
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_windowsep1)
+destroy(this.m_arrangeicons)
+destroy(this.m_windowsep2)
+destroy(this.m_closeall)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Tile
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that no windows in
+//                  the MDI frame overlap but all windows are
+//                  visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Tile!)
+END IF
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Arrange windows as tiled"
+this.toolbaritemvisible = false
+this.toolbaritemname = "tile!"
+this.toolbaritemtext = "Tile"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Layer
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that all windows are
+//                  sized to use the full screen and are layered on
+//                  top of one another.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Layer!)
+END IF
+end on
+
+on m_layer.create
+call super::create
+this.text = "La&yer"
+this.microhelp = "Arrange the windows as layered"
+this.toolbaritemvisible = false
+this.toolbaritemname = "layer!"
+this.toolbaritemtext = "Layer"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Cascade
+//  Event         : Clicked
+//  Description   : Arrange the open windows so they overlap each
+//                  other with the title bar of each window
+//                  remaining visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Cascade!)
+END IF
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Arrange the windows as cascaded"
+this.toolbaritemvisible = false
+this.toolbaritemname = "cascade!"
+this.toolbaritemtext = "Cascade"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_windowsep1 from menu within m_window
+end type
+
+on m_windowsep1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_windowsep1.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_ArrangeIcons
+//  Event         : Clicked
+//  Description   : Arrange the open windows that have been
+//                  minimized to icons.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Icons!)
+END IF
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+this.microhelp = "Arrange the window icons"
+this.toolbaritemvisible = false
+this.toolbaritemname = "arrangeicons!"
+this.toolbaritemtext = "Icons"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_windowsep2 from menu within m_window
+end type
+
+on m_windowsep2.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_windowsep2.destroy
+call super::destroy
+end on
+
+type m_closeall from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_CloseAll
+//  Event         : Clicked
+//  Description   : Close all the windows in the MDI frame that
+//                  have been open using the Window_Open function.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   TriggerEvent(FWCA.MGR.i_MDIFrame, "pc_CloseAll")
+END IF
+end on
+
+on m_closeall.create
+call super::create
+this.text = "C&lose All"
+this.microhelp = "Close all the open windows"
+this.toolbaritemvisible = false
+this.toolbaritemname = "sort!"
+this.toolbaritemtext = "Close All"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_closeall.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_supervisor_portal
+m_index m_index
+m_usinghelp m_usinghelp
+m_helpsep1 m_helpsep1
+m_about m_about
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Help
+//  Event         : Clicked
+//  Description   : Set up the text in the help menu.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(m_Help.m_About) THEN
+   m_Help.m_About.Text = "&About " + FWCA.MGR.i_ApplicationName
+END IF
+end on
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_index=create m_index
+this.m_usinghelp=create m_usinghelp
+this.m_helpsep1=create m_helpsep1
+this.m_about=create m_about
+this.Item[UpperBound(this.Item)+1]=this.m_index
+this.Item[UpperBound(this.Item)+1]=this.m_usinghelp
+this.Item[UpperBound(this.Item)+1]=this.m_helpsep1
+this.Item[UpperBound(this.Item)+1]=this.m_about
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_index)
+destroy(this.m_usinghelp)
+destroy(this.m_helpsep1)
+destroy(this.m_about)
+end on
+
+type m_index from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Help.m_Index
+//  Event         : Clicked
+//  Description   : Display the help file for the application.
+//                  Replace <application_file> with the name of
+//                  the application help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//  6/21/99  M. Caruso  Added code to call the CF help file.
+//  4/26/00  M. Caruso  Changed code to call the new help file.
+//  1/16/01  M. Caruso  Updated the help file name.
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+//ShowHelp("jtdoc2.hlp", Index!)
+Run ("hh.EXE CFuser.chm")
+end event
+
+on m_index.create
+call super::create
+this.text = "&Index"
+this.microhelp = "Display help"
+this.toolbaritemvisible = false
+this.toolbaritemname = "help!"
+this.toolbaritemtext = "Help"
+this.toolbaritemorder = 3
+this.toolbaritemspace = 17
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_index.destroy
+call super::destroy
+end on
+
+type m_usinghelp from menu within m_help
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_UsingHelp
+//  Event         : Clicked
+//  Description   : Display the "Windows Help" help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+ShowHelp("winhelp.hlp", Index!)
+end on
+
+on m_usinghelp.create
+call super::create
+this.text = "&Using Help"
+this.microhelp = "Display ~"Using Windows Help~""
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_usinghelp.destroy
+call super::destroy
+end on
+
+type m_helpsep1 from menu within m_help
+end type
+
+on m_helpsep1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_helpsep1.destroy
+call super::destroy
+end on
+
+type m_about from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_About
+//  Event         : Clicked
+//  Description   : Open a window that describes something about
+//                  the application.  By default, this window will
+//                  display the application name and revision that
+//                  are stored in the PCCA structure.  This window
+//                  can be redefined if a custom window is desired.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+Open(w_cf_about)
+end event
+
+on m_about.create
+call super::create
+this.text = "&About"
+this.microhelp = "Display information about the application"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+

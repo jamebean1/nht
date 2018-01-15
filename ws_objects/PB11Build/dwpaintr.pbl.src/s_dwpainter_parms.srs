@@ -1,0 +1,15 @@
+﻿$PBExportHeader$s_dwpainter_parms.srs
+$PBExportComments$Parameters required by the datawindow painter.
+global type s_dwpainter_parms from structure
+	string		presentation_style
+	string		dwsyntax
+	transaction		trobject
+	string		a_cmembers
+	string		a_cproviders
+	string		a_cgroups
+	string		a_cothers
+	string		view_type
+	string		summary_syntax
+	string		detail_syntax
+end type
+

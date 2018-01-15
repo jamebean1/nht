@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_sort_order.srd
+$PBExportComments$Sort Order DataWindow
+release 7;
+datawindow(units=0 timer_interval=0 color=77971394 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(30) updatewhereclause=yes name=db_field_name dbname="db_field_name" )
+ column=(type=char(30) updatewhereclause=yes name=display_field_name dbname="display_field_name" )
+ column=(type=char(1) updatewhereclause=yes name=order dbname="order" initial="A" values="	D/	A" )
+ )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="6" color="0" x="9" y="4" height="60" width="626" format="[general]"  name=display_field_name pointer="point.cur" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="0" x="754" y="12" height="56" width="87" format="[general]"  name=order checkbox.text="" checkbox.on="D" checkbox.off="A" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Sorted Columns" border="0" color="0" x="9" y="4" height="64" width="462"  name=t_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+text(band=header alignment="0" text="Descending" border="0" color="0" x="663" y="4" height="64" width="338"  name=t_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="77971394" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

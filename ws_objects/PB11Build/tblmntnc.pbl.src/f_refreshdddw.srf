@@ -1,0 +1,69 @@
+﻿$PBExportHeader$f_refreshdddw.srf
+$PBExportComments$Refresh a drop down datawindow and restore the current selection if possible.
+global type f_refreshdddw from function_object
+end type
+
+forward prototypes
+global subroutine f_refreshdddw (datawindow current_dw, long row, string col_name)
+end prototypes
+
+global subroutine f_refreshdddw (datawindow current_dw, long row, string col_name);/*****************************************************************************************
+   Function:   f_refreshdddw
+   Purpose:    Refresh a drop down datawindow
+   Parameters: DATAWINDOW	current_dw - The datawindow containing the drop down.
+					LONG			row - the current row in current_dw.
+					STRING		col_name - the name of the column that is a drop down.
+   Returns:    NONE
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	4/13/00  M. Caruso    Created.
+*****************************************************************************************/
+
+ANY					l_aValue
+BOOLEAN				l_bNumeric
+LONG					l_nRows
+STRING				l_cColType
+DATAWINDOWCHILD	l_dwcChild
+
+// Get the current value for the field
+l_cColType = current_dw.Describe (col_name + '.ColType')
+CHOOSE CASE Left (l_cColType, 4)
+	CASE 'Char'
+		l_aValue = current_dw.GetItemString (row, col_name)
+		l_bNumeric = FALSE
+		
+	CASE 'Int','Long','Deci','Numb','ULon','Real'
+		l_aValue = current_dw.GetItemNumber (row, col_name)
+		l_bNumeric = TRUE
+		
+	CASE 'Date'
+		IF l_cColType = 'DateTime' THEN
+			l_aValue = current_dw.GetItemDateTime (row, col_name)
+		ELSE
+			l_aValue = current_dw.GetItemDate (row, col_name)
+		END IF
+		l_bNumeric = FALSE
+		
+	CASE 'Time'
+		l_aValue = current_dw.GetItemTime (row, col_name)
+		l_bNumeric = FALSE
+		
+END CHOOSE
+
+// refresh the drop down
+current_dw.GetChild (col_name, l_dwcChild)
+l_dwcChild.SetTransObject (SQLCA)
+l_nRows = l_dwcChild.Retrieve ()
+
+// reset the old value or clear the field if the value is no longer valid
+IF l_bNumeric THEN
+	IF l_dwcChild.Find (col_name + ' = ' + STRING (l_aValue), 1, l_nRows) <= 0 THEN SetNull (l_aValue)
+ELSE
+	IF l_dwcChild.Find (col_name + ' = ~'' + STRING (l_aValue) + '~'', 1, l_nRows) <= 0  THEN SetNull (l_aValue)
+END IF
+
+current_dw.SetItem (row, col_name, l_aValue)
+end subroutine
+

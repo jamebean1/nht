@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_route_detail.srd
+$PBExportComments$Detail datawindow for route properties
+release 9;
+datawindow(units=0 timer_interval=0 color=80269524 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=out_user_id dbname="out_of_office.out_user_id" )
+ column=(type=char(40) updatewhereclause=yes name=cusfocus_user_dept_dept_desc dbname="cusfocus_user_dept.dept_desc" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.out_of_office~" )  TABLE(NAME=~"cusfocus.cusfocus_user~" )  TABLE(NAME=~"cusfocus.cusfocus_user_dept~" ) COLUMN(NAME=~"cusfocus.out_of_office.out_user_id~") COLUMN(NAME=~"cusfocus.cusfocus_user_dept.dept_desc~")    JOIN (LEFT=~"cusfocus.cusfocus_user.user_dept_id~"    OP =~"=~"RIGHT=~"cusfocus.cusfocus_user_dept.user_dept_id~" )    JOIN (LEFT=~"cusfocus.out_of_office.out_user_id~"    OP =~"=~"RIGHT=~"cusfocus.cusfocus_user.user_id~" )WHERE(    EXP1 =~"cusfocus.out_of_office.assigned_to_user_id~"   OP =~"=~"    EXP2 =~":route_id~" ) ) ARG(NAME = ~"route_id~" TYPE = string) " arguments=(("route_id", string)) )
+text(band=header alignment="2" text="Out CSR" border="6" color="0" x="9" y="8" height="56" width="549" html.valueishtml="0"  name=out_user_id_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Department" border="6" color="0" x="567" y="8" height="56" width="1065" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="64" width="549" format="[general]" html.valueishtml="0"  name=out_user_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="567" y="8" height="64" width="1065" format="[general]" html.valueishtml="0"  name=cusfocus_user_dept_dept_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0 edit.displayonly=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

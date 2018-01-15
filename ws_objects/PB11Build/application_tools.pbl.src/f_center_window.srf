@@ -1,0 +1,30 @@
+﻿$PBExportHeader$f_center_window.srf
+global type f_center_window from function_object
+end type
+
+forward prototypes
+global subroutine f_center_window (window aw_window)
+end prototypes
+
+global subroutine f_center_window (window aw_window);
+Environment	lenv
+long			ll_x, ll_y
+long			ll_screen_width, ll_screen_height
+long			ll_width, ll_height
+
+if not IsValid( aw_window) then RETURN
+
+GetEnvironment(lenv)
+
+ll_screen_width = lenv.ScreenWidth
+ll_screen_height = lenv.ScreenHeight
+
+ll_screen_width = PixelsToUnits( ll_screen_width, XPixelsToUnits!)
+ll_screen_height = PixelsToUnits( ll_screen_height, YPixelsToUnits!)
+
+aw_window.move(ll_screen_width/2 - aw_window.width/2, ll_screen_height/2 - aw_window.height/2)
+
+Return
+
+end subroutine
+

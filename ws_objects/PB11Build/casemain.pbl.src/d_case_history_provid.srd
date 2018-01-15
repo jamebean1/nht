@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_case_history_provid.srd
+$PBExportComments$Case History for the specified Case Subject DataWindow for Providers
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=196 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=72 color="553648127" )
+table(column=(type=char(10) updatewhereclause=yes name=case_number dbname="case_log.case_number" )
+ column=(type=long updatewhereclause=yes name=confidentiality_level dbname="case_log.confidentiality_level" )
+ column=(type=datetime updatewhereclause=yes name=case_log_opnd_date dbname="case_log.case_log_opnd_date" )
+ column=(type=char(15) updatewhereclause=yes name=case_stat_desc dbname="case_status.case_stat_desc" )
+ column=(type=char(30) updatewhereclause=yes name=case_type_desc dbname="case_types.case_type_desc" )
+ column=(type=char(2) updatewhereclause=yes name=case_type dbname="case_log.case_type" )
+ column=(type=char(40) updatewhereclause=yes name=root_category_name dbname="case_log.root_category_name" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_case_log_case_rep dbname="case_log.case_log_case_rep" )
+ column=(type=char(1) updatewhereclause=yes name=case_log_case_priority dbname="case_log.case_priority" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ column=(type=char(10) updatewhereclause=yes name=cusfocus_user_user_id dbname="cusfocus_user.user_id" )
+ column=(type=char(30) updatewhereclause=yes name=user_user_last_name dbname="cusfocus_user.user_last_name" )
+ retrieve="SELECT  cusfocus.case_log.case_number ,
+           cusfocus.case_log.confidentiality_level ,
+           cusfocus.case_log.case_log_opnd_date ,
+           cusfocus.case_status.case_stat_desc ,
+           cusfocus.case_types.case_type_desc ,
+           cusfocus.case_log.case_type ,
+           cusfocus.case_log.root_category_name ,
+           cusfocus.case_log.case_log_case_rep ,
+           cusfocus.case_log.case_priority ,
+           cusfocus.cusfocus_user.active ,
+           cusfocus.cusfocus_user.user_id ,
+           cusfocus.cusfocus_user.user_last_name     
+        FROM cusfocus.case_log ,
+           cusfocus.case_status ,
+           cusfocus.case_types ,
+           cusfocus.cusfocus_user     
+        WHERE ( cusfocus.case_log.case_status_id = cusfocus.case_status.case_status_id ) and          
+( cusfocus.case_log.case_type = cusfocus.case_types.case_type ) and          
+( cusfocus.case_log.case_log_case_rep = cusfocus.cusfocus_user.user_id ) and          
+( ( cusfocus.case_log.case_subject_id = :case_subject_id ) and          
+( cusfocus.case_log.source_type = :source_type ) ) and          
+( cusfocus.case_log.source_provider_type = :source_prov_type )   " arguments=(("case_subject_id", string),("source_type", string),("source_prov_type", string))  sort="case_log_opnd_date D case_number A " )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="457" y="4" height="64" width="402" format="m/d/yyyy" html.valueishtml="0"  name=case_log_opnd_date  tag=" Date Opened" visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="869" y="4" height="64" width="905" format="[general]" html.valueishtml="0"  name=root_category_name  tag=" Category" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="1783" y="4" height="64" width="571" format="[general]" html.valueishtml="0"  name=case_type_desc  tag=" Type" visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="2880" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=case_stat_desc  tag=" Status" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="3186" y="4" height="64" width="379" format="[general]" html.valueishtml="0"  name=confidentiality_level  tag=" Level" visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="if ( (  cusfocus_user_active = 'N'),   cusfocus_user_user_id+ ' (inactive)'  ,
+  cusfocus_user_user_id )"border="0" color="0" x="2363" y="4" height="64" width="507" format="[GENERAL]" html.valueishtml="0"  name=cc_cusfocus_user_user_id visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Case Number" border="0" color="33554432" x="91" y="132" height="52" width="439" html.valueishtml="0"  name=sort_case_number_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="Long(case_number)"border="0" color="0~tif ( case_log_case_priority = 'N',  RGB (0,0,0), if ( case_log_case_priority = 'H', RGB (255,0,0), RGB (0,0,255)))" x="91" y="4" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=sort_case_number  tag=" Case Number" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="59" y1="0" x2="4000" y2="0"  name=l_footer visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="12632256" )
+compute(band=footer alignment="0" expression="'Cases: ' + rowcount()"border="0" color="0" x="91" y="12" height="64" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="33554432" x="1499" y="12" height="52" width="2501" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=p_1 visible="1" )
+text(band=header alignment="0" text="Matched Cases" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="188" x2="4000" y2="188"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Date Opened" border="0" color="33554432" x="549" y="132" height="52" width="402" html.valueishtml="0"  name=case_log_opnd_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Category" border="0" color="33554432" x="969" y="132" height="52" width="905" html.valueishtml="0"  name=root_category_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Type " border="0" color="33554432" x="1893" y="132" height="52" width="571" html.valueishtml="0"  name=case_type_desc_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Rep" border="0" color="0" x="2482" y="132" height="52" width="507" html.valueishtml="0"  name=user_user_last_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Status" border="0" color="33554432" x="3008" y="132" height="52" width="297" html.valueishtml="0"  name=case_stat_desc_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Case Security" border="0" color="33554432" x="3323" y="132" height="52" width="379" html.valueishtml="0"  name=confidentiality_level_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

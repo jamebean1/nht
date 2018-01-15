@@ -1,0 +1,18 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "po_core.pbl" "";
+@end;
+@begin Objects 
+ "d_evalcheck.srd" "po_core.pbl";
+ "d_main.srd" "po_core.pbl";
+ "d_objca_db_main.srd" "po_core.pbl";
+ "d_objca_mgr_main.srd" "po_core.pbl";
+ "d_objca_msg_main.srd" "po_core.pbl";
+ "s_parms.srs" "po_core.pbl";
+ "n_evalcheck.sru" "po_core.pbl";
+ "n_objca_db.sru" "po_core.pbl";
+ "n_objca_init.sru" "po_core.pbl";
+ "n_objca_main.sru" "po_core.pbl";
+ "n_objca_mgr.sru" "po_core.pbl";
+ "n_objca_msg.sru" "po_core.pbl";
+@end;

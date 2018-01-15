@@ -1,0 +1,51 @@
+﻿$PBExportHeader$d_user_report_templates.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=200 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(80) updatewhereclause=no name=savedreport_svdrprtdscrptn dbname="savedreport_svdrprtdscrptn" )
+ column=(type=char(80) updatewhereclause=no name=savedreport_svdrprtdscrptn_1 dbname="savedreport_svdrprtdscrptn_1" )
+ column=(type=char(40) updatewhereclause=no name=dept_desc dbname="dept_desc" )
+ column=(type=char(50) updatewhereclause=no name=rprtcnfgdscrptn dbname="rprtcnfgdscrptn" )
+ column=(type=char(10) updatewhereclause=no name=user_id dbname="user_id" )
+ column=(type=char(25) updatewhereclause=no name=user_first_name dbname="user_first_name" )
+ column=(type=char(30) updatewhereclause=no name=user_last_name dbname="user_last_name" )
+ column=(type=decimal(0) updatewhereclause=no name=rprtcnfgid dbname="rprtcnfgid" )
+ column=(type=decimal(0) updatewhereclause=no name=id dbname="id" )
+ column=(type=char(1) updatewhereclause=no name=rowfocusindicator dbname="rowfocusindicator" )
+ column=(type=char(1) updatewhereclause=no name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=no name=expanded dbname="expanded" )
+ column=(type=long updatewhereclause=no name=sortcolumn dbname="sortcolumn" )
+ procedure="1 execute dbo.sp_report_template;1 " )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=report_bitmap visible="1" )
+text(band=header alignment="0" text="User Report Templates" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="196" x2="7022" y2="196"  name=l_header visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Department" border="0" color="33554432" x="5061" y="140" height="52" width="919" html.valueishtml="0"  name=dept_desc_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Default (Restore to Original) Description" border="0" color="33554432" x="3218" y="140" height="52" width="1819" html.valueishtml="0"  name=savedreport_svdrprtdscrptn_1_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Last Saved Report Description" border="0" color="33554432" x="1371" y="140" height="52" width="1819" html.valueishtml="0"  name=savedreport_svdrprtdscrptn_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="User ID" border="0" color="33554432" x="69" y="140" height="52" width="233" html.valueishtml="0"  name=user_id_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="First Name" border="0" color="33554432" x="6007" y="140" height="52" width="425" html.valueishtml="0"  name=user_first_name_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Last Name" border="0" color="33554432" x="6459" y="140" height="52" width="562" html.valueishtml="0"  name=user_last_name_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="0" y="4" height="68" width="7031"  name=r_1 visible="1" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), 536870912 )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="5061" y="4" height="64" width="919" format="[general]" html.valueishtml="0"  name=dept_desc visible="1" edit.limit=40 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="3218" y="4" height="64" width="1819" format="[general]" html.valueishtml="0"  name=savedreport_svdrprtdscrptn_1 visible="1" edit.limit=80 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="1371" y="4" height="64" width="1819" format="[general]" html.valueishtml="0"  name=savedreport_svdrprtdscrptn visible="1" edit.limit=80 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="69" y="4" height="64" width="233" format="[general]" html.valueishtml="0"  name=user_id visible="1" edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="6007" y="8" height="56" width="425" format="[general]" html.valueishtml="0"  name=user_first_name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="6459" y="8" height="56" width="562" format="[general]" html.valueishtml="0"  name=user_last_name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Area" border="0" color="33554432" x="325" y="140" height="52" width="1024" html.valueishtml="0"  name=area_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="case( rprtcnfgdscrptn  
+	when ~"Search Open Cases~" then  ~"Inbox~"
+	when ~"Search Work Tracker~" then ~"Work Dashboard~" 
+	when ~"Search Contact History~" then ~"Contact History~" 
+	when ~"Search Letters~" then ~"Letters~" 
+	when ~"Search Work Queues~" then ~"Work Queues~" 
+	when ~"Search FAX Queues~" then ~"FAX Queues~" 
+else rprtcnfgdscrptn) "border="0" color="33554432" x="325" y="4" height="64" width="1024" format="[GENERAL]" html.valueishtml="0"  name=area visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

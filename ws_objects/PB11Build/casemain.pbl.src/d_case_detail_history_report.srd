@@ -1,0 +1,152 @@
+﻿$PBExportHeader$d_case_detail_history_report.srd
+$PBExportComments$Case Detail History Report
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 99 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=156 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=3284 color="536870912" height.autosize=yes )
+table(column=(type=char(10) updatewhereclause=yes name=case_log_case_number dbname="case_log.case_number" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_case_log_taken_by dbname="case_log.case_log_taken_by" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_case_log_case_rep dbname="case_log.case_log_case_rep" )
+ column=(type=char(15) updatewhereclause=yes name=case_status_case_stat_desc dbname="case_status.case_stat_desc" )
+ column=(type=datetime updatewhereclause=yes name=case_log_case_log_opnd_date dbname="case_log.case_log_opnd_date" )
+ column=(type=datetime updatewhereclause=yes name=case_log_case_log_clsd_date dbname="case_log.case_log_clsd_date" )
+ column=(type=datetime updatewhereclause=yes name=case_log_case_log_incdnt_date dbname="case_log.case_log_incdnt_date" )
+ column=(type=datetime updatewhereclause=yes name=case_log_case_log_rprtd_date dbname="case_log.case_log_rprtd_date" )
+ column=(type=char(40) updatewhereclause=yes name=case_log_root_category_name dbname="case_log.root_category_name" )
+ column=(type=char(1) updatewhereclause=yes name=case_log_xref_source_type dbname="case_log.xref_source_type" )
+ column=(type=char(40) updatewhereclause=yes name=categories_category_name dbname="categories.category_name" )
+ column=(type=char(30) updatewhereclause=yes name=case_types_case_type_desc dbname="case_types.case_type_desc" )
+ column=(type=char(50) updatewhereclause=yes name=customer_sat_codes_customer_sat_desc dbname="customer_sat_codes.customer_sat_desc" )
+ column=(type=char(50) updatewhereclause=yes name=resolution_codes_resolution_desc dbname="resolution_codes.resolution_desc" )
+ column=(type=char(50) updatewhereclause=yes name=other_close_codes_other_close_desc dbname="other_close_codes.other_close_desc" )
+ column=(type=char(1) updatewhereclause=yes name=case_log_source_type dbname="case_log.source_type" )
+ column=(type=char(20) updatewhereclause=yes name=case_log_case_subject_id dbname="case_log.case_subject_id" )
+ column=(type=char(40) updatewhereclause=yes name=appeal_levels_appeal_level_desc dbname="appeal_levels.appeal_level_desc" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="case_log.active" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="case_log.active" )
+ column=(type=datetime updatewhereclause=yes name=appealheader_appealcreateddate dbname="appealheader.appealcreateddate" )
+ column=(type=datetime updatewhereclause=yes name=appealheader_completeddate dbname="appealheader.completeddate" )
+ column=(type=char(169) updatewhereclause=yes name=fullcategory dbname="FullCategory" )
+ retrieve="
+SELECT cusfocus.case_log.case_number,   
+         cusfocus.case_log.case_log_taken_by,   
+         cusfocus.case_log.case_log_case_rep,   
+         cusfocus.case_status.case_stat_desc,   
+         cusfocus.case_log.case_log_opnd_date,   
+         cusfocus.case_log.case_log_clsd_date,   
+         cusfocus.case_log.case_log_incdnt_date,   
+         cusfocus.case_log.case_log_rprtd_date,   
+         cusfocus.case_log.root_category_name,
+	 cusfocus.case_log.xref_source_type,   
+         cusfocus.categories.category_name,   
+         cusfocus.case_types.case_type_desc,   
+         cusfocus.customer_sat_codes.customer_sat_desc,   
+         cusfocus.resolution_codes.resolution_desc,   
+         cusfocus.other_close_codes.other_close_desc,
+         cusfocus.case_log.source_type,   
+         cusfocus.case_log.case_subject_id,   
+         cusfocus.appeal_levels.appeal_level_desc,   
+         cusfocus_user_a.active,   
+         cusfocus_user_b.active,
+			cusfocus.appealheader.appealcreateddate,
+			cusfocus.appealheader.completeddate,
+			(Select	Case IsNull(view3.category_name, '') When '' Then '' Else view3.category_name + ' > ' End + 
+				Case IsNull(view2.category_name, '') When '' Then '' Else view2.category_name + ' > ' End + 
+				Case IsNull(view1.category_name, '') When '' Then '' Else view1.category_name + ' > ' End + 
+				cat1.category_name
+			From	cusfocus.categories cat1
+			Left Outer Join	cusfocus.category_1_vw	view1	on	cat1.prnt_category_id	=	view1.category_id
+			Left Outer Join	cusfocus.category_2_vw 	view2	on	view1.prnt_category_id	=	view2.category_id
+			Left Outer Join	cusfocus.category_3_vw	view3	on	view2.prnt_category_id	=	view3.category_id
+			Where	cat1.category_id = cusfocus.categories.category_id) FullCategory			
+   FROM cusfocus.case_log
+	Left Outer Join cusfocus.customer_sat_codes	on		cusfocus.customer_sat_codes.customer_sat_code_id  = cusfocus.case_log.customer_sat_code_id
+   	Left Outer Join cusfocus.resolution_codes	on		cusfocus.resolution_codes.resolution_code_id  = cusfocus.case_log.resolution_code_id
+	Left Outer Join	cusfocus.other_close_codes	on		cusfocus.other_close_codes.other_close_code_id = cusfocus.case_log.other_close_code_id
+	Left Outer Join	cusfocus.appeal_levels		on		cusfocus.appeal_levels.appeal_level  = cusfocus.case_log.case_log_appld
+   	Inner Join 	cusfocus.case_status		on		cusfocus.case_status.case_status_id = cusfocus.case_log.case_status_id
+	Inner Join	cusfocus.categories		on		cusfocus.categories.category_id = cusfocus.case_log.category_id	
+	Inner Join	cusfocus.cusfocus_user cusfocus_user_a	on	cusfocus.case_log.case_log_case_rep = cusfocus_user_a.user_id
+	Inner Join	cusfocus.cusfocus_user cusfocus_user_b	on	cusfocus.case_log.case_log_taken_by = cusfocus_user_b.user_id
+	Inner Join	cusfocus.case_types		on		cusfocus.case_types.case_type = cusfocus.case_log.case_type
+	Left Outer Join	cusfocus.appealheader	on	cusfocus.case_log.case_number = cusfocus.appealheader.case_number
+   WHERE     cusfocus.case_log.case_number = :case_number
+" arguments=(("case_number", string),("security_level", number)) )
+text(band=header alignment="2" text="Case Detail History Report" border="0" color="0" x="1207" y="60" height="76" width="1093" html.valueishtml="0"  name=reoprt_title_t visible="1"  font.face="Tahoma" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="appname" border="0" color="0" x="9" y="72" height="64" width="809" html.valueishtml="0"  name=appname_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="0" y1="152" x2="3506" y2="152"  name=l_header_sep visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="'Printed: ' + String (today(), 'mm/dd/yyyy')"border="0" color="0" x="2647" y="72" height="64" width="859" format="[General]" html.valueishtml="0"  name=date_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="d_cdhr_member_info" x="0" y="1012" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=(("if ( case_log_source_type = 'C',  case_log_case_subject_id, '')")) trail_footer = yes  name=dw_member_info visible="1" )
+report(band=detail dataobject="d_cdhr_provider_info" x="0" y="1164" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=(("if ( Upper (case_log_source_type) = 'P',  case_log_case_subject_id, '')")) trail_footer = yes  name=dw_provider_info visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_employer_info" x="0" y="1316" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=(("if ( Upper (case_log_source_type) = 'E',  case_log_case_subject_id, '')")) trail_footer = yes  name=dw_employer_info visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_other_info" x="0" y="1468" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" if ( Upper (case_log_source_type) = 'O',  case_log_case_subject_id, '')")) trail_footer = yes  name=dw_other_info visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_contact_person" x="0" y="1620" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_1 visible="1" )
+report(band=detail dataobject="d_cdhr_transfer_log" x="0" y="1772" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_transfer_log visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_transfer_history" x="0" y="1924" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_tansfer_history visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_cross_references" x="0" y="2076" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number "),(" case_log_xref_source_type ")) trail_footer = yes  name=dw_cross_references visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_case_notes" x="0" y="2228" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=(("case_log_case_number "),(" security_level ")) trail_footer = yes  name=dw_case_notes visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_reminders" x="0" y="2380" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_reminders visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_reopen_log" x="0" y="2532" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_reopen_log visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_correspondence" x="0" y="2684" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_correspondence visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_cdhr_case_properties_history" x="0" y="2836" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_log_case_number ")) trail_footer = yes  name=dw_properties_history visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_chdr_appealheader" x="0" y="2988" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_number ")) trail_footer = yes  name=dw_appeal visible="1"  slideup=directlyabove )
+report(band=detail dataobject="d_chdr_appealdetail" x="0" y="3140" height="136" width="3506" border="0"  height.autosize=yes criteria="" nest_arguments=((" case_number ")) trail_footer = yes  name=dw_appealdetail visible="1"  slideup=directlyabove )
+text(band=detail alignment="0" text="General Information:" border="0" color="0" x="9" y="4" height="64" width="713" html.valueishtml="0"  name=section_header_t visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+line(band=detail x1="0" y1="72" x2="3506" y2="72"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=detail x1="46" y1="180" x2="3493" y2="180"  name=l_5 visible="1" pen.style="0" pen.width="5" pen.color="8421504"  background.mode="2" background.color="16777215" )
+line(band=detail x1="46" y1="424" x2="3493" y2="424"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="8421504"  background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Reported Date:" border="0" color="0" x="1911" y="272" height="52" width="622" html.valueishtml="0"  name=case_log_case_log_rprtd_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Incident Date:" border="0" color="0" x="1911" y="204" height="52" width="622" html.valueishtml="0"  name=case_log_case_log_incdnt_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="2546" y="204" height="64" width="942" format="[shortdate] [time] AM/PM" html.valueishtml="0"  name=case_log_case_log_incdnt_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2546" y="272" height="64" width="942" format="[shortdate] [time] AM/PM" html.valueishtml="0"  name=case_log_case_log_rprtd_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Appeal Closed Date:" border="0" color="0" x="1911" y="340" height="52" width="622" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=22 alignment="0" tabsequence=32766 border="0" color="0" x="2546" y="340" height="64" width="942" format="[shortdate] [time]" html.valueishtml="0"  name=appealheader_completeddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Appeal Created Date:" border="0" color="0" x="55" y="340" height="52" width="645" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Current Case Rep:" border="0" color="0" x="55" y="272" height="52" width="622" html.valueishtml="0"  name=case_log_case_log_case_rep_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Case Taken By:" border="0" color="0" x="55" y="204" height="52" width="622" html.valueishtml="0"  name=case_log_case_log_taken_by_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="690" y="340" height="64" width="1143" format="[shortdate] [time]" html.valueishtml="0"  name=appealheader_appealcreateddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (   cusfocus_user_active = 'N' ) ,  case_log_case_log_case_rep  + ' (inactive)' , 
+ case_log_case_log_case_rep)"border="0" color="0" x="690" y="272" height="64" width="1143" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (    cusfocus_user_active = 'N' ) ,  case_log_case_log_taken_by + ' (inactive)'  , 
+ case_log_case_log_taken_by) "border="0" color="0" x="690" y="204" height="64" width="1143" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Case Number:" border="0" color="0" x="55" y="96" height="52" width="535" html.valueishtml="0"  name=case_log_case_number_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="2459" y="96" height="64" width="1033" format="[general]" html.valueishtml="0"  name=case_types_case_type_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Case Type:" border="0" color="0" x="1911" y="96" height="52" width="535" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="96" height="64" width="1234" format="[general]" html.valueishtml="0"  name=case_log_case_number visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=23 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="448" height="128" width="2889" format="[general]" html.valueishtml="0"  name=fullcategory visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Sub-Category:" border="0" color="0" x="1911" y="448" height="52" width="535" html.valueishtml="0"  name=categories_category_name_t visible="0"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="If ( case_log_root_category_name =  categories_category_name, '',  categories_category_name )"border="0" color="0" x="2459" y="448" height="64" width="1033" format="[GENERAL]" html.valueishtml="0"  name=sub_category_name visible="0"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Category Lineup:" border="0" color="0" x="55" y="448" height="52" width="535" html.valueishtml="0"  name=case_log_root_category_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="448" height="64" width="1234" format="[general]" html.valueishtml="0"  name=case_log_root_category_name visible="0" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="46" y1="596" x2="3493" y2="596"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="8421504"  background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Case Status:" border="0" color="0" x="55" y="612" height="52" width="535" html.valueishtml="0"  name=case_status_case_stat_desc_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="# of Appeals:" border="0" color="0" x="55" y="680" height="52" width="535" html.valueishtml="0"  name=case_log_case_log_appld_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2459" y="612" height="64" width="1033" format="[shortdate] [time] AM/PM" html.valueishtml="0"  name=case_log_case_log_opnd_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2459" y="680" height="64" width="1033" format="[shortdate] [time] AM/PM" html.valueishtml="0"  name=case_log_case_log_clsd_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Case Opened:" border="0" color="0" x="1911" y="612" height="52" width="535" html.valueishtml="0"  name=case_log_case_log_opnd_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Case Closed:" border="0" color="0" x="1911" y="680" height="52" width="535" html.valueishtml="0"  name=case_log_case_log_clsd_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=detail x1="46" y1="764" x2="3493" y2="764"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="8421504"  background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="594" y="924" height="64" width="1856" format="[general]" html.valueishtml="0"  name=other_close_codes_other_close_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="594" y="856" height="64" width="1856" format="[general]" html.valueishtml="0"  name=resolution_codes_resolution_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="594" y="788" height="64" width="1856" format="[general]" html.valueishtml="0"  name=customer_sat_codes_customer_sat_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Cust. Sat. Code:" border="0" color="0" x="55" y="788" height="52" width="526" html.valueishtml="0"  name=cust_sat_code_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Other Close Code:" border="0" color="0" x="55" y="924" height="52" width="530" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Res. Code:" border="0" color="0" x="55" y="856" height="52" width="526" html.valueishtml="0"  name=resolution_code_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="612" height="64" width="1234" format="[general]" html.valueishtml="0"  name=case_status_case_stat_desc visible="1" edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="603" y="680" height="64" width="1234" format="[general]" html.valueishtml="0"  name=appeal_levels_appeal_level_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="0" y1="4" x2="3506" y2="4"  name=l_footer_sep visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="9" y="16" height="72" width="727" format="[general]" html.valueishtml="0"  name=page_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="1" expression="'Case #: ' +  case_log_case_number "border="0" color="0" x="2473" y="16" height="72" width="1033" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

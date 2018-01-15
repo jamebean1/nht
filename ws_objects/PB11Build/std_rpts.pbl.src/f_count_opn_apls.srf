@@ -1,0 +1,38 @@
+﻿$PBExportHeader$f_count_opn_apls.srf
+$PBExportComments$Function for counting Open Appeals
+global type f_count_opn_apls from function_object
+end type
+
+forward prototypes
+global function integer f_count_opn_apls (string a_case_type)
+end prototypes
+
+global function integer f_count_opn_apls (string a_case_type);//******************************************************************
+//  Function      : f_count_opn_apls
+//
+//  Description   : A function that returns all the open
+//						  apps for a case type.
+//						  Used in the Standard Reporting
+//
+//  Parameters    : STRING				a_case_type 	- Case Type
+//
+//  Return Value  : INTEGER - Number of cases open for a certain case type.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1994-1995.  All Rights Reserved.
+//******************************************************************
+
+INT  l_nReturn
+
+	SELECT COUNT(case_number) INTO :l_nReturn FROM cusfocus.case_log
+		WHERE case_type = :a_case_type AND case_status_id = 'O' AND case_log_appld > 0;
+
+RETURN l_nReturn
+	
+end function
+

@@ -1,0 +1,46 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "pc_core.pbl" "";
+@end;
+@begin Objects 
+ "d_fwca_mdi_main.srd" "pc_core.pbl";
+ "d_fwca_menu_main.srd" "pc_core.pbl";
+ "d_fwca_mgr_main.srd" "pc_core.pbl";
+ "d_fwca_msg_main.srd" "pc_core.pbl";
+ "m_main.srm" "pc_core.pbl";
+ "m_popup_dw.srm" "pc_core.pbl";
+ "m_popup_mdi.srm" "pc_core.pbl";
+ "m_popup_win.srm" "pc_core.pbl";
+ "n_cst_conversion.sru" "pc_core.pbl";
+ "n_cst_dwobjectattrib.sru" "pc_core.pbl";
+ "n_cst_dwsrv.sru" "pc_core.pbl";
+ "n_cst_dwsrv_resize.sru" "pc_core.pbl";
+ "n_cst_dwsrv_resizeattrib.sru" "pc_core.pbl";
+ "n_cst_infoattrib.sru" "pc_core.pbl";
+ "n_cst_propertyattrib.sru" "pc_core.pbl";
+ "n_cst_resize.sru" "pc_core.pbl";
+ "n_cst_resizeattrib.sru" "pc_core.pbl";
+ "n_cst_string.sru" "pc_core.pbl";
+ "n_dwsrv_cc.sru" "pc_core.pbl";
+ "n_dwsrv_ctrl.sru" "pc_core.pbl";
+ "n_dwsrv_cues.sru" "pc_core.pbl";
+ "n_dwsrv_edit.sru" "pc_core.pbl";
+ "n_dwsrv_main.sru" "pc_core.pbl";
+ "n_dwsrv_seek.sru" "pc_core.pbl";
+ "n_dwsrv_uow.sru" "pc_core.pbl";
+ "n_fwca_error.sru" "pc_core.pbl";
+ "n_fwca_main.sru" "pc_core.pbl";
+ "n_fwca_mdi.sru" "pc_core.pbl";
+ "n_fwca_menu.sru" "pc_core.pbl";
+ "n_fwca_mgr.sru" "pc_core.pbl";
+ "n_fwca_msg.sru" "pc_core.pbl";
+ "u_container_main.sru" "pc_core.pbl";
+ "u_dw_main.sru" "pc_core.pbl";
+ "u_tab_main.sru" "pc_core.pbl";
+ "u_tabpg_main.sru" "pc_core.pbl";
+ "w_cc_main.srw" "pc_core.pbl";
+ "w_main.srw" "pc_core.pbl";
+ "w_mdi_frame.srw" "pc_core.pbl";
+ "w_response.srw" "pc_core.pbl";
+ "w_root.srw" "pc_core.pbl";
+@end;

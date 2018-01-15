@@ -1,0 +1,27 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "calendar.pbl" "";
+@end;
+@begin Objects 
+ "d_data_appealtypedefault.srd" "calendar.pbl";
+ "d_data_dateexclusion.srd" "calendar.pbl";
+ "d_data_dateterm.srd" "calendar.pbl";
+ "d_gui_appeal_header.srd" "calendar.pbl";
+ "d_gui_appealevents.srd" "calendar.pbl";
+ "d_gui_appealtype_selection.srd" "calendar.pbl";
+ "d_gui_dateexclusion.srd" "calendar.pbl";
+ "d_gui_dateterm_list.srd" "calendar.pbl";
+ "d_gui_dateterms.srd" "calendar.pbl";
+ "d_swap_dateexclusion_available.srd" "calendar.pbl";
+ "d_swap_dateexclusion_selected.srd" "calendar.pbl";
+ "dddw_appealevent.srd" "calendar.pbl";
+ "dddw_appealtype.srd" "calendar.pbl";
+ "dddw_dateterm.srd" "calendar.pbl";
+ "special_cond_report.srd" "calendar.pbl";
+ "n_dao_dateexclusion.sru" "calendar.pbl";
+ "n_dao_dateterm.sru" "calendar.pbl";
+ "u_calendar_maint.sru" "calendar.pbl";
+ "uo_appeals_maint.sru" "calendar.pbl";
+ "w_appealsmaint_test.srw" "calendar.pbl";
+ "w_calendar_test.srw" "calendar.pbl";
+@end;

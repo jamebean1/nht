@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_active_logins.srd
+$PBExportComments$Active Logins list for SLU module
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=user_id dbname="active_logins.user_id" )
+ column=(type=char(50) update=yes updatewhereclause=yes key=yes name=computer_id dbname="active_logins.computer_id" )
+ column=(type=datetime update=yes updatewhereclause=yes name=login_timestamp dbname="active_logins.login_timestamp" )
+ retrieve="PBSELECT(TABLE(NAME=~"cusfocus.active_logins~") COLUMN(NAME=~"cusfocus.active_logins.user_id~")COLUMN(NAME=~"cusfocus.active_logins.computer_id~")COLUMN(NAME=~"cusfocus.active_logins.login_timestamp~"))" update="cusfocus.active_logins" updatewhere=1 updatekeyinplace=yes )
+text(band=header alignment="2" text="User Id" border="0" color="0" x="5" y="4" height="64" width="302"  name=user_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Computer Id" border="0" color="0" x="311" y="4" height="64" width="1399"  name=computer_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Login Timestamp" border="0" color="0" x="1714" y="4" height="64" width="603"  name=login_timestamp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="4" height="76" width="302" format="[general]"  name=user_id edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="311" y="4" height="76" width="1399" format="[general]"  name=computer_id edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1714" y="4" height="76" width="603" format="[shortdate] [time]"  name=login_timestamp edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

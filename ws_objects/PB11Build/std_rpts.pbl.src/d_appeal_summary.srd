@@ -1,0 +1,81 @@
+﻿$PBExportHeader$d_appeal_summary.srd
+release 11;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=452 color="536870912" )
+summary(height=232 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=appealheader_appealtype dbname="appealheader.appealtype" )
+ column=(type=char(100) updatewhereclause=yes name=appealtype_appealname dbname="appealtype.appealname" )
+ column=(type=long updatewhereclause=yes name=count dbname="compute_0003" )
+ column=(type=char(3) updatewhereclause=yes name=month dbname="Month" )
+ column=(type=long updatewhereclause=yes name=year dbname="Year" )
+ column=(type=long updatewhereclause=yes name=appealheader_line_of_business_id dbname="line_of_business_id" )
+ column=(type=long updatewhereclause=yes name=appealheader_service_type_id dbname="service_type_id" )
+ retrieve="Select	appealtype,
+	appealname,
+	Count(*) 'Number of Appeals',
+	Case DatePart(mm, appealcreateddate) 
+		When 1	Then 	'Jan' 
+		When 2 	Then 	'Feb'
+		When 3 	Then 	'Mar'
+		When 4	Then 	'Apr'
+		When 5 	Then 	'May'
+		When 6	Then 	'Jun'
+		When 7	Then 	'Jul'
+		When 8	Then 	'Aug'
+		When 9	Then 	'Sep'
+		When 10	Then 	'Oct'
+		When 11	Then	'Nov'
+		When 12	Then	'Dec'
+	 End 'Month',
+	DatePart(yy, appealcreateddate) 'Year',
+   ah.line_of_business_id,
+	ah.service_type_id
+From		cusfocus.appealheader ah
+Inner Join	cusfocus.appealtype atp		on	ah.appealtype = atp.appealtypeid
+Where		ah.appealcreateddate >= :adt_startdate
+and		ah.appealcreateddate <= :adt_enddate
+Group by 	appealtype, 
+		appealname, 
+		DatePart(mm, appealcreateddate), 
+		DatePart(yy, appealcreateddate),
+   ah.line_of_business_id,
+	ah.service_type_id
+Order by 	DatePart(yy, appealcreateddate), 
+		DatePart(mm, appealcreateddate) Asc" arguments=(("adt_startdate", datetime),("adt_enddate", datetime)) )
+group(level=1 header.height=72 trailer.height=68 by=("year" , "month" ) header.color="536870912" trailer.color="536870912" )
+line(band=header x1="46" y1="300" x2="2999" y2="300"  name=l_3 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="27" y1="448" x2="2999" y2="448"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Appeal Summary" border="0" color="0" x="55" y="52" height="92" width="1102" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="End Date:  " border="0" color="0" x="1065" y="192" height="64" width="325" html.valueishtml="0"  name=t_19 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Begin Date:  " border="0" color="0" x="55" y="192" height="64" width="379" html.valueishtml="0"  name=t_21 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="date( adt_startdate )"border="0" color="33554432" x="471" y="196" height="76" width="512" format="mm/dd/yyyy" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="0" expression=" adt_enddate "border="0" color="33554432" x="1431" y="192" height="76" width="512" format="mm/dd/yyyy" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Month/Year" border="0" color="33554432" x="37" y="316" height="52" width="379" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Number of Appeals" border="0" color="33554432" x="2519" y="380" height="52" width="489" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Service Type" border="0" color="33554432" x="1733" y="380" height="52" width="768" html.valueishtml="0"  name=t_7 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Line of Business" border="0" color="33554432" x="169" y="380" height="52" width="768" html.valueishtml="0"  name=t_6 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Appeal Type" border="0" color="33554432" x="951" y="384" height="52" width="768" html.valueishtml="0"  name=appealheader_appealname_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header.1 alignment="0" expression=" month + '/' +  year "border="0" color="33554432" x="37" y="12" height="52" width="379" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=32766 border="0" color="33554432" x="2542" y="12" height="60" width="503" format="[general]" html.valueishtml="0"  name=count visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1733" y="12" height="52" width="768" format="[general]" html.valueishtml="0"  name=appealheader_service_type_id visible="1" dddw.name=dddw_service_types dddw.displaycolumn=service_type_name dddw.datacolumn=service_type_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="169" y="12" height="52" width="768" format="[general]" html.valueishtml="0"  name=appealheader_line_of_business_id visible="1" dddw.name=dddw_line_of_business dddw.displaycolumn=line_of_business_name dddw.datacolumn=line_of_business_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="951" y="12" height="52" width="768" format="[general]" html.valueishtml="0"  name=appealtype_appealname visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="2" expression="sum(  count  for group 1 )"border="0" color="33554432" x="2542" y="12" height="52" width="503" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="2597" y1="0" x2="2994" y2="0"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=trailer.1 alignment="1" text="Monthly Total:" border="0" color="33554432" x="2002" y="12" height="52" width="517" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="2153" y1="132" x2="3031" y2="132"  name=l_4 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Total Appeals:" border="0" color="33554432" x="2007" y="148" height="52" width="512" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  count  for all )"border="0" color="33554432" x="2551" y="148" height="52" width="480" format="[GENERAL]" html.valueishtml="0"  name=compute_5 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

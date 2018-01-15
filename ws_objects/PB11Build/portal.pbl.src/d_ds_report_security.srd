@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_ds_report_security.srd
+$PBExportComments$Report Security DataStore
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=report_security_id dbname="report_security.report_security_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=report_id dbname="report_security.report_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=user_id dbname="report_security.user_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="report_security.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="report_security.updated_timestamp" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.report_security~" ) COLUMN(NAME=~"cusfocus.report_security.report_security_id~") COLUMN(NAME=~"cusfocus.report_security.report_id~") COLUMN(NAME=~"cusfocus.report_security.user_id~") COLUMN(NAME=~"cusfocus.report_security.updated_by~") COLUMN(NAME=~"cusfocus.report_security.updated_timestamp~")) " update="cusfocus.report_security" updatewhere=1 updatekeyinplace=no )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="27" y="12" height="76" width="544" format="[general]"  name=report_security_id edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

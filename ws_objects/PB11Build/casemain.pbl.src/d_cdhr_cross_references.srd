@@ -1,0 +1,96 @@
+﻿$PBExportHeader$d_cdhr_cross_references.srd
+$PBExportComments$Case Detail History Report - Cross Reference Section
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=64 color="536870912" )
+detail(height=224 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=case_log_case_number dbname="case_log.case_number" dbalias=".case_number" )
+ column=(type=char(40) updatewhereclause=yes name=optional_grouping_optional_grouping_desc dbname="optional_grouping.optional_grouping_desc" dbalias=".optional_grouping_desc" )
+ column=(type=char(132) updatewhereclause=yes name=xref_name dbname="xref_name" )
+ column=(type=char(30) updatewhereclause=yes name=contact_primary_contact_last_name dbname="contact_primary.contact_last_name" dbalias=".contact_last_name" )
+ column=(type=char(25) updatewhereclause=yes name=contact_primary_contact_first_name dbname="contact_primary.contact_first_name" dbalias=".contact_first_name" )
+ column=(type=char(1) updatewhereclause=yes name=contact_primary_contact_mi dbname="contact_primary.contact_mi" dbalias=".contact_mi" )
+ retrieve="  SELECT cusfocus.case_log.case_number,   
+         cusfocus.optional_grouping.optional_grouping_desc,   
+         Case isnull(cusfocus.provider_of_service.provid_name_2, 'XXX') When 'XXX' Then cusfocus.provider_of_service.provid_name 
+		When '' Then cusfocus.provider_of_service.provid_name 
+		Else cusfocus.provider_of_service.provid_name + ', ' + cusfocus.provider_of_service.provid_name_2 End xref_name,
+         cusfocus.contact_primary.contact_last_name,   
+         cusfocus.contact_primary.contact_first_name,   
+         cusfocus.contact_primary.contact_mi  
+    FROM cusfocus.case_log,   
+         cusfocus.optional_grouping,   
+         cusfocus.provider_of_service,   
+         cusfocus.contact_primary  
+   WHERE ( cusfocus.optional_grouping.optional_grouping_id =* cusfocus.case_log.optional_grouping_id) and  
+         ( cusfocus.provider_of_service.provider_key =* convert(int, cusfocus.case_log.xref_subject_id)) and  
+         ( cusfocus.contact_primary.case_number =* cusfocus.case_log.case_number) and  
+         ( ( cusfocus.case_log.case_number = :a_cCaseNum ) and 
+			  ( :a_cXrefSourceType = 'P' ) and
+			  ( cusfocus.case_log.xref_subject_id is not null ))
+UNION ALL
+  SELECT cusfocus.case_log.case_number,   
+         cusfocus.optional_grouping.optional_grouping_desc,   
+         xref_name = (cusfocus.consumer.consum_last_name+
+				case when isnull(cusfocus.consumer.consum_first_name, 'XXX') = 'XXX' then
+						''
+					else ', '+cusfocus.consumer.consum_first_name
+				end
+				+IsNull(cusfocus.consumer.consum_mi, '')),
+         cusfocus.contact_primary.contact_last_name,   
+         cusfocus.contact_primary.contact_first_name,   
+         cusfocus.contact_primary.contact_mi  
+    FROM cusfocus.case_log,   
+         cusfocus.optional_grouping,   
+         cusfocus.consumer,   
+         cusfocus.contact_primary  
+   WHERE ( cusfocus.optional_grouping.optional_grouping_id =* cusfocus.case_log.optional_grouping_id) and  
+         ( cusfocus.consumer.consumer_id =* cusfocus.case_log.xref_subject_id ) and  
+         ( cusfocus.contact_primary.case_number =* cusfocus.case_log.case_number) and  
+         ( ( cusfocus.case_log.case_number = :a_cCaseNum) and
+			  ( :a_cXrefSourceType = 'C' ) and
+			  ( cusfocus.case_log.xref_subject_id is not null ))  
+
+UNION ALL
+  SELECT cusfocus.case_log.case_number,   
+         cusfocus.optional_grouping.optional_grouping_desc,   
+         xref_name = cusfocus.employer_group.employ_group_name,
+         cusfocus.contact_primary.contact_last_name,   
+         cusfocus.contact_primary.contact_first_name,   
+         cusfocus.contact_primary.contact_mi  
+    FROM cusfocus.case_log,   
+         cusfocus.optional_grouping,   
+         cusfocus.employer_group,   
+         cusfocus.contact_primary  
+   WHERE ( cusfocus.optional_grouping.optional_grouping_id =* cusfocus.case_log.optional_grouping_id) and  
+         ( cusfocus.employer_group.group_id =* cusfocus.case_log.xref_subject_id ) and  
+         ( cusfocus.contact_primary.case_number =* cusfocus.case_log.case_number) and  
+         ( ( cusfocus.case_log.case_number = :a_cCaseNum) and
+			  ( :a_cXrefSourceType = 'E' ) and
+			  ( cusfocus.case_log.xref_subject_id is not null ))  
+
+" arguments=(("a_ccasenum", string),("a_cxrefsourcetype", string)) )
+text(band=header alignment="0" text="Other Case Information:" border="0" color="0" x="9" y="8" height="64" width="955" html.valueishtml="0"  name=t_3 visible="1"  slideup=directlyabove  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="562" y="248" height="64" width="809" format="[general]" html.valueishtml="0"  name=contact_primary_contact_last_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="571" y="244" height="64" width="677" format="[general]" html.valueishtml="0"  name=contact_primary_contact_first_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1371" y="256" height="64" width="27" format="[general]" html.valueishtml="0"  name=contact_primary_contact_mi visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Contact Person:" border="0" color="0" x="119" y="4" height="60" width="1065" html.valueishtml="0"  name=contact_person_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Optional Grouping:" border="0" color="0" x="119" y="72" height="60" width="1065" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="case( a_cxrefsourcetype when 'P' then 'Cross Reference Provider:' when 'C' then 'Cross Reference Member:' else 'Cross Reference Group:')"border="0" color="0" x="119" y="140" height="60" width="1065" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression=" contact_primary_contact_last_name + ', ' +  contact_primary_contact_first_name  + ' ' +  IF(ISNULL( contact_primary_contact_mi ), '',  contact_primary_contact_mi )"border="0" color="0" x="1234" y="4" height="60" width="1486" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1234" y="72" height="60" width="2199" format="[general]" html.valueishtml="0"  name=optional_grouping_optional_grouping_desc visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1234" y="140" height="60" width="1486" format="[general]" html.valueishtml="0"  name=xref_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=foreground x1="0" y1="76" x2="3506" y2="76"  name=l_4 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

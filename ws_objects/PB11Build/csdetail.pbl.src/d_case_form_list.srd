@@ -1,0 +1,81 @@
+﻿$PBExportHeader$d_case_form_list.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=192 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=form_key dbname="case_forms.form_key" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=case_number dbname="case_forms.case_number" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=template_key dbname="case_forms.template_key" )
+ column=(type=long update=yes updatewhereclause=yes name=confidentiality_level dbname="case_forms.confidentiality_level" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=last_reviewed_by dbname="case_forms.last_reviewed_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_reviewed_timestamp dbname="case_forms.last_reviewed_timestamp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=created_by dbname="case_forms.created_by" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="case_forms.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="case_forms.updated_timestamp" )
+ column=(type=char(200) updatewhereclause=yes name=template_name dbname="form_templates.template_name" )
+ column=(type=char(255) updatewhereclause=yes name=template_description dbname="form_templates.template_description" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=form_notes dbname="case_forms.form_notes" )
+ column=(type=char(1) updatewhereclause=yes name=active_reviewed dbname="case_forms.active_reviewed" )
+ column=(type=char(1) updatewhereclause=yes name=active_created dbname="case_forms.active_created" )
+ column=(type=char(1) updatewhereclause=yes name=active_updated dbname="case_forms.active_updated" )
+ column=(type=datetime update=yes updatewhereclause=yes name=created_timestamp dbname="case_forms.created_timestamp" )
+ retrieve="  SELECT cusfocus.case_forms.form_key,   
+         cusfocus.case_forms.case_number,   
+         cusfocus.case_forms.template_key,   
+         cusfocus.case_forms.confidentiality_level,   
+         cusfocus.case_forms.last_reviewed_by,   
+         cusfocus.case_forms.last_reviewed_timestamp,   
+         cusfocus.case_forms.created_by,   
+         cusfocus.case_forms.updated_by,   
+         cusfocus.case_forms.updated_timestamp,   
+         cusfocus.form_templates.template_name,   
+         cusfocus.form_templates.template_description,   
+         cusfocus.case_forms.form_notes,   
+         cusfocus_user_a.active active_reviewed,   
+         cusfocus_user_b.active active_created,   
+         cusfocus_user_c.active active_updated,
+			cusfocus.case_forms.created_timestamp  
+    FROM cusfocus.case_forms,   
+         cusfocus.form_templates,   
+         cusfocus.cusfocus_user cusfocus_user_a,   
+         cusfocus.cusfocus_user cusfocus_user_b,   
+         cusfocus.cusfocus_user cusfocus_user_c  
+   WHERE ( cusfocus.case_forms.last_reviewed_by  *= cusfocus_user_a.user_id) and  
+         ( cusfocus.case_forms.created_by  *= cusfocus_user_b.user_id) and  
+         ( cusfocus.case_forms.updated_by  *= cusfocus_user_c.user_id) and  
+         ( cusfocus.form_templates.template_key = cusfocus.case_forms.template_key ) and  
+         ( ( cusfocus.case_forms.case_number = :a_ccasenumber ) )    
+" update="cusfocus.case_forms" updatewhere=0 updatekeyinplace=yes arguments=(("a_ccasenumber", string),("a_nconfidlevel", number)) )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=p_1 visible="1" )
+text(band=header alignment="0" text="Case Forms" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Form" border="0" color="0" x="91" y="132" height="52" width="928" html.valueishtml="0"  name=cc_form_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="188" x2="7835" y2="188"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Description" border="0" color="0" x="1038" y="132" height="52" width="1326" html.valueishtml="0"  name=template_description_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Notes" border="0" color="0" x="2382" y="132" height="52" width="1266" html.valueishtml="0"  name=form_notes_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Security" border="0" color="0" x="3666" y="132" height="52" width="521" html.valueishtml="0"  name=confidentiality_level_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Last Reviewed By" border="0" color="0" x="4206" y="132" height="52" width="475" html.valueishtml="0"  name=cc_last_reviewed_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Reviewed Date/Time" border="0" color="0" x="4699" y="132" height="52" width="690" html.valueishtml="0"  name=last_reviewed_timestamp_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Created By" border="0" color="0" x="5408" y="132" height="52" width="462" html.valueishtml="0"  name=cc_created_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Created Date/Time" border="0" color="0" x="5888" y="132" height="52" width="667" html.valueishtml="0"  name=created_timestamp_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Updated By" border="0" color="0" x="6574" y="132" height="52" width="457" html.valueishtml="0"  name=cc_updated_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Updated Date/Time" border="0" color="0" x="7049" y="132" height="52" width="649" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="If( confidentiality_level > a_nConfidLevel, ~"Access Denied~", template_name )"border="0" color="0" x="91" y="4" height="68" width="928" format="[GENERAL]" html.valueishtml="0"  name=cc_form_name visible="1"  font.face="Tahoma" font.height="-8" font.weight="400~tif( confidentiality_level >  a_nConfidLevel , 700, 400 )"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="1038" y="4" height="68" width="1326" format="[general]" html.valueishtml="0"  name=template_description visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="2382" y="4" height="68" width="1266" format="[general]" html.valueishtml="0"  name=form_notes visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="3666" y="4" height="68" width="521" format="[general]" html.valueishtml="0"  name=confidentiality_level visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" dddw.name=dddw_rec_confid_levels dddw.displaycolumn=confid_desc dddw.datacolumn=confidentiality_level dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  last_reviewed_by = 'cusfocus' ) ,  last_reviewed_by ,  ( if ( ( active_reviewed = 'N' ) ,  last_reviewed_by + ' (inactive)'  ,last_reviewed_by  ) ) )"border="0" color="0" x="4206" y="4" height="68" width="475" format="[GENERAL]" html.valueishtml="0"  name=cc_last_reviewed visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="4699" y="4" height="68" width="690" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=last_reviewed_timestamp visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  created_by = 'cusfocus' ) ,  created_by ,  ( if ( ( active_created = 'N' ) ,  created_by + ' (inactive)'  ,created_by  ) ) )"border="0" color="0" x="5408" y="4" height="68" width="462" format="[GENERAL]" html.valueishtml="0"  name=cc_created visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="5888" y="4" height="68" width="667" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=created_timestamp visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( active_updated = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="6574" y="4" height="68" width="457" format="[GENERAL]" html.valueishtml="0"  name=cc_updated visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="7049" y="4" height="68" width="649" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=updated_timestamp visible="1~tif( confidentiality_level >  a_nConfidLevel , 0, 1 )" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="33554432" x="1499" y="8" height="52" width="2501" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="~"Count: ~"+String( rowcount())"border="0" color="0" x="91" y="8" height="64" width="928" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="73" y1="0" x2="7835" y2="0"  name=l_footer visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="12632256" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

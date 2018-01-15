@@ -1,0 +1,10 @@
+﻿$PBExportHeader$s_reopen_parms.srs
+$PBExportComments$Parameters to pass to and from the Reopen Case window.
+global type s_reopen_parms from structure
+	string		case_number
+	string		last_closed_by
+	datetime		last_closed
+	string		reopen
+	string		log_id
+end type
+

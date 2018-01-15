@@ -1,0 +1,19 @@
+﻿$PBExportHeader$s_fieldproperties.srs
+$PBExportComments$Store the field properties for configurable fields.
+global type s_fieldproperties from structure
+	string		column_name
+	string		field_label
+	integer		field_length
+	character		locked
+	character		searchable
+	character		display_only
+	string		edit_mask
+	string		display_format
+	string		validation_rule
+	string		error_msg
+	string		format_name
+	string		required
+	string		visible
+	character		dropdown
+end type
+

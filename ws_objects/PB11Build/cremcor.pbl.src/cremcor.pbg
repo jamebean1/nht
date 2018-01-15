@@ -1,0 +1,45 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "cremcor.pbl" "";
+@end;
+@begin Objects 
+ "d_bcbsvt_setup.srd" "cremcor.pbl";
+ "d_blank_survey.srd" "cremcor.pbl";
+ "d_case_reminders.srd" "cremcor.pbl";
+ "d_case_reminders_history.srd" "cremcor.pbl";
+ "d_case_reminders_history_report.srd" "cremcor.pbl";
+ "d_case_reminders_report.srd" "cremcor.pbl";
+ "d_correspondence_appeal.srd" "cremcor.pbl";
+ "d_correspondence_appeal_props.srd" "cremcor.pbl";
+ "d_correspondence_case_props.srd" "cremcor.pbl";
+ "d_correspondence_detail.srd" "cremcor.pbl";
+ "d_correspondence_docs.srd" "cremcor.pbl";
+ "d_correspondence_grpdem.srd" "cremcor.pbl";
+ "d_correspondence_history.srd" "cremcor.pbl";
+ "d_correspondence_lookup.srd" "cremcor.pbl";
+ "d_correspondence_memdem.srd" "cremcor.pbl";
+ "d_correspondence_otherdem.srd" "cremcor.pbl";
+ "d_correspondence_prvdem.srd" "cremcor.pbl";
+ "d_cpsnd_history_info.srd" "cremcor.pbl";
+ "d_crspnd_history_details.srd" "cremcor.pbl";
+ "d_edit_crrspndnce_reason.srd" "cremcor.pbl";
+ "d_letter_search.srd" "cremcor.pbl";
+ "d_sent_correspondence_history.srd" "cremcor.pbl";
+ "dddw_letters.srd" "cremcor.pbl";
+ "m_editing.srm" "cremcor.pbl";
+ "s_doc_info.srs" "cremcor.pbl";
+ "u_case_correspondence.sru" "cremcor.pbl";
+ "u_case_reminders.sru" "cremcor.pbl";
+ "u_correspondence_mgr.sru" "cremcor.pbl";
+ "u_search_letter.sru" "cremcor.pbl";
+ "w_correspondence_history.srw" "cremcor.pbl";
+ "w_correspondenceprintdialog.srw" "cremcor.pbl";
+ "w_edit_sent_crrspndnce.srw" "cremcor.pbl";
+ "w_letter_search.srw" "cremcor.pbl";
+ "w_set_reminder_date.srw" "cremcor.pbl";
+ "w_word_window.srw" "cremcor.pbl";
+ "w_word_window_backup.srw" "cremcor.pbl";
+ "w_word_window_dsoframer_4_20_09.srw" "cremcor.pbl";
+ "w_word_window_dsoframer_apr_16_2009.srw" "cremcor.pbl";
+ "w_word_window_old.srw" "cremcor.pbl";
+@end;

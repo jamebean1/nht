@@ -1,0 +1,14 @@
+﻿$PBExportHeader$d_ds_case_sort.srd
+$PBExportComments$Get the initial case_subject_id count for the Top N Reports
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=116 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=case_subject_id dbname="case_counts.case_subject_id" )
+ column=(type=decimal(0) updatewhereclause=yes name=case_count dbname="case_counts.case_count" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.case_counts~" ) COLUMN(NAME=~"cusfocus.case_counts.case_subject_id~") COLUMN(NAME=~"cusfocus.case_counts.case_count~")WHERE(    EXP1 =~"cusfocus.case_counts.source_type~"   OP =~"=~"    EXP2 =~":source_type~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"cusfocus.case_counts.login~"   OP =~"=~"    EXP2 =~":user_name~" ) ) ORDER(NAME=~"cusfocus.case_counts.case_count~" ASC=no) ARG(NAME = ~"source_type~" TYPE = string)  ARG(NAME = ~"user_name~" TYPE = string) " arguments=(("source_type", string),("user_name", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="32" y="16" height="76" width="576" format="[general]"  name=case_subject_id edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="631" y="20" height="76" width="329" format="[general]"  name=case_count edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

@@ -1,0 +1,230 @@
+﻿$PBExportHeader$d_consumer_rpt_month.srd
+$PBExportComments$Consumer Profile Report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=252 color="536870912" )
+summary(height=116 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(5) updatewhereclause=yes name=start_month dbname="start_month" )
+ column=(type=char(5) updatewhereclause=yes name=start_year dbname="start_year" )
+ column=(type=char(5) updatewhereclause=yes name=year_1 dbname="year_1" )
+ column=(type=char(5) updatewhereclause=yes name=year_12 dbname="year_12" )
+ column=(type=char(5) updatewhereclause=yes name=month_1 dbname="month_1" )
+ column=(type=char(5) updatewhereclause=yes name=month_2 dbname="month_2" )
+ column=(type=char(5) updatewhereclause=yes name=month_3 dbname="month_3" )
+ column=(type=char(5) updatewhereclause=yes name=month_4 dbname="month_4" )
+ column=(type=char(5) updatewhereclause=yes name=month_5 dbname="month_5" )
+ column=(type=char(5) updatewhereclause=yes name=month_6 dbname="month_6" )
+ column=(type=char(5) updatewhereclause=yes name=month_7 dbname="month_7" )
+ column=(type=char(5) updatewhereclause=yes name=month_8 dbname="month_8" )
+ column=(type=char(5) updatewhereclause=yes name=month_9 dbname="month_9" )
+ column=(type=char(5) updatewhereclause=yes name=month_10 dbname="month_10" )
+ column=(type=char(5) updatewhereclause=yes name=month_11 dbname="month_11" )
+ column=(type=char(5) updatewhereclause=yes name=month_12 dbname="month_12" )
+ column=(type=char(60) updatewhereclause=yes name=consum_name dbname="consum_name" )
+ column=(type=char(20) updatewhereclause=yes name=consumer_id dbname="consumer_id" )
+ column=(type=char(34) updatewhereclause=yes name=consum_address dbname="consum_address" )
+ column=(type=char(40) updatewhereclause=yes name=consum_city_state_zip dbname="consum_city_state_zip" )
+ column=(type=char(15) updatewhereclause=yes name=consum_phone dbname="consum_phone" )
+ column=(type=char(30) updatewhereclause=yes name=case_type_desc dbname="case_type_desc" )
+ column=(type=char(40) updatewhereclause=yes name=root_category_name dbname="root_category_name" )
+ procedure="1 execute dbo.sp_member_profile;1 @start_date = :start_date, @consumer_id = :consumer_id, @user_name = :user_name" arguments=(("start_date", datetime),("consumer_id", string),("user_name", string))  sort="case_type_desc A root_category_name A " )
+group(level=1 header.height=124 trailer.height=112 by=("case_type_desc" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=0 trailer.height=76 by=("root_category_name" ) header.color="536870912" trailer.color="536870912" )
+text(band=header alignment="0" text="Case Type" border="0" color="0" x="114" y="168" height="64" width="302"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Root / Category Analysis:" border="0" color="0" x="114" y="28" height="64" width="745"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=header alignment="1" expression="if (  start_month = '1', 'Jan', ( if (  start_month = '2', 'Feb', ( if (  start_month = '3', 'Mar', ( if (  start_month = '4', 'Apr', ( if (  start_month = '5', 'May', ( if (  start_month = '6', 'Jun', ( if (  start_month = '7', 'Jul', ( if (  start_month = '8', 'Aug', ( if (  start_month = '9', 'Sep', ( if (  start_month = '10', 'Oct', ( if (  start_month = '11', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="1417" y="168" height="64" width="197" format="[GENERAL]"  name=compute_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '10', 'Jan', ( 
+if (  start_month = '11', 'Feb', ( 
+if (  start_month = '12', 'Mar', ( 
+if (  start_month = '1', 'Apr', ( 
+if (  start_month = '2', 'May', ( 
+if (  start_month = '3', 'Jun', ( 
+if (  start_month = '4', 'Jul', ( 
+if (  start_month = '5', 'Aug', ( 
+if (  start_month = '6', 'Sep', ( 
+if (  start_month = '7', 'Oct', ( 
+if (  start_month = '8', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="2117" y="168" height="64" width="197" format="[GENERAL]"  name=compute_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '9', 'Jan', ( 
+if (  start_month = '10', 'Feb', ( 
+if (  start_month = '11', 'Mar', ( 
+if (  start_month = '12', 'Apr', ( 
+if (  start_month = '1', 'May', ( 
+if (  start_month = '2', 'Jun', ( 
+if (  start_month = '3', 'Jul', ( 
+if (  start_month = '4', 'Aug', ( 
+if (  start_month = '5', 'Sep', ( 
+if (  start_month = '6', 'Oct', ( 
+if (  start_month = '7', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="2350" y="168" height="64" width="197" format="[GENERAL]"  name=compute_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '8', 'Jan', ( 
+if (  start_month = '9', 'Feb', ( 
+if (  start_month = '10', 'Mar', ( 
+if (  start_month = '11', 'Apr', ( 
+if (  start_month = '12', 'May', ( 
+if (  start_month = '1', 'Jun', ( 
+if (  start_month = '2', 'Jul', ( 
+if (  start_month = '3', 'Aug', ( 
+if (  start_month = '4', 'Sep', ( 
+if (  start_month = '5', 'Oct', ( 
+if (  start_month = '6', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="2583" y="168" height="64" width="201" format="[GENERAL]"  name=compute_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '7', 'Jan', ( 
+if (  start_month = '8', 'Feb', ( 
+if (  start_month = '9', 'Mar', ( 
+if (  start_month = '10', 'Apr', ( 
+if (  start_month = '11', 'May', ( 
+if (  start_month = '12', 'Jun', ( 
+if (  start_month = '1', 'Jul', ( 
+if (  start_month = '2', 'Aug', ( 
+if (  start_month = '3', 'Sep', ( 
+if (  start_month = '4', 'Oct', ( 
+if (  start_month = '5', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="2821" y="168" height="64" width="197" format="[GENERAL]"  name=compute_7  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '6', 'Jan', ( 
+if (  start_month = '7', 'Feb', ( 
+if (  start_month = '8', 'Mar', ( 
+if (  start_month = '9', 'Apr', ( 
+if (  start_month = '10', 'May', ( 
+if (  start_month = '11', 'Jun', ( 
+if (  start_month = '12', 'Jul', ( 
+if (  start_month = '1', 'Aug', ( 
+if (  start_month = '2', 'Sep', ( 
+if (  start_month = '3', 'Oct', ( 
+if (  start_month = '4', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="3054" y="168" height="64" width="197" format="[GENERAL]"  name=compute_8  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '5', 'Jan', ( 
+if (  start_month = '6', 'Feb', ( 
+if (  start_month = '7', 'Mar', ( 
+if (  start_month = '8', 'Apr', ( 
+if (  start_month = '9', 'May', ( 
+if (  start_month = '10', 'Jun', ( 
+if (  start_month = '11', 'Jul', ( 
+if (  start_month = '12', 'Aug', ( 
+if (  start_month = '1', 'Sep', ( 
+if (  start_month = '2', 'Oct', ( 
+if (  start_month = '3', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="3287" y="168" height="64" width="197" format="[GENERAL]"  name=compute_9  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '4', 'Jan', ( 
+if (  start_month = '5', 'Feb', ( 
+if (  start_month = '6', 'Mar', ( 
+if (  start_month = '7', 'Apr', ( 
+if (  start_month = '8', 'May', ( 
+if (  start_month = '9', 'Jun', ( 
+if (  start_month = '10', 'Jul', ( 
+if (  start_month = '11', 'Aug', ( 
+if (  start_month = '12', 'Sep', ( 
+if (  start_month = '1', 'Oct', ( 
+if (  start_month = '2', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="3520" y="168" height="64" width="197" format="[GENERAL]"  name=compute_10  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '3', 'Jan', ( 
+if (  start_month = '4', 'Feb', ( 
+if (  start_month = '5', 'Mar', ( 
+if (  start_month = '6', 'Apr', ( 
+if (  start_month = '7', 'May', ( 
+if (  start_month = '8', 'Jun', ( 
+if (  start_month = '9', 'Jul', ( 
+if (  start_month = '10', 'Aug', ( 
+if (  start_month = '11', 'Sep', ( 
+if (  start_month = '12', 'Oct', ( 
+if (  start_month = '1', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="3753" y="168" height="64" width="197" format="[GENERAL]"  name=compute_11  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '2', 'Jan', ( 
+if (  start_month = '3', 'Feb', ( 
+if (  start_month = '4', 'Mar', ( 
+if (  start_month = '5', 'Apr', ( 
+if (  start_month = '6', 'May', ( 
+if (  start_month = '7', 'Jun', ( 
+if (  start_month = '8', 'Jul', ( 
+if (  start_month = '9', 'Aug', ( 
+if (  start_month = '10', 'Sep', ( 
+if (  start_month = '11', 'Oct', ( 
+if (  start_month = '12', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="3986" y="168" height="64" width="197" format="[GENERAL]"  name=compute_12  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '12', 'Jan', ( 
+if (  start_month = '1', 'Feb', ( 
+if (  start_month = '2', 'Mar', ( 
+if (  start_month = '3', 'Apr', ( 
+if (  start_month = '4', 'May', ( 
+if (  start_month = '5', 'Jun', ( 
+if (  start_month = '6', 'Jul', ( 
+if (  start_month = '7', 'Aug', ( 
+if (  start_month = '8', 'Sep', ( 
+if (  start_month = '9', 'Oct', ( 
+if (  start_month = '10', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="1650" y="168" height="64" width="197" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="1" expression="if (  start_month = '11', 'Jan', ( 
+if (  start_month = '12', 'Feb', ( 
+if (  start_month = '1', 'Mar', ( 
+if (  start_month = '2', 'Apr', ( 
+if (  start_month = '3', 'May', ( 
+if (  start_month = '4', 'Jun', ( 
+if (  start_month = '5', 'Jul', ( 
+if (  start_month = '6', 'Aug', ( 
+if (  start_month = '7', 'Sep', ( 
+if (  start_month = '8', 'Oct', ( 
+if (  start_month = '9', 'Nov', 'Dec' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )"border="0" color="0" x="1883" y="168" height="64" width="197" format="[GENERAL]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="YTD" border="0" color="0" x="4219" y="168" height="64" width="197"  name=t_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="114" y1="12" x2="4448" y2="12"  name=l_1 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="114" y1="248" x2="4448" y2="248"  name=l_2 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=header.1 id=22 alignment="0" tabsequence=32766 border="0" color="0" x="187" y="40" height="76" width="1042" format="[general]"  name=case_type_desc edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=17 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="2180" height="76" width="1673" format="[general]"  name=consum_name edit.limit=60 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=18 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="2316" height="76" width="576" format="[general]"  name=consumer_id edit.limit=20 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=19 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="2452" height="76" width="960" format="[general]"  name=consum_address edit.limit=34 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=20 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="2588" height="76" width="1125" format="[general]"  name=consum_city_state_zip edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=21 alignment="0" tabsequence=32766 border="0" color="0" x="672" y="2724" height="76" width="439" format="[general]"  name=consum_phone edit.limit=15 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="357" y="776" height="76" width="165" format="[general]"  name=start_month edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="357" y="912" height="76" width="165" format="[general]"  name=start_year edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="357" y="1048" height="76" width="165" format="[general]"  name=year_1 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="357" y="1184" height="76" width="165" format="[general]"  name=year_12 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1445" y="12" height="64" width="197" format="[general]"  name=month_1 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1902" y="12" height="64" width="197" format="[general]"  name=month_3 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2130" y="12" height="64" width="197" format="[general]"  name=month_4 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0" x="2359" y="12" height="64" width="197" format="[general]"  name=month_5 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2583" y="12" height="64" width="201" format="[general]"  name=month_6 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="2811" y="12" height="64" width="197" format="[general]"  name=month_7 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="0" color="0" x="3040" y="12" height="64" width="197" format="[general]"  name=month_8 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="0" color="0" x="3269" y="12" height="64" width="197" format="[general]"  name=month_9 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="3497" y="12" height="64" width="197" format="[general]"  name=month_10 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=15 alignment="0" tabsequence=32766 border="0" color="0" x="3726" y="12" height="64" width="197" format="[general]"  name=month_11 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=16 alignment="0" tabsequence=32766 border="0" color="0" x="3954" y="12" height="64" width="197" format="[general]"  name=month_12 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1673" y="12" height="64" width="197" format="[general]"  name=month_2 edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=trailer.2 id=23 alignment="0" tabsequence=32766 border="0" color="0" x="265" y="4" height="64" width="1125" format="[general]"  name=root_category_name edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_1) for group 2 )"border="0" color="0" x="1417" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_4) for group 2 )"border="0" color="0" x="2117" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_4  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_5) for group 2 )"border="0" color="0" x="2350" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_5  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_6) for group 2 )"border="0" color="0" x="2583" y="4" height="64" width="201" format="[GENERAL]"  name=cc_2_6  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_7) for group 2 )"border="0" color="0" x="2821" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_7  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_8) for group 2 )"border="0" color="0" x="3054" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_8  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_9) for group 2 )"border="0" color="0" x="3287" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_9  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_10) for group 2 )"border="0" color="0" x="3520" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_10  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_2) for group 2 )"border="0" color="0" x="1650" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_3) for group 2 )"border="0" color="0" x="1883" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_3  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_11) for group 2 )"border="0" color="0" x="3753" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_11  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="sum ( number ( month_12) for group 2 )"border="0" color="0" x="3986" y="4" height="64" width="197" format="[GENERAL]"  name=cc_2_12  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.2 alignment="1" expression="cc_2_1 + cc_2_2 + cc_2_3 + cc_2_4 + cc_2_5 + cc_2_6 + cc_2_7 + cc_2_8 + cc_2_9 + cc_2_10 + cc_2_11 + cc_2_12"border="0" color="0" x="4219" y="4" height="64" width="197" format="[GENERAL]"  name=compute_14  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="0" expression="case_type_desc + ' Totals:'"border="0" color="0" x="183" y="28" height="64" width="1033" format="[GENERAL]"  name=compute_27  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_1) for group 1 )"border="0" color="0" x="1417" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_4) for group 1 )"border="0" color="0" x="2117" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_4  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_5) for group 1 )"border="0" color="0" x="2350" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_5  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_6) for group 1 )"border="0" color="0" x="2583" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_6  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_7) for group 1 )"border="0" color="0" x="2816" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_7  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_8) for group 1 )"border="0" color="0" x="3049" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_8  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_9) for group 1 )"border="0" color="0" x="3282" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_9  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_10) for group 1 )"border="0" color="0" x="3515" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_10  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_2) for group 1 )"border="0" color="0" x="1650" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_3) for group 1 )"border="0" color="0" x="1883" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_3  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_11) for group 1 )"border="0" color="0" x="3749" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_11  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="sum ( number ( month_12) for group 1 )"border="0" color="0" x="3982" y="28" height="64" width="197" format="[GENERAL]"  name=cc_1_12  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=trailer.1 alignment="1" expression="cc_1_1 + cc_1_2 + cc_1_3 + cc_1_4 + cc_1_5 + cc_1_6 + cc_1_7 + cc_1_8 + cc_1_9 + cc_1_10 + cc_1_11 + cc_1_12"border="0" color="0" x="4215" y="28" height="64" width="197" format="[GENERAL]"  name=compute_13  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=trailer.1 x1="114" y1="4" x2="4448" y2="4"  name=l_3 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=summary alignment="1" text="Grand Total:" border="0" color="0" x="695" y="32" height="64" width="361"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=summary x1="114" y1="4" x2="4448" y2="4"  name=l_4 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=summary x1="114" y1="12" x2="4448" y2="12"  name=l_6 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum ( number ( month_1) for all )"border="0" color="0" x="1422" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_2 ) for all )"border="0" color="0" x="1650" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_3) for all )"border="0" color="0" x="1883" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_4) for all )"border="0" color="0" x="2117" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_5 ) for all )"border="0" color="0" x="2350" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_6) for all )"border="0" color="0" x="2583" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_7) for all )"border="0" color="0" x="2816" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_7  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_8) for all )"border="0" color="0" x="3049" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_8  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_9) for all )"border="0" color="0" x="3282" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_9  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_10 ) for all )"border="0" color="0" x="3515" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_10  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_11) for all )"border="0" color="0" x="3749" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_11  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum ( number ( month_12) for all )"border="0" color="0" x="3982" y="32" height="64" width="197" format="[GENERAL]"  name=cc_all_12  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="cc_all_1 + cc_all_2 + cc_all_3 + cc_all_4 + cc_all_5 + cc_all_6 + cc_all_7 + cc_all_8 + cc_all_9 + cc_all_10 + cc_all_11 + cc_all_12"border="0" color="0" x="4215" y="32" height="64" width="197" format="[GENERAL]"  name=compute_15  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

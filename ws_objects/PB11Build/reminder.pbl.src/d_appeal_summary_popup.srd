@@ -1,0 +1,134 @@
+﻿$PBExportHeader$d_appeal_summary_popup.srd
+release 11;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=60 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=560 color="536870912" )
+table(column=(type=long updatewhereclause=yes identity=yes name=number_of_appeals dbname="number_of_appeals" )
+ column=(type=long updatewhereclause=yes identity=yes name=oldest_appeal dbname="oldest_appeal" )
+ column=(type=long updatewhereclause=yes identity=yes name=due_today dbname="due_today" )
+ column=(type=long updatewhereclause=yes identity=yes name=due_within_one_week dbname="due_within_one_week" )
+ column=(type=long updatewhereclause=yes identity=yes name=appeals_opened_today dbname="appeals_opened_today" )
+ column=(type=long updatewhereclause=yes identity=yes name=appeals_opened_yesterday dbname="appeals_opened_yesterday" )
+ column=(type=long updatewhereclause=yes identity=yes name=appeals_opened_within_last_week dbname="appeals_opened_within_last_week" )
+ column=(type=long updatewhereclause=yes identity=yes name=appeals_overdue dbname="appeals_overdue" )
+ retrieve="select
+count(ah.appealheaderid) as number_of_appeals,
+max(datediff(day,ah.appealcreateddate,getdate())) as oldest_appeal,
+max(ah3.due_today) as due_today,
+max(ah5.due_within_one_week) as due_within_one_week,
+max(open1.opened_today) as appeals_opened_today,
+max(open2.opened_yesterday) as appeals_opened_yesterday,
+max(open3.opened_within_last_week) as appeals_opened_within_last_week,
+max(ah10.appeals_overdue) as appeals_overdue
+from 
+	cusfocus.case_log cl,
+	cusfocus.appealheader ah,
+	cusfocus.appealstatus as1,
+	cusfocus.cusfocus_user cu,
+	(select count(ah2.appealheaderid) as due_today
+	from cusfocus.case_log cl2, cusfocus.appealheader ah2, cusfocus.appealstatus as2, cusfocus.cusfocus_user cu2
+	where floor(cast(ah2.duedate as float)) = floor(cast( getdate() as float))
+	and cl2.case_log_case_rep in (:as_user)
+	and cu2.user_id = :as_current_user
+	and cu2.confidentiality_level >= cl2.confidentiality_level
+	and ah2.appealheaderstatusid = as2.id
+	and IsNull(as2.isclose, 'N') <> 'Y'
+	and cl2.case_number = ah2.case_number) as ah3,
+	(select count(ah4.appealheaderid) as due_within_one_week
+	from cusfocus.case_log cl4, cusfocus.appealheader ah4, cusfocus.appealstatus as4, cusfocus.cusfocus_user cu4
+	where floor(cast(ah4.duedate as float)) <= floor(cast( dateadd(day, 7, getdate()) as float))
+	and floor(cast(ah4.duedate as float)) >= floor(cast( getdate() as float))
+	and cl4.case_log_case_rep in (:as_user)
+	and cu4.user_id = :as_current_user
+	and cu4.confidentiality_level >= cl4.confidentiality_level
+	and ah4.appealheaderstatusid = as4.id
+	and IsNull(as4.isclose, 'N') <> 'Y'
+	and cl4.case_number = ah4.case_number) as ah5,
+	(select count(ah9.appealheaderid) as appeals_overdue
+	from cusfocus.case_log cl9, cusfocus.appealheader ah9, cusfocus.appealstatus as9, cusfocus.cusfocus_user cu9
+	where floor(cast(ah9.duedate as float)) < floor(cast( getdate() as float))
+	and cl9.case_log_case_rep in (:as_user)
+	and cu9.user_id = :as_current_user
+	and cu9.confidentiality_level >= cl9.confidentiality_level
+	and ah9.appealheaderstatusid = as9.id
+	and IsNull(as9.isclose, 'N') <> 'Y'
+	and cl9.case_number = ah9.case_number) as ah10,
+	(select count(ah6.appealheaderid) as opened_today
+	from
+		cusfocus.appealheader ah6,
+		cusfocus.appealstatus as6,
+		cusfocus.case_log cl6, cusfocus.cusfocus_user cu6
+	where
+	      cl6.case_log_case_rep in (:as_user)
+	and cu6.user_id = :as_current_user
+	and cu6.confidentiality_level >= cl6.confidentiality_level
+	and cl6.case_number = ah6.case_number
+	and cl6.case_status_id = 'O'
+	and ah6.appealheaderstatusid = as6.id
+	and IsNull(as6.isclose, 'N') <> 'Y'  
+	and floor(cast(ah6.appealcreateddate as float)) = floor(cast(getdate()  as float)) ) as open1,
+	(select count(ah7.appealheaderid) as opened_yesterday
+	from
+		cusfocus.appealheader ah7,
+		cusfocus.appealstatus as7,
+		cusfocus.case_log cl7, cusfocus.cusfocus_user cu7
+	where
+		cl7.case_log_case_rep in (:as_user)
+	and cu7.user_id = :as_current_user
+	and cu7.confidentiality_level >= cl7.confidentiality_level
+	and cl7.case_number = ah7.case_number
+	and cl7.case_status_id = 'O'
+	and ah7.appealheaderstatusid = as7.id
+	and IsNull(as7.isclose, 'N') <> 'Y'  
+	and floor(cast(ah7.appealcreateddate as float)) = floor(cast(getdate() - 1  as float)) ) as open2,
+	(select count(ah8.appealheaderid) as opened_within_last_week
+	from
+		cusfocus.appealheader ah8,
+		cusfocus.appealstatus as8,
+		cusfocus.case_log cl8, cusfocus.cusfocus_user cu8
+	where
+		cl8.case_log_case_rep in (:as_user)
+	and cu8.user_id = :as_current_user
+	and cu8.confidentiality_level >= cl8.confidentiality_level
+	and cl8.case_number = ah8.case_number
+	and cl8.case_status_id = 'O'
+	and ah8.appealheaderstatusid = as8.id
+	and IsNull(as8.isclose, 'N') <> 'Y'  
+	and floor(cast(ah8.appealcreateddate as float)) >= floor(cast(getdate() - 7 as float)) ) as open3
+where
+	cl.case_log_case_rep in (:as_user)
+and cu.user_id = :as_current_user
+and cu.confidentiality_level >= cl.confidentiality_level
+and cl.case_number = ah.case_number
+and ah.appealheaderstatusid = as1.id
+and IsNull(as1.isclose, 'N') <> 'Y'  " arguments=(("as_user", stringlist),("as_current_user", string)) )
+text(band=header alignment="0" text="Appeal Summary" border="0" color="0" x="434" y="0" height="52" width="443" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="4" height="56" width="215" format="[general]" html.valueishtml="0"  name=number_of_appeals visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Number Of Appeals:" border="0" color="33554432" x="169" y="4" height="56" width="512" html.valueishtml="0"  name=number_of_appeals_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="76" height="56" width="215" format="[general]" html.valueishtml="0"  name=oldest_appeal visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Oldest Appeal ( in days ):" border="0" color="33554432" x="169" y="76" height="56" width="558" html.valueishtml="0"  name=oldest_appeal_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="148" height="56" width="215" format="[general]" html.valueishtml="0"  name=due_today visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Due Today:" border="0" color="33554432" x="169" y="148" height="56" width="512" html.valueishtml="0"  name=due_today_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="220" height="56" width="215" format="[general]" html.valueishtml="0"  name=due_within_one_week visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Due Within One Week:" border="0" color="33554432" x="169" y="220" height="56" width="512" html.valueishtml="0"  name=due_within_one_week_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="292" height="52" width="215" format="[general]" html.valueishtml="0"  name=appeals_overdue visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Overdue:" border="0" color="33554432" x="169" y="292" height="56" width="512" html.valueishtml="0"  name=t_5 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="360" height="52" width="215" format="[general]" html.valueishtml="0"  name=appeals_opened_today visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Appeals Opened Today:" border="0" color="33554432" x="169" y="360" height="56" width="535" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="428" height="52" width="215" format="[general]" html.valueishtml="0"  name=appeals_opened_yesterday visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Appeals Opened Yesterday:" border="0" color="33554432" x="169" y="428" height="56" width="622" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="33554432" x="965" y="496" height="52" width="215" format="[general]" html.valueishtml="0"  name=appeals_opened_within_last_week visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Appeals Opened Within Last Week:" border="0" color="33554432" x="169" y="496" height="56" width="777" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

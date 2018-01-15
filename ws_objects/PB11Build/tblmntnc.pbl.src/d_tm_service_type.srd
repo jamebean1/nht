@@ -1,0 +1,42 @@
+﻿$PBExportHeader$d_tm_service_type.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=service_type_id dbname="service_type.service_type_id" )
+ column=(type=long update=yes updatewhereclause=yes name=appealtypeid_all dbname="service_type.appealtypeid" )
+ column=(type=long update=yes updatewhereclause=yes name=line_of_business_id dbname="service_type.line_of_business_id" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=service_type_name dbname="service_type.service_type_name" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="service_type.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="service_type.updated_timestamp" )
+ column=(type=long update=yes updatewhereclause=yes name=default_dateterm dbname="service_type.default_dateterm" )
+ retrieve="SELECT  cusfocus.service_type.service_type_id ,
+           cusfocus.service_type.appealtypeid ,
+           cusfocus.service_type.line_of_business_id ,
+           cusfocus.service_type.service_type_name ,
+           cusfocus.service_type.updated_by ,
+           cusfocus.service_type.updated_timestamp,
+           cusfocus.service_type.default_dateterm
+        FROM cusfocus.service_type    " update="cusfocus.service_type" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="0" text="ID" border="0" color="0" x="9" y="4" height="64" width="137" html.valueishtml="0"  name=service_type_id_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Appeal Type" border="0" color="0" x="1006" y="4" height="64" width="855" html.valueishtml="0"  name=appealtypeid_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Line Of Business" border="0" color="0" x="155" y="4" height="64" width="841" html.valueishtml="0"  name=line_of_business_id_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Service Type Name" border="0" color="0" x="1870" y="4" height="76" width="1522" html.valueishtml="0"  name=service_type_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Updated By" border="0" color="0" x="4041" y="4" height="76" width="379" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Updated Timestamp" border="0" color="0" x="4430" y="4" height="76" width="599" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Date Term" border="0" color="0" x="3401" y="4" height="64" width="635" html.valueishtml="0"  name=default_dateterm_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="2" color="0" x="9" y="0" height="76" width="137" format="[general]" html.valueishtml="0"  name=service_type_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="0" x="155" y="0" height="76" width="841" format="[general]" html.valueishtml="0"  name=line_of_business_id visible="1" dddw.name=dddw_line_of_business dddw.displaycolumn=line_of_business_name dddw.datacolumn=line_of_business_id dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="1006" y="0" height="76" width="855" format="[general]" html.valueishtml="0"  name=appealtypeid visible="1~tIF (currentRow() = getrow(), 1,0)" dddw.name=dddw_appealtype dddw.displaycolumn=appealname dddw.datacolumn=appealtypeid dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="5" color="0" x="1870" y="0" height="76" width="1522" format="[general]" html.valueishtml="0"  name=service_type_name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="2" color="0" x="1010" y="0" height="76" width="773" format="[general]" html.valueishtml="0"  name=appealtypeid_all visible="1~tIF (currentRow() = getrow(), 0,1)" dddw.name=dddw_appealtype dddw.displaycolumn=appealname dddw.datacolumn=appealtypeid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="0" tabsequence=40 border="0" color="0" x="3406" y="0" height="76" width="626" format="[general]" html.valueishtml="0"  name=default_dateterm visible="1" dddw.name=dddw_dateterm dddw.displaycolumn=termname dddw.datacolumn=datetermid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="2" color="0" x="4041" y="0" height="76" width="379" format="[general]" html.valueishtml="0"  name=updated_by visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="2" color="0" x="4430" y="0" height="76" width="599" format="[shortdate] [time]" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

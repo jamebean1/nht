@@ -1,0 +1,43 @@
+﻿$PBExportHeader$f_column_data.srf
+global type f_column_data from function_object
+end type
+
+forward prototypes
+global function string f_column_data (string a_ccolname, string a_ccasenumber, string as_data, string a_csourcetype, string a_ccasetype)
+end prototypes
+
+global function string f_column_data (string a_ccolname, string a_ccasenumber, string as_data, string a_csourcetype, string a_ccasetype);String l_cFieldLabel, l_cSourceType, l_cCaseType, ls_field_format, ls_return
+
+//SELECT source_type,
+//		 case_type
+//INTO :l_cSourceType,
+//	  :l_cCaseType
+//FROM cusfocus.case_log
+//WHERE case_number = :a_cCaseNumber
+//USING SQLCA;
+
+l_cSourceType = a_cSourceType
+l_cCaseType = a_cCaseType
+
+SELECT cusfocus.display_formats.display_format  
+ INTO :ls_field_format  
+ FROM cusfocus.case_properties,   
+		cusfocus.case_properties_field_def,   
+		cusfocus.display_formats  
+WHERE ( cusfocus.case_properties.source_type = cusfocus.case_properties_field_def.source_type ) and  
+		( cusfocus.case_properties.case_type = cusfocus.case_properties_field_def.case_type ) and   
+		( cusfocus.case_properties_field_def.format_id = cusfocus.display_formats.format_id ) and  
+		( ( cusfocus.case_properties.case_type = :l_cCaseType ) and
+			( cusfocus.case_properties.source_type = :l_cSourceType ) and
+			( cusfocus.case_properties_field_def.column_name = :a_ccolname) )   
+			USING SQLCA;
+
+IF IsNull( ls_field_format ) OR Trim( ls_field_format ) = "" THEN
+	ls_return = as_data 
+ELSE
+	ls_return = String(as_data, ls_field_format)
+END IF
+
+RETURN ls_return
+end function
+

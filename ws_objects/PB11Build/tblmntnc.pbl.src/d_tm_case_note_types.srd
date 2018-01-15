@@ -1,0 +1,77 @@
+﻿$PBExportHeader$d_tm_case_note_types.srd
+$PBExportComments$Table Maintenance - Case Note Types
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no grid.lines=0 )
+header(height=80 color="79741120" )
+summary(height=0 color="536870912" )
+footer(height=84 color="536870912" )
+detail(height=72 color="536870912" height.autosize=yes )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=note_type dbname="note_type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=note_desc dbname="note_desc" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=external dbname="is_external" values="	Y/	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=active dbname="active" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="active" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=case_note_types_updatable dbname="updatable" values="	Y/	N" )
+ column=(type=char(32766) update=yes updatewhereclause=no name=default_text dbname="default_text" )
+ retrieve="  SELECT cusfocus.case_note_types.note_type,   
+         cusfocus.case_note_types.note_desc,   
+         cusfocus.case_note_types.is_external,   
+         cusfocus.case_note_types.active,   
+         cusfocus.case_note_types.updated_by,   
+         cusfocus.case_note_types.updated_timestamp,   
+         cusfocus.cusfocus_user.active,
+			cusfocus.case_note_types.updatable,
+		cusfocus.case_note_types.default_text
+    FROM cusfocus.case_note_types,   
+         cusfocus.cusfocus_user  
+   WHERE ( cusfocus.case_note_types.updated_by = cusfocus.cusfocus_user.user_id ) AND
+			( cusfocus.case_note_types.updated_by <> 'cusfocus' )  
+
+UNION ALL
+
+  SELECT cusfocus.case_note_types.note_type,   
+         cusfocus.case_note_types.note_desc,   
+         cusfocus.case_note_types.is_external,   
+         cusfocus.case_note_types.active,   
+         cusfocus.case_note_types.updated_by,   
+         cusfocus.case_note_types.updated_timestamp,   
+         '' as cusfocus_user_active,
+			cusfocus.case_note_types.updatable,
+		cusfocus.case_note_types.default_text
+    FROM cusfocus.case_note_types
+   WHERE ( cusfocus.case_note_types.updated_by = 'cusfocus' )    
+
+ORDER BY cusfocus.case_note_types.note_desc
+
+
+" update="cusfocus.case_note_types" updatewhere=0 updatekeyinplace=yes  sort="note_desc A " )
+text(band=header alignment="2" text="Note Desc" border="6" color="0" x="9" y="8" height="64" width="1413" html.valueishtml="0"  name=note_desc_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="External" border="6" color="0" x="1431" y="8" height="64" width="297" html.valueishtml="0"  name=external_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="1737" y="8" height="64" width="251" html.valueishtml="0"  name=active_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2331" y="8" height="64" width="539" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="2880" y="8" height="64" width="763" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updatable" border="6" color="0" x="1998" y="8" height="64" width="325" html.valueishtml="0"  name=case_note_types_updatable_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="0" text="Default Text" border="6" color="0" x="3653" y="8" height="64" width="1349" html.valueishtml="0"  name=default_text_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="64" width="1413" format="[general]" html.valueishtml="0"  name=note_desc visible="1" edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="2" tabsequence=20 border="0" color="0" x="1431" y="4" height="64" width="297" format="[general]" html.valueishtml="0"  name=external visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=4 alignment="2" tabsequence=30 border="0" color="0" x="1737" y="4" height="64" width="251" format="[general]" html.valueishtml="0"  name=active visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="2331" y="4" height="64" width="539" format="[GENERAL]" html.valueishtml="0"  name=cc_updated_by visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="2880" y="4" height="64" width="763" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="2" tabsequence=40 border="0" color="0" x="1998" y="0" height="64" width="325" format="[general]" html.valueishtml="0"  name=case_note_types_updatable visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=9 alignment="0" tabsequence=50 border="0" color="0" x="3657" y="0" height="64" width="1344" format="[general]" html.valueishtml="0"  name=default_text visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.autohscroll=yes edit.autovscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="978" y1="0" x2="5024" y2="4"  name=l_2 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Rows: ' + RowCount ()"border="0" color="0" x="9" y="16" height="64" width="1413" format="[GENERAL]" html.valueishtml="0"  name=number_of_entries visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="Max ( Long ( note_type ) )"border="0" color="0" x="2880" y="12" height="64" width="763" format="[GENERAL]" html.valueishtml="0"  name=maxvalue visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

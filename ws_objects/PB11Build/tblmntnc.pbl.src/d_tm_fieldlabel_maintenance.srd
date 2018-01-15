@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_tm_fieldlabel_maintenance.srd
+$PBExportComments$Used on u_field_label_maintenance to update the field labels for the demographic screens in the application.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="77971394" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes key=yes name=definition_id dbname="field_definitions.definition_id" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=field_label dbname="field_definitions.field_label" )
+ column=(type=char(30) updatewhereclause=yes name=column_name dbname="field_definitions.column_name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.field_definitions~" ) COLUMN(NAME=~"cusfocus.field_definitions.definition_id~") COLUMN(NAME=~"cusfocus.field_definitions.field_label~") COLUMN(NAME=~"cusfocus.field_definitions.column_name~")WHERE(    EXP1 =~"cusfocus.field_definitions.field_order~"   OP =~"=~"    EXP2 =~"0~"    LOGIC =~"And~" ) WHERE(    EXP1 =~"cusfocus.field_definitions.source_type~"   OP =~"=~"    EXP2 =~":source_type~" ) ) ARG(NAME = ~"source_type~" TYPE = string) " update="cusfocus.field_definitions" updatewhere=0 updatekeyinplace=yes arguments=(("source_type", string)) )
+text(band=header alignment="0" text="Current Column Label" border="0" color="0" x="41" y="4" height="64" width="1019"  name=current_field_label_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="New Column Label" border="0" color="0" x="1093" y="4" height="64" width="1019"  name=field_label_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="field_label"border="0" color="0" x="41" y="8" height="64" width="1019" format="[GENERAL]"  name=current_field_label  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="1093" y="8" height="64" width="1019" format="[general]"  name=field_label edit.limit=0 edit.case=any edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

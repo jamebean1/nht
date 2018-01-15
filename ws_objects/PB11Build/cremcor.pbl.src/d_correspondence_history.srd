@@ -1,0 +1,62 @@
+﻿$PBExportHeader$d_correspondence_history.srd
+$PBExportComments$Correspondence History DataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=196 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=correspondence_id dbname="correspondence.correspondence_id" )
+ column=(type=char(40) updatewhereclause=yes name=letter_types_letter_name dbname="letter_types.letter_name" )
+ column=(type=datetime updatewhereclause=yes name=correspondence_corspnd_create_date dbname="correspondence.corspnd_create_date" )
+ column=(type=datetime updatewhereclause=yes name=correspondence_corspnd_sent dbname="correspondence.corspnd_sent" )
+ column=(type=datetime updatewhereclause=yes name=correspondence_corspnd_prnt_date dbname="correspondence.corspnd_prnt_date" )
+ column=(type=char(1) updatewhereclause=yes name=correspondence_corspnd_hrd_cpy_filed dbname="correspondence.corspnd_hrd_cpy_filed" )
+ column=(type=char(2) updatewhereclause=yes name=correspondence_case_type dbname="correspondence.case_type" )
+ column=(type=char(1) updatewhereclause=yes name=correspondence_corspnd_edit_type dbname="correspondence.corspnd_edit_type" )
+ column=(type=char(10) updatewhereclause=yes name=correspondence_case_number dbname="correspondence.case_number" )
+ column=(type=char(6) updatewhereclause=yes name=document_type dbname="document_type" )
+ column=(type=char(1) updatewhereclause=yes name=correspondence_corspnd_doc_filled dbname="correspondence.corspnd_doc_filled" )
+ retrieve="  SELECT cusfocus.correspondence.correspondence_id,   
+         cusfocus.letter_types.letter_name,   
+         cusfocus.correspondence.corspnd_create_date,   
+         cusfocus.correspondence.corspnd_sent,   
+         cusfocus.correspondence.corspnd_prnt_date,   
+         cusfocus.correspondence.corspnd_hrd_cpy_filed,   
+         cusfocus.correspondence.case_type,   
+         cusfocus.correspondence.corspnd_edit_type,   
+         cusfocus.correspondence.case_number,   
+         CASE cusfocus.correspondence.corspnd_type
+				WHEN 'L' THEN 'Letter'
+				WHEN 'S' THEN 'Survey'
+				ELSE ''
+			END AS document_type,   
+         cusfocus.correspondence.corspnd_doc_filled  
+    FROM cusfocus.correspondence,   
+         cusfocus.letter_types  
+   WHERE ( cusfocus.correspondence.letter_id = cusfocus.letter_types.letter_id ) and  
+         ( ( cusfocus.correspondence.case_number = :case_number ) )    
+" arguments=(("case_number", string)) )
+rectangle(band=detail x="0" y="4" height="68" width="5294"  name=r_1 visible="1" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), 536870912 )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=report_bitmap visible="1" )
+text(band=header alignment="0" text="Correspondence" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="188" x2="5815" y2="188"  name=l_header visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Document Type" border="0" color="0" x="2999" y="124" height="60" width="709" html.valueishtml="0"  name=document_type_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Document Name" border="0" color="0" x="91" y="124" height="60" width="1061" html.valueishtml="0"  name=letter_types_letter_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Created Date" border="0" color="0" x="1170" y="124" height="60" width="485" html.valueishtml="0"  name=correspondence_corspnd_create_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Sent Date" border="0" color="0" x="1673" y="124" height="60" width="485" html.valueishtml="0"  name=correspondence_corspnd_sent_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Last Printed" border="0" color="0" x="2176" y="124" height="60" width="485" html.valueishtml="0"  name=correspondence_corspnd_prnt_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" HC Filed" border="0" color="0" x="2679" y="124" height="60" width="302" html.valueishtml="0"  name=correspondence_corspnd_hrd_cpy_filed_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=footer x1="0" y1="4" x2="3602" y2="4"  name=l_2 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Correspondence: ' + RowCount ()"border="0" color="0" x="91" y="12" height="60" width="1061" format="[GENERAL]" html.valueishtml="0"  name=report_footer visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="91" y="4" height="64" width="1061" format="[general]" html.valueishtml="0"  name=letter_types_letter_name visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="2999" y="4" height="64" width="709" format="[general]" html.valueishtml="0"  name=document_type visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="1170" y="4" height="64" width="485" format="mm/dd/yyyy" html.valueishtml="0"  name=correspondence_corspnd_create_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="1673" y="4" height="64" width="485" format="mm/dd/yyyy" html.valueishtml="0"  name=correspondence_corspnd_sent visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="2176" y="4" height="64" width="485" format="mm/dd/yyyy" html.valueishtml="0"  name=correspondence_corspnd_prnt_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="2" tabsequence=32766 border="0" color="0" x="2679" y="4" height="64" width="302" format="[general]" html.valueishtml="0"  name=correspondence_corspnd_hrd_cpy_filed visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

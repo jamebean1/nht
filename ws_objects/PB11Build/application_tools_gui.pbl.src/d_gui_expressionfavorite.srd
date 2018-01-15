@@ -1,0 +1,49 @@
+﻿$PBExportHeader$d_gui_expressionfavorite.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=15780518 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=692 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=idnty dbname="ExpressionFavorite.Idnty" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=type dbname="ExpressionFavorite.Type" )
+ column=(type=long update=yes updatewhereclause=yes name=sourceid dbname="ExpressionFavorite.SourceID" )
+ column=(type=long update=yes updatewhereclause=yes name=createdbyuserid dbname="ExpressionFavorite.CreatedByUserID" )
+ column=(type=char(128) update=yes updatewhereclause=yes name=columnname dbname="ExpressionFavorite.ColumnName" )
+ column=(type=char(500) update=yes updatewhereclause=yes name=columndescription dbname="ExpressionFavorite.ColumnDescription" )
+ column=(type=char(7000) update=yes updatewhereclause=yes name=expression dbname="ExpressionFavorite.Expression" )
+ column=(type=long update=yes updatewhereclause=yes name=userid dbname="ExpressionFavorite.UserID" )
+ column=(type=char(1) updatewhereclause=yes name=allowallusers dbname="AllowAllUsers" values="Allow All Users to See This Expression	Y/Allow All Users to See This Expression	N" )
+ column=(type=char(1) updatewhereclause=yes name=saveforsourceid dbname="SaveForSourceID" values="Save expression for all items	N/Save expression for all items	Y" )
+ column=(type=char(1) updatewhereclause=yes name=sourceidprovided dbname="SourceIDProvided" )
+ column=(type=long updatewhereclause=yes name=access dbname="Access" )
+ retrieve="SELECT  ExpressionFavorite.Idnty ,
+           ExpressionFavorite.Type ,
+           ExpressionFavorite.SourceID ,
+           ExpressionFavorite.CreatedByUserID ,
+           ExpressionFavorite.ColumnName ,
+           ExpressionFavorite.ColumnDescription ,
+           ExpressionFavorite.Expression ,
+           ExpressionFavorite.UserID ,
+           'Y' AllowAllUsers,
+				'Y' SaveForSourceID,
+				'Y' SourceIDProvided,
+				0 Access
+        FROM ExpressionFavorite      
+        WHERE ( ExpressionFavorite.Type = :as_type ) And          (ExpressionFavorite.SourceID = :al_sourceid or          ( ExpressionFavorite.SourceID is Null) ) And          (ExpressionFavorite.UserID = :al_userid or          ( ExpressionFavorite.UserID is Null) )   " update="ExpressionFavorite" updatewhere=0 updatekeyinplace=yes arguments=(("as_type", string),("al_sourceid", number),("al_userid", number)) )
+text(band=detail alignment="1" text="Expression Name:" border="0" color="33554432" x="41" y="20" height="52" width="393" html.valueishtml="0"  name=columnname_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Description:" border="0" color="33554432" x="41" y="120" height="52" width="393" html.valueishtml="0"  name=columndescription_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Expression:" border="0" color="33554432" x="165" y="340" height="52" width="270" html.valueishtml="0"  name=expression_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=40 border="0" color="33554432" x="443" y="632" height="52" width="965" format="[general]" html.valueishtml="0"  name=allowallusers visible="1~tIf ( access = 0, 0, 1)" edit.name="YesNoCBxWithoutText" checkbox.text="Allow All Users to See This Expression" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=10 border="5" color="33554432" x="453" y="20" height="60" width="905" format="[general]" html.valueishtml="0" protect="0~tIf (access = 0, 1, 0)"  name=columnname visible="1" edit.limit=128 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf (access = 0, 553648127, 16777215)" )
+column(band=detail id=6 alignment="0" tabsequence=20 border="5" color="33554432" x="453" y="120" height="180" width="1399" format="[general]" html.valueishtml="0" protect="0~tIf (access = 0, 1, 0)"  name=columndescription visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autovscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf (access = 0, 553648127, 16777215)" )
+column(band=detail id=7 alignment="0" tabsequence=30 border="5" color="33554432" x="453" y="340" height="180" width="1399" format="[general]" html.valueishtml="0" protect="0~tIf (access = 0, 1, 0)"  name=expression visible="1" edit.limit=255 edit.case=any edit.autoselect=yes edit.autovscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="16777215~tIf (access = 0, 553648127, 16777215)" )
+text(band=detail alignment="0" text="Save expression for all items" border="0" color="0" x="530" y="552" height="52" width="1307" html.valueishtml="0"  name=t_saveexpression visible="1~tIf ( sourceidprovided = 'N'  or access = 0, 1, 0)"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="" border="5" color="0" x="457" y="560" height="36" width="41" html.valueishtml="0"  name=t_6 visible="1~tIf ( sourceidprovided = 'N'  or access = 0, 1, 0)"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=10 alignment="0" tabsequence=50 border="0" color="33554432" x="443" y="552" height="52" width="1394" format="[general]" html.valueishtml="0"  name=saveforsourceid visible="1~tIf ( sourceidprovided = 'N' or access = 0, 0, 1)" edit.name="YesNoCBxWithDeleteText" checkbox.text="Save expression for all items" checkbox.on="N" checkbox.off="Y" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="1" text="" border="5" color="0" x="457" y="636" height="36" width="41" html.valueishtml="0"  name=t_2 visible="1~tIf ( access = 0, 1, 0)"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Allow All Users to See This Expression" border="0" color="0" x="530" y="632" height="52" width="1307" html.valueishtml="0"  name=t_1 visible="1~tIf ( access = 0, 1, 0)"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

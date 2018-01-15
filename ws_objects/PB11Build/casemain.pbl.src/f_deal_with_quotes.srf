@@ -1,0 +1,52 @@
+﻿$PBExportHeader$f_deal_with_quotes.srf
+$PBExportComments$Puts tildes in front of quotes in strings.
+global type f_deal_with_quotes from function_object
+end type
+
+forward prototypes
+global function integer f_deal_with_quotes (ref string as_string)
+end prototypes
+
+global function integer f_deal_with_quotes (ref string as_string);//----------------------------------------------------------------------
+// This is used with the search dw's on the case window/search criteria 
+// tab to allow quotes in searches
+//----------------------------------------------------------------------
+LONG	ll_pos
+
+ll_pos = 1
+
+DO UNTIL ll_pos = 0
+
+	ll_pos = Pos(as_string,"'",ll_pos)
+
+	IF ll_pos > 0 THEN
+		IF Pos(as_string,"~~",ll_pos - 1) < 1 THEN
+			as_string = Replace(as_string,ll_pos,1,"~~~'~~~'")
+			ll_pos = ll_pos + 4
+		ELSE
+			ll_pos = ll_pos + 1
+		END IF
+	END IF
+
+LOOP
+
+ll_pos = 1
+
+DO UNTIL ll_pos = 0
+
+	ll_pos = Pos(as_string,'"',ll_pos)
+
+	IF ll_pos > 0 THEN
+		IF Pos(as_string,"~~",ll_pos - 1) < 1 THEN
+			as_string = Replace(as_string,ll_pos,1,'~~~"')
+			ll_pos = ll_pos + 2
+		ELSE
+			ll_pos = ll_pos + 1
+		END IF
+	END IF
+
+LOOP
+
+RETURN 1
+end function
+

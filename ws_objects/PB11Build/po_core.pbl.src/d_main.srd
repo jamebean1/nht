@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_main.srd
+$PBExportComments$Stub DataWindow
+release 5;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 1 print.margin.right = 1 print.margin.top = 1 print.margin.bottom = 1 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=529 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=1 color="536870912" )
+detail(height=1 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=entry_field dbname="Entry_Field" )
+ )
+text(band=header alignment="2" text="Doubleclick Me!!"border="0" color="0" x="101" y="12" height="149" width="1175"  font.face="Arial" font.height="-24" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="1090519039" )
+text(band=header alignment="0" text="Steps:
+
+   1) Doubleclick on this object.
+   2) Select the 'Browse' button.
+
+   3) Choose the new datawindow."border="0" color="0" x="188" y="200" height="321" width="983"  font.face="System" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+rectangle(band=detail x="14" y="120" height="181" width="1697" brush.hatch="6" brush.color="16777215" pen.style="0" pen.width="5" pen.color="16777215"  background.mode="2" background.color="0" )

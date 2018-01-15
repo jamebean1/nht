@@ -1,0 +1,77 @@
+﻿$PBExportHeader$d_tot_contact_act_sub2.srd
+$PBExportComments$Annual Contact Activity Report
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=348 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(41) updatewhereclause=yes name=case_types_case_type_desc dbname="case_log.case_type_desc" )
+ column=(type=long updatewhereclause=yes name=grp_1_count dbname="grp_1_count" )
+ column=(type=long updatewhereclause=yes name=grp_2_count dbname="grp_2_count" )
+ column=(type=long updatewhereclause=yes name=grp_3_count dbname="grp_3_count" )
+ column=(type=long updatewhereclause=yes name=grp_4_count dbname="grp_4_count" )
+ column=(type=long updatewhereclause=yes name=total_cases_by_type dbname="total_cases_by_type" )
+ column=(type=long updatewhereclause=yes name=avg_days_open dbname="avg_days_open" )
+ retrieve="select ct.case_type_desc as case_type_desc,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 5 THEN 1 ELSE 0 END) as grp_1_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) >= 6 and DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 10 THEN 1 ELSE 0 END) as grp_2_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) >= 11 and DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 15 THEN 1 ELSE 0 END) as grp_3_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) > 15 THEN 1 ELSE 0 END) as grp_4_count,
+		 count(ct.case_type_desc) as total_cases_by_type,
+		 avg (DateDiff (day, cl.case_log_opnd_date, GetDate())) as avg_days_open
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id = 'O' and
+		 ct.case_type = cl.case_type and
+		 (cl.case_log_appld IS NULL OR cl.case_log_appld = 0)
+and cl.case_log_opnd_date between :start_dt and :end_dt
+group by ct.case_type_desc
+UNION
+select ct.case_type_desc + ' - Appealed' as case_type_desc,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 5 THEN 1 ELSE 0 END) as grp_1_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) >= 6 and DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 10 THEN 1 ELSE 0 END) as grp_2_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) >= 11 and DateDiff (day, cl.case_log_opnd_date, GetDate()) <= 15 THEN 1 ELSE 0 END) as grp_3_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, GetDate()) > 15 THEN 1 ELSE 0 END) as grp_4_count,
+		 count(ct.case_type_desc) as total_cases_by_type,
+		 avg (DateDiff (day, cl.case_log_opnd_date, GetDate())) as avg_days_open
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id = 'O' and
+		 ct.case_type = cl.case_type and
+		 cl.case_log_appld > 0
+and cl.case_log_opnd_date between :start_dt and :end_dt
+group by ct.case_type_desc
+order by ct.case_type_desc" arguments=(("start_dt", datetime),("end_dt", datetime)) )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="242" y="8" height="64" width="1248" format="[general]" html.valueishtml="0"  name=grp_1_count visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="242" y="92" height="64" width="1248" format="[general]" html.valueishtml="0"  name=grp_2_count visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="242" y="172" height="64" width="1248" format="[general]" html.valueishtml="0"  name=grp_3_count visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="242" y="252" height="64" width="1248" format="[general]" html.valueishtml="0"  name=grp_4_count visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=footer x="1138" y="88" height="64" width="800"  name=r_5 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+rectangle(band=footer x="1138" y="152" height="64" width="800"  name=r_6 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+rectangle(band=footer x="1138" y="216" height="64" width="800"  name=r_7 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+rectangle(band=footer x="1138" y="280" height="64" width="800"  name=r_8 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="5" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=footer alignment="2" text="1 - 5" border="0" color="0" x="1138" y="88" height="64" width="800" html.valueishtml="0"  name=t_5 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="2" text="6 - 10" border="0" color="0" x="1138" y="152" height="64" width="800" html.valueishtml="0"  name=t_6 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="2" text="11 - 15" border="0" color="0" x="1138" y="216" height="64" width="800" html.valueishtml="0"  name=t_7 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=footer alignment="2" text="16 +" border="0" color="0" x="1138" y="280" height="64" width="800" html.valueishtml="0"  name=t_8 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=summary alignment="0" text="Days Open" border="0" color="0" x="1289" y="4" height="64" width="334" html.valueishtml="0"  name=t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+rectangle(band=summary x="1179" y="284" height="64" width="571"  name=r_4 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=summary alignment="2" text="1-5" border="0" color="0" x="1179" y="92" height="64" width="571" html.valueishtml="0"  name=zero_to_five_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=summary x="1179" y="92" height="64" width="571"  name=r_1 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=summary alignment="2" text="6-10" border="0" color="0" x="1179" y="156" height="64" width="571" html.valueishtml="0"  name=six_to_ten_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=summary x="1179" y="156" height="64" width="571"  name=r_2 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=summary alignment="2" text="11-15" border="0" color="0" x="1179" y="220" height="64" width="571" html.valueishtml="0"  name=eleven_to_fifteen_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=summary x="1179" y="220" height="64" width="571"  name=r_3 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+text(band=summary alignment="2" text="16+" border="0" color="0" x="1179" y="284" height="64" width="571" html.valueishtml="0"  name=grp_4_count_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="# of Cases" border="0" color="0" x="1746" y="8" height="64" width="293" html.valueishtml="0"  name=t_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+rectangle(band=summary x="1751" y="284" height="64" width="302"  name=r_12 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=summary x="1751" y="220" height="64" width="302"  name=r_11 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=summary x="1751" y="156" height="64" width="302"  name=r_10 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+rectangle(band=summary x="1751" y="92" height="64" width="302"  name=r_9 visible="1" brush.hatch="7" brush.color="536870912" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="0" )
+compute(band=summary alignment="2" expression="sum(  grp_1_count for all )"border="0" color="0" x="1751" y="92" height="64" width="297" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  grp_2_count  for all )"border="0" color="0" x="1751" y="156" height="64" width="297" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  grp_3_count  for all )"border="0" color="0" x="1751" y="220" height="64" width="297" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="2" expression="sum(  grp_4_count for all )"border="0" color="0" x="1751" y="284" height="64" width="297" format="[GENERAL]" html.valueishtml="0"  name=compute_4 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

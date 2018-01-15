@@ -1,0 +1,51 @@
+﻿$PBExportHeader$d_case_inquiry_consumer_all_hg.srd
+$PBExportComments$HealthGuard Case Inquiry Report (all notes)
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=668 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=104 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=case_log_case_number dbname="case_log.case_number" )
+ column=(type=char(2) updatewhereclause=yes name=case_log_case_type dbname="case_log.case_type" values="Issue//Concern	C/Inquiry	I/Compliment	M/Proactive	P/" )
+ column=(type=char(20) updatewhereclause=yes name=case_log_case_subject_id dbname="case_log.case_subject_id" )
+ column=(type=char(59) updatewhereclause=yes name=cc_consum_name dbname="compute_0004" )
+ column=(type=char(40) updatewhereclause=yes name=categories_category_name dbname="case_log.category_name" )
+ column=(type=char(40) updatewhereclause=yes name=categories_category_name_1 dbname="case_log.category_name" )
+ column=(type=char(20) updatewhereclause=yes name=consumer_consumer_id dbname="case_log.consumer_id" )
+ column=(type=char(4099) updatewhereclause=no name=case_notes_note_text dbname="case_log.note_text" )
+ retrieve="  SELECT l.case_number,   
+         l.case_type,
+         l.case_subject_id,
+         IsNull(c.consum_last_name,'') + ', ' + IsNull(c.consum_first_name,'') + ' ' + IsNull(c.consum_mi,'') , 
+         c_a.category_name,   
+         c_b.category_name,
+         c.consumer_id,
+         n.note_text
+    FROM cusfocus.case_log l,   
+         cusfocus.case_notes n,   
+         cusfocus.consumer c, 
+         cusfocus.case_notes,
+         cusfocus.categories c_a,   
+         cusfocus.categories c_b  
+   WHERE ( l.case_number = n.case_number ) and  
+         ( l.category_id = c_a.category_id ) and 
+         ( c_a.prnt_category_id *= c_b.category_id ) and
+         ( n.case_number = l.case_number ) and 
+         ( l.case_subject_id = c.consumer_id ) and
+         ( l.source_type = 'C' )   and
+         ( l.case_log_opnd_date >= :start_date ) and
+         ( l.case_log_opnd_date <= :end_date) and
+         ( l.category_id IN (:category_list) )" arguments=(("category_list", string),("start_date", datetime),("end_date", datetime)) )
+group(level=1 header.height=100 trailer.height=0 by=("case_log_case_type" ) header.color="536870912" trailer.color="536870912" )
+group(level=2 header.height=92 trailer.height=0 by=("categories_category_name_1" ) header.color="536870912" trailer.color="536870912" )
+group(level=3 header.height=92 trailer.height=0 by=("categories_category_name" ) header.color="536870912" trailer.color="536870912" )
+column(band=header.1 id=2 alignment="0" tabsequence=0 border="0" color="0" x="146" y="12" height="72" width="722"  name=case_log_case_type ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.2 id=6 alignment="0" tabsequence=32766 border="0" color="0" x="233" y="4" height="72" width="1125" format="[general]"  name=categories_category_name_1 edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.3 id=5 alignment="0" tabsequence=32766 border="0" color="0" x="407" y="0" height="72" width="1125" format="[general]"  name=categories_category_name edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=0 border="0" color="0" x="937" y="16" height="72" width="763"  name=cc_consum_name  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=0 border="0" color="0" x="389" y="16" height="72" width="539"  name=case_log_case_subject_id  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="1714" y="16" height="72" width="302" format="[general]"  name=case_log_case_number edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=0 border="0" color="0" x="2016" y="0" height="64" width="3511"  name=case_notes_note_text  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

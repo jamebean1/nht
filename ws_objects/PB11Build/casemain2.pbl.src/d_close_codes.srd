@@ -1,0 +1,17 @@
+﻿$PBExportHeader$d_close_codes.srd
+$PBExportComments$Customer Satisfaction and Resolution Codes
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=144 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=case_log_customer_sat_code_id dbname="case_log.customer_sat_code_id" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_resolution_code_id dbname="case_log.resolution_code_id" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.case_log~" ) COLUMN(NAME=~"cusfocus.case_log.customer_sat_code_id~") COLUMN(NAME=~"cusfocus.case_log.resolution_code_id~")WHERE(    EXP1 =~"cusfocus.case_log.case_number~"   OP =~"=~"    EXP2 =~":case_number~" ) ) ARG(NAME = ~"case_number~" TYPE = string) " arguments=(("case_number", string)) )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="4" height="60" width="1051" format="[general]" html.valueishtml="0"  name=case_log_customer_sat_code_id visible="1" dddw.name=dddw_cus_sat_codes dddw.displaycolumn=customer_sat_desc dddw.datacolumn=customer_sat_code_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="72" height="60" width="1051" format="[general]" html.valueishtml="0"  name=case_log_resolution_code_id visible="1" dddw.name=dddw_resolution_codes_no_arg dddw.displaycolumn=resolution_desc dddw.datacolumn=resolution_code_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

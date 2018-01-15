@@ -1,0 +1,41 @@
+﻿$PBExportHeader$d_data_syntaxstorage.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=id dbname="syntaxstorage.id" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=qualifier dbname="syntaxstorage.qualifier" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=login dbname="syntaxstorage.login" )
+ column=(type=decimal(0) update=yes updatewhereclause=yes name=blbobjctid dbname="syntaxstorage.blbobjctid" )
+ column=(type=char(25) update=yes updatewhereclause=yes name=casetype dbname="syntaxstorage.casetype" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=sourcetype dbname="syntaxstorage.sourcetype" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=dynamiccolumns dbname="syntaxstorage.dynamiccolumns" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=searchtype dbname="syntaxstorage.searchtype" )
+ retrieve="SELECT  cusfocus.syntaxstorage.id ,
+           cusfocus.syntaxstorage.qualifier ,
+           cusfocus.syntaxstorage.login ,
+           cusfocus.syntaxstorage.blbobjctid ,
+           cusfocus.syntaxstorage.casetype ,
+           cusfocus.syntaxstorage.sourcetype ,
+           cusfocus.syntaxstorage.dynamiccolumns ,
+           cusfocus.syntaxstorage.searchtype
+        FROM cusfocus.syntaxstorage      
+        WHERE ( cusfocus.syntaxstorage.login = :as_login )   " update="cusfocus.syntaxstorage" updatewhere=0 updatekeyinplace=no arguments=(("as_login", string)) )
+text(band=header alignment="2" text="Id" border="0" color="33554432" x="5" y="4" height="64" width="329" html.valueishtml="0"  name=id_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Qualifier" border="0" color="33554432" x="338" y="4" height="64" width="2770" html.valueishtml="0"  name=qualifier_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Syntax" border="0" color="33554432" x="3113" y="4" height="64" width="3511" html.valueishtml="0"  name=syntax_t visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="338" y="4" height="76" width="2770" format="[general]" html.valueishtml="0"  name=qualifier visible="1" edit.limit=100 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="6624" y="0" height="64" width="2702" format="[general]" html.valueishtml="0"  name=login visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="9326" y="0" height="64" width="82" format="[general]" html.valueishtml="0"  name=blbobjctid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="9408" y="0" height="64" width="3511" format="[general]" html.valueishtml="0"  name=dynamiccolumns visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="12919" y="0" height="64" width="677" format="[general]" html.valueishtml="0"  name=casetype visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="13595" y="0" height="64" width="27" format="[general]" html.valueishtml="0"  name=sourcetype visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="13623" y="0" height="64" width="82" format="[general]" html.valueishtml="0"  name=id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="13705" y="0" height="64" width="27" format="[general]" html.valueishtml="0"  name=searchtype visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,112 @@
+﻿$PBExportHeader$d_tm_appeal_prop_field_defs.srd
+$PBExportComments$Table Maintenance - Appeal Properties
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=definition_id dbname="appeal_properties_field_def.definition_id" )
+ column=(type=long update=yes updatewhereclause=yes name=source_type dbname="appeal_properties_field_def.source_type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=column_name dbname="appeal_properties_field_def.column_name" values="appeal_generic_1	appeal_generic_1/appeal_generic_2	appeal_generic_2/appeal_generic_3	appeal_generic_3/appeal_generic_4	appeal_generic_4/appeal_generic_5	appeal_generic_5/appeal_generic_6	appeal_generic_6/appeal_generic_7	appeal_generic_7/appeal_generic_8	appeal_generic_8/appeal_generic_9	appeal_generic_9/appeal_generic_10	appeal_generic_10/appeal_generic_11	appeal_generic_11/appeal_generic_12	appeal_generic_12/appeal_generic_13	appeal_generic_13/appeal_generic_14	appeal_generic_14/appeal_generic_15	appeal_generic_15/appeal_generic_16	appeal_generic_16/appeal_generic_17	appeal_generic_17/appeal_generic_18	appeal_generic_18/appeal_generic_19	appeal_generic_19/appeal_generic_20	appeal_generic_20/appeal_generic_21	appeal_generic_21/appeal_generic_22	appeal_generic_22/appeal_generic_23	appeal_generic_23/appeal_generic_24	appeal_generic_24/appeal_generic_25	appeal_generic_25/appeal_generic_26	appeal_generic_26/appeal_generic_27	appeal_generic_27/appeal_generic_28	appeal_generic_28/appeal_generic_29	appeal_generic_29/appeal_generic_30	appeal_generic_30/" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=field_label dbname="appeal_properties_field_def.field_label" )
+ column=(type=long update=yes updatewhereclause=yes name=field_order dbname="appeal_properties_field_def.field_order" )
+ column=(type=long update=yes updatewhereclause=yes name=field_length dbname="appeal_properties_field_def.field_length" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=locked dbname="appeal_properties_field_def.locked" values="	Y/	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=visible dbname="appeal_properties_field_def.visible" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=format_id dbname="appeal_properties_field_def.format_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="appeal_properties_field_def.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="appeal_properties_field_def.updated_timestamp" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=required dbname="appeal_properties_field_def.required" values="	Y/	N" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=searchable_contacthistory dbname="appeal_properties_field_def.searchable_contacthistory" values="	Y/	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=dropdown dbname="appeal_properties_field_def.dropdown" values="	Y/	N" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=bookmark_name dbname="appeal_properties_field_def.bookmark_name" )
+ retrieve="  SELECT cusfocus.appeal_properties_field_def.definition_id,   
+         cusfocus.appeal_properties_field_def.source_type,   
+         cusfocus.appeal_properties_field_def.column_name,   
+         cusfocus.appeal_properties_field_def.field_label,   
+         cusfocus.appeal_properties_field_def.field_order,   
+         cusfocus.appeal_properties_field_def.field_length,   
+         cusfocus.appeal_properties_field_def.locked,   
+         cusfocus.appeal_properties_field_def.visible,   
+         cusfocus.appeal_properties_field_def.format_id,   
+         cusfocus.appeal_properties_field_def.updated_by,   
+         cusfocus.appeal_properties_field_def.updated_timestamp,   
+         cusfocus.appeal_properties_field_def.required,   
+         cusfocus.cusfocus_user.active,
+			cusfocus.appeal_properties_field_def.searchable_contacthistory,
+			cusfocus.appeal_properties_field_def.dropdown,
+			cusfocus.appeal_properties_field_def.bookmark_name
+    FROM cusfocus.appeal_properties_field_def,   
+         cusfocus.cusfocus_user   
+   WHERE ( cusfocus.appeal_properties_field_def.updated_by = cusfocus.cusfocus_user.user_id ) AND
+			( cusfocus.appeal_properties_field_def.updated_by <> 'cusfocus' )
+
+UNION
+
+  SELECT cusfocus.appeal_properties_field_def.definition_id,   
+         cusfocus.appeal_properties_field_def.source_type,   
+         cusfocus.appeal_properties_field_def.column_name,   
+         cusfocus.appeal_properties_field_def.field_label,   
+         cusfocus.appeal_properties_field_def.field_order,   
+         cusfocus.appeal_properties_field_def.field_length,   
+         cusfocus.appeal_properties_field_def.locked,   
+         cusfocus.appeal_properties_field_def.visible,   
+         cusfocus.appeal_properties_field_def.format_id,   
+         cusfocus.appeal_properties_field_def.updated_by,   
+         cusfocus.appeal_properties_field_def.updated_timestamp,   
+         cusfocus.appeal_properties_field_def.required,   
+         '' as cusfocus_user_active,
+			cusfocus.appeal_properties_field_def.searchable_contacthistory,
+			cusfocus.appeal_properties_field_def.dropdown,
+			cusfocus.appeal_properties_field_def.bookmark_name
+    FROM cusfocus.appeal_properties_field_def
+   WHERE ( cusfocus.appeal_properties_field_def.updated_by = 'cusfocus' )    
+
+" update="cusfocus.appeal_properties_field_def" updatewhere=0 updatekeyinplace=no  sort="compute_2 A column_name A " )
+text(band=header alignment="2" text="ID" border="6" color="0" x="9" y="8" height="64" width="357" html.valueishtml="0"  name=def_id_num_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Appeal Event" border="6" color="0" x="375" y="8" height="64" width="1010" html.valueishtml="0"  name=appeal_properties_field_def_source_t_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="7131" y="8" height="64" width="539" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Visible" border="6" color="0" x="5042" y="8" height="64" width="334" html.valueishtml="0"  name=appeal_properties_field_def_visible_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Format" border="6" color="0" x="5710" y="8" height="64" width="635" html.valueishtml="0"  name=appeal_properties_field_def_format_i_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Required" border="6" color="0" x="5385" y="8" height="64" width="315" html.valueishtml="0"  name=appeal_properties_field_def_required_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Dropdown" border="6" color="0" x="6747" y="8" height="64" width="375" html.valueishtml="0"  name=appeal_properties_field_def_dropdown_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Column Name" border="6" color="0" x="1394" y="8" height="64" width="654" html.valueishtml="0"  name=appeal_properties_field_def_column_n_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Field Label" border="6" color="0" x="2057" y="8" height="64" width="951" html.valueishtml="0"  name=appeal_properties_field_def_field_la_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Order" border="6" color="0" x="4073" y="8" height="64" width="370" html.valueishtml="0"  name=appeal_properties_field_def_field_or_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Length" border="6" color="0" x="4453" y="8" height="64" width="274" html.valueishtml="0"  name=field_length_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Locked" border="6" color="0" x="4736" y="8" height="64" width="297" html.valueishtml="0"  name=appeal_properties_field_def_locked_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Searchable" border="6" color="0" x="6354" y="8" height="64" width="384" html.valueishtml="0"  name=appeal_properties_field_def_searchab_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="7680" y="8" height="64" width="599" html.valueishtml="0"  name=appeal_properties_field_def_updated__t_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Bookmark Name" border="6" color="0" x="3017" y="8" height="64" width="1047" html.valueishtml="0"  name=appeal_properties_field_def_bookmark_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression=" Long( definition_id ) "border="0" color="0" x="9" y="8" height="76" width="357" format="[GENERAL]" html.valueishtml="0"  name=def_id_num  tag="ID" visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" Max( Long( definition_id ) )"border="0" color="0" x="8288" y="8" height="76" width="375" format="[General]" html.valueishtml="0"  name=maxvalue visible="0~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) ) "border="0" color="0" x="7131" y="8" height="76" width="539" format="[GENERAL]" html.valueishtml="0"  name=cc_updated_by visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="375" y="8" height="76" width="1010" format="[general]" html.valueishtml="0"  name=source_type visible="1" dddw.name=dddw_appealevent dddw.displaycolumn=eventname dddw.datacolumn=appealeventid dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="0" x="1394" y="8" height="76" width="654" format="[general]" html.valueishtml="0"  name=column_name visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.required=yes ddlb.nilisnull=yes ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="0" x="2057" y="8" height="76" width="951" format="[general]" html.valueishtml="0"  name=field_label visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="0" color="0" x="4073" y="8" height="76" width="370" format="[general]" html.valueishtml="0"  name=field_order visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=60 border="0" color="0" x="4453" y="8" height="76" width="274" format="[general]" html.valueishtml="0"  name=field_length visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=7 alignment="2" tabsequence=70 border="0" color="0" x="4736" y="8" height="76" width="297" format="[general]" html.valueishtml="0"  name=locked visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=9 alignment="0" tabsequence=100 border="0" color="0" x="5710" y="8" height="76" width="635" format="[general]" html.valueishtml="0"  name=format_id visible="1" dddw.name=dddw_display_formats dddw.displaycolumn=format_desc dddw.datacolumn=format_id dddw.percentwidth=200 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=15 alignment="2" tabsequence=120 border="0" color="0" x="6747" y="8" height="76" width="375" format="[general]" html.valueishtml="0"  name=dropdown visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=8 alignment="2" tabsequence=80 border="0" color="0" x="5042" y="8" height="76" width="334" format="[general]" html.valueishtml="0"  name=visible visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=12 alignment="2" tabsequence=90 border="0" color="0" x="5385" y="8" height="76" width="315" format="[general]" html.valueishtml="0"  name=required visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0" x="8933" y="20" height="64" width="261" format="[general]" html.valueishtml="0"  name=updated_by visible="0" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=14 alignment="2" tabsequence=110 border="0" color="0" x="6354" y="8" height="76" width="384" format="[general]" html.valueishtml="0"  name=searchable_contacthistory visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+compute(band=detail alignment="0" expression="lookupdisplay(  source_type  )"border="0" color="0" x="8672" y="8" height="76" width="251" format="[GENERAL]" html.valueishtml="0"  name=compute_2 visible="0"  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=130 border="0" color="0" x="7680" y="8" height="76" width="599" format="[shortdate] [time]" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=16 alignment="0" tabsequence=40 border="0" color="0" x="3017" y="8" height="76" width="1047" format="[general]" html.valueishtml="0"  name=bookmark_name visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowCount()"border="0" color="0" x="9" y="20" height="64" width="357" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

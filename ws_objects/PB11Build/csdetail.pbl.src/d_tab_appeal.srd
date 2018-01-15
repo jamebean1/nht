@@ -1,0 +1,111 @@
+﻿$PBExportHeader$d_tab_appeal.srd
+$PBExportComments$GUI for the Appeal Tab on casedetail
+release 11;
+datawindow(units=0 timer_interval=0 color=67108864 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=400 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=long updatewhereclause=yes identity=yes name=appealheaderid dbname="appealheader.appealheaderid" dbalias=".appealheaderid" )
+ column=(type=char(10) updatewhereclause=yes name=case_number dbname="appealheader.case_number" dbalias=".case_number" )
+ column=(type=long updatewhereclause=yes name=appealtype dbname="appealheader.appealtype" dbalias=".appealtype" )
+ column=(type=char(10) updatewhereclause=yes name=appealcreatedby dbname="appealheader.appealcreatedby" dbalias=".appealcreatedby" )
+ column=(type=datetime updatewhereclause=yes name=appealcreateddate dbname="appealheader.appealcreateddate" dbalias=".appealcreateddate" )
+ column=(type=long updatewhereclause=yes name=appealoutcome dbname="appealheader.appealoutcome" dbalias=".appealoutcome" )
+ column=(type=long updatewhereclause=yes name=datetermid dbname="appealheader.datetermid" dbalias=".datetermid" )
+ column=(type=datetime updatewhereclause=yes name=duedate dbname="appealheader.duedate" dbalias=".duedate" )
+ column=(type=long updatewhereclause=yes name=appealheaderstatusid dbname="appealheader.appealheaderstatusid" dbalias=".appealheaderstatusid" )
+ column=(type=long updatewhereclause=yes name=line_of_business_id dbname="appealheader.line_of_business_id" dbalias=".line_of_business_id" )
+ column=(type=long updatewhereclause=yes name=service_type_id dbname="appealheader.service_type_id" dbalias=".service_type_id" )
+ column=(type=long updatewhereclause=yes name=appealdetail_appealdetailid dbname="appealdetail.appealdetailid" dbalias=".appealdetailid" )
+ column=(type=long updatewhereclause=yes name=appealdetail_appealheaderid dbname="appealdetail.appealheaderid" dbalias=".appealheaderid" )
+ column=(type=long updatewhereclause=yes name=appealdetail_appealeventid dbname="appealdetail.appealeventid" dbalias=".appealeventid" )
+ column=(type=char(1) updatewhereclause=yes name=appealdetail_appealeventstatus dbname="appealdetail.appealeventstatus" dbalias=".appealeventstatus" values="Active	A/Cancelled	C/Incomplete	I/" )
+ column=(type=datetime updatewhereclause=yes name=appealdetail_appealdetaildate dbname="appealdetail.appealdetaildate" dbalias=".appealdetaildate" )
+ column=(type=datetime updatewhereclause=yes name=appealdetail_appealupdateddate dbname="appealdetail.appealupdateddate" dbalias=".appealupdateddate" )
+ column=(type=char(10) updatewhereclause=yes name=appealdetail_appealdetailcreatedby dbname="appealdetail.appealdetailcreatedby" dbalias=".appealdetailcreatedby" )
+ column=(type=char(10) updatewhereclause=yes name=appealdetail_appealdetailupdatedby dbname="appealdetail.appealdetailupdatedby" dbalias=".appealdetailupdatedby" )
+ column=(type=char(1) updatewhereclause=yes name=appealdetail_appealdetailreminder dbname="appealdetail.appealdetailreminder" dbalias=".appealdetailreminder" values="	Y/	N" )
+ column=(type=char(1) updatewhereclause=yes name=appealdetail_appealdetailletter dbname="appealdetail.appealdetailletter" dbalias=".appealdetailletter" values="	Y/	N" )
+ column=(type=long updatewhereclause=yes name=appealdetail_datetermid dbname="appealdetail.datetermid" dbalias=".datetermid" )
+ column=(type=datetime updatewhereclause=yes name=appealdetail_reminderdue dbname="appealdetail.reminderdue" dbalias=".reminderdue" )
+ column=(type=datetime updatewhereclause=yes name=appealdetail_appealeventduedate dbname="appealdetail.appealeventduedate" dbalias=".appealeventduedate" )
+ column=(type=char(1) updatewhereclause=yes name=appealdetail_hasnote dbname="appealdetail.hasnote" dbalias=".hasnote" )
+ column=(type=long updatewhereclause=yes name=appealdetail_detailorder dbname="appealdetail.detailorder" dbalias=".detailorder" )
+ retrieve="SELECT  cusfocus.appealheader.appealheaderid ,
+           cusfocus.appealheader.case_number ,
+           cusfocus.appealheader.appealtype ,
+           cusfocus.appealheader.appealcreatedby ,
+           cusfocus.appealheader.appealcreateddate ,
+           cusfocus.appealheader.appealoutcome ,
+           cusfocus.appealheader.datetermid ,
+           cusfocus.appealheader.duedate ,
+           cusfocus.appealheader.appealheaderstatusid,     
+           cusfocus.appealheader.line_of_business_id,
+           cusfocus.appealheader.service_type_id,
+		cusfocus.appealdetail.appealdetailid,   
+         cusfocus.appealdetail.appealheaderid,   
+         cusfocus.appealdetail.appealeventid,   
+         cusfocus.appealdetail.appealeventstatus,   
+         cusfocus.appealdetail.appealdetaildate,   
+         cusfocus.appealdetail.appealupdateddate,   
+         cusfocus.appealdetail.appealdetailcreatedby,   
+         cusfocus.appealdetail.appealdetailupdatedby,   
+         cusfocus.appealdetail.appealdetailreminder,   
+         cusfocus.appealdetail.appealdetailletter,   
+         cusfocus.appealdetail.datetermid,   
+         cusfocus.appealdetail.reminderdue,   
+         cusfocus.appealdetail.appealeventduedate,   
+         cusfocus.appealdetail.hasnote,   
+         cusfocus.appealdetail.detailorder  
+        FROM cusfocus.appealheader      
+		INNER JOIN cusfocus.appealdetail ON cusfocus.appealdetail.appealheaderid = cusfocus.appealheader.appealheaderid
+        WHERE ( cusfocus.appealheader.case_number = :al_casenumber )   
+" arguments=(("al_casenumber", number)) )
+group(level=1 header.height=396 trailer.height=0 by=("appealheaderid" ) header.color="536870912" trailer.color="536870912" )
+line(band=header.1 x1="5" y1="388" x2="3954" y2="388"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=detail id=26 alignment="0" tabsequence=0 border="0" color="33554432" x="41" y="8" height="52" width="174" html.valueishtml="0"  name=appealdetail_detailorder visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=14 alignment="0" tabsequence=0 border="0" color="33554432" x="256" y="8" height="52" width="869" html.valueishtml="0"  name=appealdetail_appealeventid visible="1" dddw.name=dddw_appealevent dddw.displaycolumn=eventname dddw.datacolumn=appealeventid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=22 alignment="0" tabsequence=0 border="0" color="33554432" x="1152" y="8" height="52" width="594" html.valueishtml="0"  name=appealdetail_datetermid visible="1" dddw.name=dddw_dateterm dddw.displaycolumn=termname dddw.datacolumn=datetermid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=20 alignment="0" tabsequence=0 border="0" color="33554432" x="1851" y="8" height="52" width="69" html.valueishtml="0"  name=appealdetail_appealdetailreminder visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=15 alignment="0" tabsequence=0 border="0" color="33554432" x="2043" y="8" height="52" width="375" html.valueishtml="0"  name=appealdetail_appealeventstatus visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=24 alignment="0" tabsequence=0 border="0" color="33554432" x="2441" y="8" height="52" width="480" format="mm/dd/yyyy h:mm AM/PM" html.valueishtml="0"  name=appealdetail_appealeventduedate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=17 alignment="0" tabsequence=0 border="0" color="33554432" x="2944" y="8" height="52" width="512" format="mm/dd/yyyy h:mm AM/PM" html.valueishtml="0"  name=appealdetail_appealupdateddate visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=21 alignment="0" tabsequence=0 border="0" color="33554432" x="3790" y="8" height="52" width="64" html.valueishtml="0"  name=appealdetail_appealdetailletter visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=2 alignment="0" tabsequence=20 border="0" color="33554432" x="4000" y="32" height="52" width="229" format="[general]" html.valueishtml="0"  name=case_number visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="0" text="Event #" border="0" color="33554432" x="32" y="320" height="52" width="201" html.valueishtml="0"  name=t_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Letter" border="0" color="33554432" x="3735" y="324" height="52" width="174" html.valueishtml="0"  name=appealdetailletter_t visible="0"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Event" border="0" color="33554432" x="256" y="324" height="52" width="882" html.valueishtml="0"  name=appealeventid_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Date Rule" border="0" color="33554432" x="1152" y="324" height="52" width="594" html.valueishtml="0"  name=t_4 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Reminder" border="0" color="33554432" x="1760" y="324" height="52" width="251" html.valueishtml="0"  name=appealdetailreminder_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Status" border="0" color="33554432" x="2034" y="324" height="52" width="393" html.valueishtml="0"  name=appealeventstatus_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Event Due" border="0" color="33554432" x="2441" y="324" height="52" width="489" html.valueishtml="0"  name=appealeventduedate_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="0" text="Last Updated" border="0" color="33554432" x="2944" y="324" height="52" width="521" html.valueishtml="0"  name=appealupdateddate_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Line of Business:" border="0" color="33554432" x="14" y="0" height="52" width="421" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Appeal Type:" border="0" color="33554432" x="41" y="88" height="52" width="334" html.valueishtml="0"  name=appealtype_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Service Type:" border="0" color="33554432" x="27" y="172" height="52" width="347" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=7 alignment="0" tabsequence=32766 border="0" color="33554432" x="1783" y="4" height="60" width="955" format="[general]" html.valueishtml="0"  name=datetermid visible="1" dddw.name=dddw_dateterm dddw.displaycolumn=termname dddw.datacolumn=datetermid dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="1" text="Date Rule:" border="0" color="33554432" x="1422" y="4" height="52" width="329" html.valueishtml="0"  name=datetermid_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Status:" border="0" color="33554432" x="1550" y="180" height="52" width="201" html.valueishtml="0"  name=appealheaderstatus_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=9 alignment="0" tabsequence=32766 border="0" color="33554432" x="1783" y="180" height="52" width="667" format="[general]" html.valueishtml="0"  name=appealheaderstatusid visible="1" dddw.name=dddw_appealstatus dddw.displaycolumn=name dddw.datacolumn=id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header.1 alignment="1" text="Created On:" border="0" color="33554432" x="1445" y="92" height="52" width="306" html.valueishtml="0"  name=appealcreateddate_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="2" text="Casenumber" border="0" color="33554432" x="3616" y="32" height="60" width="334" html.valueishtml="0"  name=casenumber_t visible="0"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header.1 alignment="1" text="Outcome" border="0" color="33554432" x="3515" y="116" height="52" width="411" html.valueishtml="0"  name=appealoutcome_t visible="0"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=6 alignment="0" tabsequence=10 border="5" color="33554432" x="3954" y="116" height="60" width="603" format="[general]" html.valueishtml="0"  name=appealoutcome visible="0" dddw.name=dddw_appealoutcome dddw.displaycolumn=appealoutcome dddw.datacolumn=id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="1787" y="92" height="60" width="517" format="mm/dd/yyyy h:mm AM/PM" html.valueishtml="0"  name=appealcreateddate visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header.1 alignment="1" text="Due Date:" border="0" color="33554432" x="2482" y="92" height="52" width="251" html.valueishtml="0"  name=duedate_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header.1 id=8 alignment="0" tabsequence=32766 border="0" color="33554432" x="2770" y="92" height="60" width="517" format="mm/dd/yyyy h:mm AM/PM" html.valueishtml="0"  name=duedate visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=3 alignment="0" tabsequence=32766 border="0" color="33554432" x="407" y="88" height="60" width="955" format="[general]" html.valueishtml="0"  name=appealtype visible="1" dddw.name=dddw_appealtype dddw.displaycolumn=appealname dddw.datacolumn=appealtypeid dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=10 alignment="0" tabsequence=32766 border="0" color="33554432" x="457" y="0" height="60" width="905" format="[general]" html.valueishtml="0"  name=line_of_business_id visible="1" dddw.name=dddw_line_of_business dddw.displaycolumn=line_of_business_name dddw.datacolumn=line_of_business_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=header.1 id=11 alignment="0" tabsequence=32766 border="0" color="33554432" x="407" y="172" height="60" width="955" format="[general]" html.valueishtml="0"  name=service_type_id visible="1" dddw.name=dddw_service_types dddw.displaycolumn=service_type_name dddw.datacolumn=service_type_id dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=no dddw.case=any  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

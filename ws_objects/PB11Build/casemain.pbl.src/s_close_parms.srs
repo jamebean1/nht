@@ -1,0 +1,11 @@
+﻿$PBExportHeader$s_close_parms.srs
+$PBExportComments$Close Case parameters used to initialize w_closecase
+global type s_close_parms from structure
+	string		case_type
+	boolean		print_survey
+	string		sat_code
+	string		res_code
+	boolean		close_case
+	string		other_close_code
+end type
+

@@ -1,0 +1,52 @@
+﻿$PBExportHeader$d_tm_compensation_types.srd
+$PBExportComments$Table Maintenance Compensation DataWindow.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=80 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=compensation_type dbname="compensation_types.compensation_type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=comp_desc dbname="compensation_types.comp_desc" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=active dbname="compensation_types.active" initial="Y" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="compensation_types.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="compensation_types.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.compensation_types.compensation_type,   
+         cusfocus.compensation_types.comp_desc,   
+         cusfocus.compensation_types.active,   
+         cusfocus.compensation_types.updated_by,   
+         cusfocus.compensation_types.updated_timestamp,
+         cusfocus.cusfocus_user.active
+    FROM cusfocus.compensation_types,
+         cusfocus.cusfocus_user
+   WHERE cusfocus.compensation_types.updated_by = cusfocus.cusfocus_user.user_id
+
+ 
+UNION
+
+  SELECT cusfocus.compensation_types.compensation_type,   
+         cusfocus.compensation_types.comp_desc,   
+         cusfocus.compensation_types.active,   
+         cusfocus.compensation_types.updated_by,   
+         cusfocus.compensation_types.updated_timestamp,
+         ''
+    FROM cusfocus.compensation_types
+   WHERE cusfocus.compensation_types.updated_by = 'cusfocus'
+
+
+" update="cusfocus.compensation_types" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="Compensation Type" border="6" color="0" x="9" y="4" height="72" width="654"  name=compensation_type_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Description" border="6" color="0" x="672" y="4" height="72" width="1467"  name=comp_desc_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="2149" y="4" height="72" width="265"  name=active_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="0" color="0" x="2971" y="4" height="72" width="681" format="mm/dd/yyyy hh:mm"  name=updated_timestamp edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm" edit.focusrectangle=no edit.autoselect=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="672" y="4" height="72" width="1467" format="[general]"  name=comp_desc edit.limit=30 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="9" y="4" height="72" width="654" format="[general]"  name=compensation_type edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="2" tabsequence=30 border="0" color="0" x="2149" y="4" height="72" width="265" format="[general]"  name=active checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="2423" y="4" height="72" width="539" format="[GENERAL]"  name=compute_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="16" height="64" width="654" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="0~t1" y1="4" x2="3671~t3281" y2="0"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2423" y="4" height="72" width="539"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="2971" y="4" height="72" width="681"  name=updated_timestamp_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

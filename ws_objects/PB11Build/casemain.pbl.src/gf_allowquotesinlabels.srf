@@ -1,0 +1,43 @@
+﻿$PBExportHeader$gf_allowquotesinlabels.srf
+$PBExportComments$Add escape characters before quotes in label text.
+global type gf_allowquotesinlabels from function_object
+end type
+
+forward prototypes
+global function string gf_allowquotesinlabels (string a_clabeltext)
+end prototypes
+
+global function string gf_allowquotesinlabels (string a_clabeltext);/*****************************************************************************************
+   Function:   gf_AllowQuotesInLabels
+   Purpose:    Add escape characters before quotes in label text
+   Parameters: STRING a_cLabelText - The label text to be corrected.
+   Returns:    STRING - The corrected label text or the original text if no quotes appear
+								or an error occurs.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	07/03/03 M. Caruso    Created.
+*****************************************************************************************/
+
+LONG		l_nPos = 1
+STRING	l_cLabelText
+
+l_cLabelText = a_cLabelText
+
+DO UNTIL l_nPos = 0
+	
+	l_nPos = Pos (l_cLabelText, "'", l_nPos)
+	IF l_nPos = 0 THEN
+		// since there are no more quotes, set the return value and exit the loop
+		CONTINUE
+	ELSE
+		l_cLabelText = Replace (l_cLabelText, l_nPos, 1, "~~~'")
+		l_nPos += 2
+	END IF		
+	
+LOOP
+
+RETURN l_cLabelText
+end function
+

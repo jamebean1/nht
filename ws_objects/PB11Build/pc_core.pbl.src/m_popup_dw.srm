@@ -1,0 +1,698 @@
+﻿$PBExportHeader$m_popup_dw.srm
+$PBExportComments$Popup menu for DataWindows
+forward
+global type m_popup_dw from menu
+end type
+type m_popup from menu within m_popup_dw
+end type
+type m_new from menu within m_popup
+end type
+type m_view from menu within m_popup
+end type
+type m_modify from menu within m_popup
+end type
+type m_insert from menu within m_popup
+end type
+type m_delete from menu within m_popup
+end type
+type m_copy from menu within m_popup
+end type
+type m_-p1 from menu within m_popup
+end type
+type m_first from menu within m_popup
+end type
+type m_previous from menu within m_popup
+end type
+type m_next from menu within m_popup
+end type
+type m_last from menu within m_popup
+end type
+type m_-p2 from menu within m_popup
+end type
+type m_query from menu within m_popup
+end type
+type m_search from menu within m_popup
+end type
+type m_filter from menu within m_popup
+end type
+type m_sort from menu within m_popup
+end type
+type m_- from menu within m_popup
+end type
+type m_save from menu within m_popup
+end type
+type m_saverowsas from menu within m_popup
+end type
+type m_print from menu within m_popup
+end type
+type m_popup from menu within m_popup_dw
+m_new m_new
+m_view m_view
+m_modify m_modify
+m_insert m_insert
+m_delete m_delete
+m_copy m_copy
+m_-p1 m_-p1
+m_first m_first
+m_previous m_previous
+m_next m_next
+m_last m_last
+m_-p2 m_-p2
+m_query m_query
+m_search m_search
+m_filter m_filter
+m_sort m_sort
+m_- m_-
+m_save m_save
+m_saverowsas m_saverowsas
+m_print m_print
+end type
+end forward
+
+global type m_popup_dw from menu
+m_popup m_popup
+end type
+global m_popup_dw m_popup_dw
+
+type variables
+
+
+end variables
+
+on m_popup_dw.create
+m_popup_dw=this
+this.m_popup=create m_popup
+this.Item[]={this.m_popup}
+end on
+
+on m_popup_dw.destroy
+destroy(this.m_popup)
+end on
+
+type m_popup from menu within m_popup_dw
+m_new m_new
+m_view m_view
+m_modify m_modify
+m_insert m_insert
+m_delete m_delete
+m_copy m_copy
+m_-p1 m_-p1
+m_first m_first
+m_previous m_previous
+m_next m_next
+m_last m_last
+m_-p2 m_-p2
+m_query m_query
+m_search m_search
+m_filter m_filter
+m_sort m_sort
+m_- m_-
+m_save m_save
+m_saverowsas m_saverowsas
+m_print m_print
+end type
+
+on m_popup.create
+this.Text="&Popup"
+this.ToolBarItemVisible=false
+this.m_new=create m_new
+this.m_view=create m_view
+this.m_modify=create m_modify
+this.m_insert=create m_insert
+this.m_delete=create m_delete
+this.m_copy=create m_copy
+this.m_-p1=create m_-p1
+this.m_first=create m_first
+this.m_previous=create m_previous
+this.m_next=create m_next
+this.m_last=create m_last
+this.m_-p2=create m_-p2
+this.m_query=create m_query
+this.m_search=create m_search
+this.m_filter=create m_filter
+this.m_sort=create m_sort
+this.m_-=create m_-
+this.m_save=create m_save
+this.m_saverowsas=create m_saverowsas
+this.m_print=create m_print
+this.Item[]={this.m_new, &
+this.m_view, &
+this.m_modify, &
+this.m_insert, &
+this.m_delete, &
+this.m_copy, &
+this.m_-p1, &
+this.m_first, &
+this.m_previous, &
+this.m_next, &
+this.m_last, &
+this.m_-p2, &
+this.m_query, &
+this.m_search, &
+this.m_filter, &
+this.m_sort, &
+this.m_-, &
+this.m_save, &
+this.m_saverowsas, &
+this.m_print}
+end on
+
+on m_popup.destroy
+destroy(this.m_new)
+destroy(this.m_view)
+destroy(this.m_modify)
+destroy(this.m_insert)
+destroy(this.m_delete)
+destroy(this.m_copy)
+destroy(this.m_-p1)
+destroy(this.m_first)
+destroy(this.m_previous)
+destroy(this.m_next)
+destroy(this.m_last)
+destroy(this.m_-p2)
+destroy(this.m_query)
+destroy(this.m_search)
+destroy(this.m_filter)
+destroy(this.m_sort)
+destroy(this.m_-)
+destroy(this.m_save)
+destroy(this.m_saverowsas)
+destroy(this.m_print)
+end on
+
+type m_new from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_New
+//  Event         : Clicked
+//  Description   : Trigger the pcd_New event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+	FWCA.MGR.i_WindowCurrent.DYNAMIC Event pc_New(1, 0)
+END IF
+end event
+
+on m_new.create
+this.Text="&New"
+this.Microhelp="Append a new record"
+this.ToolBarItemVisible=false
+end on
+
+type m_view from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_View
+//  Event         : Clicked
+//  Description   : Trigger the pcd_View event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_View")
+END IF
+end event
+
+on m_view.create
+this.Text="&View"
+this.Microhelp="View the selected record"
+this.ToolBarItemText="View"
+this.ToolBarItemVisible=false
+end on
+
+type m_modify from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Modify
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Modify event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Modify")
+END IF
+end event
+
+on m_modify.create
+this.Text="&Modify"
+this.Microhelp="Modify the selected record"
+this.ToolBarItemVisible=false
+end on
+
+type m_insert from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Insert
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Insert event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+	FWCA.MGR.i_WindowCurrent.DYNAMIC Event pc_New(2, 0)
+END IF
+end event
+
+on m_insert.create
+this.Text="&Insert"
+this.Microhelp="Insert a new record"
+this.ToolBarItemVisible=false
+end on
+
+type m_delete from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Delete
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Delete event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Delete")
+END IF
+end event
+
+on m_delete.create
+this.Text="&Delete"
+this.Microhelp="Delete the selected record(s)"
+this.ToolBarItemVisible=false
+end on
+
+type m_copy from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Copy
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Copy event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Copy")
+END IF
+end event
+
+on m_copy.create
+this.Text="&Copy"
+this.Microhelp="Copy the selected record(s)"
+this.ToolBarItemText="Copy"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p1 from menu within m_popup
+end type
+
+on m_-p1.create
+this.Text="-"
+end on
+
+type m_first from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_First
+//  Event         : Clicked
+//  Description   : Trigger the pcd_First event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_First")
+END IF
+end event
+
+on m_first.create
+this.Text="&First"
+this.Microhelp="Display the first record"
+this.ToolBarItemVisible=false
+end on
+
+type m_previous from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Previous
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Previous event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Previous")
+END IF
+end event
+
+on m_previous.create
+this.Text="P&revious"
+this.Microhelp="Display the previous record"
+this.ToolBarItemVisible=false
+end on
+
+type m_next from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Next
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Next event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Next")
+END IF
+end event
+
+on m_next.create
+this.Text="Ne&xt"
+this.Microhelp="Display the next record"
+this.ToolBarItemVisible=false
+end on
+
+type m_last from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Last
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Last event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Last")
+END IF
+end event
+
+on m_last.create
+this.Text="&Last"
+this.Microhelp="Display the last record"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p2 from menu within m_popup
+end type
+
+on m_-p2.create
+this.Text="-"
+end on
+
+type m_query from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Query
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Query event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Query")
+END IF
+end event
+
+on m_query.create
+this.Text="&Query"
+this.Microhelp="Enter search criteria for retrieval"
+this.ToolBarItemVisible=false
+end on
+
+type m_search from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Search
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Search event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Search")
+END IF
+end event
+
+on m_search.create
+this.Text="S&earch"
+this.Microhelp="Retrieve records based on search criteria"
+this.ToolBarItemVisible=false
+end on
+
+type m_filter from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Filter
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Filter event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Filter")
+END IF
+end event
+
+on m_filter.create
+this.Text="Fil&ter"
+this.Microhelp="Retrieve records based on filter criteria"
+this.ToolBarItemVisible=false
+end on
+
+type m_sort from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Sort
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Sort event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Sort")
+END IF
+end event
+
+on m_sort.create
+this.Text="S&ort"
+this.Microhelp="Sort the records"
+this.ToolBarItemVisible=false
+end on
+
+type m_- from menu within m_popup
+end type
+
+on m_-.create
+this.Text="-"
+end on
+
+type m_save from menu within m_popup
+end type
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save the records"
+this.ToolBarItemVisible=false
+end on
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Save
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Save event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Save")
+END IF
+end event
+
+type m_saverowsas from menu within m_popup
+end type
+
+on m_saverowsas.create
+this.Text="Save Ro&ws As"
+this.Microhelp="Save the records to a file"
+this.ToolBarItemVisible=false
+end on
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_SaveRowsAs
+//  Event         : Clicked
+//  Description   : Trigger the pcd_SaveRowsAs event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_SaveRowsAs")
+END IF
+end event
+
+type m_print from menu within m_popup
+end type
+
+on m_print.create
+this.Text="&Print"
+this.Microhelp="Print the records"
+this.ToolBarItemVisible=false
+end on
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_DW.m_Print
+//  Event         : Clicked
+//  Description   : Trigger the pcd_Print event on the
+//                  current DataWindow.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrentDW) THEN
+   FWCA.MGR.i_WindowCurrentDW.TriggerEvent("pcd_Print")
+END IF
+end event
+

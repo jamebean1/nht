@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dddw_appealoutcome.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=id dbname="appealoutcome.id" )
+ column=(type=char(50) updatewhereclause=yes name=appealoutcome dbname="appealoutcome.appealoutcome" )
+ column=(type=char(1) updatewhereclause=yes name=status dbname="appealoutcome.status" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.appealoutcome~" ) COLUMN(NAME=~"cusfocus.appealoutcome.id~") COLUMN(NAME=~"cusfocus.appealoutcome.appealoutcome~") COLUMN(NAME=~"cusfocus.appealoutcome.status~")WHERE(    EXP1 =~"cusfocus.appealoutcome.status~"   OP =~"=~"    EXP2 =~"'A'~" ) ) " )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="33554432" x="5" y="4" height="60" width="1399" format="[general]" html.valueishtml="0"  name=appealoutcome visible="1" edit.limit=50 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

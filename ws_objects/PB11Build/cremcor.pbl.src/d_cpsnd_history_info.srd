@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_cpsnd_history_info.srd
+$PBExportComments$Correspondence item information for the correspondence history window.
+release 7;
+datawindow(units=0 timer_interval=0 color=77971394 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=correspondence_case_number dbname="correspondence.case_number" )
+ column=(type=char(40) updatewhereclause=yes name=letter_types_letter_name dbname="letter_types.letter_name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.correspondence~" )  TABLE(NAME=~"cusfocus.letter_types~" ) COLUMN(NAME=~"cusfocus.correspondence.case_number~") COLUMN(NAME=~"cusfocus.letter_types.letter_name~")    JOIN (LEFT=~"cusfocus.letter_types.letter_id~"    OP =~"=~"RIGHT=~"cusfocus.correspondence.letter_id~" )WHERE(    EXP1 =~"cusfocus.correspondence.correspondence_id~"   OP =~"=~"    EXP2 =~":correspondence_id~" ) ) ARG(NAME = ~"correspondence_id~" TYPE = string) " arguments=(("correspondence_id", string)) )
+text(band=detail alignment="1" text="Case #:" border="0" color="0" x="9" y="4" height="64" width="215"  name=correspondence_case_number_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="238" y="4" height="64" width="425" format="[general]"  name=correspondence_case_number edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Document:" border="0" color="0" x="713" y="4" height="64" width="306"  name=letter_types_letter_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="1038" y="4" height="64" width="928" format="[general]"  name=letter_types_letter_name edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

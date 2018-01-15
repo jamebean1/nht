@@ -1,0 +1,1648 @@
+﻿$PBExportHeader$m_main.srm
+$PBExportComments$Menu ancestor for windows
+forward
+global type m_main from menu
+end type
+type m_file from menu within m_main
+end type
+type m_newfile from menu within m_file
+end type
+type m_openfile from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_-f1 from menu within m_file
+end type
+type m_save from menu within m_file
+end type
+type m_saverowsas from menu within m_file
+end type
+type m_-f3 from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_printersetup from menu within m_file
+end type
+type m_-f4 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_main
+m_newfile m_newfile
+m_openfile m_openfile
+m_close m_close
+m_-f1 m_-f1
+m_save m_save
+m_saverowsas m_saverowsas
+m_-f3 m_-f3
+m_print m_print
+m_printersetup m_printersetup
+m_-f4 m_-f4
+m_exit m_exit
+end type
+type m_edit from menu within m_main
+end type
+type m_new from menu within m_edit
+end type
+type m_view from menu within m_edit
+end type
+type m_modify from menu within m_edit
+end type
+type m_insert from menu within m_edit
+end type
+type m_delete from menu within m_edit
+end type
+type m_copy from menu within m_edit
+end type
+type m_-e1 from menu within m_edit
+end type
+type m_first from menu within m_edit
+end type
+type m_previous from menu within m_edit
+end type
+type m_next from menu within m_edit
+end type
+type m_last from menu within m_edit
+end type
+type m_- from menu within m_edit
+end type
+type m_query from menu within m_edit
+end type
+type m_search from menu within m_edit
+end type
+type m_filter from menu within m_edit
+end type
+type m_sort from menu within m_edit
+end type
+type m_edit from menu within m_main
+m_new m_new
+m_view m_view
+m_modify m_modify
+m_insert m_insert
+m_delete m_delete
+m_copy m_copy
+m_-e1 m_-e1
+m_first m_first
+m_previous m_previous
+m_next m_next
+m_last m_last
+m_- m_-
+m_query m_query
+m_search m_search
+m_filter m_filter
+m_sort m_sort
+end type
+type m_item1 from menu within m_main
+end type
+type m_item1 from menu within m_main
+end type
+type m_item2 from menu within m_main
+end type
+type m_item2 from menu within m_main
+end type
+type m_item3 from menu within m_main
+end type
+type m_item3 from menu within m_main
+end type
+type m_window from menu within m_main
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_-w1 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_-w2 from menu within m_window
+end type
+type m_closeall from menu within m_window
+end type
+type m_window from menu within m_main
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-w1 m_-w1
+m_arrangeicons m_arrangeicons
+m_-w2 m_-w2
+m_closeall m_closeall
+end type
+type m_help from menu within m_main
+end type
+type m_index from menu within m_help
+end type
+type m_usinghelp from menu within m_help
+end type
+type m_-h1 from menu within m_help
+end type
+type m_about from menu within m_help
+end type
+type m_help from menu within m_main
+m_index m_index
+m_usinghelp m_usinghelp
+m_-h1 m_-h1
+m_about m_about
+end type
+end forward
+
+global type m_main from menu
+m_file m_file
+m_edit m_edit
+m_item1 m_item1
+m_item2 m_item2
+m_item3 m_item3
+m_window m_window
+m_help m_help
+end type
+global m_main m_main
+
+type variables
+
+
+end variables
+
+on m_main.create
+m_main=this
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_item1=create m_item1
+this.m_item2=create m_item2
+this.m_item3=create m_item3
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[]={this.m_file, &
+this.m_edit, &
+this.m_item1, &
+this.m_item2, &
+this.m_item3, &
+this.m_window, &
+this.m_help}
+end on
+
+on m_main.destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_item1)
+destroy(this.m_item2)
+destroy(this.m_item3)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_main
+m_newfile m_newfile
+m_openfile m_openfile
+m_close m_close
+m_-f1 m_-f1
+m_save m_save
+m_saverowsas m_saverowsas
+m_-f3 m_-f3
+m_print m_print
+m_printersetup m_printersetup
+m_-f4 m_-f4
+m_exit m_exit
+end type
+
+on m_file.create
+this.Text="&File"
+this.m_newfile=create m_newfile
+this.m_openfile=create m_openfile
+this.m_close=create m_close
+this.m_-f1=create m_-f1
+this.m_save=create m_save
+this.m_saverowsas=create m_saverowsas
+this.m_-f3=create m_-f3
+this.m_print=create m_print
+this.m_printersetup=create m_printersetup
+this.m_-f4=create m_-f4
+this.m_exit=create m_exit
+this.Item[]={this.m_newfile, &
+this.m_openfile, &
+this.m_close, &
+this.m_-f1, &
+this.m_save, &
+this.m_saverowsas, &
+this.m_-f3, &
+this.m_print, &
+this.m_printersetup, &
+this.m_-f4, &
+this.m_exit}
+end on
+
+on m_file.destroy
+destroy(this.m_newfile)
+destroy(this.m_openfile)
+destroy(this.m_close)
+destroy(this.m_-f1)
+destroy(this.m_save)
+destroy(this.m_saverowsas)
+destroy(this.m_-f3)
+destroy(this.m_print)
+destroy(this.m_printersetup)
+destroy(this.m_-f4)
+destroy(this.m_exit)
+end on
+
+type m_newfile from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_NewFile
+//  Event         : Clicked
+//  Description   : Open a main window or window instance.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//FWCA.MGR.fu_OpenWindow(<window_name> {, <menu_bar_number>})
+
+
+end event
+
+on m_newfile.create
+this.Text="&New"
+this.Microhelp="Open a window or window instance to create a new record"
+this.ToolBarItemName="Custom039!"
+this.ToolBarItemText="New"
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+type m_openfile from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_OpenFile
+//  Event         : Clicked
+//  Description   : Open a main window or window instance.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//FWCA.MGR.fu_OpenWindow(<window_name> {, <menu_bar_number>})
+end event
+
+on m_openfile.create
+this.Text="&Open"
+this.Microhelp="Open a window or window instance to view or modify a record"
+this.ToolBarItemName="Custom050!"
+this.ToolBarItemText="Open"
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+type m_close from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Close
+//  Event         : Clicked
+//  Description   : Close the current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   Close(FWCA.MGR.i_WindowCurrent)
+END IF
+end event
+
+on m_close.create
+this.Text="&Close"
+this.Microhelp="Close the currently active window"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Close"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=14
+this.ToolBarItemSpace=5
+end on
+
+type m_-f1 from menu within m_file
+end type
+
+on m_-f1.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_save from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Save
+//  Event         : Clicked
+//  Description   : Trigger the pc_Save event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Save")
+END IF
+end event
+
+on m_save.create
+this.Text="&Save"
+this.Microhelp="Save the records"
+this.ToolBarItemName="Update!"
+this.ToolBarItemText="Save"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=12
+this.ToolBarItemSpace=5
+end on
+
+type m_saverowsas from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_SaveRowsAs
+//  Event         : Clicked
+//  Description   : Trigger the pc_SaveRowsAs event on the
+//                  current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_SaveRowsAs")
+END IF
+end event
+
+on m_saverowsas.create
+this.Text="Save Ro&ws As..."
+this.Microhelp="Save the records into a file"
+this.ToolBarItemName="DeclareVariable!"
+this.ToolBarItemText="Save Rows"
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+type m_-f3 from menu within m_file
+end type
+
+on m_-f3.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_print from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Print
+//  Event         : Clicked
+//  Description   : Trigger the pc_Print event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Print")
+END IF
+end event
+
+on m_print.create
+this.Text="&Print"
+this.Microhelp="Print the records"
+this.ToolBarItemName="Print!"
+this.ToolBarItemText="Print"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=13
+end on
+
+type m_printersetup from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_PrintSetup
+//  Event         : Clicked
+//  Description   : Modify or view the printer setup for this
+//                  Windows session.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+PrintSetUp()
+end event
+
+on m_printersetup.create
+this.Text="Prin&ter Setup..."
+this.Microhelp="Change the printer setup"
+this.ToolBarItemName="Custom074!"
+this.ToolBarItemText="Setup"
+this.ToolBarItemVisible=false
+end on
+
+type m_-f4 from menu within m_file
+end type
+
+on m_-f4.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Exit
+//  Event         : Clicked
+//  Description   : Exit the application by closing the top
+//                  level window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+FWCA.MGR.fu_ExitApp()
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit the application"
+this.ToolBarItemName="Exit!"
+this.ToolBarItemText="Exit"
+this.ToolBarItemVisible=false
+end on
+
+type m_edit from menu within m_main
+m_new m_new
+m_view m_view
+m_modify m_modify
+m_insert m_insert
+m_delete m_delete
+m_copy m_copy
+m_-e1 m_-e1
+m_first m_first
+m_previous m_previous
+m_next m_next
+m_last m_last
+m_- m_-
+m_query m_query
+m_search m_search
+m_filter m_filter
+m_sort m_sort
+end type
+
+on m_edit.create
+this.Text="&Edit"
+this.Visible=false
+this.m_new=create m_new
+this.m_view=create m_view
+this.m_modify=create m_modify
+this.m_insert=create m_insert
+this.m_delete=create m_delete
+this.m_copy=create m_copy
+this.m_-e1=create m_-e1
+this.m_first=create m_first
+this.m_previous=create m_previous
+this.m_next=create m_next
+this.m_last=create m_last
+this.m_-=create m_-
+this.m_query=create m_query
+this.m_search=create m_search
+this.m_filter=create m_filter
+this.m_sort=create m_sort
+this.Item[]={this.m_new, &
+this.m_view, &
+this.m_modify, &
+this.m_insert, &
+this.m_delete, &
+this.m_copy, &
+this.m_-e1, &
+this.m_first, &
+this.m_previous, &
+this.m_next, &
+this.m_last, &
+this.m_-, &
+this.m_query, &
+this.m_search, &
+this.m_filter, &
+this.m_sort}
+end on
+
+on m_edit.destroy
+destroy(this.m_new)
+destroy(this.m_view)
+destroy(this.m_modify)
+destroy(this.m_insert)
+destroy(this.m_delete)
+destroy(this.m_copy)
+destroy(this.m_-e1)
+destroy(this.m_first)
+destroy(this.m_previous)
+destroy(this.m_next)
+destroy(this.m_last)
+destroy(this.m_-)
+destroy(this.m_query)
+destroy(this.m_search)
+destroy(this.m_filter)
+destroy(this.m_sort)
+end on
+
+type m_new from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_New
+//  Event         : Clicked
+//  Description   : Trigger the pc_New event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+	FWCA.MGR.i_WindowCurrent.DYNAMIC Event pc_New(1, 0)
+END IF
+end event
+
+on m_new.create
+this.Text="&New"
+this.Microhelp="Append a new record"
+this.ToolBarItemName="SelectScript!"
+this.ToolBarItemText="New"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=1
+end on
+
+type m_view from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_View
+//  Event         : Clicked
+//  Description   : Trigger the pc_View event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_View")
+END IF
+end event
+
+on m_view.create
+this.Text="&View"
+this.Microhelp="View the selected record"
+this.ToolBarItemName="Custom062!"
+this.ToolBarItemText="View"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=2
+end on
+
+type m_modify from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Modify
+//  Event         : Clicked
+//  Description   : Trigger the pc_Modify event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Modify")
+END IF
+end event
+
+on m_modify.create
+this.Text="&Modify"
+this.Microhelp="Modify the selected record"
+this.ToolBarItemName="DosEdit!"
+this.ToolBarItemText="Modify"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=3
+end on
+
+type m_insert from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Insert
+//  Event         : Clicked
+//  Description   : Trigger the pc_Insert event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+	FWCA.MGR.i_WindowCurrent.DYNAMIC Event pc_New(2, 0)
+END IF
+end event
+
+on m_insert.create
+this.Text="&Insert"
+this.Microhelp="Insert a new record"
+this.ToolBarItemName="Insert!"
+this.ToolBarItemText="Insert"
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+type m_delete from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Delete
+//  Event         : Clicked
+//  Description   : Trigger the pc_Delete event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Delete")
+END IF
+end event
+
+on m_delete.create
+this.Text="&Delete"
+this.Microhelp="Delete the selected record(s)"
+this.ToolBarItemName="Clear!"
+this.ToolBarItemText="Delete"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=4
+end on
+
+type m_copy from menu within m_edit
+end type
+
+on m_copy.create
+this.Text="&Copy"
+this.Microhelp="Copy the selected record(s)"
+this.ToolBarItemName="Copy!"
+this.ToolBarItemText="Copy"
+this.Visible=false
+this.ToolBarItemVisible=false
+end on
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Copy
+//  Event         : Clicked
+//  Description   : Trigger the pc_Copy event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Copy")
+END IF
+end event
+
+type m_-e1 from menu within m_edit
+end type
+
+on m_-e1.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_first from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_First
+//  Event         : Clicked
+//  Description   : Trigger the pc_First event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_First")
+END IF
+end event
+
+on m_first.create
+this.Text="&First"
+this.Microhelp="Display the first record"
+this.ToolBarItemName="VCRFirst!"
+this.ToolBarItemText="First"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=5
+this.ToolBarItemSpace=5
+end on
+
+type m_previous from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Previous
+//  Event         : Clicked
+//  Description   : Trigger the pc_Previous event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Previous")
+END IF
+end event
+
+on m_previous.create
+this.Text="P&revious"
+this.Microhelp="Display the previous record"
+this.ToolBarItemName="VCRPrior!"
+this.ToolBarItemText="Previous"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=6
+end on
+
+type m_next from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Next
+//  Event         : Clicked
+//  Description   : Trigger the pc_Next event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Next")
+END IF
+end event
+
+on m_next.create
+this.Text="Ne&xt"
+this.Microhelp="Display the next record"
+this.ToolBarItemName="VCRNext!"
+this.ToolBarItemText="Next"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=7
+end on
+
+type m_last from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Last
+//  Event         : Clicked
+//  Description   : Trigger the pc_Last event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Last")
+END IF
+end event
+
+on m_last.create
+this.Text="&Last"
+this.Microhelp="Display the last record"
+this.ToolBarItemName="VCRLast!"
+this.ToolBarItemText="Last"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=8
+end on
+
+type m_- from menu within m_edit
+end type
+
+on m_-.create
+this.Text="-"
+this.Visible=false
+end on
+
+type m_query from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Query
+//  Event         : Clicked
+//  Description   : Trigger the pc_Query event on the current
+//                  window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Query")
+END IF
+end event
+
+on m_query.create
+this.Text="&Query"
+this.Microhelp="Enter search criteria for retrieval"
+this.ToolBarItemName="Query!"
+this.ToolBarItemText="Query"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=9
+this.ToolBarItemSpace=5
+end on
+
+type m_search from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Search
+//  Event         : Clicked
+//  Description   : Trigger the pc_Search event on the
+//                  current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Search")
+END IF
+end event
+
+on m_search.create
+this.Text="S&earch"
+this.Microhelp="Retrieve records based on search criteria"
+this.ToolBarItemName="Search!"
+this.ToolBarItemText="Search"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=10
+end on
+
+type m_filter from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Filter
+//  Event         : Clicked
+//  Description   : Trigger the pc_Filter event on the
+//                  current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Filter")
+END IF
+end event
+
+on m_filter.create
+this.Text="Fil&ter"
+this.Microhelp="Retrieve records based on filter criteria"
+this.ToolBarItemName="Search!"
+this.ToolBarItemText="Filter"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=10
+end on
+
+type m_sort from menu within m_edit
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Sort
+//  Event         : Clicked
+//  Description   : Trigger the pc_Sort event on the
+//                  current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+//------------------------------------------------------------------
+//  By default, this event will operate on the currently selected
+//  DataWindow.  If you want it to operate on a specific
+//  DataWindow then use the following line of code to reset the
+//  current DataWindow.
+//------------------------------------------------------------------
+
+//<window>.<datawindow>.fu_Activate()
+
+//------------------------------------------------------------------
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   FWCA.MGR.i_WindowCurrent.TriggerEvent("pc_Sort")
+END IF
+end event
+
+on m_sort.create
+this.Text="S&ort"
+this.Microhelp="Sort the records"
+this.ToolBarItemName="Sort!"
+this.ToolBarItemText="Sort"
+this.Visible=false
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=11
+end on
+
+type m_item1 from menu within m_main
+end type
+
+on m_item1.create
+this.Text="Item1"
+this.Visible=false
+end on
+
+on m_item1.destroy
+end on
+
+type m_item2 from menu within m_main
+end type
+
+on m_item2.create
+this.Text="Item2"
+this.Visible=false
+end on
+
+on m_item2.destroy
+end on
+
+type m_item3 from menu within m_main
+end type
+
+on m_item3.create
+this.Text="Item3"
+this.Visible=false
+end on
+
+on m_item3.destroy
+end on
+
+type m_window from menu within m_main
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-w1 m_-w1
+m_arrangeicons m_arrangeicons
+m_-w2 m_-w2
+m_closeall m_closeall
+end type
+
+on m_window.create
+this.Text="&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-w1=create m_-w1
+this.m_arrangeicons=create m_arrangeicons
+this.m_-w2=create m_-w2
+this.m_closeall=create m_closeall
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-w1, &
+this.m_arrangeicons, &
+this.m_-w2, &
+this.m_closeall}
+end on
+
+on m_window.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-w1)
+destroy(this.m_arrangeicons)
+destroy(this.m_-w2)
+destroy(this.m_closeall)
+end on
+
+type m_tile from menu within m_window
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Tile
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that no windows in
+//                  the MDI frame overlap but all windows are
+//                  visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Tile!)
+END IF
+end event
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Arrange windows as tiled"
+this.ToolBarItemName="Tile!"
+this.ToolBarItemText="Tile"
+this.ToolBarItemVisible=false
+end on
+
+type m_layer from menu within m_window
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Layer
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that all windows are
+//                  sized to use the full screen and are layered on
+//                  top of one another.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Layer!)
+END IF
+end event
+
+on m_layer.create
+this.Text="La&yer"
+this.Microhelp="Arrange the windows as layered"
+this.ToolBarItemName="Layer!"
+this.ToolBarItemText="Layer"
+this.ToolBarItemVisible=false
+end on
+
+type m_cascade from menu within m_window
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Cascade
+//  Event         : Clicked
+//  Description   : Arrange the open windows so they overlap each
+//                  other with the title bar of each window
+//                  remaining visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Cascade!)
+END IF
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Arrange the windows as cascaded"
+this.ToolBarItemName="Cascade!"
+this.ToolBarItemText="Cascade"
+this.ToolBarItemVisible=false
+end on
+
+type m_-w1 from menu within m_window
+end type
+
+on m_-w1.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_ArrangeIcons
+//  Event         : Clicked
+//  Description   : Arrange the open windows that have been
+//                  minimized to icons.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Icons!)
+END IF
+end event
+
+on m_arrangeicons.create
+this.Text="&Arrange Icons"
+this.Microhelp="Arrange the window icons"
+this.ToolBarItemName="ArrangeIcons!"
+this.ToolBarItemText="Icons"
+this.ToolBarItemVisible=false
+end on
+
+type m_-w2 from menu within m_window
+end type
+
+on m_-w2.create
+this.Text="-"
+end on
+
+type m_closeall from menu within m_window
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_CloseAll
+//  Event         : Clicked
+//  Description   : Close all the windows in the MDI frame that
+//                  have been open using the fu_OpenWindow function.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.TriggerEvent("pc_CloseAll")
+END IF
+
+end event
+
+on m_closeall.create
+this.Text="C&lose All"
+this.Microhelp="Close all the open windows"
+this.ToolBarItemName="Sort!"
+this.ToolBarItemText="Close All"
+this.ToolBarItemVisible=false
+end on
+
+type m_help from menu within m_main
+m_index m_index
+m_usinghelp m_usinghelp
+m_-h1 m_-h1
+m_about m_about
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Help
+//  Event         : Clicked
+//  Description   : Set up the text in the help menu.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(m_Help.m_About) THEN
+   m_Help.m_About.Text = "&About " + FWCA.MGR.i_ApplicationName
+END IF
+end event
+
+on m_help.create
+this.Text="&Help"
+this.m_index=create m_index
+this.m_usinghelp=create m_usinghelp
+this.m_-h1=create m_-h1
+this.m_about=create m_about
+this.Item[]={this.m_index, &
+this.m_usinghelp, &
+this.m_-h1, &
+this.m_about}
+end on
+
+on m_help.destroy
+destroy(this.m_index)
+destroy(this.m_usinghelp)
+destroy(this.m_-h1)
+destroy(this.m_about)
+end on
+
+type m_index from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Index
+//  Event         : Clicked
+//  Description   : Display the help file for the application.
+//                  Replace <application_file> with the name of
+//                  the application help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+//
+//SetPointer(HourGlass!)
+//ShowHelp("<application_file>.hlp", Index!)
+end event
+
+on m_index.create
+this.Text="&Index"
+this.Microhelp="Display help"
+this.ToolBarItemName="Help!"
+this.ToolBarItemText="Help"
+this.ToolBarItemVisible=false
+this.ToolBarItemOrder=3
+this.ToolBarItemSpace=17
+end on
+
+type m_usinghelp from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_UsingHelp
+//  Event         : Clicked
+//  Description   : Display the "Windows Help" help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+//
+//SetPointer(HourGlass!)
+//ShowHelp("winhelp.hlp", Index!)
+end event
+
+on m_usinghelp.create
+this.Text="&Using Help"
+this.Microhelp="Display ~"Using Windows Help~""
+end on
+
+type m_-h1 from menu within m_help
+end type
+
+on m_-h1.create
+this.Text="-"
+end on
+
+type m_about from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_About
+//  Event         : Clicked
+//  Description   : Open a window that describes something about
+//                  the application.  By default, this window will
+//                  display the application name and revision that
+//                  are stored in the PCCA structure.  This window
+//                  can be redefined if a custom window is desired.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+
+IF IsValid(OBJCA.WIN) THEN
+	OBJCA.WIN.fu_About()
+END IF
+end event
+
+on m_about.create
+this.Text="&About"
+this.Microhelp="Display information about the application"
+end on
+

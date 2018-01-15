@@ -1,0 +1,16 @@
+﻿$PBExportHeader$s_secca_def.srs
+$PBExportComments$Security class default reference list
+global type s_secca_def from structure
+	n_secca_mgr		security_ref
+	n_secca_init		initialization_ref
+	n_secca_msg		message_ref
+	u_registerbutton		register_win_ref
+	w_pl_registerbutton		register_mdi_ref
+	w_pl_register		register_ref
+	w_pl_connections		connection_ref
+	w_pl_deleteobjs		delete_ref
+	w_pl_login_main		login_ref
+	w_pl_newpwd_main		newpassword_ref
+	w_pl_password		password_ref
+end type
+

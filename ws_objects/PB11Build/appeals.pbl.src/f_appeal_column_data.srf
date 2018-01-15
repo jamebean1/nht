@@ -1,0 +1,53 @@
+﻿$PBExportHeader$f_appeal_column_data.srf
+global type f_appeal_column_data from function_object
+end type
+
+forward prototypes
+global function string f_appeal_column_data (string a_ccolname, string a_ccasenumber, long al_appealdetailid, string as_data)
+end prototypes
+
+global function string f_appeal_column_data (string a_ccolname, string a_ccasenumber, long al_appealdetailid, string as_data);/*****************************************************************************************
+   Function:	f_Column_Label
+   Purpose:    Get the field label from the case properties field def table for the 
+					associated column.  Specifically created for use in the case properties
+					history portion of the case detail history report.
+   Parameters: String - a_cColName - The name of the generic column.
+					String - a_cCaseNumber - The case number
+					
+   Returns:    String - Column label or column name.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	7/30/2001 K. Claver   Created.
+*****************************************************************************************/
+String l_cFieldLabel, l_cSourceType, l_cCaseType, ls_field_format, ls_return
+
+  SELECT cusfocus.display_formats.display_format  
+    INTO :ls_field_format  
+    FROM cusfocus.appeal_properties,   
+         cusfocus.appeal_properties_field_def,   
+         cusfocus.appealdetail,  
+         cusfocus.display_formats  
+   WHERE ( cusfocus.appeal_properties.source_type = cusfocus.appeal_properties_field_def.source_type ) and  
+         ( cusfocus.appeal_properties.appealdetailid = cusfocus.appealdetail.appealdetailid ) and  
+         ( cusfocus.appeal_properties_field_def.format_id = cusfocus.display_formats.format_id ) and  
+         ( ( cusfocus.appeal_properties.case_number = :a_cCaseNumber ) and
+				( cusfocus.appeal_properties.appealdetailid = :al_appealdetailid ) and
+				( cusfocus.appeal_properties_field_def.column_name = :a_ccolname) )   
+				USING SQLCA;
+
+IF IsNull( ls_field_format ) OR Trim( ls_field_format ) = "" THEN
+	// RAP 3/24/09 Truncate if it is so long that it will wrap. Wrapping will cause it to not line up with the labels correctly
+	IF len(as_data) > 39 THEN
+		ls_return = mid(as_data,1,37)  + "..."
+	ELSE
+		ls_return = as_data
+	END IF
+ELSE
+	ls_return = String(as_data, ls_field_format)
+END IF
+
+RETURN ls_return
+end function
+

@@ -1,0 +1,48 @@
+﻿$PBExportHeader$dddw_entity.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=enttyid dbname="Entity.EnttyID" )
+ column=(type=char(80) updatewhereclause=yes name=enttynme dbname="Entity.EnttyNme" )
+ column=(type=char(1) updatewhereclause=yes name=enttyrprtcnfgisdflt dbname="EntityReportConfig.EnttyRprtCnfgIsDflt" )
+ column=(type=long updatewhereclause=yes name=enttyrprtcnfgrprtcnfg dbname="EntityReportConfig.EnttyRprtCnfgRprtCnfgID" )
+ column=(type=char(50) updatewhereclause=yes name=rprtcnfgnme dbname="ReportConfig.RprtCnfgNme" )
+ column=(type=char(80) updatewhereclause=yes name=rprtcnfgdscrptn dbname="ReportConfig.RprtCnfgDscrptn" )
+ column=(type=char(255) updatewhereclause=yes name=rprtcnfgdtaobjct dbname="ReportConfig.RprtCnfgDtaObjct" )
+ column=(type=char(40) updatewhereclause=yes name=rprtcnfgcrtraobjct dbname="ReportConfig.RprtCnfgCrtraObjct" )
+ column=(type=char(1) updatewhereclause=yes name=rprtcnfgshwcrtra dbname="ReportConfig.RprtCnfgShwCrtra" )
+ column=(type=char(1) updatewhereclause=yes name=rprtcnfgautortrve dbname="ReportConfig.RprtCnfgAutoRtrve" )
+ column=(type=long updatewhereclause=yes name=rprtcnfgfldrid dbname="ReportConfig.RprtCnfgFldrID" )
+ column=(type=char(40) updatewhereclause=yes name=rprtcnfgdsplyobjct dbname="ReportConfig.RprtCnfgDsplyObjct" )
+ column=(type=long updatewhereclause=yes name=rprtcnfgrprtdtbseid dbname="ReportConfig.RprtCnfgRprtDtbseID" )
+ column=(type=char(1) updatewhereclause=yes name=rprtcnfgtpe dbname="ReportConfig.RprtCnfgTpe" )
+ column=(type=long updatewhereclause=yes name=rprtcnfgblbobjctid dbname="ReportConfig.RprtCnfgBlbObjctID" )
+ column=(type=char(1) updatewhereclause=yes name=rprtcnfgcrtratpe dbname="ReportConfig.RprtCnfgCrtraTpe" )
+ column=(type=long updatewhereclause=yes name=rprtcnfgcrtrablbobjctid dbname="ReportConfig.RprtCnfgCrtraBlbObjctID" )
+ retrieve="SELECT  Entity.EnttyID ,
+           Entity.EnttyNme ,
+           EntityReportConfig.EnttyRprtCnfgIsDflt ,
+           EntityReportConfig.EnttyRprtCnfgRprtCnfgID ,
+           ReportConfig.RprtCnfgNme ,
+           ReportConfig.RprtCnfgDscrptn ,
+           ReportConfig.RprtCnfgDtaObjct ,
+           ReportConfig.RprtCnfgCrtraObjct ,
+           ReportConfig.RprtCnfgShwCrtra ,
+           ReportConfig.RprtCnfgAutoRtrve ,
+           ReportConfig.RprtCnfgFldrID ,
+           ReportConfig.RprtCnfgDsplyObjct ,
+           ReportConfig.RprtCnfgRprtDtbseID ,
+           ReportConfig.RprtCnfgTpe ,
+           ReportConfig.RprtCnfgBlbObjctID ,
+           ReportConfig.RprtCnfgCrtraTpe ,
+           ReportConfig.RprtCnfgCrtraBlbObjctID 
+        FROM Entity ,
+           EntityReportConfig ,
+           ReportConfig     
+        WHERE ( Entity.EnttyID = EntityReportConfig.EnttyRprtCnfgEnttyID ) and          ( EntityReportConfig.EnttyRprtCnfgRprtCnfgID = ReportConfig.RprtCnfgID )   
+		Order By ReportConfig.RprtCnfgNme" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="52" width="1147" format="[general]"  name=rprtcnfgnme edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

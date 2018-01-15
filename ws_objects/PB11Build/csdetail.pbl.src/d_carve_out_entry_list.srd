@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_carve_out_entry_list.srd
+$PBExportComments$List of carve out entries for a given case.
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=68 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=72 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=co_id dbname="carve_out_entries.co_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=case_number dbname="carve_out_entries.case_number" )
+ column=(type=datetime update=yes updatewhereclause=yes name=start_date dbname="carve_out_entries.start_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=end_date dbname="carve_out_entries.end_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=est_end_date dbname="carve_out_entries.est_end_date" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=created_by dbname="carve_out_entries.created_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=created_timestamp dbname="carve_out_entries.created_timestamp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=closed_by dbname="carve_out_entries.closed_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=closed_timestamp dbname="carve_out_entries.closed_timestamp" )
+ column=(type=long update=yes updatewhereclause=yes name=num_days dbname="carve_out_entries.num_days" )
+ column=(type=char(4099) update=yes updatewhereclause=yes name=reason dbname="carve_out_entries.reason" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="carve_out_entries.active" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="carve_out_entries.active" )
+ retrieve="  SELECT cusfocus.carve_out_entries.co_id,   
+         cusfocus.carve_out_entries.case_number,   
+         cusfocus.carve_out_entries.start_date,   
+         cusfocus.carve_out_entries.end_date,   
+         cusfocus.carve_out_entries.est_end_date,   
+         cusfocus.carve_out_entries.created_by,   
+         cusfocus.carve_out_entries.created_timestamp,   
+         cusfocus.carve_out_entries.closed_by,   
+         cusfocus.carve_out_entries.closed_timestamp,   
+         cusfocus.carve_out_entries.num_days,   
+         cusfocus.carve_out_entries.reason,   
+         cusfocus_user_a.active,   
+         cusfocus_user_b.active  
+    FROM cusfocus.carve_out_entries,   
+         cusfocus.cusfocus_user cusfocus_user_a,   
+         cusfocus.cusfocus_user cusfocus_user_b  
+   WHERE ( cusfocus.carve_out_entries.created_by *= cusfocus_user_a.user_id) and  
+         ( cusfocus_user_b.user_id =* cusfocus.carve_out_entries.closed_by) and  
+         ( ( cusfocus.carve_out_entries.case_number = :case_number ) )   
+ORDER BY cusfocus.carve_out_entries.start_date ASC   
+" update="cusfocus.carve_out_entries" updatewhere=0 updatekeyinplace=yes arguments=(("case_number", string))  sort="start_date A end_date A " )
+column(band=detail id=3 alignment="0" tabsequence=10 border="0" color="0" x="91" y="4" height="60" width="343" format="mm/dd/yyyy" html.valueishtml="0"  name=start_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="0" color="0" x="453" y="4" height="60" width="343" format="mm/dd/yyyy" html.valueishtml="0"  name=est_end_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="0" x="814" y="4" height="60" width="343" format="mm/dd/yyyy" html.valueishtml="0"  name=end_date visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=10 alignment="1" tabsequence=40 border="0" color="0" x="1175" y="4" height="60" width="174" format="[general]" html.valueishtml="0"  name=num_days visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  cusfocus_user_active = 'N' ) ,  created_by + ' (inactive)',  created_by  )"border="0" color="0" x="1367" y="4" height="60" width="503" format="[GENERAL]" html.valueishtml="0"  name=cc_created_by visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="0" tabsequence=50 border="0" color="0" x="1888" y="4" height="60" width="645" format="mm/dd/yyyy h:mm:ss AM/PM" html.valueishtml="0"  name=created_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  cusfocus_user_active = 'N' ),  closed_by + ' (inactive)',  closed_by )"border="0" color="0" x="2551" y="4" height="60" width="503" format="[GENERAL]" html.valueishtml="0"  name=cc_closed_by visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=60 border="0" color="0" x="3072" y="4" height="60" width="645" format="mm/dd/yyyy h:mm:ss AM/PM" html.valueishtml="0"  name=closed_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="69" y1="0" x2="5810" y2="0"  name=l_footer visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="12632256" )
+compute(band=footer alignment="0" expression="'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="33554432" x="82" y="12" height="52" width="2501" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=p_1 visible="0" )
+text(band=header alignment="0" text="Carve Out Entry List" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=t_1 visible="0"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="64" x2="5815" y2="64"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Start Date" border="0" color="0" x="91" y="8" height="52" width="343" html.valueishtml="0"  name=start_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Est. End" border="0" color="0" x="453" y="8" height="52" width="343" html.valueishtml="0"  name=est_end_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" End Date" border="0" color="0" x="814" y="8" height="52" width="343" html.valueishtml="0"  name=end_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Days" border="0" color="0" x="1175" y="8" height="52" width="174" html.valueishtml="0"  name=num_days_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Created By" border="0" color="0" x="1367" y="8" height="52" width="503" html.valueishtml="0"  name=created_by_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Created On" border="0" color="0" x="1888" y="8" height="52" width="645" html.valueishtml="0"  name=created_timestamp_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Closed By" border="0" color="0" x="2551" y="8" height="52" width="503" html.valueishtml="0"  name=closed_by_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Closed On" border="0" color="0" x="3072" y="8" height="52" width="645" html.valueishtml="0"  name=closed_timestamp_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

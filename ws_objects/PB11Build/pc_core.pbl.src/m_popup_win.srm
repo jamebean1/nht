@@ -1,0 +1,197 @@
+﻿$PBExportHeader$m_popup_win.srm
+$PBExportComments$Popup menu for non-MDI windows
+forward
+global type m_popup_win from menu
+end type
+type m_popup from menu within m_popup_win
+end type
+type m_close from menu within m_popup
+end type
+type m_-p1 from menu within m_popup
+end type
+type m_printersetup from menu within m_popup
+end type
+type m_-p2 from menu within m_popup
+end type
+type m_exit from menu within m_popup
+end type
+type m_popup from menu within m_popup_win
+m_close m_close
+m_-p1 m_-p1
+m_printersetup m_printersetup
+m_-p2 m_-p2
+m_exit m_exit
+end type
+end forward
+
+global type m_popup_win from menu
+m_popup m_popup
+end type
+global m_popup_win m_popup_win
+
+type variables
+
+
+end variables
+
+forward prototypes
+public subroutine fm_close ()
+end prototypes
+
+public subroutine fm_close ();//******************************************************************
+//  PC Module     : m_Popup_WIN
+//  Subroutine    : fm_Close
+//  Description   : Function is posted from the Close menu item
+//                  to close the current window so that the
+//                  code in RButtonDown can 'clear'.
+//
+//  Parameters    : (None)
+//
+//  Return Value  : (None)
+//
+//  Change History: 
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//******************************************************************
+//  Copyright ServerLogic 1994-1997.  All Rights Reserved.
+//******************************************************************
+
+Close(FWCA.MGR.i_WindowCurrent)
+end subroutine
+
+on m_popup_win.create
+m_popup_win=this
+this.m_popup=create m_popup
+this.Item[]={this.m_popup}
+end on
+
+on m_popup_win.destroy
+destroy(this.m_popup)
+end on
+
+type m_popup from menu within m_popup_win
+m_close m_close
+m_-p1 m_-p1
+m_printersetup m_printersetup
+m_-p2 m_-p2
+m_exit m_exit
+end type
+
+on m_popup.create
+this.Text="&Popup"
+this.m_close=create m_close
+this.m_-p1=create m_-p1
+this.m_printersetup=create m_printersetup
+this.m_-p2=create m_-p2
+this.m_exit=create m_exit
+this.Item[]={this.m_close, &
+this.m_-p1, &
+this.m_printersetup, &
+this.m_-p2, &
+this.m_exit}
+end on
+
+on m_popup.destroy
+destroy(this.m_close)
+destroy(this.m_-p1)
+destroy(this.m_printersetup)
+destroy(this.m_-p2)
+destroy(this.m_exit)
+end on
+
+type m_close from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_WIN.m_Close
+//  Event         : Clicked
+//  Description   : Close the current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1997.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   Post fm_Close()
+END IF
+end event
+
+on m_close.create
+this.Text="&Close"
+this.Microhelp="Close the currently active window"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p1 from menu within m_popup
+end type
+
+on m_-p1.create
+this.Text="-"
+end on
+
+type m_printersetup from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_WIN.m_PrintSetup
+//  Event         : Clicked
+//  Description   : Modify or view the printer setup for this
+//                  session.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+PrintSetUp()
+end event
+
+on m_printersetup.create
+this.Text="Prin&ter Setup..."
+this.Microhelp="Change the printer setup"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p2 from menu within m_popup
+end type
+
+on m_-p2.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_WIN.m_Exit
+//  Event         : Clicked
+//  Description   : Exit the application.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+FWCA.MGR.fu_ExitApp()
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit the application"
+this.ToolBarItemVisible=false
+end on
+

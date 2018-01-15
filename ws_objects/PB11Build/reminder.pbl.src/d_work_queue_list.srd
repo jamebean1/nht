@@ -1,0 +1,59 @@
+﻿$PBExportHeader$d_work_queue_list.srd
+$PBExportComments$The datawindow that shows the faxes in the workdesk
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=96 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes name=header_id dbname="fax_queue_header.header_id" )
+ column=(type=char(100) updatewhereclause=yes name=description dbname="fax_queue_header.description" )
+ column=(type=char(4) updatewhereclause=yes name=type dbname="type" )
+ retrieve="  SELECT   
+         cusfocus.fax_queue_header.fax_queue_header_id as header_id,   
+         cusfocus.fax_queue_header.fax_queue_description as description,
+         'FAX' as type
+    FROM cusfocus.fax_queue_header   
+UNION
+SELECT
+         wq_user.id as header_id,   
+         wq_user.user_first_name + ' ' + wq_user.user_last_name as description,
+         'Work' as type
+    FROM cusfocus.cusfocus_user  wq_user ,
+		   cusfocus.cusfocus_user_dept wq_user_dept,
+		   cusfocus.cusfocus_user user_user
+WHERE    wq_user_dept.user_dept_id = wq_user.user_dept_id
+AND    wq_user_dept.work_queue = 'Y'
+AND	user_user.user_id = :as_user_id
+AND user_user.supervisor = 'Y'
+UNION
+SELECT
+         wq_user.id as header_id,   
+         wq_user.user_first_name + ' ' + wq_user.user_last_name as description,
+         'Work' as type
+    FROM cusfocus.cusfocus_user  wq_user ,
+		   cusfocus.cusfocus_user_dept wq_user_dept,
+			cusfocus.work_queue_security,
+		   cusfocus.cusfocus_user_dept user_user_dept,
+		   cusfocus.cusfocus_user user_user
+WHERE    wq_user_dept.user_dept_id = wq_user.user_dept_id
+AND    wq_user_dept.work_queue = 'Y'
+AND	wq_user.user_id = cusfocus.work_queue_security.work_queue_id
+AND	user_user.user_id = :as_user_id
+AND isnull(user_user.supervisor, 'N') = 'N'
+AND user_user.user_dept_id = user_user_dept.user_dept_id
+AND	( cusfocus.work_queue_security.user_dept_id = user_user_dept.user_dept_id
+		OR
+		  cusfocus.work_queue_security.user_id = user_user.user_id )
+" arguments=(("as_user_id", string)) )
+text(band=header alignment="0" text="ID" border="0" color="33554432" x="69" y="28" height="52" width="142" html.valueishtml="0"  name=work_queue_header_id_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Work Queue Description" border="0" color="33554432" x="910" y="32" height="52" width="1792" html.valueishtml="0"  name=work_queue_description_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Type" border="0" color="33554432" x="297" y="28" height="52" width="142" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="64" y="0" height="52" width="192" format="[general]" html.valueishtml="0"  name=header_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="709" y="0" height="52" width="2702" format="[general]" html.valueishtml="0"  name=description visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="315" y="0" height="52" width="187" format="[general]" html.valueishtml="0"  name=type visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,47 @@
+﻿$PBExportHeader$f_stringreplaceall.srf
+$PBExportComments$Replace all occurences of a substring within a string with a new value.
+global type f_stringreplaceall from function_object
+end type
+
+forward prototypes
+global subroutine f_stringreplaceall (ref string a_cstring, string a_csearch, string a_creplace)
+end prototypes
+
+global subroutine f_stringreplaceall (ref string a_cstring, string a_csearch, string a_creplace);/****************************************************************************************
+	Function:	f_StringReplaceAll
+	Purpose:		Replace all occurences of a_cSearch in a_cString with a_cReplace.
+	
+	Arguments:	STRING	a_cString - the string to be modified (REFERENCE)
+					STRING	a_cSearch - the substring to replace
+					STRING	a_cReplace - the substring to use in place of a_cSearch
+****************************************************************************************/
+
+LONG		l_nSearchLen, l_nReplaceLen, l_nPos, l_nStartPos
+STRING	l_cSubStr1, l_cSubStr2, l_cTempStr
+
+l_nSearchLen = Len (a_cSearch)
+l_nReplaceLen = Len (a_cReplace)
+
+// a source string and search string are required.
+IF (Len (a_cString) > 0) AND (l_nSearchLen > 0) THEN
+	
+	l_nStartPos = 1
+	l_cTempStr = a_cString
+	DO
+		
+		l_nPos = Pos (l_cTempStr, a_cSearch, l_nStartPos)
+		IF l_nPos > 0 THEN
+			
+			l_cSubStr1 = Left (l_cTempStr, l_nPos - 1)
+			l_cSubStr2 = Mid (l_cTempStr, l_nPos + l_nSearchLen)
+			l_cTempStr = l_cSubStr1 + a_cReplace + l_cSubStr2
+			l_nStartPos = l_nPos + l_nReplaceLen
+			
+		END IF
+		
+	LOOP WHILE l_nPos > 0
+	a_cString = l_cTempStr
+	
+END IF
+end subroutine
+

@@ -1,0 +1,20 @@
+﻿$PBExportHeader$d_correspondence_docs.srd
+$PBExportComments$Provides access to the correspondence_docs for inserting new records and updating existing records.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=correspondence_id dbname="correspondence_docs.correspondence_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="correspondence_docs.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="correspondence_docs.updated_timestamp" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.correspondence_docs~" ) COLUMN(NAME=~"cusfocus.correspondence_docs.correspondence_id~") COLUMN(NAME=~"cusfocus.correspondence_docs.updated_by~") COLUMN(NAME=~"cusfocus.correspondence_docs.updated_timestamp~")WHERE(    EXP1 =~"cusfocus.correspondence_docs.correspondence_id~"   OP =~"=~"    EXP2 =~":correspondence_id~" ) ) ARG(NAME = ~"correspondence_id~" TYPE = string) " update="cusfocus.correspondence_docs" updatewhere=0 updatekeyinplace=no arguments=(("correspondence_id", string)) )
+text(band=header alignment="2" text="Correspondence Id" border="0" color="0" x="5" y="4" height="64" width="494"  name=correspondence_id_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Updated By" border="0" color="0" x="503" y="4" height="64" width="311"  name=updated_by_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Updated Timestamp" border="0" color="0" x="818" y="4" height="64" width="603"  name=updated_timestamp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="5" y="4" height="76" width="302" format="[general]"  name=correspondence_id edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="503" y="4" height="76" width="302" format="[general]"  name=updated_by edit.limit=10 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="0" color="0" x="818" y="4" height="76" width="603" format="[shortdate] [time]"  name=updated_timestamp edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

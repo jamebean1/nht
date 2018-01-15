@@ -1,0 +1,22 @@
+﻿$PBExportHeader$dddw_letters.srd
+$PBExportComments$Letter Types DropDownDataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes key=yes name=letter_id dbname="letter_types.letter_id" )
+ column=(type=char(40) updatewhereclause=yes name=letter_name dbname="letter_types.letter_name" )
+ column=(type=char(100) updatewhereclause=yes name=letter_desc dbname="letter_types.letter_desc" )
+ column=(type=char(1) updatewhereclause=yes name=letter_survey dbname="letter_types.letter_survey" )
+ column=(type=char(255) updatewhereclause=yes name=letter_tmplt_filename dbname="letter_types.letter_tmplt_filename" )
+ column=(type=char(4) updatewhereclause=yes name=case_types dbname="letter_types.case_types" )
+ column=(type=char(4) updatewhereclause=yes name=source_types dbname="letter_types.source_types" )
+ column=(type=char(1) updatewhereclause=yes name=active dbname="letter_types.active" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.letter_types~" ) COLUMN(NAME=~"cusfocus.letter_types.letter_id~") COLUMN(NAME=~"cusfocus.letter_types.letter_name~") COLUMN(NAME=~"cusfocus.letter_types.letter_desc~") COLUMN(NAME=~"cusfocus.letter_types.letter_survey~") COLUMN(NAME=~"cusfocus.letter_types.letter_tmplt_filename~") COLUMN(NAME=~"cusfocus.letter_types.case_types~") COLUMN(NAME=~"cusfocus.letter_types.source_types~") COLUMN(NAME=~"cusfocus.letter_types.active~")) " update="cusfocus.letter_types" updatewhere=0 updatekeyinplace=no  sort="letter_description A " )
+compute(band=detail alignment="0" expression="If (IsNull (letter_desc), letter_name, letter_name + ' - ' + If( ( Len( letter_desc ) + Len( letter_name ) ) < 50, letter_desc , ( Mid( letter_desc, 1, 50 )+~"...~" ) ) )"border="0" color="0" x="9" y="4" height="64" width="2834" format="[GENERAL]" html.valueishtml="0"  name=letter_description visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

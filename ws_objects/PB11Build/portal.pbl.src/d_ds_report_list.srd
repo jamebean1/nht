@@ -1,0 +1,40 @@
+﻿$PBExportHeader$d_ds_report_list.srd
+$PBExportComments$Report List DataStore
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=96 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=report_id dbname="reports.report_id" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=report_name dbname="reports.report_name" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=report_desc dbname="reports.report_desc" )
+ column=(type=char(100) updatewhereclause=yes name=reports_report_dtwndw_frmt_strng dbname="reports.report_dtwndw_frmt_strng" )
+ column=(type=char(1) updatewhereclause=yes name=reports_performance_stats dbname="reports.performance_stats" )
+ column=(type=char(1) updatewhereclause=yes name=reports_date_parms dbname="reports.date_parms" )
+ column=(type=char(10) updatewhereclause=yes name=reports_owner dbname="reports.owner" )
+ column=(type=char(50) updatewhereclause=yes name=reports_external_source dbname="reports.external_source" )
+ column=(type=char(100) updatewhereclause=yes name=reports_path dbname="reports.path" )
+ column=(type=char(100) updatewhereclause=yes name=macro dbname="reports.macro" )
+ retrieve="SELECT  cusfocus.reports.report_id ,
+           cusfocus.reports.report_name ,
+           cusfocus.reports.report_desc ,
+           cusfocus.reports.report_dtwndw_frmt_strng ,
+           cusfocus.reports.performance_stats ,
+           cusfocus.reports.date_parms ,
+           cusfocus.reports.owner ,
+           cusfocus.reports.external_source ,
+           cusfocus.reports.path ,
+           cusfocus.reports.macro     
+        FROM cusfocus.reports      
+        WHERE (( cusfocus.reports.report_id in 
+(select report_id from cusfocus.report_security where user_id = :user_id) )
+ or ( cusfocus.reports.owner = :user_id ) ) 
+
+" update="cusfocus.reports" updatewhere=0 updatekeyinplace=no arguments=(("user_id", string)) )
+column(band=detail id=1 alignment="0" tabsequence=10 border="0" color="0" x="37" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=report_id visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="0" color="0" x="361" y="12" height="76" width="1125" format="[general]" html.valueishtml="0"  name=report_name visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

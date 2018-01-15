@@ -1,0 +1,10 @@
+﻿$PBExportHeader$str_pserverinfo.srs
+global type str_pserverinfo from structure
+	unsignedlong		ulServerType
+	unsignedlong		ulServerVersion
+	unsignedlong		ulServerSpecial
+	string		szImageLocServer[48]
+	string		szImageLocVolume[16]
+	integer		sMaxUsers
+end type
+

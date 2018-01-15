@@ -1,0 +1,334 @@
+﻿$PBExportHeader$m_popup_mdi.srm
+$PBExportComments$Popup menu for MDI windows
+forward
+global type m_popup_mdi from menu
+end type
+type m_popup from menu within m_popup_mdi
+end type
+type m_tile from menu within m_popup
+end type
+type m_layer from menu within m_popup
+end type
+type m_cascade from menu within m_popup
+end type
+type m_-p1 from menu within m_popup
+end type
+type m_arrangeicons from menu within m_popup
+end type
+type m_printersetup from menu within m_popup
+end type
+type m_-p2 from menu within m_popup
+end type
+type m_closeall from menu within m_popup
+end type
+type m_-p3 from menu within m_popup
+end type
+type m_exit from menu within m_popup
+end type
+type m_popup from menu within m_popup_mdi
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-p1 m_-p1
+m_arrangeicons m_arrangeicons
+m_printersetup m_printersetup
+m_-p2 m_-p2
+m_closeall m_closeall
+m_-p3 m_-p3
+m_exit m_exit
+end type
+end forward
+
+global type m_popup_mdi from menu
+m_popup m_popup
+end type
+global m_popup_mdi m_popup_mdi
+
+type variables
+
+
+end variables
+
+on m_popup_mdi.create
+m_popup_mdi=this
+this.m_popup=create m_popup
+this.Item[]={this.m_popup}
+end on
+
+on m_popup_mdi.destroy
+destroy(this.m_popup)
+end on
+
+type m_popup from menu within m_popup_mdi
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_-p1 m_-p1
+m_arrangeicons m_arrangeicons
+m_printersetup m_printersetup
+m_-p2 m_-p2
+m_closeall m_closeall
+m_-p3 m_-p3
+m_exit m_exit
+end type
+
+on m_popup.create
+this.Text="&Popup"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_-p1=create m_-p1
+this.m_arrangeicons=create m_arrangeicons
+this.m_printersetup=create m_printersetup
+this.m_-p2=create m_-p2
+this.m_closeall=create m_closeall
+this.m_-p3=create m_-p3
+this.m_exit=create m_exit
+this.Item[]={this.m_tile, &
+this.m_layer, &
+this.m_cascade, &
+this.m_-p1, &
+this.m_arrangeicons, &
+this.m_printersetup, &
+this.m_-p2, &
+this.m_closeall, &
+this.m_-p3, &
+this.m_exit}
+end on
+
+on m_popup.destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_-p1)
+destroy(this.m_arrangeicons)
+destroy(this.m_printersetup)
+destroy(this.m_-p2)
+destroy(this.m_closeall)
+destroy(this.m_-p3)
+destroy(this.m_exit)
+end on
+
+type m_tile from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_Tile
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that no windows in
+//                  the MDI frame overlap but all windows are
+//                  visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Tile!)
+END IF
+end event
+
+on m_tile.create
+this.Text="&Tile"
+this.Microhelp="Arrange windows as tiled"
+this.ToolBarItemVisible=false
+end on
+
+on m_tile.destroy
+end on
+
+type m_layer from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_Layer
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that all windows are
+//                  sized to use the full screen and are layered on
+//                  top of one another.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Layer!)
+END IF
+end event
+
+on m_layer.create
+this.Text="La&yer"
+this.Microhelp="Arrange the windows as layered"
+this.ToolBarItemVisible=false
+end on
+
+type m_cascade from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_Cascade
+//  Event         : Clicked
+//  Description   : Arrange the open windows so they overlap each
+//                  other with the title bar of each window
+//                  remaining visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Cascade!)
+END IF
+end event
+
+on m_cascade.create
+this.Text="&Cascade"
+this.Microhelp="Arrange the windows as cascaded"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p1 from menu within m_popup
+end type
+
+on m_-p1.create
+this.Text="-"
+end on
+
+type m_arrangeicons from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_ArrangeIcons
+//  Event         : Clicked
+//  Description   : Arrange the open windows that have been
+//                  minimized to icons.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.ArrangeSheets(Icons!)
+END IF
+end event
+
+on m_arrangeicons.create
+this.Text="&Arrange Icons"
+this.Microhelp="Arrange the window icons"
+this.ToolBarItemVisible=false
+end on
+
+type m_printersetup from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_PrintSetup
+//  Event         : Clicked
+//  Description   : Modify or view the printer setup for this
+//                  session.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+PrintSetUp()
+end event
+
+on m_printersetup.create
+this.Text="&Printer Setup"
+this.Microhelp="Change the printer setup"
+end on
+
+type m_-p2 from menu within m_popup
+end type
+
+on m_-p2.create
+this.Text="-"
+end on
+
+type m_closeall from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_CloseAll
+//  Event         : Clicked
+//  Description   : Close all the windows in the MDI frame.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   FWCA.MGR.i_MDIFrame.TriggerEvent("pc_CloseAll")
+END IF
+
+end event
+
+on m_closeall.create
+this.Text="C&lose All"
+this.Microhelp="Close all open windows"
+this.ToolBarItemVisible=false
+end on
+
+type m_-p3 from menu within m_popup
+end type
+
+on m_-p3.create
+this.Text="-"
+end on
+
+type m_exit from menu within m_popup
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Popup_MDI.m_Exit
+//  Event         : Clicked
+//  Description   : Exit the application.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1996.  All Rights Reserved.
+//******************************************************************
+
+FWCA.MGR.fu_ExitApp()
+end event
+
+on m_exit.create
+this.Text="E&xit"
+this.Microhelp="Exit the application"
+end on
+

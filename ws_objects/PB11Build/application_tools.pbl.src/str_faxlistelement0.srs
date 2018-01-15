@@ -1,0 +1,26 @@
+﻿$PBExportHeader$str_faxlistelement0.srs
+global type str_faxlistelement0 from structure
+	long		faxhandle
+	long		flags
+	datetime		fax_datetime
+	string		to_name[18]
+	string		to_number[16]
+	integer		numpages
+	integer		fax_status
+	integer		fax_error_code
+	datetime		faxsend_datetime
+	integer		otherstuff
+	integer		displayflags
+	integer		numtrxrecs
+	long		ulBFTBytes
+	string		szOrigBFTName
+	integer		usPagesInFront
+	string		billinfo1[16]
+	string		billinfo2[16]
+	string		unique_id[16]
+	integer		usFolderIndex
+	datetime		histchg_datetime
+	string		userid[22]
+	string		reserved[98]
+end type
+

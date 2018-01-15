@@ -1,0 +1,16 @@
+﻿$PBExportHeader$dddw_parent_group_id_vt.srd
+$PBExportComments$DropDownDatawindow for Distinct Case Log Generic 1 (Vermont)
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(50) updatewhereclause=yes name=case_log_generic_2 dbname="case_log.case_log_generic_2" )
+ retrieve="  SELECT DISTINCT cusfocus.case_log.case_log_generic_2
+    FROM cusfocus.case_log
+   WHERE cusfocus.case_log.case_log_generic_2 is not null
+     AND cusfocus.case_log.case_log_generic_2 <> ''
+ORDER BY cusfocus.case_log.case_log_generic_2" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="5" y="8" height="76" width="704" format="[general]"  name=case_log_generic_2 edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

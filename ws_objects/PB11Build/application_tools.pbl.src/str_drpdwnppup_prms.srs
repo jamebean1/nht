@@ -1,0 +1,12 @@
+﻿$PBExportHeader$str_drpdwnppup_prms.srs
+$PBExportComments$Structure for holding parms passed to a drop-down pop-up window.
+global type str_drpdwnppup_prms from structure
+    dragobject do_cntrl
+    window w_prnt
+    string s_arg1
+    string s_arg2
+    string s_arg3
+    userobject u_prnt
+    string s_clmn
+end type
+

@@ -1,0 +1,44 @@
+﻿$PBExportHeader$d_special_flags.srd
+$PBExportComments$List of available special flags
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=72 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="553648127" )
+table(column=(type=char(10) updatewhereclause=yes name=special_flags_flag_key dbname="special_flags.flag_key" )
+ column=(type=char(50) updatewhereclause=yes name=special_flags_flag_desc dbname="special_flags.flag_desc" )
+ column=(type=char(10) updatewhereclause=yes name=assigned_special_flags_updated_by dbname="assigned_special_flags.updated_by" )
+ column=(type=datetime updatewhereclause=yes name=assigned_special_flags_updated_timestamp dbname="assigned_special_flags.updated_timestamp" )
+ column=(type=char(10) updatewhereclause=yes name=assigned_special_flags_assigned_flag_id dbname="assigned_special_flags.assigned_flag_id" )
+ column=(type=char(10) updatewhereclause=yes name=assigned_special_flags_flag_id dbname="assigned_special_flags.flag_id" )
+ column=(type=char(20) updatewhereclause=yes name=assigned_special_flags_source_id dbname="assigned_special_flags.source_id" )
+ column=(type=char(1) updatewhereclause=yes name=assigned_special_flags_source_type dbname="assigned_special_flags.source_type" )
+ column=(type=char(10) updatewhereclause=yes name=flag_id dbname="special_flags.flag_id" )
+ column=(type=char(1) updatewhereclause=yes name=assigned_special_flags_show_members dbname="assigned_special_flags.show_members" values="	Y/	N" )
+ retrieve="  SELECT cusfocus.special_flags.flag_key,   
+         cusfocus.special_flags.flag_desc,   
+         cusfocus.assigned_special_flags.updated_by,   
+         cusfocus.assigned_special_flags.updated_timestamp,   
+         cusfocus.assigned_special_flags.assigned_flag_id,   
+         cusfocus.assigned_special_flags.flag_id,   
+         cusfocus.assigned_special_flags.source_id,   
+         cusfocus.assigned_special_flags.source_type,   
+         cusfocus.special_flags.flag_id,   
+         cusfocus.assigned_special_flags.show_members  
+    FROM cusfocus.special_flags,   
+         cusfocus.assigned_special_flags  
+   WHERE ( cusfocus.special_flags.flag_id *= cusfocus.assigned_special_flags.flag_id) and  
+         ( ( cusfocus.assigned_special_flags.source_id = :source_id ) AND  
+         ( cusfocus.assigned_special_flags.source_type = :source_type ) AND  
+         ( cusfocus.special_flags.active = 'Y' ) AND  
+         ( cusfocus.special_flags.flag_id not in ( select cusfocus.assigned_special_flags.flag_id from cusfocus.assigned_special_flags where cusfocus.assigned_special_flags.source_id = :source_id and cusfocus.assigned_special_flags.source_type = :source_type ) ) )   
+ORDER BY cusfocus.special_flags.flag_desc ASC   
+" arguments=(("source_id", string),("source_type", string))  sort="special_flags_flag_key A " )
+text(band=header alignment="0" text="Flag Key" border="6" color="0" x="9" y="4" height="64" width="736" html.valueishtml="0"  name=special_flags_flag_key_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="60" width="736" format="[general]" html.valueishtml="0"  name=special_flags_flag_key visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

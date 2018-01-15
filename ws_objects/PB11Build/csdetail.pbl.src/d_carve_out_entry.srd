@@ -1,0 +1,65 @@
+﻿$PBExportHeader$d_carve_out_entry.srd
+$PBExportComments$DAtawindow for editing carve out information.
+release 11;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no )
+header(height=0 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=736 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=co_id dbname="carve_out_entries.co_id" dbalias=".co_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=case_number dbname="carve_out_entries.case_number" dbalias=".case_number" )
+ column=(type=datetime update=yes updatewhereclause=yes name=start_date dbname="carve_out_entries.start_date" dbalias=".start_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=end_date dbname="carve_out_entries.end_date" dbalias=".end_date" )
+ column=(type=datetime update=yes updatewhereclause=yes name=est_end_date dbname="carve_out_entries.est_end_date" dbalias=".est_end_date" )
+ column=(type=char(32766) update=yes updatewhereclause=yes name=reason dbname="reason" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=created_by dbname="carve_out_entries.created_by" dbalias=".created_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=created_timestamp dbname="carve_out_entries.created_timestamp" dbalias=".created_timestamp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=closed_by dbname="carve_out_entries.closed_by" dbalias=".closed_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=closed_timestamp dbname="carve_out_entries.closed_timestamp" dbalias=".closed_timestamp" )
+ column=(type=long update=yes updatewhereclause=yes name=num_days dbname="carve_out_entries.num_days" dbalias=".num_days" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=reminder_prompt dbname="carve_out_entries.reminder_prompt" dbalias=".reminder_prompt" values="Create Reminder:	Y/Create Reminder:	N" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=case_type dbname="carve_out_entries.case_type" dbalias=".case_type" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=source_type dbname="carve_out_entries.source_type" dbalias=".source_type" )
+ retrieve="  SELECT cusfocus.carve_out_entries.co_id,   
+         cusfocus.carve_out_entries.case_number,   
+         cusfocus.carve_out_entries.start_date,   
+         cusfocus.carve_out_entries.end_date,   
+         cusfocus.carve_out_entries.est_end_date,   
+         convert(varchar(max),cusfocus.carve_out_entries.reason) as reason,   
+         cusfocus.carve_out_entries.created_by,   
+         cusfocus.carve_out_entries.created_timestamp,   
+         cusfocus.carve_out_entries.closed_by,   
+         cusfocus.carve_out_entries.closed_timestamp,   
+         cusfocus.carve_out_entries.num_days,   
+         cusfocus.carve_out_entries.reminder_prompt,   
+         cusfocus.carve_out_entries.case_type,   
+         cusfocus.carve_out_entries.source_type  
+    FROM cusfocus.carve_out_entries  
+   WHERE cusfocus.carve_out_entries.co_id = :entry_ID    
+" update="cusfocus.carve_out_entries" updatewhere=0 updatekeyinplace=yes arguments=(("entry_ID", string)) )
+groupbox(band=detail text="Starting Information"border="5" color="0" x="41" y="4" height="320" width="1166"  name=gb_starting_info  tag="" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+groupbox(band=detail text="Closing Information"border="5" color="0" x="1243" y="4" height="320" width="1166"  name=gb_closing_info  tag="" visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=6 alignment="0" tabsequence=30 border="5" color="0" x="443" y="380" height="312" width="1966" format="[general]" html.valueishtml="0"  name=reason visible="1" edit.limit=1000 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=10 border="5" color="0" x="590" y="108" height="64" width="370" format="mm/dd/yyyy" html.valueishtml="0"  name=start_date visible="1" editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=5 alignment="0" tabsequence=20 border="5" color="0" x="590" y="200" height="64" width="370" format="mm/dd/yyyy" html.valueishtml="0"  name=est_end_date visible="1" editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="1" tabsequence=32766 border="5" color="0" x="1787" y="200" height="64" width="370" format="[general]" html.valueishtml="0"  name=num_days visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.displayonly=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+button(band=detail text="..." filename="" enabled=yes action="0" border="0" color="0" x="983" y="192" height="76" width="82" vtextalign="0" htextalign="0"  name=b_est_end_cal visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+button(band=detail text="..." filename="" enabled=yes action="0" border="0" color="0" x="983" y="100" height="76" width="82" vtextalign="0" htextalign="0"  name=b_start_cal visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="5" color="0" x="1787" y="108" height="64" width="370" format="mm/dd/yyyy" html.valueishtml="0"  name=end_date visible="1" editmask.mask="mm/dd/yyyy" editmask.focusrectangle=no  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+button(band=detail text="..." filename="" enabled=yes action="0" border="0" color="0" x="2181" y="100" height="76" width="82" vtextalign="0" htextalign="0"  name=b_end_cal visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=detail alignment="1" text="Start Date:" border="0" color="0" x="178" y="108" height="52" width="393" html.valueishtml="0"  name=start_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Est. End Date:" border="0" color="0" x="178" y="200" height="52" width="393" html.valueishtml="0"  name=est_end_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Reason:" border="0" color="0" x="37" y="380" height="52" width="393" html.valueishtml="0"  name=reason_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="End Date:" border="0" color="0" x="1376" y="108" height="52" width="393" html.valueishtml="0"  name=end_date_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Total Days:" border="0" color="0" x="1376" y="200" height="52" width="393" html.valueishtml="0"  name=num_days_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

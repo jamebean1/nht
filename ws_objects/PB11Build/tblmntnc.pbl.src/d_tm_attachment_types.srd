@@ -1,0 +1,62 @@
+﻿$PBExportHeader$d_tm_attachment_types.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes key=yes identity=yes name=type_key dbname="case_attachment_types.type_key" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=type_desc dbname="case_attachment_types.type_desc" )
+ column=(type=char(5) update=yes updatewhereclause=yes name=type_extension dbname="case_attachment_types.type_extension" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type_set_limit dbname="case_attachment_types.type_set_limit" values="	Y/	N" )
+ column=(type=long update=yes updatewhereclause=yes name=type_byte_limit dbname="case_attachment_types.type_byte_limit" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=type_active dbname="case_attachment_types.type_active" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=type_updated_by dbname="case_attachment_types.type_updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=type_updated_date dbname="case_attachment_types.type_updated_date" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.case_attachment_types.type_key,   
+         cusfocus.case_attachment_types.type_desc,   
+         cusfocus.case_attachment_types.type_extension,   
+         cusfocus.case_attachment_types.type_set_limit,   
+         cusfocus.case_attachment_types.type_byte_limit, 
+		   cusfocus.case_attachment_types.type_active,   
+         cusfocus.case_attachment_types.type_updated_by,   
+         cusfocus.case_attachment_types.type_updated_date, 
+			cusfocus.cusfocus_user.active   
+    FROM cusfocus.case_attachment_types,
+         cusfocus.cusfocus_user
+   WHERE ( cusfocus.case_attachment_types.type_updated_by = cusfocus.cusfocus_user.user_id ) AND
+			( cusfocus.case_attachment_types.type_updated_by <> 'cusfocus' )
+
+UNION
+
+  SELECT cusfocus.case_attachment_types.type_key,   
+         cusfocus.case_attachment_types.type_desc,   
+         cusfocus.case_attachment_types.type_extension,   
+         cusfocus.case_attachment_types.type_set_limit,   
+         cusfocus.case_attachment_types.type_byte_limit,
+		   cusfocus.case_attachment_types.type_active,    
+         cusfocus.case_attachment_types.type_updated_by,   
+         cusfocus.case_attachment_types.type_updated_date,
+         ''
+    FROM cusfocus.case_attachment_types
+   WHERE ( cusfocus.case_attachment_types.type_updated_by = 'cusfocus' ) 
+" update="cusfocus.case_attachment_types" updatewhere=0 updatekeyinplace=yes  sort="type_desc A " )
+text(band=header alignment="2" text="Description" border="6" color="0" x="9" y="8" height="64" width="1403"  name=type_desc_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Extension" border="6" color="0" x="1422" y="8" height="64" width="357"  name=type_extension_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Limit Size" border="6" color="0" x="1787" y="8" height="64" width="329"  name=type_set_limit_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Byte Limit" border="6" color="0" x="2126" y="8" height="64" width="416"  name=type_byte_limit_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="2551" y="8" height="64" width="283"  name=type_active_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2843" y="8" height="64" width="549"  name=type_updated_by_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="3401" y="8" height="64" width="722"  name=type_updated_date_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="9" y="8" height="76" width="1403" format="[general]"  name=type_desc edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="1422" y="8" height="76" width="357" format="[general]"  name=type_extension edit.limit=5 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=30 border="5" color="0" x="1787" y="8" height="76" width="329" format="[general]"  name=type_set_limit checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=5 alignment="1" tabsequence=40 border="5" color="0" x="2126" y="8" height="76" width="416" format="[general]"  name=type_byte_limit edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="2" tabsequence=50 border="0" color="0" x="2551" y="8" height="76" width="283" format="[general]"  name=type_active checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+compute(band=detail alignment="0" expression="if ( (  type_updated_by = 'cusfocus' ) ,  type_updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  type_updated_by + ' (inactive)'  ,type_updated_by  ) ) ) "border="5" color="0" x="2843" y="8" height="76" width="549" format="[GENERAL]"  name=cc_updated_by  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="5" color="0" x="3401" y="8" height="76" width="722" format="[shortdate] [time]"  name=type_updated_date edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="20" height="64" width="1403" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="0" y1="8" x2="4585" y2="8"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

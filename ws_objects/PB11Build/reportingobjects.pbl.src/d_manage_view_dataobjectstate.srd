@@ -1,0 +1,45 @@
+﻿$PBExportHeader$d_manage_view_dataobjectstate.srd
+$PBExportComments$This is the datawindow that saves the DWSyntax for a datawindow to the database.
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=idnty dbname="DataObjectState.Idnty" )
+ column=(type=long update=yes updatewhereclause=yes name=userid dbname="DataObjectState.UserID" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=dataobjectname dbname="DataObjectState.DataObjectName" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="DataObjectState.Name" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isdefault dbname="DataObjectState.IsDefault" )
+ column=(type=long update=yes updatewhereclause=yes name=originalsyntaxblobid dbname="DataObjectState.OriginalSyntaxBlobID" )
+ column=(type=long update=yes updatewhereclause=yes name=savedsyntaxblobid dbname="DataObjectState.SavedSyntaxBlobID" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=sortstring dbname="DataObjectState.SortString" )
+ column=(type=char(57) updatewhereclause=yes name=itemicon dbname="ItemIcon" )
+ column=(type=long update=yes updatewhereclause=yes name=createdbyuserid dbname="DataObjectState.CreatedByUserID" )
+ column=(type=long update=yes updatewhereclause=yes name=enttyid dbname="DataObjectState.EnttyID" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isnavigationdestination dbname="DataObjectState.IsNavigationDestination" initial="N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=autoretrieve dbname="DataObjectState.AutoRetrieve" )
+ column=(type=char(42) updatewhereclause=yes name=createdbyusername dbname="CreatedByUserName" )
+ retrieve="  SELECT DataObjectState.Idnty,   
+         DataObjectState.UserID,   
+         DataObjectState.DataObjectName,   
+         DataObjectState.Name,   
+         DataObjectState.IsDefault,   
+         DataObjectState.OriginalSyntaxBlobID,   
+         DataObjectState.SavedSyntaxBlobID,   
+         DataObjectState.SortString,   
+         Case When DataObjectState.UserID Is Null Then 'Module - Reporting Desktop - Datawindow View (Global).bmp' Else 'Module - Reporting Desktop - Datawindow View.bmp' End ItemIcon,   
+         DataObjectState.CreatedByUserID,   
+         DataObjectState.EnttyID,   
+         DataObjectState.IsNavigationDestination,
+			DataObjectState.AutoRetrieve,
+			Contact.CntctLstNme + ', ' + Contact.CntctFrstNme as CreatedByUserName
+    FROM DataObjectState, Users, Contact
+   WHERE (DataObjectState.UserID = :al_userid OR DataObjectState.UserID is Null OR :as_globalviewadmin = 'Y') AND  
+         ((DataObjectState.DataObjectName = 'RprtCnfgID=' + Convert(VarChar, :al_rprtcnfgid)) or     
+			 (DataObjectState.DataObjectName like :as_displaydataobjectname + '%' And :as_displaydataobjectname <> '')) AND
+			DataObjectState.CreatedByUserID = Users.UserID AND
+			Users.UserCntctID = Contact.CntctID
+" update="DataObjectState" updatewhere=0 updatekeyinplace=yes arguments=(("al_rprtcnfgid", number),("al_userid", number),("as_displaydataobjectname", string),("as_globalviewadmin", string))  sort="name A " )
+column(band=detail id=14 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="0" height="76" width="1344" format="[general]"  name=createdbyusername edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

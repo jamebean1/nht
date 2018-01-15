@@ -1,0 +1,391 @@
+﻿$PBExportHeader$d_case_prop_field_histchg.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=148 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=updated_by dbname="case_properties_history.updated_by" )
+ column=(type=datetime updatewhereclause=yes name=updated_timestamp dbname="case_properties_history.updated_timestamp" )
+ column=(type=char(2) updatewhereclause=yes name=case_type dbname="case_properties_history.case_type" )
+ column=(type=char(50) updatewhereclause=yes name=generic_1 dbname="generic_1" )
+ column=(type=char(50) updatewhereclause=yes name=generic_2 dbname="generic_2" )
+ column=(type=char(50) updatewhereclause=yes name=generic_3 dbname="generic_3" )
+ column=(type=char(50) updatewhereclause=yes name=generic_4 dbname="generic_4" )
+ column=(type=char(50) updatewhereclause=yes name=generic_5 dbname="generic_5" )
+ column=(type=char(50) updatewhereclause=yes name=generic_6 dbname="generic_6" )
+ column=(type=char(50) updatewhereclause=yes name=generic_7 dbname="generic_7" )
+ column=(type=char(50) updatewhereclause=yes name=generic_8 dbname="generic_8" )
+ column=(type=char(50) updatewhereclause=yes name=generic_9 dbname="generic_9" )
+ column=(type=char(50) updatewhereclause=yes name=generic_10 dbname="generic_10" )
+ column=(type=char(50) updatewhereclause=yes name=generic_11 dbname="generic_11" )
+ column=(type=char(50) updatewhereclause=yes name=generic_12 dbname="generic_12" )
+ column=(type=char(50) updatewhereclause=yes name=generic_13 dbname="generic_13" )
+ column=(type=char(50) updatewhereclause=yes name=generic_14 dbname="generic_14" )
+ column=(type=char(50) updatewhereclause=yes name=generic_15 dbname="generic_15" )
+ column=(type=char(50) updatewhereclause=yes name=generic_16 dbname="generic_16" )
+ column=(type=char(50) updatewhereclause=yes name=generic_17 dbname="generic_17" )
+ column=(type=char(50) updatewhereclause=yes name=generic_18 dbname="generic_18" )
+ column=(type=char(50) updatewhereclause=yes name=generic_19 dbname="generic_19" )
+ column=(type=char(50) updatewhereclause=yes name=generic_20 dbname="generic_20" )
+ column=(type=char(50) updatewhereclause=yes name=generic_21 dbname="generic_21" )
+ column=(type=char(50) updatewhereclause=yes name=generic_22 dbname="generic_22" )
+ column=(type=char(50) updatewhereclause=yes name=generic_23 dbname="generic_23" )
+ column=(type=char(50) updatewhereclause=yes name=generic_24 dbname="generic_24" )
+ column=(type=char(50) updatewhereclause=yes name=generic_25 dbname="generic_25" )
+ column=(type=char(50) updatewhereclause=yes name=generic_26 dbname="generic_26" )
+ column=(type=char(50) updatewhereclause=yes name=generic_27 dbname="generic_27" )
+ column=(type=char(50) updatewhereclause=yes name=generic_28 dbname="generic_28" )
+ column=(type=char(50) updatewhereclause=yes name=generic_29 dbname="generic_29" )
+ column=(type=char(50) updatewhereclause=yes name=generic_30 dbname="generic_30" )
+ column=(type=char(150) updatewhereclause=yes name=system_options_option_value dbname="system_options.option_value" )
+ column=(type=char(1) updatewhereclause=yes name=source_type dbname="case_properties_history.source_type" )
+ column=(type=char(10) updatewhereclause=yes name=a_updated_by dbname="case_properties_history.a_updated_by" )
+ column=(type=datetime updatewhereclause=yes name=a_updated_timestamp dbname="case_properties_history.a_updated_timestamp" )
+ retrieve="SELECT  b.updated_by updated_by, 
+	b.updated_timestamp updated_timestamp,
+	b.case_type case_type,  
+	generic_1 = case  
+				WHEN ISNULL(a.case_generic_1,'') <> ISNULL(b.case_generic_1,'') THEN ISNULL(b.case_generic_1 ,'')
+				ELSE null 
+			end, 
+			generic_2 = case  
+				WHEN ISNULL(a.case_generic_2,'') <> ISNULL(b.case_generic_2,'') THEN ISNULL(b.case_generic_2 ,'')
+				ELSE null 
+			end, 
+			generic_3 = case  
+				WHEN ISNULL(a.case_generic_3,'') <> ISNULL(b.case_generic_3,'') THEN ISNULL(b.case_generic_3 ,'')
+				ELSE null 
+			end, 
+			generic_4 = case  
+				WHEN ISNULL(a.case_generic_4,'') <> ISNULL(b.case_generic_4,'') THEN ISNULL(b.case_generic_4 ,'')
+				ELSE null 
+			end, 
+			generic_5 = case  
+				WHEN ISNULL(a.case_generic_5,'') <> ISNULL(b.case_generic_5,'') THEN ISNULL(b.case_generic_5 ,'')
+				ELSE null 
+			end, 
+			generic_6 = case  
+				WHEN ISNULL(a.case_generic_6,'') <> ISNULL(b.case_generic_6,'') THEN ISNULL(b.case_generic_6 ,'')
+				ELSE null
+			end, 
+			generic_7 = case  
+				WHEN ISNULL(a.case_generic_7,'') <> ISNULL(b.case_generic_7,'') THEN ISNULL(b.case_generic_7 ,'')
+				ELSE null 
+			end, 
+			generic_8 = case  
+				WHEN ISNULL(a.case_generic_8,'') <> ISNULL(b.case_generic_8,'') THEN ISNULL(b.case_generic_8 ,'')
+				ELSE null 
+			end, 
+			generic_9 = case  
+				WHEN ISNULL(a.case_generic_9,'') <> ISNULL(b.case_generic_9,'') THEN ISNULL(b.case_generic_9 ,'')
+				ELSE null
+			end, 
+			generic_10 = case  
+				WHEN ISNULL(a.case_generic_10,'') <> ISNULL(b.case_generic_10,'') THEN ISNULL(b.case_generic_10 ,'')
+				ELSE null 
+			end, 
+			generic_11 = case  
+				WHEN ISNULL(a.case_generic_11,'') <> ISNULL(b.case_generic_11,'') THEN ISNULL(b.case_generic_11 ,'')
+				ELSE null 
+			end, 
+			generic_12 = case  
+				WHEN ISNULL(a.case_generic_12,'') <> ISNULL(b.case_generic_12,'') THEN ISNULL(b.case_generic_12 ,'')
+				ELSE null 
+			end, 
+			generic_13 = case  
+				WHEN ISNULL(a.case_generic_13,'') <> ISNULL(b.case_generic_13,'') THEN ISNULL(b.case_generic_13 ,'')
+				ELSE null 
+			end, 
+			generic_14 = case  
+				WHEN ISNULL(a.case_generic_14,'') <> ISNULL(b.case_generic_14,'') THEN ISNULL(b.case_generic_14 ,'')
+				ELSE null 
+			end, 
+			generic_15 = case  
+				WHEN ISNULL(a.case_generic_15,'') <> ISNULL(b.case_generic_15,'') THEN ISNULL(b.case_generic_15 ,'')
+				ELSE null 
+			end, 
+			generic_16 = case  
+				WHEN ISNULL(a.case_generic_16,'') <> ISNULL(b.case_generic_16,'') THEN ISNULL(b.case_generic_16 ,'')
+				ELSE null 
+			end, 
+			generic_17 = case  
+				WHEN ISNULL (a.case_generic_17,'') <> ISNULL(b.case_generic_17,'') THEN ISNULL(b.case_generic_17 ,'')
+				ELSE null 
+			end, 
+			generic_18 = case  
+				WHEN ISNULL(a.case_generic_18,'') <> ISNULL(b.case_generic_18,'') THEN ISNULL(b.case_generic_18 ,'')
+				ELSE null 
+			end, 
+			generic_19 = case  
+				WHEN ISNULL(a.case_generic_19,'') <> ISNULL(b.case_generic_19,'') THEN ISNULL(b.case_generic_19 ,'')
+				ELSE null 
+			end, 
+			generic_20 = case  
+				WHEN ISNULL(a.case_generic_20,'') <> ISNULL(b.case_generic_20,'') THEN ISNULL(b.case_generic_20 ,'')
+				ELSE null
+			end, 
+			generic_21 = case  
+				WHEN ISNULL(a.case_generic_21,'') <> ISNULL(b.case_generic_21,'') THEN ISNULL(b.case_generic_21 ,'')
+				ELSE null 
+			end, 
+			generic_22 = case  
+				WHEN ISNULL(a.case_generic_22,'') <> ISNULL(b.case_generic_22,'') THEN ISNULL(b.case_generic_22 ,'')
+				ELSE null 
+			end, 
+			generic_23 = case  
+				WHEN ISNULL(a.case_generic_23,'') <> ISNULL(b.case_generic_23,'') THEN ISNULL(b.case_generic_23 ,'')
+				ELSE null 
+			end, 
+			generic_24 = case  
+				WHEN ISNULL(a.case_generic_24,'') <> ISNULL(b.case_generic_24,'') THEN ISNULL(b.case_generic_24 ,'')
+				ELSE null 
+			end, 
+			generic_25 = case  
+				WHEN ISNULL(a.case_generic_25,'') <> ISNULL(b.case_generic_25,'') THEN ISNULL(b.case_generic_25 ,'')
+				ELSE null 
+			end, 
+			generic_26 = case  
+				WHEN ISNULL(a.case_generic_26,'') <> ISNULL(b.case_generic_26,'') THEN ISNULL(b.case_generic_26 ,'')
+				ELSE null 
+			end, 
+			generic_27 = case  
+				WHEN ISNULL(a.case_generic_27,'') <> ISNULL(b.case_generic_27,'') THEN ISNULL(b.case_generic_27 ,'')
+				ELSE null 
+			end, 
+			generic_28 = case  
+				WHEN ISNULL(a.case_generic_28,'') <> ISNULL(b.case_generic_28,'') THEN ISNULL(b.case_generic_28 ,'')
+				ELSE null 
+			end, 
+			generic_29 = case  
+				WHEN ISNULL(a.case_generic_29,'') <> ISNULL(b.case_generic_29,'') THEN ISNULL(b.case_generic_29 ,'')
+				ELSE null 
+			end, 
+			generic_30 = case  
+				WHEN ISNULL(a.case_generic_30,'') <> ISNULL(b.case_generic_30,'') THEN ISNULL(b.case_generic_30 ,'')
+				ELSE null 
+			end,
+   cusfocus.system_options.option_value,
+	b.source_type,
+	a.updated_by a_updated_by, 
+	a.updated_timestamp a_updated_timestamp
+FROM cusfocus.case_properties_history a, 
+	  cusfocus.case_properties_history b,
+     cusfocus.system_options
+WHERE a.case_number = :a_cCaseNumber AND 
+	b.case_number = a.case_number AND 
+	b.source_type = a.source_type AND
+	b.case_type = a.case_type AND
+	b.updated_timestamp = ( select max( c.updated_timestamp ) 
+				from cusfocus.case_properties_history c 
+				where c.updated_timestamp < a.updated_timestamp AND
+						c.case_number = a.case_number AND
+						c.source_type = a.source_type AND
+						c.case_type = a.case_type)
+and cusfocus.system_options.option_name = 'configurable case type'
+ORDER BY case_type DESC, updated_timestamp DESC
+" arguments=(("a_cCaseNumber", string)) )
+line(band=detail x1="55" y1="144" x2="3506" y2="144"  name=l_1 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=detail id=34 alignment="0" tabsequence=32766 border="0" color="0" x="133" y="184" height="76" width="430" format="[general]" html.valueishtml="0"  name=system_options_option_value visible="1~t0" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="
+(If( NOT IsNull(  generic_1 ), 
+	f_column_label( 'case_generic_1', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_3 ), 
+	f_column_label( 'case_generic_3', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_5 ), 
+	f_column_label( 'case_generic_5', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_7 ), 
+	f_column_label( 'case_generic_7', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_9 ), 
+	f_column_label( 'case_generic_9', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_11 ), 
+	f_column_label( 'case_generic11', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_13 ), 
+	f_column_label( 'case_generic_13', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_15 ), 
+	f_column_label( 'case_generic_15', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_17 ), 
+	f_column_label( 'case_generic_17', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_19 ), 
+	f_column_label( 'case_generic_19', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_21 ), 
+	f_column_label( 'case_generic_21', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_23 ), 
+	f_column_label( 'case_generic_23', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_25 ), 
+	f_column_label( 'case_generic_25', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_27 ), 
+	f_column_label( 'case_generic_27', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_29 ), 
+	f_column_label( 'case_generic_29', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))"border="0" color="0" x="55" y="76" height="56" width="855" format="[GENERAL]" html.valueishtml="0"  name=compute_odd_labels visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+compute(band=detail alignment="0" expression="
+(If( NOT IsNull(  generic_2 ), 
+	f_column_label( 'case_generic_2', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_4 ), 
+	f_column_label( 'case_generic_4', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_6 ), 
+	f_column_label( 'case_generic_6', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_8 ), 
+	f_column_label( 'case_generic_8', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_10 ), 
+	f_column_label( 'case_generic_10', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_12 ), 
+	f_column_label( 'case_generic12', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_14 ), 
+	f_column_label( 'case_generic_14', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_16 ), 
+	f_column_label( 'case_generic_16', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_18 ), 
+	f_column_label( 'case_generic_18', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_20 ), 
+	f_column_label( 'case_generic_20', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_22 ), 
+	f_column_label( 'case_generic_22', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_24 ), 
+	f_column_label( 'case_generic_24', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_26 ), 
+	f_column_label( 'case_generic_26', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_28 ), 
+	f_column_label( 'case_generic_28', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))+
+(If( NOT IsNull(  generic_30 ), 
+	f_column_label( 'case_generic_30', 
+	a_cCaseNumber, source_type, case_type)+': ~~r~~n', ''))"border="0" color="0" x="1787" y="76" height="56" width="855" format="[GENERAL]" html.valueishtml="0"  name=compute_even_labels visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+compute(band=detail alignment="0" expression="(If( NOT IsNull(  generic_1 ), 
+	f_column_data( 'case_generic_1', 
+	a_cCaseNumber, generic_1, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_3 ), 
+	f_column_data( 'case_generic_3', 
+	a_cCaseNumber, generic_3, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_5 ), 
+	f_column_data( 'case_generic_5', 
+	a_cCaseNumber, generic_5, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_7 ), 
+	f_column_data( 'case_generic_7', 
+	a_cCaseNumber, generic_7, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_9 ), 
+	f_column_data( 'case_generic_9', 
+	a_cCaseNumber, generic_9, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_11 ), 
+	f_column_data( 'case_generic_11', 
+	a_cCaseNumber, generic_11, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_13 ), 
+	f_column_data( 'case_generic_13', 
+	a_cCaseNumber, generic_13, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_15 ), 
+	f_column_data( 'case_generic_15', 
+	a_cCaseNumber, generic_15, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_17 ), 
+	f_column_data( 'case_generic_17', 
+	a_cCaseNumber, generic_17, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_19 ), 
+	f_column_data( 'case_generic_19', 
+	a_cCaseNumber, generic_19, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_21 ), 
+	f_column_data( 'case_generic_21', 
+	a_cCaseNumber, generic_21, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_23 ), 
+	f_column_data( 'case_generic_23', 
+	a_cCaseNumber, generic_23, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_25 ), 
+	f_column_data( 'case_generic_25', 
+	a_cCaseNumber, generic_25, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_27 ), 
+	f_column_data( 'case_generic_27', 
+	a_cCaseNumber, generic_27, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_29 ), 
+	f_column_data( 'case_generic_29', 
+	a_cCaseNumber, generic_29, source_type, case_type)+' ~~r~~n', ''))"border="0" color="0" x="933" y="76" height="56" width="841" format="[GENERAL]" html.valueishtml="0"  name=compute_odd_data visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+compute(band=detail alignment="0" expression="(If( NOT IsNull(  generic_2 ), 
+	f_column_data( 'case_generic_2', 
+	a_cCaseNumber, 
+	generic_2, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_4), 
+	f_column_data( 'case_generic_4', 
+	a_cCaseNumber, 
+	generic_4, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_6 ), 
+	f_column_data( 'case_generic_6', 
+	a_cCaseNumber, 
+	generic_6, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_8 ), 
+	f_column_data( 'case_generic_8', 
+	a_cCaseNumber, 
+	generic_8, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_10 ), 
+	f_column_data( 'case_generic_10', 
+	a_cCaseNumber, 
+	generic_10, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_12 ), 
+	f_column_data( 'case_generic_12', 
+	a_cCaseNumber, 
+	generic_12, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_14 ), 
+	f_column_data( 'case_generic_14', 
+	a_cCaseNumber, 
+	generic_14, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_16 ), 
+	f_column_data( 'case_generic_16', 
+	a_cCaseNumber, 
+	generic_16, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_18 ), 
+	f_column_data( 'case_generic_18', 
+	a_cCaseNumber, 
+	generic_18, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_20 ), 
+	f_column_data( 'case_generic_20', 
+	a_cCaseNumber, 
+	generic_20, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_22 ), 
+	f_column_data( 'case_generic_22', 
+	a_cCaseNumber, 
+	generic_22, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_24 ), 
+	f_column_data( 'case_generic_24', 
+	a_cCaseNumber, 
+	generic_24, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_26 ), 
+	f_column_data( 'case_generic_26', 
+	a_cCaseNumber, 
+	generic_26, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_28 ), 
+	f_column_data( 'case_generic_28', 
+	a_cCaseNumber, 
+	generic_28, source_type, case_type)+' ~~r~~n', ''))+
+(If( NOT IsNull(  generic_30 ), 
+	f_column_data( 'case_generic_30', 
+	a_cCaseNumber, 
+	generic_30, source_type, case_type)+' ~~r~~n', ''))"border="0" color="0" x="2661" y="76" height="56" width="841" format="[GENERAL]" html.valueishtml="0"  name=compute_even_data visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912"  height.autosize=yes)
+compute(band=detail alignment="0" expression="'Change(s) performed by ' + Upper ( a_updated_by ) + ' on ' + String (Date ( a_updated_timestamp ), 'mm/dd/yyyy') + ' at ' + String (Time ( a_updated_timestamp ), 'h:mm:ss AM/PM')+' to values as of ' + String (Date ( updated_timestamp ), 'mm/dd/yyyy') + '  ' + String (Time ( updated_timestamp ), 'h:mm:ss AM/PM') + '.  Case Type - '+case( case_type when  'C' then 'Issue/Concern' when 'I' then 'Inquiry' when 'M' then  system_options_option_value  when 'P' then 'Proactive' else 'Not Defined')"border="0" color="0" x="23" y="4" height="60" width="3383" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

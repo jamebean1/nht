@@ -1,0 +1,27 @@
+﻿$PBExportHeader$d_xref_matched_groups.srd
+$PBExportComments$Matching Consumer records based on search criteria DataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 selected.mouse=no )
+header(height=64 color="16777215" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=db_group_id dbname="employer_group.db_group_id" )
+ column=(type=char(55) updatewhereclause=yes name=employ_group_name dbname="employer_group.employ_group_name" )
+ column=(type=long updatewhereclause=yes name=confidentiality_level dbname="employer_group.confidentiality_level" )
+ retrieve="  SELECT cusfocus.employer_group.group_id as db_group_id,   
+         cusfocus.employer_group.employ_group_name,   
+         cusfocus.employer_group.confidentiality_level  
+    FROM cusfocus.employer_group   
+" arguments=(("rep_security_level", number))  sort="db_group_id A " )
+compute(band=detail alignment="0" expression="if ( IsNull ( confidentiality_level ) Or ( confidentiality_level <=  rep_security_level ),  db_group_id , 'Access Denied.')"border="0" color="0" x="9" y="4" height="64" width="544" format="[GENERAL]" html.valueishtml="0"  name=group_id visible="1"  font.face="Tahoma" font.height="-8" font.weight="400~tif ( IsNull ( confidentiality_level ) Or ( confidentiality_level <=  rep_security_level ) ,  400 , 700)"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="562" y="4" height="64" width="1262" format="[general]" html.valueishtml="0"  name=employ_group_name visible="1~tif ( IsNull ( confidentiality_level ) Or ( confidentiality_level <=  rep_security_level ) ,  1 , 0 )" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=footer x1="0" y1="20" x2="1851" y2="20"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Groups: ' + rowcount()"border="0" color="0" x="9" y="12" height="64" width="544" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Group ID" border="0" color="0" x="9" y="8" height="52" width="544" html.valueishtml="0"  name=group_id_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text=" Group Name" border="0" color="0" x="562" y="8" height="52" width="1262" html.valueishtml="0"  name=employ_group_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

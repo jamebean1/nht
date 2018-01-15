@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_record_security.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=184 color="536870912" )
+table(column=(type=number updatewhereclause=yes name=confidentiality_level dbname="confidentiality_level" )
+ column=(type=char(1) updatewhereclause=yes name=apply_to_members dbname="apply_to_members" values="	Y/	N" )
+ )
+text(band=detail alignment="1" text="Security Level:" border="0" color="0" x="155" y="4" height="60" width="398" html.valueishtml="0"  name=confidentiality_level_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Apply To Members:" border="0" color="0" x="9" y="104" height="60" width="544" html.valueishtml="0"  name=apply_to_members_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="1" tabsequence=10 border="5" color="0" x="581" y="4" height="60" width="617" format="[general]" html.valueishtml="0"  name=confidentiality_level visible="1" dddw.name=dddw_rec_confid_levels dddw.displaycolumn=confid_desc dddw.datacolumn=confidentiality_level dddw.percentwidth=250 dddw.lines=5 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.nilisnull=yes dddw.imemode=0 dddw.vscrollbar=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=2 alignment="2" tabsequence=20 border="0" color="0" x="581" y="104" height="64" width="69" format="[general]" html.valueishtml="0"  name=apply_to_members visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

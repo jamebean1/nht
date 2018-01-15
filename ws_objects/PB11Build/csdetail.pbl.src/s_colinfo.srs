@@ -1,0 +1,7 @@
+﻿$PBExportHeader$s_colinfo.srs
+$PBExportComments$Column name and data type information.
+global type s_colinfo from structure
+	string		a_name
+	string		a_type
+end type
+

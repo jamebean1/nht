@@ -1,0 +1,76 @@
+﻿$PBExportHeader$d_tm_other_close_codes.srd
+$PBExportComments$Table Maintenance other_close Codes
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=92 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=other_close_code_id dbname="other_close_codes.other_close_code_id" )
+ column=(type=char(2) update=yes updatewhereclause=yes name=case_type dbname="other_close_codes.case_type" )
+ column=(type=char(30) updatewhereclause=yes name=case_types_case_type_desc dbname="case_types.case_type_desc" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=other_close_code dbname="other_close_codes.other_close_code" )
+ column=(type=char(50) update=yes updatewhereclause=yes name=other_close_desc dbname="other_close_codes.other_close_desc" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=active dbname="other_close_codes.active" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="other_close_codes.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="other_close_codes.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.other_close_codes.other_close_code_id,   
+         cusfocus.other_close_codes.case_type,   
+         cusfocus.case_types.case_type_desc, 
+         cusfocus.other_close_codes.other_close_code,   
+         cusfocus.other_close_codes.other_close_desc,   
+         cusfocus.other_close_codes.active,   
+         cusfocus.other_close_codes.updated_by,   
+         cusfocus.other_close_codes.updated_timestamp,   
+         cusfocus.cusfocus_user.active  
+    FROM cusfocus.other_close_codes,   
+         cusfocus.cusfocus_user, 
+         cusfocus.case_types  
+   WHERE ( cusfocus.other_close_codes.updated_by = cusfocus.cusfocus_user.user_id )  AND 
+         ( cusfocus.other_close_codes.case_type = cusfocus.case_types.case_type ) 
+
+
+UNION
+
+  SELECT cusfocus.other_close_codes.other_close_code_id,   
+         cusfocus.other_close_codes.case_type,   
+         cusfocus.case_types.case_type_desc, 
+         cusfocus.other_close_codes.other_close_code,   
+         cusfocus.other_close_codes.other_close_desc,   
+         cusfocus.other_close_codes.active,   
+         cusfocus.other_close_codes.updated_by,   
+         cusfocus.other_close_codes.updated_timestamp,   
+         ''  
+    FROM cusfocus.other_close_codes, 
+         cusfocus.case_types
+   WHERE ( cusfocus.other_close_codes.updated_by = 'cusfocus')    AND 
+         ( cusfocus.other_close_codes.case_type = cusfocus.case_types.case_type ) 
+" update="cusfocus.other_close_codes" updatewhere=1 updatekeyinplace=yes )
+text(band=header alignment="2" text="Case Type" border="6" color="0" x="9" y="8" height="64" width="658" html.valueishtml="0"  name=case_types_case_type_desc_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Code" border="6" color="0" x="677" y="8" height="64" width="384" html.valueishtml="0"  name=other_close_code_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Description" border="6" color="0" x="1070" y="8" height="64" width="1152" html.valueishtml="0"  name=other_close_desc_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="2231" y="8" height="64" width="233" html.valueishtml="0"  name=active_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2473" y="8" height="64" width="517" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="2999" y="8" height="64" width="699" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="9" y="8" height="76" width="658" format="[general]" html.valueishtml="0"  name=case_type visible="1" dddw.name=dddw_case_types dddw.displaycolumn=case_type_desc dddw.datacolumn=case_type dddw.percentwidth=0 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=20 border="0" color="0" x="677" y="8" height="76" width="384" format="[general]" html.valueishtml="0"  name=other_close_code visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="0" x="1070" y="8" height="76" width="1152" format="[general]" html.valueishtml="0"  name=other_close_desc visible="1" edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0" x="2999" y="8" height="76" width="699" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="Max(Long( other_close_code_id ))"border="0" color="0" x="3707" y="0" height="76" width="155" format="[GENERAL]" html.valueishtml="0"  name=maxvalue visible="0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="2" tabsequence=40 border="0" color="0" x="2231" y="8" height="76" width="233" format="[general]" html.valueishtml="0"  name=active visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="2473" y="8" height="76" width="517" format="[GENERAL]" html.valueishtml="0"  name=cc_updated_by visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="3872" y="0" height="64" width="261" format="[general]" html.valueishtml="0"  name=case_types_case_type_desc visible="0" edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="16" height="76" width="658" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=footer x1="18" y1="4" x2="3781" y2="0"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

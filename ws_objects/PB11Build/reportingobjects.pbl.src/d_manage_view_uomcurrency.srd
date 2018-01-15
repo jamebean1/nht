@@ -1,0 +1,34 @@
+﻿$PBExportHeader$d_manage_view_uomcurrency.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=rprtdfltid dbname="ReportConfigDefault.RprtDfltID" )
+ column=(type=long update=yes updatewhereclause=yes name=rprtcnfgid dbname="ReportConfigDefault.RprtCnfgID" )
+ column=(type=long update=yes updatewhereclause=yes name=userid dbname="ReportConfigDefault.UserID" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="ReportConfigDefault.Name" )
+ column=(type=long update=yes updatewhereclause=yes name=createdbyuserid dbname="ReportConfigDefault.CreatedByUserID" )
+ column=(type=char(58) updatewhereclause=yes name=itemicon dbname="ItemIcon" )
+ column=(type=char(42) updatewhereclause=yes name=createdbyusername dbname="CreatedByUserName" )
+ retrieve="  SELECT ReportConfigDefault.RprtDfltID,   
+         ReportConfigDefault.RprtCnfgID,   
+         ReportConfigDefault.UserID,   
+         ReportConfigDefault.Name,   
+         ReportConfigDefault.CreatedByUserID,   
+         Case When ReportConfigDefault.UserID Is Null Then 'Module - Reporting Desktop - UOMCurrency View (Global).bmp' Else 'Module - Reporting Desktop - UOMCurrency View.bmp' End ItemIcon  ,
+			Contact.CntctLstNme + ', ' + Contact.CntctFrstNme as CreatedByUserName
+    FROM ReportConfigDefault, Users, Contact
+   WHERE (ReportConfigDefault.UserID = :al_userid OR  
+         ReportConfigDefault.UserID is Null
+			OR :as_globalviewadmin = 'Y') AND  
+         ReportConfigDefault.Name <> '' AND  
+         ReportConfigDefault.Type = 'UOM/Currency' AND
+			ReportConfigDefault.CreatedByUserID = Users.UserID AND
+			Users.UserCntctID = Contact.CntctID 
+" update="ReportConfigDefault" updatewhere=0 updatekeyinplace=yes arguments=(("al_reportconfigid", number),("al_userid", number),("as_globalviewadmin", string)) )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="0" height="76" width="1760" format="[general]"  name=itemicon edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1760" y="0" height="76" width="96" format="[general]"  name=createdbyuserid edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1856" y="0" height="76" width="1344" format="[general]"  name=createdbyusername edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

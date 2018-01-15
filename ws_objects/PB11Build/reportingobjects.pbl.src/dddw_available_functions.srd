@@ -1,0 +1,15 @@
+﻿$PBExportHeader$dddw_available_functions.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=char(1000) updatewhereclause=no name=function dbname="function" )
+ column=(type=char(1000) updatewhereclause=no name=datatype dbname="datatype" )
+ column=(type=char(1000) updatewhereclause=no name=display dbname="display" )
+  sort="display A " )
+data("sum","number","Sum","none","all","(None)","max","all","Maximum","min","all","Minimum","count","all","Count","count distinct","all","Count Distinct","first","all","First","last","all","Last","median","all","Median","mode","all","Mode","abs","number","Absolute Value","avg","number","Average","cos","number","Cosine","cumulativepercent","number","Cumulative Percent","cumulativesum","number","Cumulative Sum","exp","number","Exponent","fact","number","Factorial","log","number","Logarithm","logten","number","Logarithm 10","percent","number","Percent","pi","number","Pi * #","round0","number","Round (##.)","round1","number","Round (##.0)","round2","number","Round (##.00)","round3","number","Round (##.000)","round4","number","Round (##.0000)","round5","number","Round (##.00000)","round6","number","Round (##.000000)","sign","number","Sign (-1, 0, +1)","sin","number","Sin","sqrt","number","Square Root","stdev","number","Standard Deviation","tan","number","Tan","var","number","Variance","integer","string","Integer","lefttrim","string","Left Trim","righttrim","string","Right Trim","len","string","Length","lower","string","Lower Case","number","string","Number","time","string","Time","date","string","Date","datetime","string","DateTime","trim","string","Trim","upper","string","Upper","WorkCap","string","First Letter Capital","date","datetime","Date","time","datetime","Time","day","datetime","Day","dayname","datetime","DayName","daynumber","datetime","DayNumber","daysafter","datetime","Days After Today","hour","datetime","Hour","minute","datetime","Minute","month","datetime","Month","second","datetime","Second","secondsafter","datetime","Seconds After Now","year","datetime","Year",) 
+column(band=detail id=3 alignment="0" tabsequence=32766 border="0" color="0" x="9" y="4" height="60" width="4389" format="[general]"  name=display edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+
+sparse(names="display")htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

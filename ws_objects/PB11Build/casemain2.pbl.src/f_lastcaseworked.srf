@@ -1,0 +1,41 @@
+﻿$PBExportHeader$f_lastcaseworked.srf
+global type f_lastcaseworked from function_object
+end type
+
+forward prototypes
+global function string f_lastcaseworked (string a_clogin)
+end prototypes
+
+global function string f_lastcaseworked (string a_clogin);//********************************************************************************************
+//
+//  Function:  f_LastCaseWorked
+//  Purpose:   Retrieve the last case number the user worked.
+//
+//	 Parameters:  a_cLogin - Current user's login
+//	 Returns: 	  Last case worked.
+//
+//  Date     Developer   Description
+//  -------- ----------- ---------------------------------------------------------------------
+//  6/26/2001 K. Claver  Created.
+//
+//********************************************************************************************
+String l_cCaseNum
+
+SELECT a.case_number
+INTO :l_cCaseNum
+FROM cusfocus.case_log a
+WHERE a.updated_by = :a_cLogin AND
+		a.updated_timestamp = ( SELECT Max( b.updated_timestamp )
+									   FROM cusfocus.case_log b
+										WHERE b.updated_by = :a_cLogin )
+USING SQLCA;
+
+IF SQLCA.SQLCode < 0 THEN
+	MessageBox( gs_AppName, "Error determining last case modified", StopSign!, OK! )
+END IF
+
+RETURN l_cCaseNum
+	
+
+end function
+

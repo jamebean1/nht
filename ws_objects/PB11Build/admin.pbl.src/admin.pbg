@@ -1,0 +1,27 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "admin.pbl" "";
+@end;
+@begin Objects 
+ "d_active_logins.srd" "admin.pbl";
+ "d_license_info.srd" "admin.pbl";
+ "d_locked_case_parms.srd" "admin.pbl";
+ "d_locked_cases.srd" "admin.pbl";
+ "d_login_mgr.srd" "admin.pbl";
+ "d_sysoptions.srd" "admin.pbl";
+ "m_lock_admin.srm" "admin.pbl";
+ "s_ddlbitems.srs" "admin.pbl";
+ "ds_login_list.sru" "admin.pbl";
+ "n_slu_mgr.sru" "admin.pbl";
+ "u_dssysoptions.sru" "admin.pbl";
+ "u_tabpage_options_appeals.sru" "admin.pbl";
+ "u_tabpage_options_carve_out.sru" "admin.pbl";
+ "u_tabpage_options_case.sru" "admin.pbl";
+ "u_tabpage_options_file_locs.sru" "admin.pbl";
+ "u_tabpage_options_other.sru" "admin.pbl";
+ "u_tabpage_options_rightfax.sru" "admin.pbl";
+ "w_lock_admin.srw" "admin.pbl";
+ "w_slu_login_mgr.srw" "admin.pbl";
+ "w_slu_main.srw" "admin.pbl";
+ "w_system_options.srw" "admin.pbl";
+@end;

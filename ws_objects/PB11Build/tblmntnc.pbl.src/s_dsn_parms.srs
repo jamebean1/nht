@@ -1,0 +1,8 @@
+﻿$PBExportHeader$s_dsn_parms.srs
+$PBExportComments$Used to pass a DSN username and password between windows.
+global type s_dsn_parms from structure
+	string		username
+	string		password
+	string		dsn_name
+end type
+

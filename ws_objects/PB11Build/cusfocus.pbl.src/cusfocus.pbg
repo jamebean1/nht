@@ -1,0 +1,11 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "cusfocus.pbl" "";
+@end;
+@begin Objects 
+ "cusfocus.sra" "cusfocus.pbl";
+ "p_cusfocus_exe.srj" "cusfocus.pbl";
+ "p_cusfocus_webform.srj" "cusfocus.pbl";
+ "p_cusfocus_winform.srj" "cusfocus.pbl";
+ "str_pcca.srs" "cusfocus.pbl";
+@end;

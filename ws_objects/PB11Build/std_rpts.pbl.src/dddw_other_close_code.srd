@@ -1,0 +1,13 @@
+﻿$PBExportHeader$dddw_other_close_code.srd
+$PBExportComments$DropDownDatawindow for Other Close Codes
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=100 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=other_close_code_id dbname="cusfocus.other_close_codes.other_close_code_id" )
+ column=(type=char(50) updatewhereclause=yes name=other_close_desc dbname="cusfocus.other_close_codes.other_close_desc" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.other_close_codes~" ) COLUMN(NAME=~"cusfocus.other_close_codes.other_close_code_id~") COLUMN(NAME=~"cusfocus.other_close_codes.other_close_desc~")) " )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="27" y="12" height="76" width="1147" format="[general]"  name=other_close_desc edit.limit=50 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

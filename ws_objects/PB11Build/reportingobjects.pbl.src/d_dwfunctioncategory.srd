@@ -1,0 +1,18 @@
+﻿$PBExportHeader$d_dwfunctioncategory.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1090519039 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no pointer="" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=60 color="536870912" )
+table(column=(type=char(20) updatewhereclause=no name=category dbname="category" )
+ column=(type=char(30) updatewhereclause=no name=grouptype dbname="grouptype" )
+ column=(type=char(1) updatewhereclause=no name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=no name=rowfocusindicator dbname="rowfocusindicator" )
+ )
+data("Columns", "Report", "", "", "Colors", "Other", null null "(All Functions)", "Functions", "", "", "Conversion Functions", "Functions", "", "", "Form Functions", "Functions", "", "", "Date/Time Functions", "Functions", "", "", "Mathematic Functions", "Functions", "", "", "Other Functions", "Functions", "", "", "Statistic Functions", "Functions", "", "", "String Functions", "Functions", "", "", ) 
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="33554432" x="9" y="4" height="52" width="1024" format="[general]" html.valueishtml="0"  name=category visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

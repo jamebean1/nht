@@ -1,0 +1,33 @@
+﻿$PBExportHeader$uf_stringinsert.srf
+$PBExportComments$Used to insert a string at a specified position in another string
+global type uf_stringinsert from function_object
+end type
+
+forward prototypes
+global subroutine uf_stringinsert (ref string string1, string string2, long position)
+end prototypes
+
+global subroutine uf_stringinsert (ref string string1, string string2, long position);/*****************************************************************************************
+	Function:	uf_StringInsert
+	Purpose:		To insert a string at a set position in another string.
+	Parameters:	STRING	string1 - the string to be modified (reference)
+					STRING   string2 - the string to add to string1 (value)
+					LONG		position - the location in string1 to add string2 (value)
+	Returns:		None
+	
+	Revisions:
+	Date     Developer     Description
+	======== ============= ===============================================================
+	7/14/99  M. Caruso     Created.
+*****************************************************************************************/
+STRING	l_cPart1, l_cPart2
+
+// break the initial string into two pieces at 'position'
+l_cPart1 = Left (string1, position)
+l_cPart2 = Right (string1, Len (string1) - position)
+
+// reassemble string1 with string2 inserted between the two parts
+string1 = l_cpart1 + string2 + l_cPart2
+
+end subroutine
+

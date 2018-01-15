@@ -1,0 +1,51 @@
+﻿$PBExportHeader$f_column_label.srf
+global type f_column_label from function_object
+end type
+
+forward prototypes
+global function string f_column_label (string a_ccolname, string a_ccasenumber, string a_csourcetype, string a_ccasetype)
+end prototypes
+
+global function string f_column_label (string a_ccolname, string a_ccasenumber, string a_csourcetype, string a_ccasetype);/*****************************************************************************************
+   Function:	f_Column_Label
+   Purpose:    Get the field label from the case properties field def table for the 
+					associated column.  Specifically created for use in the case properties
+					history portion of the case detail history report.
+   Parameters: String - a_cColName - The name of the generic column.
+					String - a_cCaseNumber - The case number
+					
+   Returns:    String - Column label or column name.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	7/30/2001 K. Claver   Created.
+*****************************************************************************************/
+String l_cFieldLabel, l_cSourceType, l_cCaseType
+
+//SELECT source_type,
+//		 case_type
+//INTO :l_cSourceType,
+//	  :l_cCaseType
+//FROM cusfocus.case_log
+//WHERE case_number = :a_cCaseNumber
+//USING SQLCA;
+
+l_cSourceType = a_cSourceType
+l_cCaseType = a_cCaseType
+
+SELECT field_label
+INTO :l_cFieldLabel
+FROM cusfocus.case_properties_field_def
+WHERE source_type = :l_cSourceType AND
+		case_type = :l_cCaseType AND
+		column_name = :a_cColName
+USING SQLCA;
+
+IF IsNull( l_cFieldLabel ) OR Trim( l_cFieldLabel ) = "" THEN
+	l_cFieldLabel = a_cColName
+END IF
+
+RETURN l_cFieldLabel
+end function
+

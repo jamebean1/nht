@@ -1,0 +1,10 @@
+﻿$PBExportHeader$s_performance_parms.srs
+$PBExportComments$Structure of parameters for Performance Statistics-style reports.
+global type s_performance_parms from structure
+	string		subject_type
+	string		subject_id
+	string		report_by
+	datetime		start_date
+	datetime		end_date
+end type
+

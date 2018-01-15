@@ -1,0 +1,10 @@
+﻿$PBExportHeader$s_csr_info.srs
+$PBExportComments$Structure for CSR details
+global type s_csr_info from structure
+	string		user_id
+	string		user_dept_id
+	string		user_first_name
+	string		user_last_name
+	string		user_full_name
+end type
+

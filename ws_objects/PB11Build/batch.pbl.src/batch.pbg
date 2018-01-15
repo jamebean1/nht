@@ -1,0 +1,11 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "batch.pbl" "";
+@end;
+@begin Objects 
+ "d_matched_batched_correspondence.srd" "batch.pbl";
+ "d_search_batch_correspondence.srd" "batch.pbl";
+ "dddw_letter_name.srd" "batch.pbl";
+ "m_batch_correspondence.srm" "batch.pbl";
+ "w_batch_correspondence.srw" "batch.pbl";
+@end;

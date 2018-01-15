@@ -1,0 +1,45 @@
+﻿$PBExportHeader$f_wordcap.srf
+global type f_wordcap from function_object
+end type
+
+forward prototypes
+global function string f_wordcap (string a_cstring)
+end prototypes
+
+global function string f_wordcap (string a_cstring);/****************************************************************************************
+	Function:	f_WordCap
+	Purpose:		Capitalize the first letter of each word
+	
+	Parameters:	STRING	a_cString - the string to be modified
+	
+	Returns:    STRING - The modified string.
+	
+-----------------------------------------------------------------------------------------
+5/29/2001   K. Claver   Created.
+****************************************************************************************/
+Long l_nSpacePos
+String l_cCapChar
+
+a_cString = Trim( a_cString )
+
+IF a_cString <> "" THEN
+	//Capitalize the first letter
+	l_cCapChar = Upper( Mid( a_cString, 1, 1 ) )
+	a_cString = Replace( a_cString, 1, 1, l_cCapChar )
+	
+	//Loop though and capitalize the first letter of each word after
+	//  the first.
+	l_nSpacePos = Pos( a_cString, " " )
+	DO WHILE l_nSpacePos > 0
+		l_cCapChar = Upper( Mid( a_cString, ( l_nSpacePos + 1 ), 1 ) )
+		a_cString = Replace( a_cString, ( l_nSpacePos + 1 ), 1, l_cCapChar )
+		
+		//Find the next space
+		l_nSpacePos = Pos( a_cString, " ", ( l_nSpacePos + 1 ) )
+	LOOP
+END IF
+
+RETURN a_cString
+		
+end function
+

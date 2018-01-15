@@ -1,0 +1,65 @@
+﻿$PBExportHeader$d_prov_contact_act_nested.srd
+$PBExportComments$Provider contact activity
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=448 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=108 color="536870912" )
+detail(height=464 color="536870912"  height.autosize=yes)
+table(column=(type=decimal(0) updatewhereclause=yes name=provider_of_service_provider_key dbname="provider_of_service.provider_key" )
+ column=(type=char(55) updatewhereclause=yes name=provider_of_service_provid_name dbname="provider_of_service.provid_name" )
+ column=(type=char(20) updatewhereclause=yes name=provider_id dbname="provider_of_service.provider_id" )
+ column=(type=char(20) updatewhereclause=yes name=vendor_id dbname="provider_of_service.vendor_id" )
+ retrieve="  SELECT DISTINCT cusfocus.provider_of_service.provider_key,   
+         cusfocus.provider_of_service.provid_name,   
+         cusfocus.provider_of_service.provider_id,   
+         cusfocus.provider_of_service.vendor_id  
+    FROM cusfocus.provider_of_service  
+   WHERE Convert(varchar(20), cusfocus.provider_of_service.provider_key) in ( SELECT cusfocus.case_log.case_subject_id
+									FROM cusfocus.case_log
+									WHERE cusfocus.case_log.source_type = 'P' AND
+											cusfocus.case_log.case_log_opnd_date >= :date AND
+											cusfocus.case_log.case_log_opnd_date <= :end_date AND
+											cusfocus.case_log.case_subject_id in ( :provider_key ) ) 
+			
+" arguments=(("date", date),("end_date", date),("user_name", string),("provider_key", stringlist))  sort="provider_of_service_provider_key A " )
+group(level=1 header.height=160 trailer.height=0 by=("provider_of_service_provider_key" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+text(band=background alignment="1" text="Run Date:" border="0" color="0" x="3735" y="116" height="64" width="370"  name=t_16  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=background alignment="2" expression="today()"border="0" color="0" x="4137" y="116" height="64" width="311" format="mm/dd/yyyy"  name=compute_11  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=background alignment="1" text="" border="0" color="0" x="3552" y="32" height="80" width="896"  name=t_owner  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Jan" border="0" color="0" x="1504" y="352" height="64" width="201"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="YTD" border="0" color="0" x="4247" y="352" height="64" width="201"  name=t_14  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Dec" border="0" color="0" x="4018" y="352" height="64" width="201"  name=t_13  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Nov" border="0" color="0" x="3790" y="352" height="64" width="201"  name=t_12  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Oct" border="0" color="0" x="3561" y="352" height="64" width="201"  name=t_11  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Sep" border="0" color="0" x="3333" y="352" height="64" width="201"  name=t_10  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Aug" border="0" color="0" x="3104" y="352" height="64" width="201"  name=t_9  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Jul" border="0" color="0" x="2875" y="352" height="64" width="201"  name=t_8  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Jun" border="0" color="0" x="2647" y="352" height="64" width="201"  name=t_7  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="May" border="0" color="0" x="2418" y="352" height="64" width="201"  name=t_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Apr" border="0" color="0" x="2190" y="352" height="64" width="201"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Mar" border="0" color="0" x="1961" y="352" height="64" width="201"  name=t_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="1" text="Feb" border="0" color="0" x="1733" y="352" height="64" width="201"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="114" y1="336" x2="4448" y2="336"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="114" y1="432" x2="4448" y2="432"  name=l_3 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Provider Contact Activity" border="0" color="0" x="114" y="20" height="92" width="1051"  name=t_1  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" String(date,'mm/dd/yyyy')+' - '+String(end_date,'mm/dd/yyyy') "border="0" color="0" x="114" y="116" height="76" width="1051" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="Provider ID:" border="0" color="0" x="1778" y="20" height="64" width="343"  name=t_17  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="Vendor ID:" border="0" color="0" x="1815" y="88" height="64" width="306"  name=t_18  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="<Provider ID>" border="0" color="0" x="2153" y="20" height="64" width="599"  name=t_provid  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="<Vendor ID>" border="0" color="0" x="2153" y="88" height="64" width="599"  name=t_vendid  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header.1 x1="114" y1="148" x2="4448" y2="148"  name=l_2 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=header.1 id=2 alignment="0" tabsequence=32766 border="0" color="0" x="114" y="4" height="64" width="1545" format="[general]"  name=provider_of_service_provid_name edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="IF ( ISNULL (  provider_id ) , '' , 'Provider ID: ' + provider_id ) + 
+IF ( not ( isnull ( provider_id ) ) and ( not ( isnull ( vendor_id ) ) ) , ' - ' , '' )  + 
+IF ( ISNULL (  vendor_id  )  , '' , 'Vendor ID: '   + vendor_id )
+
+"border="0" color="0" x="114" y="72" height="64" width="1545" format="[GENERAL]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="d_prov_contact_act_open" x="0" y="16" height="136" width="4480" border="0"  height.autosize=yes criteria="" nest_arguments=(("date"),("end_date"),(" provider_of_service_provider_key ")) trail_footer = yes  name=d_prov_contact_act_open  slideup=allabove )
+report(band=detail dataobject="d_prov_contact_act_closed" x="0" y="168" height="136" width="4480" border="0"  height.autosize=yes criteria="" nest_arguments=(("date"),("end_date"),(" provider_of_service_provider_key ")) trail_footer = yes  name=d_prov_contact_act_closed  slideup=allabove )
+report(band=detail dataobject="d_prov_contact_act_void" x="0" y="320" height="136" width="4480" border="0"  height.autosize=yes criteria="" nest_arguments=(("date"),("end_date"),(" provider_of_service_provider_key ")) trail_footer = yes  name=d_prov_contact_act_void  slideup=allabove )
+compute(band=footer alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1865" y="4" height="72" width="727" format="[general]"  name=compute_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" user_name "border="0" color="0" x="475" y="196" height="64" width="1335" format="[GENERAL]"  name=cc_user_name  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="User Name:" border="0" color="0" x="114" y="196" height="64" width="357"  name=cc_user_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

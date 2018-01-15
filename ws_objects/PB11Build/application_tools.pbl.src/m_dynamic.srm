@@ -1,0 +1,338 @@
+﻿$PBExportHeader$m_dynamic.srm
+forward
+global type m_dynamic from menu
+end type
+type m_item from menu within m_dynamic
+end type
+global type m_dynamic from menu
+m_item m_item
+end type
+end forward
+
+global type m_dynamic from menu
+m_item m_item
+end type
+global m_dynamic m_dynamic
+
+type variables
+PowerObject ia_object
+any ia_data
+string is_action
+boolean ib_first_item_set=FALSE
+m_dynamic im_item[]
+end variables
+
+forward prototypes
+public subroutine of_set_data (any aa_data)
+public subroutine of_set_action (string as_text)
+public subroutine of_item_selected ()
+public subroutine of_destroy ()
+public subroutine of_set_menuobject (n_menu_dynamic an_menu_dynamic)
+public function menu of_add_item (string as_text, string as_action, any aa_data)
+public function menu of_add_item (menu am_menu, string as_text, string as_action, any aa_data, powerobject ao_messagetarget)
+public function menu of_add_item (menu am_menu, string as_text, string as_action, any aa_data)
+protected subroutine of_build_menu (n_menu_dynamic an_menu_dynamic, menu am_dynamic)
+public subroutine of_set_object (powerobject aa_object)
+end prototypes
+
+public subroutine of_set_data (any aa_data);
+ia_data = aa_data
+end subroutine
+
+public subroutine of_set_action (string as_text);
+is_action = as_text
+end subroutine
+
+public subroutine of_item_selected ();String	ls_string
+n_bag		ln_bag
+
+if isvalid( ia_object)  then
+	If Lower(Trim(ClassName(ia_data))) = 'string' Then
+		ls_string = String(ia_data)
+		ia_object.dynamic event trigger ue_notify(is_action, ls_string)
+	ElseIf Lower(Trim(ClassName(ia_data))) = 'n_bag' Then
+		ln_bag = ia_data
+		ia_object.dynamic event trigger ue_notify(is_action, ln_bag)
+	End If	
+else
+	messagebox( 'Dynamic Menu Error', 'No Target Object has been registered (using of_set_object) with this menu item.', stopsign!, ok!, 1)
+end if
+
+return
+end subroutine
+
+public subroutine of_destroy ();
+long	l_item, l_items
+
+l_items = upperbound(im_item)
+
+for l_item = l_items to 1 Step -1
+	if isvalid( im_item[l_item]) then
+		destroy im_item[l_item]
+	end if
+next
+
+
+end subroutine
+
+public subroutine of_set_menuobject (n_menu_dynamic an_menu_dynamic);This.of_build_menu(an_menu_dynamic, This)
+end subroutine
+
+public function menu of_add_item (string as_text, string as_action, any aa_data);long	l_item
+
+l_item = upperbound( this.item)
+
+if ib_first_item_set then
+	l_item++
+	im_item[l_item] = create m_dynamic
+	this.item[l_item] = im_item[l_item].m_item
+else
+	l_item = 1
+	im_item[l_item] = this
+	ib_first_item_set = TRUE
+end if
+
+im_item[l_item].m_item.text = as_text
+im_item[l_item].of_set_action( as_action)
+im_item[l_item].of_set_data( aa_data)
+
+if isvalid( ia_object) then
+	im_item[l_item].of_set_object( ia_object)
+end if
+
+return im_item[l_item].m_item
+end function
+
+public function menu of_add_item (menu am_menu, string as_text, string as_action, any aa_data, powerobject ao_messagetarget);//----------------------------------------------------------------------------------------------------------------------------------
+//	Function:	of_add_item()
+//	Arguments:  am_menu - 
+//					as_text - The text on the menu item
+//					as_action - The action (message) to send
+//					as_data - The data (argument) to send
+//					ao_messagetarget - The object you want to receive the message
+//	Overview:   DocumentScriptFunctionality
+//	Created by:	Blake Doerr
+//	History: 	9.5.1999 - First Created 
+//-----------------------------------------------------------------------------------------------------------------------------------
+ 
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Local Variables
+//-----------------------------------------------------------------------------------------------------------------------------------
+long	l_item
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Get the Upperbound of the number of items
+//-----------------------------------------------------------------------------------------------------------------------------------
+l_item = upperbound( am_menu.item)
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// If the first item has already been set, we need to create another object of this type and append it to this menu.
+//	If the first item has not been set, we will just set the properties of this object.
+//-----------------------------------------------------------------------------------------------------------------------------------
+if ib_first_item_set then
+	l_item++
+	im_item[l_item] = create m_dynamic
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	// Set the target of the messages if the object is valid.  It better be, or this menu item won't do anything.
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	if isvalid( ao_messagetarget) then
+		im_item[l_item].of_set_object(ao_messagetarget)
+	end if
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	// Append this menu to the menu passed in
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	am_menu.item[l_item] = im_item[l_item].m_item
+else
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	// Set the first item
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	l_item = 1
+	im_item[l_item] = am_menu
+	ib_first_item_set = TRUE
+end if
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Set the text, action (message), and data (argument) for this item.
+//-----------------------------------------------------------------------------------------------------------------------------------
+im_item[l_item].m_item.text = as_text
+im_item[l_item].of_set_action( as_action)
+im_item[l_item].of_set_data( aa_data)
+
+return im_item[l_item].m_item
+end function
+
+public function menu of_add_item (menu am_menu, string as_text, string as_action, any aa_data);//----------------------------------------------------------------------------------------------------------------------------------
+//	Function:	of_add_item()
+//	Arguments:  See the version of the function that this calls
+//	Overview:   This will pass the instance target object as well as the parameters passed in
+//	Created by:	Blake Doerr
+//	History: 	9.5.1999 - First Created 
+//-----------------------------------------------------------------------------------------------------------------------------------
+
+Return This.of_add_item(am_menu, as_text, as_action, aa_data, ia_object) 
+
+end function
+
+protected subroutine of_build_menu (n_menu_dynamic an_menu_dynamic, menu am_dynamic);
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Local Variables
+//-----------------------------------------------------------------------------------------------------------------------------------
+Boolean	CreateItem
+Long		ll_index
+Long		i
+Any 		lany_temp
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Local Objects
+//-----------------------------------------------------------------------------------------------------------------------------------
+m_dynamic	lm_dynamic
+Menu			lm_menu
+PowerObject	lo_object
+PowerObject lo_temp
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Return if there are problems
+//-----------------------------------------------------------------------------------------------------------------------------------
+If Not IsValid(an_menu_dynamic) Then Return
+If Not IsValid(am_dynamic) Then Return
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Set the message target
+//-----------------------------------------------------------------------------------------------------------------------------------
+lo_object = an_menu_dynamic.MessageTarget
+If IsValid(an_menu_dynamic.MessageTarget) And ClassName(am_dynamic) = 'm_dynamic' Then
+	am_dynamic.Dynamic of_set_object(lo_object)
+End If
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Set the text
+//-----------------------------------------------------------------------------------------------------------------------------------
+This.Text = an_menu_dynamic.Text
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+// Loop through all items and add them to the menu
+//-----------------------------------------------------------------------------------------------------------------------------------
+For ll_index = 1 To UpperBound(an_menu_dynamic.Item[])
+	CreateItem = True
+	If an_menu_dynamic.Item[ll_index].Visible = False Then Continue
+
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	// If the menu item has no children, treat it differently
+	//-----------------------------------------------------------------------------------------------------------------------------------
+	If UpperBound(an_menu_dynamic.Item[ll_index].Item[]) = 0 Then
+		//-----------------------------------------------------------------------------------------------------------------------------------
+		// Prevent a spacer from being at the top, bottom or two in a row
+		//-----------------------------------------------------------------------------------------------------------------------------------
+		If an_menu_dynamic.Item[ll_index].Text = '-' Then
+			If UpperBound(an_menu_dynamic.Item[]) = ll_index Or ll_index = 1 Then Continue
+			
+			For i = ll_index - 1 To 1 Step - 1
+				If an_menu_dynamic.Item[i].Visible = False Then Continue
+				If an_menu_dynamic.Item[i].Text <> '-' Then Exit
+				
+				If an_menu_dynamic.Item[i].Text = '-' Then
+					CreateItem = False
+					Exit
+				End If
+			Next
+		End If
+		
+		If Not CreateItem Then Continue
+		
+		lany_temp = an_menu_dynamic.Item[ll_index].Data
+		If IsValid(an_menu_dynamic.Item[ll_index].MessageTarget) Then
+			lo_temp = an_menu_dynamic.Item[ll_index].MessageTarget
+		Else
+			lo_temp = an_menu_dynamic.MessageTarget
+		End If
+		
+		lm_menu = of_add_item(am_dynamic, String(an_menu_dynamic.Item[ll_index].Text), String(an_menu_dynamic.Item[ll_index].MessageName), lany_temp, lo_temp)
+		If an_menu_dynamic.Item[ll_index].Checked Then lm_menu.Checked = True
+	Else
+		//-----------------------------------------------------------------------------------------------------------------------------------
+		// If the menu item has children, we need to add the item, then call this function recursively for the item to build its children
+		//-----------------------------------------------------------------------------------------------------------------------------------
+		lm_dynamic = Create m_dynamic
+		lm_dynamic.of_set_object(an_menu_dynamic.MessageTarget)
+		lm_menu	= This.of_add_item(am_dynamic, an_menu_dynamic.Item[ll_index].Text, '', '', This)
+		
+		This.of_build_menu(an_menu_dynamic.Item[ll_index], lm_menu)
+		
+		If UpperBound(lm_menu.Item[]) = 0 Then
+			lm_menu.Visible = False
+			an_menu_dynamic.Item[ll_index].Visible = False
+		End If
+	End If
+
+	If an_menu_dynamic.Item[ll_index].Default Then lm_menu.Default = True
+	lm_menu.Enabled = an_menu_dynamic.Item[ll_index].Enabled
+Next
+
+end subroutine
+
+public subroutine of_set_object (powerobject aa_object);
+ia_object = aa_object
+end subroutine
+
+on m_dynamic.create
+m_dynamic=this
+call super::create
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_item=create m_item
+this.Item[UpperBound(this.Item)+1]=this.m_item
+end on
+
+on m_dynamic.destroy
+call super::destroy
+destroy(this.m_item)
+end on
+
+type m_item from menu within m_dynamic
+end type
+
+on m_item.create
+call super::create
+this.text = "Item"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_item.destroy
+call super::destroy
+end on
+
+event clicked;
+if is_action > '' And Tag <> 'IgnoreClicked' then
+	of_item_selected( )
+end if
+end event
+

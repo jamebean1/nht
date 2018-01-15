@@ -1,0 +1,32 @@
+﻿$PBExportHeader$s_docfieldproperties.srs
+$PBExportComments$Store the field properties for configurable fields.
+global type s_docfieldproperties from structure
+	string		doc_id
+	string		doc_type_id
+	string		doc_name
+	string		doc_desc
+	string		doc_create_dt
+	string		doc_expire_dt
+	string		doc_version
+	string		doc_status_id
+	string		doc_general_flag
+	string		doc_config_1
+	string		doc_config_2
+	string		doc_config_3
+	string		doc_config_4
+	string		doc_config_5
+	string		doc_config_6
+	string		doc_config_7
+	string		doc_config_8
+	string		doc_config_9
+	string		doc_config_10
+	string		doc_column_name
+	string		doc_field_label
+	integer		doc_field_length
+	string		edit_mask
+	string		display_format
+	string		validation_rule
+	string		error_msg
+	string		window_state
+end type
+

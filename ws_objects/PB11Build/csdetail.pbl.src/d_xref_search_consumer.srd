@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_xref_search_consumer.srd
+$PBExportComments$Search Criteria for Consumer records DataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=292 color="536870912" )
+table(column=(type=char(20) update=yes updatewhereclause=yes key=yes name=consumer_id dbname="consumer.consumer_id" )
+ column=(type=char(30) updatewhereclause=yes name=consum_last_name dbname="consumer.consum_last_name" )
+ column=(type=char(25) updatewhereclause=yes name=consum_first_name dbname="consumer.consum_first_name" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.consumer~" ) COLUMN(NAME=~"cusfocus.consumer.consumer_id~") COLUMN(NAME=~"cusfocus.consumer.consum_last_name~") COLUMN(NAME=~"cusfocus.consumer.consum_first_name~")WHERE(    EXP1 =~"cusfocus.consumer.consumer_id~"   OP =~"=~"    EXP2 =~":subject_id~" ) ) ARG(NAME = ~"subject_id~" TYPE = string) " update="cusfocus.consumer" updatewhere=1 updatekeyinplace=no arguments=(("subject_id", string)) )
+column(band=detail id=2 alignment="0" tabsequence=20 border="5" color="0" x="366" y="108" height="60" width="1138" format="[general]" html.valueishtml="0"  name=consum_last_name visible="1" edit.limit=30 edit.case=any edit.autoselect=yes edit.autovscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="5" color="0" x="366" y="204" height="60" width="1138" format="[general]" html.valueishtml="0"  name=consum_first_name visible="1" edit.limit=25 edit.case=any edit.autoselect=yes edit.autovscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=10 border="5" color="0" x="366" y="12" height="60" width="1138" format="[general]" html.valueishtml="0"  name=consumer_id visible="1" edit.limit=20 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Member ID:" border="0" color="0" x="27" y="12" height="52" width="320" html.valueishtml="0"  name=consumer_id_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Last Name:" border="0" color="0" x="27" y="108" height="52" width="320" html.valueishtml="0"  name=consum_last_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="First Name:" border="0" color="0" x="27" y="204" height="52" width="320" html.valueishtml="0"  name=consum_first_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,9 @@
+﻿$PBExportHeader$s_ddlbitems.srs
+$PBExportComments$List of IDs and Descriptions for items in the dropdown list box controls on the options window.
+global type s_ddlbitems from structure
+	string		item_id
+	string		item_desc
+	integer		confidentiality_level
+	string		confid_desc
+end type
+

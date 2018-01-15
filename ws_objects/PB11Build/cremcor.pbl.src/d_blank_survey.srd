@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_blank_survey.srd
+$PBExportComments$Non-visual datawindow for updating survey results
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=316 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=survey_id dbname="survey_results.survey_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=user_id dbname="survey_results.user_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=letter_id dbname="survey_results.letter_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=case_number dbname="survey_results.case_number" )
+ column=(type=datetime update=yes updatewhereclause=yes name=survey_create_date dbname="survey_results.survey_create_date" )
+ column=(type=char(20) update=yes updatewhereclause=yes name=survey_prtcpnt_id dbname="survey_results.survey_prtcpnt_id" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.survey_results~" ) COLUMN(NAME=~"cusfocus.survey_results.survey_id~") COLUMN(NAME=~"cusfocus.survey_results.user_id~") COLUMN(NAME=~"cusfocus.survey_results.letter_id~") COLUMN(NAME=~"cusfocus.survey_results.case_number~") COLUMN(NAME=~"cusfocus.survey_results.survey_create_date~") COLUMN(NAME=~"cusfocus.survey_results.survey_prtcpnt_id~")) " update="cusfocus.survey_results" updatewhere=1 updatekeyinplace=yes )
+column(band=detail id=1 alignment="0" tabsequence=10 border="2" color="0" x="55" y="16" height="76" width="302" format="[general]"  name=survey_id edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=20 border="2" color="0" x="128" y="208" height="76" width="302" format="[general]"  name=user_id edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=30 border="2" color="0" x="494" y="28" height="76" width="302" format="[general]"  name=letter_id edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=40 border="2" color="0" x="110" y="112" height="76" width="302" format="[general]"  name=case_number edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=50 border="2" color="0" x="480" y="144" height="76" width="603" format="[shortdate] [time]"  name=survey_create_date edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=0 border="0" color="0" x="1024" y="56" height="64" width="539"  name=survey_prtcpnt_id  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

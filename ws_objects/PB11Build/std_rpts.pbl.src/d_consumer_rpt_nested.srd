@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_consumer_rpt_nested.srd
+$PBExportComments$Consumer Profile Report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=272 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=436 color="536870912"  height.autosize=yes)
+table(column=(type=char(20) updatewhereclause=yes key=yes name=consumer_consumer_id dbname="consumer.consumer_id" )
+ column=(type=char(30) updatewhereclause=yes name=consumer_consum_last_name dbname="consumer.consum_last_name" )
+ column=(type=char(25) updatewhereclause=yes name=consumer_consum_first_name dbname="consumer.consum_first_name" )
+ column=(type=char(1) updatewhereclause=yes name=consumer_consum_mi dbname="consumer.consum_mi" )
+ column=(type=char(7) updatewhereclause=yes name=consumer_consum_suffix_name dbname="consumer.consum_suffix_name" )
+ column=(type=char(34) updatewhereclause=yes name=consumer_consum_address_1 dbname="consumer.consum_address_1" )
+ column=(type=char(34) updatewhereclause=yes name=consumer_consum_address_2 dbname="consumer.consum_address_2" )
+ column=(type=char(20) updatewhereclause=yes name=consumer_consum_city dbname="consumer.consum_city" )
+ column=(type=char(2) updatewhereclause=yes name=consumer_consum_state dbname="consumer.consum_state" )
+ column=(type=char(9) updatewhereclause=yes name=consumer_consum_zip dbname="consumer.consum_zip" )
+ column=(type=char(3) updatewhereclause=yes name=consumer_consum_home_ac dbname="consumer.consum_home_ac" )
+ column=(type=char(7) updatewhereclause=yes name=consumer_consum_home_phone_nmbr dbname="consumer.consum_home_phone_nmbr" )
+ retrieve="PBSELECT( VERSION(400) DISTINCT ()TABLE(NAME=~"cusfocus.consumer~" ) COLUMN(NAME=~"cusfocus.consumer.consumer_id~") COLUMN(NAME=~"cusfocus.consumer.consum_last_name~") COLUMN(NAME=~"cusfocus.consumer.consum_first_name~") COLUMN(NAME=~"cusfocus.consumer.consum_mi~") COLUMN(NAME=~"cusfocus.consumer.consum_suffix_name~") COLUMN(NAME=~"cusfocus.consumer.consum_address_1~") COLUMN(NAME=~"cusfocus.consumer.consum_address_2~") COLUMN(NAME=~"cusfocus.consumer.consum_city~") COLUMN(NAME=~"cusfocus.consumer.consum_state~") COLUMN(NAME=~"cusfocus.consumer.consum_zip~") COLUMN(NAME=~"cusfocus.consumer.consum_home_ac~") COLUMN(NAME=~"cusfocus.consumer.consum_home_phone_nmbr~")WHERE(    EXP1 =~"cusfocus.consumer.consumer_id~"   OP =~"=~"    EXP2 =~":consumer_id~" ) ) ARG(NAME = ~"start_date~" TYPE = datetime)  ARG(NAME = ~"consumer_id~" TYPE = string)  ARG(NAME = ~"user_name~" TYPE = string) " update="cusfocus.consumer" updatewhere=0 updatekeyinplace=no arguments=(("start_date", datetime),("consumer_id", string),("user_name", string)) )
+group(level=1 header.height=344 trailer.height=0 by=("" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+text(band=background alignment="1" text="Run Date:" border="0" color="0" x="3735" y="116" height="64" width="370"  name=t_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=background alignment="2" expression="today()"border="0" color="0" x="4137" y="116" height="64" width="311" format="mm/dd/yyyy"  name=compute_11  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=background alignment="1" text="" border="0" color="0" x="3552" y="32" height="80" width="896"  name=t_owner  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Member Profile Report" border="0" color="0" x="114" y="20" height="92" width="951"  name=t_1  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="month (start_date)"border="0" color="0" x="1033" y="456" height="64" width="215" format="[GENERAL]"  name=cc_month visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="if (  cc_month = 1  , '12' , ( if (  cc_month = 2  , '01' , ( if (  cc_month = 3  , '02' , ( if (  cc_month = 4  , '03' , ( if (  cc_month = 5  , '04' , ( if (  cc_month = 6  , '05' , ( if (  cc_month = 7  , '06' , ( if (  cc_month = 8  , '07' , ( if (  cc_month = 9  , '08' , ( if (  cc_month = 10  , '09' , ( if (  cc_month = 11  , '10' , '11' ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) ) )
+"border="0" color="0" x="1294" y="452" height="64" width="366" format="[GENERAL]"  name=cc_last_month visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="IF ( cc_last_month = '12' , ( STRING(YEAR(start_date) ) ) , ( STRING ( YEAR (start_date) + 1 ) ) )
+"border="0" color="0" x="1669" y="448" height="64" width="215" format="[GENERAL]"  name=cc_last_year visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="cc_last_month + '/01/' + cc_last_year"border="0" color="0" x="1984" y="460" height="64" width="430" format="[GENERAL]"  name=cc_last_date visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="String ( start_date, ~"mm/yyyy~" )  + ' - ' + string ( end_date, ~"mm/yyyy~")"border="0" color="0" x="114" y="120" height="64" width="992" format="[GENERAL]"  name=compute_8  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="114" y1="268" x2="4448" y2="268"  name=l_1 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="case(  cc_end_month  when 1 then 31 
+when 2 then 
+( case( mod(cc_end_year, 4) when 0 then 29 else 28) ) 
+when 3 then 31 
+when 4 then 30 
+when 5 then 31 
+when 6 then 30
+when 7 then 31
+when 8 then 31
+when 9 then 30
+when 10 then 31
+when 11 then 30
+when 12 then 31)"border="0" color="0" x="919" y="624" height="76" width="256" format="[GENERAL]"  name=cc_end_day visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="case( month(start_date) when 1 then 12 when 2 then 1
+when 3 then 2 when 4 then 3 when 5 then 4
+when 6 then 5 when 7 then 6 when 8 then 7
+when 9 then 8 when 10 then 9 when 11 then 10
+else 11)"border="0" color="0" x="923" y="536" height="76" width="256" format="[GENERAL]"  name=cc_end_month visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="case ( month(start_date) when 1 then year(start_date)  else ( year(start_date) + 1  ))"border="0" color="0" x="1211" y="544" height="76" width="256" format="[GENERAL]"  name=cc_end_year visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="datetime (string( cc_end_month ) + '/' + string( cc_end_day ) + '/' + string( cc_end_year ) )"border="0" color="0" x="1202" y="616" height="76" width="256" format="[General]"  name=end_date visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="  consumer_consum_last_name   + ', ' +   consumer_consum_first_name  + ' ' + IF(IsNull(  consumer_consum_mi ) , ' ',   consumer_consum_mi  )"border="0" color="0" x="114" y="8" height="64" width="1326" format="[GENERAL]"  name=compute_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="~"Member ID:  ~" +  consumer_consumer_id"border="0" color="0" x="114" y="76" height="64" width="1326" format="[GENERAL]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression=" consumer_consum_address_1 + if ( IsNull ( consumer_consum_address_2) , '',  ', '+consumer_consum_address_2 )"border="0" color="0" x="114" y="144" height="64" width="1326" format="[GENERAL]"  name=compute_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="consumer_consum_city + ', ' +    consumer_consum_state +'  '+   consumer_consum_zip "border="0" color="0" x="114" y="212" height="64" width="1326" format="[GENERAL]"  name=compute_6  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header.1 alignment="0" expression="If ( IsNull (consumer_consum_home_ac ) , '', ~"(~"+consumer_consum_home_ac + ~")~")
+ +  LEFT( consumer_consum_home_phone_nmbr  ,3) + ~"-~" + RIGHT(  consumer_consum_home_phone_nmbr , 4)
+"border="0" color="0" x="114" y="280" height="64" width="1326" format="[GENERAL]"  name=compute_7  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="d_consumer_rpt_month" x="0" y="8" height="260" width="4599" border="0"  height.autosize=yes criteria="" nest_arguments=(("start_date"),("consumer_id"),("user_name")) trail_footer = yes  name=dw_2 )
+report(band=detail dataobject="d_consumer_rpt_totals" x="0" y="292" height="136" width="4599" border="0"  height.autosize=yes criteria="" nest_arguments=(("start_date"),("end_date"),("consumer_id")) trail_footer = yes  name=dw_1  slideup=allabove )
+compute(band=footer alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1920" y="4" height="72" width="727" format="[general]"  name=compute_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" user_name "border="0" color="0" x="475" y="188" height="64" width="1184" format="[GENERAL]"  name=cc_user_name  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="User Name:" border="0" color="0" x="114" y="188" height="64" width="357"  name=cc_user_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

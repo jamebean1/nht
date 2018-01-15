@@ -1,0 +1,64 @@
+﻿$PBExportHeader$d_contact_person_list.srd
+$PBExportComments$Matching Contact Person records DataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=196 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=76 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=contact_person_id dbname="contact_person.contact_person_id" )
+ column=(type=char(30) updatewhereclause=yes name=contact_last_name dbname="contact_person.contact_last_name" )
+ column=(type=char(25) updatewhereclause=yes name=contact_first_name dbname="contact_person.contact_first_name" )
+ column=(type=char(1) updatewhereclause=yes name=contact_mi dbname="contact_person.contact_mi" )
+ column=(type=char(20) updatewhereclause=yes name=contact_city dbname="contact_person.contact_city" )
+ column=(type=char(9) updatewhereclause=yes name=contact_zip dbname="contact_person.contact_zip" )
+ column=(type=char(3) updatewhereclause=yes name=contact_home_ac dbname="contact_person.contact_home_ac" )
+ column=(type=char(7) updatewhereclause=yes name=contact_home_phone dbname="contact_person.contact_home_phone" )
+ column=(type=char(34) updatewhereclause=yes name=contact_address_1 dbname="contact_person.contact_address_1" )
+ column=(type=char(2) updatewhereclause=yes name=contact_state dbname="contact_person.contact_state" )
+ column=(type=char(3) updatewhereclause=yes name=contact_alt_ac dbname="contact_person.contact_alt_ac" )
+ column=(type=char(7) updatewhereclause=yes name=contact_alt_phone dbname="contact_person.contact_alt_phone" )
+ column=(type=char(6) updatewhereclause=yes name=contact_alt_ext dbname="contact_person.contact_alt_ext" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=contact_primary_yn dbname="contact_person.contact_primary_yn" )
+ retrieve="  SELECT cusfocus.contact_person.contact_person_id,   
+         cusfocus.contact_person.contact_last_name,   
+         cusfocus.contact_person.contact_first_name,   
+         cusfocus.contact_person.contact_mi,   
+         cusfocus.contact_person.contact_city,   
+         cusfocus.contact_person.contact_zip,   
+         cusfocus.contact_person.contact_home_ac,   
+         cusfocus.contact_person.contact_home_phone,   
+         cusfocus.contact_person.contact_address_1,   
+         cusfocus.contact_person.contact_state,   
+         cusfocus.contact_person.contact_alt_ac,   
+         cusfocus.contact_person.contact_alt_phone,   
+         cusfocus.contact_person.contact_alt_ext,   
+         cusfocus.contact_person.contact_primary_yn  
+    FROM cusfocus.contact_person  
+   WHERE cusfocus.contact_person.case_number = :case_number    
+" update="cusfocus.contact_person" updatewhere=0 updatekeyinplace=yes arguments=(("case_number", string)) )
+text(band=header alignment="0" text="Contact Name" border="0" color="0" x="91" y="132" height="52" width="869" html.valueishtml="0"  name=contact_name_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Primary" border="0" color="0" x="978" y="132" height="52" width="247" html.valueishtml="0"  name=contact_primary_compute_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="2" expression="if(contact_primary_yn = 'Y', contact_primary_yn, 'N')"border="0" color="0" x="978" y="4" height="68" width="247" format="[GENERAL]" html.valueishtml="0"  name=contact_primary_compute visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Home Phone" border="0" color="0" x="1243" y="132" height="52" width="471" html.valueishtml="0"  name=contact_phone_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="'(' +  contact_home_ac + ') ' +  LEFT(contact_home_phone, 3) + '-'  + right( contact_home_phone , 4) "border="0" color="0" x="1243" y="4" height="68" width="471" format="[GENERAL]" html.valueishtml="0"  name=contact_phone visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Alternate Phone" border="0" color="0" x="1733" y="132" height="52" width="667" html.valueishtml="0"  name=alt_phone_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="'(' +   contact_alt_ac  + ') ' +  LEFT( contact_alt_phone , 3) + '-'  + right(  contact_alt_phone  , 4) + if( isNull( contact_alt_ext ), '',  ' x-'+contact_alt_ext  )
+"border="0" color="0" x="1733" y="4" height="68" width="667" format="[GENERAL]" html.valueishtml="0"  name=alt_phone visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Address" border="0" color="0" x="2418" y="132" height="52" width="1413" html.valueishtml="0"  name=contact_address_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="if( isNull( contact_address_1  ), '', contact_address_1  )  +
+if( isNull( contact_city  ), '', ' ' + contact_city  )  +  
+if( isNull( contact_state ), '', ', '+ contact_state  )  +  
+if( isNull( contact_zip ), '',   ' ' + contact_zip ) "border="0" color="0" x="2418" y="4" height="68" width="1413" format="[GENERAL]" html.valueishtml="0"  name=contact_address visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression=" contact_last_name + ', ' +  contact_first_name  + ' ' +  IF(ISNULL( contact_mi ), '',  contact_mi )"border="0" color="0" x="91" y="4" height="68" width="869" format="[GENERAL]" html.valueishtml="0"  name=contact_name visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="'Contacts: ' + rowcount()"border="0" color="0" x="91" y="12" height="60" width="869" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+bitmap(band=header filename="REPORT.BMP" x="101" y="28" height="64" width="73" border="0"  name=p_1 visible="1" )
+text(band=header alignment="0" text="Contact List" border="0" color="0" x="187" y="32" height="52" width="2999" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+line(band=header x1="73" y1="188" x2="5815" y2="188"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Created By CustomerFocus on ' + String(DateTime(Today(), Now()), 'mmm d, yyyy h:mm am/pm')"border="0" color="33554432" x="1499" y="4" height="52" width="2501" format="[GENERAL]" html.valueishtml="0"  name=compute_3 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=footer x1="46" y1="0" x2="5787" y2="0"  name=l_footer visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="12632256" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

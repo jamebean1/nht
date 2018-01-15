@@ -1,0 +1,16 @@
+﻿$PBExportHeader$d_group_parms.srd
+$PBExportComments$Datawindow for gathering case detail report parms.
+release 7;
+datawindow(units=0 timer_interval=0 color=79741120 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=552 color="536870912" )
+table(column=(type=char(20) updatewhereclause=no name=group_id dbname="member_id" )
+ column=(type=char(4) updatewhereclause=no name=year dbname="start_date" )
+ )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="567" y="16" height="64" width="421" format="####"  name=year editmask.mask="####" editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="1" text="Year to Report On:" border="0" color="0" x="37" y="16" height="64" width="498"  name=start_date_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="1" text="Group ID:" border="0" color="0" x="174" y="116" height="64" width="361"  name=case_status_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=1 alignment="0" tabsequence=20 border="5" color="0" x="567" y="116" height="64" width="581" format="[general]"  name=group_id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

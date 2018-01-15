@@ -1,0 +1,19 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "pc_stds.pbl" "";
+@end;
+@begin Objects 
+ "d_fwca_mdi_std.srd" "pc_stds.pbl";
+ "d_fwca_menu_std.srd" "pc_stds.pbl";
+ "d_fwca_mgr_std.srd" "pc_stds.pbl";
+ "d_fwca_msg_std.srd" "pc_stds.pbl";
+ "u_container_std.sru" "pc_stds.pbl";
+ "u_dw_std.sru" "pc_stds.pbl";
+ "u_outliner_std.sru" "pc_stds.pbl";
+ "u_tab_std.sru" "pc_stds.pbl";
+ "u_tabpg_std.sru" "pc_stds.pbl";
+ "w_cc_std.srw" "pc_stds.pbl";
+ "w_main_std.srw" "pc_stds.pbl";
+ "w_mdi_frame_std.srw" "pc_stds.pbl";
+ "w_response_std.srw" "pc_stds.pbl";
+@end;

@@ -1,0 +1,68 @@
+﻿$PBExportHeader$d_tcar_closed_cases.srd
+$PBExportComments$Closed Case section of the Total Contact Activity Report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=276 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(41) updatewhereclause=yes name=case_types_case_type_desc dbname="case_log.case_type_desc" )
+ column=(type=long updatewhereclause=yes name=grp_1_count dbname="grp_1_count" )
+ column=(type=long updatewhereclause=yes name=grp_2_count dbname="grp_2_count" )
+ column=(type=long updatewhereclause=yes name=grp_3_count dbname="grp_3_count" )
+ column=(type=long updatewhereclause=yes name=grp_4_count dbname="grp_4_count" )
+ column=(type=long updatewhereclause=yes name=total_cases_by_type dbname="total_cases_by_type" )
+ column=(type=long updatewhereclause=yes name=avg_days_open dbname="avg_days_open" )
+ retrieve="select ct.case_type_desc as case_type_desc,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 5 THEN 1 ELSE 0 END) as grp_1_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) >= 6 and DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 10 THEN 1 ELSE 0 END) as grp_2_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) >= 11 and DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 15 THEN 1 ELSE 0 END) as grp_3_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) > 15 THEN 1 ELSE 0 END) as grp_4_count,
+		 count(ct.case_type_desc) as total_cases_by_type,
+		 avg (DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date)) as avg_days_open
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id = 'C' and
+		 ct.case_type = cl.case_type and
+		 (cl.case_log_appld IS NULL OR cl.case_log_appld = 0)
+group by ct.case_type_desc
+UNION
+select ct.case_type_desc + ' - Appealed' as case_type_desc,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 5 THEN 1 ELSE 0 END) as grp_1_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) >= 6 and DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 10 THEN 1 ELSE 0 END) as grp_2_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) >= 11 and DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) <= 15 THEN 1 ELSE 0 END) as grp_3_count,
+		 sum (CASE WHEN DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date) > 15 THEN 1 ELSE 0 END) as grp_4_count,
+		 count(ct.case_type_desc) as total_cases_by_type,
+		 avg (DateDiff (day, cl.case_log_opnd_date, cl.case_log_clsd_date)) as avg_days_open
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id = 'C' and
+		 ct.case_type = cl.case_type and
+		 cl.case_log_appld > 0
+group by ct.case_type_desc
+order by ct.case_type_desc" )
+text(band=header alignment="2" text="Closed Cases" border="0" color="0" x="1541" y="32" height="64" width="384"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="114" y1="12" x2="3401" y2="12"  name=l_2 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="114" y1="108" x2="3401" y2="108"  name=l_4 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="Avg Days
+To Close" border="0" color="0" x="2907" y="136" height="128" width="439"  name=avg_days_open_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="0-5 Days" border="0" color="0" x="1047" y="200" height="64" width="329"  name=grp_1_count_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="6-10 Days" border="0" color="0" x="1394" y="200" height="64" width="329"  name=grp_2_count_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="11-15 Days" border="0" color="0" x="1737" y="200" height="64" width="338"  name=grp_3_count_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="16+ Days" border="0" color="0" x="2089" y="200" height="64" width="329"  name=grp_4_count_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="1" text="Total" border="0" color="0" x="2437" y="200" height="64" width="329"  name=total_cases_by_type_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=header x1="1042" y1="272" x2="3346" y2="272"  name=l_3 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="101" y="4" height="64" width="928" format="[general]"  name=case_types_case_type_desc edit.limit=41 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="1047" y="4" height="64" width="329" format="[general]"  name=grp_1_count edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="1" tabsequence=32766 border="0" color="0" x="1394" y="4" height="64" width="329" format="[general]"  name=grp_2_count edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="1" tabsequence=32766 border="0" color="0" x="1742" y="4" height="64" width="329" format="[general]"  name=grp_3_count edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="1" tabsequence=32766 border="0" color="0" x="2089" y="4" height="64" width="329" format="[general]"  name=grp_4_count edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="1" tabsequence=32766 border="0" color="0" x="2437" y="4" height="64" width="329" format="[general]"  name=total_cases_by_type edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="1042" y1="0" x2="3346" y2="0"  name=l_1 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=summary alignment="1" expression="sum( grp_1_count for all )"border="0" color="0" x="1047" y="12" height="64" width="329" format="[GENERAL]"  name=grp_1_sum  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( grp_2_count for all )"border="0" color="0" x="1394" y="12" height="64" width="329" format="[GENERAL]"  name=grp_2_sum  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( grp_3_count for all )"border="0" color="0" x="1742" y="12" height="64" width="329" format="[GENERAL]"  name=grp_3_sum  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( grp_4_count for all )"border="0" color="0" x="2089" y="12" height="64" width="329" format="[GENERAL]"  name=grp_4_sum  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( total_cases_by_type for all )"border="0" color="0" x="2437" y="12" height="64" width="329" format="[GENERAL]"  name=total_cases  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=7 alignment="1" tabsequence=32766 border="0" color="0" x="3022" y="4" height="64" width="325" format="[general]"  name=avg_days_open edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="avg(  avg_days_open  for all )"border="0" color="0" x="3022" y="12" height="64" width="325" format="0.00"  name=compute_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

@@ -1,0 +1,86 @@
+﻿$PBExportHeader$gf_updatedatawindowfieldlabel.srf
+$PBExportComments$Function for updating field labels in datawindows. See function header for usage instructions.
+global type gf_updatedatawindowfieldlabel from function_object
+end type
+
+forward prototypes
+global function string gf_updatedatawindowfieldlabel (string a_clabelname, string a_cdefaulttext, string a_csourcetype)
+end prototypes
+
+global function string gf_updatedatawindowfieldlabel (string a_clabelname, string a_cdefaulttext, string a_csourcetype);/*****************************************************************************************
+   Function:   gf_UpdateDataWindowFieldLabel
+   Purpose:    Used to update the text of a field label in a datawindow. It is called in
+					an expression used to define the Text property of the Text object on a
+					datawindow. If a new label has been defined for this Text object, it is
+					used. Otherwise, the specified default value is used.
+					
+					Example: gf_UpdateDataWindowFieldLabel (this.name, 'default text')
+					
+   Parameters: STRING a_cLabelName - The name of the Text object to be updated.
+					STRING a_cDefaultText - The label to return if a replacement is not specified.
+					STRING a_cSourceType - The source type of the field to update.
+					
+   Returns:    STRING - The new Text value for the object.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	06/18/03 M. Caruso    Created.
+	06/19/03 M. Caruso    Modified to reference a datastore for the information instead of
+								 calling in-line SQL each time.
+	07/08/03 M. Caruso    Added code to update the 'city_state_zip_t' combined label.
+								 NOTE: gf_AllowQuotesInLabels not needed in this function.
+*****************************************************************************************/
+LONG			l_nRow, l_nCityRow, l_nStateRow, l_nZipRow, l_nMaxRows
+STRING		l_cColName, l_cWhere, l_cComboLabel, l_cPrefix
+DATASTORE	l_dsFieldLabels
+
+IF IsValid (w_case_detail_history) THEN
+	// for single record CDHR
+	l_dsFieldLabels = w_case_detail_history.i_dsFieldLabels
+ELSEIF IsValid (w_supervisor_portal) THEN
+	// for multi-record CDHR
+	l_dsFieldLabels = w_supervisor_portal.i_dsFieldLabels
+END IF
+	
+IF NOT IsValid (l_dsFieldLabels) THEN
+	
+	// The datastore could not be referenced, so use the default value.
+	RETURN a_cDefaultText
+	
+ELSE
+	
+	l_nMaxRows = l_dsFieldLabels.RowCount()
+	l_cColName = Left (a_cLabelName, Len (a_cLabelName) - 2)
+	l_cWhere = 'column_name = ~'' + l_cColName + '~' and source_type = ~'' + a_cSourceType + '~''
+	l_nRow = l_dsFieldLabels.Find (l_cWhere, 1, l_nMaxRows)
+	IF l_nRow > 0 THEN
+		RETURN l_dsFieldLabels.GetItemString (l_nRow, 'field_label')
+	ELSE
+		IF l_cColName = 'city_state_zip' THEN
+			CHOOSE CASE a_cSourceType
+				CASE 'C'
+					l_cPrefix = 'consum'
+				CASE 'P'
+					l_cPrefix = 'provid'
+				CASE 'E'
+					l_cPrefix = 'employ'
+				CASE 'O'
+					l_cPrefix = 'other'
+			END CHOOSE
+			// update the combined field label
+			l_nCityRow = l_dsFieldLabels.Find ('column_name = ~'' + l_cPrefix + '_city~' and source_type = ~'' + a_cSourceType + '~'', 1, l_nMaxRows)
+			l_nStateRow = l_dsFieldLabels.Find ('column_name = ~'' + l_cPrefix + '_state~' and source_type = ~'' + a_cSourceType + '~'', 1, l_nMaxRows)
+			l_nZipRow = l_dsFieldLabels.Find ('column_name = ~'' + l_cPrefix + '_zip~' and source_type = ~'' + a_cSourceType + '~'', 1, l_nMaxRows)
+			l_cComboLabel = l_dsFieldLabels.GetItemString (l_nCityRow, 'field_label') + ', ' + &
+								 l_dsFieldLabels.GetItemString (l_nStateRow, 'field_label') + ', ' +  &
+								 l_dsFieldLabels.GetItemString (l_nZipRow, 'field_label')
+			RETURN l_cComboLabel
+		ELSE
+			RETURN a_cDefaultText
+		END IF
+	END IF
+	
+END IF
+end function
+

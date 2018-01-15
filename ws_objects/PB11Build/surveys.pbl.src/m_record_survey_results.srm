@@ -1,0 +1,2100 @@
+﻿$PBExportHeader$m_record_survey_results.srm
+$PBExportComments$Record Survey Results Menu
+forward
+global type m_record_survey_results from menu
+end type
+type m_file from menu within m_record_survey_results
+end type
+type m_outofoffice from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_newsurveyresult from menu within m_file
+end type
+type m_savesurveyresults from menu within m_file
+end type
+type m_filesep1 from menu within m_file
+end type
+type m_clearsearch from menu within m_file
+end type
+type m_search from menu within m_file
+end type
+type m_filesep2 from menu within m_file
+end type
+type m_printsetup from menu within m_file
+end type
+type m_printsurvey from menu within m_file
+end type
+type m_filesep3 from menu within m_file
+end type
+type m_close from menu within m_file
+end type
+type m_filesep4 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_record_survey_results
+m_outofoffice m_outofoffice
+m_- m_-
+m_newsurveyresult m_newsurveyresult
+m_savesurveyresults m_savesurveyresults
+m_filesep1 m_filesep1
+m_clearsearch m_clearsearch
+m_search m_search
+m_filesep2 m_filesep2
+m_printsetup m_printsetup
+m_printsurvey m_printsurvey
+m_filesep3 m_filesep3
+m_close m_close
+m_filesep4 m_filesep4
+m_exit m_exit
+end type
+type m_edit from menu within m_record_survey_results
+end type
+type m_sort1 from menu within m_edit
+end type
+type m_tab1 from menu within m_edit
+end type
+type m_tab2 from menu within m_edit
+end type
+type m_-0 from menu within m_edit
+end type
+type m_cut from menu within m_edit
+end type
+type m_copy from menu within m_edit
+end type
+type m_paste from menu within m_edit
+end type
+type m_-1 from menu within m_edit
+end type
+type m_selectall from menu within m_edit
+end type
+type m_edit from menu within m_record_survey_results
+m_sort1 m_sort1
+m_tab1 m_tab1
+m_tab2 m_tab2
+m_-0 m_-0
+m_cut m_cut
+m_copy m_copy
+m_paste m_paste
+m_-1 m_-1
+m_selectall m_selectall
+end type
+type m_features from menu within m_record_survey_results
+end type
+type m_createmaintaincase from menu within m_features
+end type
+type m_workdesk from menu within m_features
+end type
+type m_documentsfullinterface from menu within m_features
+end type
+type m_sleepmode from menu within m_features
+end type
+type m_features from menu within m_record_survey_results
+m_createmaintaincase m_createmaintaincase
+m_workdesk m_workdesk
+m_documentsfullinterface m_documentsfullinterface
+m_sleepmode m_sleepmode
+end type
+type m_administration from menu within m_record_survey_results
+end type
+type m_userlicenses from menu within m_administration
+end type
+type m_updatelicenseinformation from menu within m_userlicenses
+end type
+type m_manageuserlogins from menu within m_userlicenses
+end type
+type m_userlicenses from menu within m_administration
+m_updatelicenseinformation m_updatelicenseinformation
+m_manageuserlogins m_manageuserlogins
+end type
+type m_options from menu within m_administration
+end type
+type m_batchprocessing from menu within m_administration
+end type
+type m_casehousekeeping from menu within m_administration
+end type
+type m_tablemaintenance from menu within m_administration
+end type
+type m_supervisorportal from menu within m_administration
+end type
+type m_lockedrecords from menu within m_administration
+end type
+type m_administration from menu within m_record_survey_results
+m_userlicenses m_userlicenses
+m_options m_options
+m_batchprocessing m_batchprocessing
+m_casehousekeeping m_casehousekeeping
+m_tablemaintenance m_tablemaintenance
+m_supervisorportal m_supervisorportal
+m_lockedrecords m_lockedrecords
+end type
+type m_window from menu within m_record_survey_results
+end type
+type m_tile from menu within m_window
+end type
+type m_layer from menu within m_window
+end type
+type m_cascade from menu within m_window
+end type
+type m_windowsep1 from menu within m_window
+end type
+type m_arrangeicons from menu within m_window
+end type
+type m_windowsep2 from menu within m_window
+end type
+type m_closeall from menu within m_window
+end type
+type m_window from menu within m_record_survey_results
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_windowsep1 m_windowsep1
+m_arrangeicons m_arrangeicons
+m_windowsep2 m_windowsep2
+m_closeall m_closeall
+end type
+type m_help from menu within m_record_survey_results
+end type
+type m_index from menu within m_help
+end type
+type m_usinghelp from menu within m_help
+end type
+type m_helpsep1 from menu within m_help
+end type
+type m_about from menu within m_help
+end type
+type m_help from menu within m_record_survey_results
+m_index m_index
+m_usinghelp m_usinghelp
+m_helpsep1 m_helpsep1
+m_about m_about
+end type
+global type m_record_survey_results from menu
+m_file m_file
+m_edit m_edit
+m_features m_features
+m_administration m_administration
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_record_survey_results from menu
+m_file m_file
+m_edit m_edit
+m_features m_features
+m_administration m_administration
+m_window m_window
+m_help m_help
+end type
+global m_record_survey_results m_record_survey_results
+
+type variables
+BOOLEAN i_bOutOfOffice
+STRING  i_cUserID
+
+
+end variables
+
+forward prototypes
+public subroutine fm_editoperation (string a_cOperation)
+end prototypes
+
+public subroutine fm_editoperation (string a_cOperation);/****************************************************************************************
+
+  Function: fm_EditOperation
+   Purpose: To cut, copy and paste to or from the system clipboard.  Also select all text
+				in the editable control.
+	
+Parameters: a_cOperation - The operation to be perfomed
+									cut - Cut Contents to the Clipboard
+									copy - Copy Contents to the Clipboard
+									paste - Paste Contents from the Clipboard
+									selectall - Select all of the text in the edit control
+	Returns: None
+	
+ Revisions: Date     Developer     Description
+            ======== ============= ======================================================
+				4/30/2001 K. Claver    Created
+
+****************************************************************************************/
+GraphicObject l_goObject
+DataWindow l_dwObject
+SingleLineEdit l_sleObject
+MultiLineEdit l_mleObject
+EditMask l_emObject
+RichTextEdit l_rteObject
+DropDownListBox l_ddlbObject
+DropDownPictureListBox l_ddplbObject
+Boolean l_bOk = TRUE
+
+l_goObject = GetFocus( )
+
+CHOOSE CASE TypeOf( l_goObject )
+	CASE SingleLineEdit!
+		l_sleObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_sleObject.Cut( )
+			CASE "COPY"
+				l_sleObject.Copy( )
+			CASE "PASTE"
+				l_sleObject.Paste( )
+			CASE "SELECTALL"
+				l_sleObject.SelectText( 1, Len( l_sleObject.Text ) )
+		END CHOOSE
+	CASE EditMask!
+		l_emObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_emObject.Cut( )
+			CASE "COPY"
+				l_emObject.Copy( )
+			CASE "PASTE"
+				l_emObject.Paste( )
+			CASE "SELECTALL"
+				l_emObject.SelectText( 1, Len( l_emObject.Text ) )
+		END CHOOSE
+	CASE RichTextEdit!
+		l_rteObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_rteObject.Cut( )
+			CASE "COPY"
+				l_rteObject.Copy( )
+			CASE "PASTE"
+				l_rteObject.Paste( )
+			CASE "SELECTALL"
+				l_rteObject.SelectTextAll( )
+		END CHOOSE
+	CASE DropDownListBox!
+		l_ddlbObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_ddlbObject.Cut( )
+			CASE "COPY"
+				l_ddlbObject.Copy( )
+			CASE "PASTE"
+				l_ddlbObject.Paste( )
+			CASE "SELECTALL"
+				l_ddlbObject.SelectText( 1, Len( l_ddlbObject.Text ) )
+		END CHOOSE
+	CASE DropDownPictureListBox!
+		l_ddplbObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_ddplbObject.Cut( )
+			CASE "COPY"
+				l_ddplbObject.Copy( )
+			CASE "PASTE"
+				l_ddplbObject.Paste( )
+			CASE "SELECTALL"
+				l_ddplbObject.SelectText( 1, Len( l_ddplbObject.Text ) )
+		END CHOOSE
+	CASE DataWindow!
+		l_dwObject = l_goObject
+		CHOOSE CASE Upper( a_cOperation )
+			CASE "CUT"
+				l_dwObject.Cut( )
+			CASE "COPY"
+				l_dwObject.Copy( )
+			CASE "PASTE"
+				l_dwObject.Paste( )
+			CASE "SELECTALL"
+				l_dwObject.SelectText(1, Len( l_dwObject.GetText( ) ) )
+		END CHOOSE
+END CHOOSE		
+end subroutine
+
+on m_record_survey_results.create
+m_record_survey_results=this
+call super::create
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_features=create m_features
+this.m_administration=create m_administration
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_features
+this.Item[UpperBound(this.Item)+1]=this.m_administration
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_record_survey_results.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_features)
+destroy(this.m_administration)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_record_survey_results
+m_outofoffice m_outofoffice
+m_- m_-
+m_newsurveyresult m_newsurveyresult
+m_savesurveyresults m_savesurveyresults
+m_filesep1 m_filesep1
+m_clearsearch m_clearsearch
+m_search m_search
+m_filesep2 m_filesep2
+m_printsetup m_printsetup
+m_printsurvey m_printsurvey
+m_filesep3 m_filesep3
+m_close m_close
+m_filesep4 m_filesep4
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.checked = true
+this.m_outofoffice=create m_outofoffice
+this.m_-=create m_-
+this.m_newsurveyresult=create m_newsurveyresult
+this.m_savesurveyresults=create m_savesurveyresults
+this.m_filesep1=create m_filesep1
+this.m_clearsearch=create m_clearsearch
+this.m_search=create m_search
+this.m_filesep2=create m_filesep2
+this.m_printsetup=create m_printsetup
+this.m_printsurvey=create m_printsurvey
+this.m_filesep3=create m_filesep3
+this.m_close=create m_close
+this.m_filesep4=create m_filesep4
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_outofoffice
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_newsurveyresult
+this.Item[UpperBound(this.Item)+1]=this.m_savesurveyresults
+this.Item[UpperBound(this.Item)+1]=this.m_filesep1
+this.Item[UpperBound(this.Item)+1]=this.m_clearsearch
+this.Item[UpperBound(this.Item)+1]=this.m_search
+this.Item[UpperBound(this.Item)+1]=this.m_filesep2
+this.Item[UpperBound(this.Item)+1]=this.m_printsetup
+this.Item[UpperBound(this.Item)+1]=this.m_printsurvey
+this.Item[UpperBound(this.Item)+1]=this.m_filesep3
+this.Item[UpperBound(this.Item)+1]=this.m_close
+this.Item[UpperBound(this.Item)+1]=this.m_filesep4
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_outofoffice)
+destroy(this.m_-)
+destroy(this.m_newsurveyresult)
+destroy(this.m_savesurveyresults)
+destroy(this.m_filesep1)
+destroy(this.m_clearsearch)
+destroy(this.m_search)
+destroy(this.m_filesep2)
+destroy(this.m_printsetup)
+destroy(this.m_printsurvey)
+destroy(this.m_filesep3)
+destroy(this.m_close)
+destroy(this.m_filesep4)
+destroy(this.m_exit)
+end on
+
+type m_outofoffice from menu within m_file
+end type
+
+on m_outofoffice.create
+call super::create
+this.text = "&Out of Office"
+end on
+
+on m_outofoffice.destroy
+call super::destroy
+end on
+
+event clicked;//**********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Add or Remove Out of Office
+//  
+//  Date     Developer   Description
+//  -------- ----------- -----------------------------------------------------------------------
+//  09/28/00 cjackson    Original Version
+//  12/08/00 cjackson    Update routed.bmp as necessary
+//  12/13/00 cjackson    Add logic to prevent marking out of office if cases are being routed
+//
+//**********************************************************************************************
+
+STRING l_cNewKey, l_cWindowTitle, l_cAssignedTo, l_cBMP, l_cOutUser
+LONG l_nCount, l_nIndex
+DATETIME l_dtCreateDate
+LONG l_nPos
+
+l_cWindowTitle = w_mdi.Title 
+
+IF w_record_survey_results.i_bOutOfOffice THEN
+	// Check to see if this CSR's cases are being route to another CSR
+	SELECT assigned_to_user_id INTO :l_cAssignedTo
+	  FROM cusfocus.out_of_office
+	 WHERE out_user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+	 
+	IF NOT ISNULL(l_cAssignedTo) THEN
+		// See if this CSR is also being routed another CSR's cases
+		SELECT COUNT (*) INTO :l_nCount
+		  FROM cusfocus.out_of_office
+		 WHERE assigned_to_user_id = :l_cAssignedTo
+		 USING SQLCA;
+		
+		IF l_nCount = 1 THEN
+			// This is the only route record, set the icon back to person.bmp
+			UPDATE cusfocus.cusfocus_user
+				SET out_of_office_bmp = 'person.bmp'
+			 WHERE user_id = :l_cAssignedTo
+			 USING SQLCA;
+		END IF
+		 
+	END IF
+	
+	// Mark the CSR in the office
+	SELECT assigned_to_user_id INTO :l_cAssignedTo
+	  FROM cusfocus.out_of_office
+	 WHERE out_user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+	 
+	// Remove Out of Office
+	DELETE cusfocus.out_of_office
+	 WHERE out_user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+
+	// Determine if the icon should be 'routed.bmp' (if this CSR is being routed
+	// another CSR's cases) or 'person.bmp' (they are not)
+	SELECT COUNT (*) INTO :l_nCount
+	  FROM cusfocus.out_of_office
+	 WHERE assigned_to_user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+	 
+	IF l_nCount > 0 THEN 
+		l_cBMP = 'routed.bmp' 
+	ELSE
+		l_cBMP = 'person.bmp'
+	END IF
+	
+	UPDATE cusfocus.cusfocus_user
+	   SET out_of_office_bmp = :l_cBMP
+	 WHERE user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+	 
+	// Make sure window title is not already modified
+	l_nPos = POS(l_cWindowTitle,' ***')
+	IF l_nPos > 0 THEN
+		l_cWindowTitle = TRIM(MID(l_cWindowTitle,1,l_nPos))
+		w_mdi.Title = l_cWindowTitle
+	END IF
+	
+	THIS.UnCheck()
+	w_record_survey_results.i_bOutOfOffice = FALSE
+	
+ELSE
+	// Make sure the user is not being routed cases from someone else before marking out of office
+	SELECT COUNT(*) INTO :l_nIndex
+	  FROM cusfocus.out_of_office
+	 WHERE assigned_to_user_id = :w_record_survey_results.i_cUserID
+	 USING SQLCA;
+	 
+	IF l_nIndex > 0 THEN
+		// Can't mark out of office...
+		messagebox(gs_AppName, 'You are currently being routed cases, you cannot mark yourself out of office')
+		RETURN
+		
+	ELSE
+
+	
+		//Mark the user out of office
+		l_dtCreateDate = DateTime(Today())
+		l_cNewKey = w_record_survey_results.fw_getkeyvalue('out_of_office')
+		
+		// Make sure this person hasn't been marked Out of Office in the meantime
+		SELECT count (*) INTO :l_nCount
+		  FROM cusfocus.out_of_office
+		 WHERE out_user_id = :w_record_survey_results.i_cUserID
+		 USING SQLCA;
+		 
+		IF l_nCount = 0 THEN 
+		
+			INSERT INTO cusfocus.out_of_office (out_of_office_id, out_user_id, updated_by, updated_timestamp)
+			VALUES (:l_cNewKey, :w_record_survey_results.i_cUserID, :w_record_survey_results.i_cUserID, :l_dtCreateDate)
+			USING SQLCA;									 
+			
+			//Update the icon to out_of_office.bmp
+			UPDATE cusfocus.cusfocus_user
+				SET out_of_office_bmp = 'out_of_office.bmp'
+			 WHERE user_id = :w_record_survey_results.i_cUserID
+			 USING SQLCA;
+		
+		END IF
+	
+		// Make sure window title is not already modified
+		l_nPos = POS(l_cWindowTitle,' ***')
+		IF l_nPos = 0 THEN
+			w_mdi.Title = w_mdi.Title + ' *** Out of Office'
+		END IF
+		
+	END IF
+
+	THIS.Check()
+	w_record_survey_results.i_bOutOfOffice = TRUE
+	
+END IF
+
+
+end event
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_newsurveyresult from menu within m_file
+end type
+
+event clicked;//********************************************************************************************
+//
+//  Event:   clicked
+//  Purpose: Create a new survey result record
+//  
+//  Date     Developer   Description
+//  -------- ----------- ---------------------------------------------------------------------
+//  04/26/01 C. Jackson  Enable the second tab so that it can be selected on new
+//
+//********************************************************************************************
+
+W_RECORD_SURVEY_RESULTS l_wParentWindow
+STRING l_cNull
+DATETIME l_cNullDate
+
+SETNULL(l_cNull)
+SETNULL(l_cNullDate)
+
+//--------------------------------------------------------------------
+//
+//		Get the Active sheet and place it into the local l_wParentWindow.
+//		If its valid, then set the Survey Result datawindow into New
+//		mode.  Set the current Tab to Record Survey results if it is not
+//		so already.
+//
+//--------------------------------------------------------------------
+
+l_wParentWindow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF IsValid(l_wParentWindow) THEN
+
+	l_wParentWindow.uo_survey_results.dw_survey_results.fu_New(1)
+
+	IF l_wParentWindow.dw_folder.i_SelectedTab <> 2 THEN
+	   l_wParentWindow.dw_folder.fu_EnableTab(2)
+		l_wParentWindow.dw_folder.fu_SelectTab(2)
+//		l_wParentWindow.uo_survey_results.dw_survey_results.SetItem(1,'survey_prtcpnt_id',l_cNull)
+//		l_wParentWindow.uo_survey_results.dw_survey_results.SetItem(1,'survey_rcvd_date',l_cNullDate)
+		
+	END IF
+END IF
+
+end event
+
+on m_newsurveyresult.create
+call super::create
+this.text = "&New Survey Results~tCtrl+N"
+this.shortcut = 334
+this.microhelp = "Creates New Survey Results"
+this.toolbaritemname = "ni0102-48.ico"
+this.toolbaritemtext = "New Survey"
+end on
+
+on m_newsurveyresult.destroy
+call super::destroy
+end on
+
+type m_savesurveyresults from menu within m_file
+end type
+
+event clicked;/********************************************************************
+
+		Event:	clicked
+		Purpose:	To Save the Survey Results Record.
+
+*********************************************************************/
+
+W_RECORD_SURVEY_RESULTS l_wParentWindow
+
+//--------------------------------------------------------------------
+//
+//		Get the active sheet and assign it to the local variable 
+//		l_wParentWindow.  Save the DW.
+//--------------------------------------------------------------------
+
+l_wParentWindow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF IsValid(l_wParentWindow) THEN
+	//Populate the source id for the case
+//	IF l_wParentWindow.fw_PopCustID( ) = -1 THEN
+//		RETURN
+//	END IF	
+	
+	l_wParentWindow.uo_survey_results.dw_survey_results.fu_Save(&
+	l_wParentWindow.uo_survey_results.dw_survey_results.c_SaveChanges)
+	
+END IF
+end event
+
+on m_savesurveyresults.create
+call super::create
+this.text = "&Save Survey Results~tCtrl+S"
+this.shortcut = 339
+this.microhelp = "Saves the current Survey Results"
+this.toolbaritemname = "save-it.ico"
+this.toolbaritemtext = "Save Survey"
+end on
+
+on m_savesurveyresults.destroy
+call super::destroy
+end on
+
+type m_filesep1 from menu within m_file
+end type
+
+on m_filesep1.create
+call super::create
+this.text = "-"
+end on
+
+on m_filesep1.destroy
+call super::destroy
+end on
+
+type m_clearsearch from menu within m_file
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To clear the search criteria of the Survey Search
+
+***************************************************************************************/
+
+W_RECORD_SURVEY_RESULTS l_wParentWindow
+
+l_wParentWIndow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF IsValid(l_wParentWindow) THEN
+	l_wParentWindow.fw_clearsearch()
+END IF
+end on
+
+on m_clearsearch.create
+call super::create
+this.text = "&Clear Search"
+this.microhelp = "Clears the Search Criteria"
+this.toolbaritemname = "ei0087-48.ico"
+this.toolbaritemtext = "Clear Search Criteria"
+this.toolbaritemspace = 1
+end on
+
+on m_clearsearch.destroy
+call super::destroy
+end on
+
+type m_search from menu within m_file
+end type
+
+event clicked;/****************************************************************************************
+	Event:	clicked
+	Purpose:	To perform a search base on the user entered	search criteria.
+
+	Revisions:
+	Date     Developer     Description
+	======== ============= ===============================================================
+	02/27/02 M. Caruso     Cleaned up code and corrected multiple message issues.
+	03/05/02 M. Caruso     Added c_valfixed condition to validation and message checks.
+	03/06/02 M. Caruso     Added a call to AcceptText ().
+	03/22/02 M. Caruso     Corrected error trapping logic.
+****************************************************************************************/
+
+BOOLEAN		l_bContinue
+STRING		l_cValue, l_cColName
+INTEGER		l_nTotalColumns, l_nIndex, l_nRow, l_nInitialColumn
+U_DW_SEARCH	l_dwSearchCriteria
+W_RECORD_SURVEY_RESULTS l_wParentWindow
+
+//-------------------------------------------------------------------
+//		Get the acitve sheet, assign it to the local variable 
+//		l_wParentWindow.  If it is valid, then trigger the pc_search
+//		event on the window.
+//-------------------------------------------------------------------
+
+l_wParentWindow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF IsValid(l_wParentWindow) THEN
+	
+	// set up reference variables
+	l_dwSearchCriteria = l_wParentWindow.uo_search_survey.dw_search_criteria
+	
+	l_dwSearchCriteria.SetRedraw (FALSE)
+	l_dwSearchCriteria.AcceptText ()
+	
+	// abort search if the current criteria column failed validation
+	IF l_dwSearchCriteria.i_SearchError = l_dwSearchCriteria.c_ValFailed THEN
+		l_bContinue = FALSE
+	ELSE
+	
+		// initialize continue to FALSE
+		l_bContinue = FALSE
+		l_nTotalColumns = Integer (l_dwSearchCriteria.Object.DataWindow.Column.Count)
+		l_nRow = l_dwSearchCriteria.GetRow ()
+		l_nInitialColumn = l_dwSearchCriteria.GetColumn ()
+		
+		// verify that criteria are specified
+		FOR l_nIndex = 1 TO l_nTotalColumns
+			
+			l_dwSearchCriteria.SetColumn (l_nIndex)
+			IF (l_dwSearchCriteria.i_SearchError = l_dwSearchCriteria.c_ValOK) OR &
+				(l_dwSearchCriteria.i_SearchError = l_dwSearchCriteria.c_ValFixed) THEN
+				
+				// this item passed validation
+				l_cColName = l_dwSearchCriteria.Describe ('#' + STRING (l_nIndex) + '.Name')
+				l_cValue = l_dwSearchCriteria.fu_SelectCode (l_cColName)
+				
+				// if value does not specify a pure wildcard search, allow to continue
+				IF l_cValue <> '%' AND l_cValue <> '' THEN l_bContinue = TRUE
+				
+			ELSE
+				
+				// something failed validation, so stop processing.
+				l_bContinue = FALSE
+				EXIT
+				
+			END IF
+			
+		NEXT
+		
+		l_dwSearchCriteria.SetColumn (l_nInitialColumn)
+		
+	END IF
+	
+	IF l_bContinue THEN
+		l_wParentWindow.TriggerEvent('pc_search')
+	ELSE
+		// do not display message is bad data caused continue to be FALSE.
+		IF (l_dwSearchCriteria.i_SearchError = l_dwSearchCriteria.c_ValOK) OR &
+		   (l_dwSearchCriteria.i_SearchError = l_dwSearchCriteria.c_ValFixed) THEN
+			MessageBox ("No Search Criteria", "You must enter criteria to perform a search.")
+		END IF
+	END IF
+	
+	// reset the SearchError instance variable
+	l_dwSearchCriteria.i_SearchError = 0
+	
+	l_dwSearchCriteria.SetRedraw (TRUE)
+	
+END IF
+
+end event
+
+on m_search.create
+call super::create
+this.text = "S&earch"
+this.microhelp = "Searches for Matching Survey Results"
+this.toolbaritemname = "ni0104-48.ico"
+this.toolbaritemtext = "Search"
+end on
+
+on m_search.destroy
+call super::destroy
+end on
+
+type m_filesep2 from menu within m_file
+end type
+
+on m_filesep2.create
+call super::create
+this.text = "-"
+end on
+
+on m_filesep2.destroy
+call super::destroy
+end on
+
+type m_printsetup from menu within m_file
+end type
+
+on clicked;PrintSetup()
+end on
+
+on m_printsetup.create
+call super::create
+this.text = "P&rint Setup..."
+end on
+
+on m_printsetup.destroy
+call super::destroy
+end on
+
+type m_printsurvey from menu within m_file
+end type
+
+on clicked;/****************************************************************************************
+
+
+		Event:	clicked
+		Purpose:	To trigger the pc_print event in order to print the Survey Results.
+
+***************************************************************************************/
+W_RECORD_SURVEY_RESULTS l_wParentWIndow
+
+l_wParentWindow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF IsValid(l_wParentWindow) THEN
+	l_wParentWindow.TriggerEvent('pc_print')
+END IF
+end on
+
+on m_printsurvey.create
+call super::create
+this.text = "&Print Survey Results"
+this.toolbaritemname = "wi0146-48.ico"
+this.toolbaritemtext = "Print"
+this.toolbaritemspace = 1
+end on
+
+on m_printsurvey.destroy
+call super::destroy
+end on
+
+type m_filesep3 from menu within m_file
+end type
+
+on m_filesep3.create
+call super::create
+this.text = "-"
+end on
+
+on m_filesep3.destroy
+call super::destroy
+end on
+
+type m_close from menu within m_file
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_CloseFile
+//  Event         : Clicked
+//  Description   : Close the current window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(FWCA.MGR.i_WindowCurrent) THEN
+   Close(FWCA.MGR.i_WindowCurrent)
+END IF
+end on
+
+on m_close.create
+call super::create
+this.text = "&Close Window"
+this.microhelp = "Close the currently selected window."
+this.toolbaritemvisible = false
+this.toolbaritemtext = "Close"
+this.toolbaritemorder = 13
+this.toolbaritemspace = 5
+end on
+
+on m_close.destroy
+call super::destroy
+end on
+
+type m_filesep4 from menu within m_file
+end type
+
+on m_filesep4.create
+call super::create
+this.text = "-"
+end on
+
+on m_filesep4.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_Exit
+//  Event         : Clicked
+//  Description   : Exit the application by closing the top
+//                  level window.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+FWCA.MGR.fu_ExitApp()
+end event
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.microhelp = "Exit the application."
+this.toolbaritemvisible = false
+this.toolbaritemname = "Exit!"
+this.toolbaritemtext = "Exit"
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+type m_edit from menu within m_record_survey_results
+m_sort1 m_sort1
+m_tab1 m_tab1
+m_tab2 m_tab2
+m_-0 m_-0
+m_cut m_cut
+m_copy m_copy
+m_paste m_paste
+m_-1 m_-1
+m_selectall m_selectall
+end type
+
+on m_edit.create
+call super::create
+this.text = "&Edit"
+this.m_sort1=create m_sort1
+this.m_tab1=create m_tab1
+this.m_tab2=create m_tab2
+this.m_-0=create m_-0
+this.m_cut=create m_cut
+this.m_copy=create m_copy
+this.m_paste=create m_paste
+this.m_-1=create m_-1
+this.m_selectall=create m_selectall
+this.Item[UpperBound(this.Item)+1]=this.m_sort1
+this.Item[UpperBound(this.Item)+1]=this.m_tab1
+this.Item[UpperBound(this.Item)+1]=this.m_tab2
+this.Item[UpperBound(this.Item)+1]=this.m_-0
+this.Item[UpperBound(this.Item)+1]=this.m_cut
+this.Item[UpperBound(this.Item)+1]=this.m_copy
+this.Item[UpperBound(this.Item)+1]=this.m_paste
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_selectall
+end on
+
+on m_edit.destroy
+call super::destroy
+destroy(this.m_sort1)
+destroy(this.m_tab1)
+destroy(this.m_tab2)
+destroy(this.m_-0)
+destroy(this.m_cut)
+destroy(this.m_copy)
+destroy(this.m_paste)
+destroy(this.m_-1)
+destroy(this.m_selectall)
+end on
+
+type m_sort1 from menu within m_edit
+end type
+
+on clicked;/*******************************************************************
+
+		Event: 	clicked
+		Purpose:	To perform a sort on the matching records datawindow
+
+********************************************************************/
+
+W_RECORD_SURVEY_RESULTS l_wParentWindow
+
+l_wParentWindow = FWCA.MGR.i_MDIFrame.GetActiveSheet()
+
+IF ISValid(l_wParentWindow) THEN
+	l_wParentWindow.fw_sortdata()
+END IF
+end on
+
+on m_sort1.create
+call super::create
+this.text = "&Sort..."
+this.microhelp = "Opens the Sort window"
+this.toolbaritemname = "wi0138-48.ico"
+this.toolbaritemtext = "Sort"
+this.toolbaritemspace = 2
+end on
+
+on m_sort1.destroy
+call super::destroy
+end on
+
+type m_tab1 from menu within m_edit
+end type
+
+on m_tab1.create
+call super::create
+this.visible = false
+this.text = "Tab1~tCtrl+1"
+this.shortcut = 305
+end on
+
+on m_tab1.destroy
+call super::destroy
+end on
+
+event clicked;/*****************************************************************************************
+	Event:	clicked
+	Purpose:	Provide a consistent mechanism for switching between tabs.
+	
+	Revisions:
+	Date     Developer     Description
+	======== ============= ================================================================
+	8/16/99  M. Caruso     Created.
+*****************************************************************************************/
+
+w_record_survey_results.dw_folder.fu_SelectTab (1)
+end event
+
+type m_tab2 from menu within m_edit
+end type
+
+event clicked;/*****************************************************************************************
+	Event:	clicked
+	Purpose:	Provide a consistent mechanism for switching between tabs.
+	
+	Revisions:
+	Date     Developer     Description
+	======== ============= ================================================================
+	8/16/99  M. Caruso     Created.
+*****************************************************************************************/
+
+w_record_survey_results.dw_folder.fu_SelectTab (2)
+end event
+
+on m_tab2.create
+call super::create
+this.visible = false
+this.text = "Tab2~tCtrl+2"
+this.shortcut = 306
+end on
+
+on m_tab2.destroy
+call super::destroy
+end on
+
+type m_-0 from menu within m_edit
+end type
+
+on m_-0.create
+call super::create
+this.text = "-"
+end on
+
+on m_-0.destroy
+call super::destroy
+end on
+
+type m_cut from menu within m_edit
+end type
+
+on m_cut.create
+call super::create
+this.text = "Cut~tCtrl+X"
+this.shortcut = 344
+this.microhelp = "Cut Contents to Clipboard"
+this.toolbaritemname = "wi0085-48.ico"
+this.toolbaritemtext = "Cut Contents to Clipboard"
+this.toolbaritemspace = 1
+end on
+
+on m_cut.destroy
+call super::destroy
+end on
+
+event clicked;/****************************************************************************************
+
+     Event: clicked
+   Purpose: Please see PB documentation for this event
+	
+	
+ Revisions: Date     Developer     Description
+            ======== ============= ======================================================
+				4/30/2001 K. Claver    Added function call to cut the contents of the object
+											  to the clipboard
+
+****************************************************************************************/
+fm_EditOperation( "CUT" )
+end event
+
+type m_copy from menu within m_edit
+end type
+
+on m_copy.create
+call super::create
+this.text = "Copy~tCtrl+C"
+this.shortcut = 323
+this.microhelp = "Copy Contents to Clipboard"
+this.toolbaritemname = "wi0039-48.ico"
+this.toolbaritemtext = "Copy Contents to Clipboard"
+end on
+
+on m_copy.destroy
+call super::destroy
+end on
+
+event clicked;/****************************************************************************************
+
+     Event: clicked
+   Purpose: Please see PB documentation for this event
+	
+	
+ Revisions: Date     Developer     Description
+            ======== ============= ======================================================
+				4/30/2001 K. Claver    Added function call to copy the contents of the object
+											  to the clipboard
+
+****************************************************************************************/
+fm_EditOperation( "COPY" )
+end event
+
+type m_paste from menu within m_edit
+end type
+
+on m_paste.create
+call super::create
+this.text = "Paste~tCtrl+V"
+this.shortcut = 342
+this.microhelp = "Paste Contents of Clipboard"
+this.toolbaritemname = "wi0020-48.ico"
+this.toolbaritemtext = "Paste Contents of Clipboard"
+end on
+
+on m_paste.destroy
+call super::destroy
+end on
+
+event clicked;/****************************************************************************************
+
+     Event: clicked
+   Purpose: Please see PB documentation for this event
+	
+	
+ Revisions: Date     Developer     Description
+            ======== ============= ======================================================
+				4/30/2001 K. Claver    Added function call to paste the contents of the clipboard
+											  into the object
+
+****************************************************************************************/
+fm_EditOperation( "PASTE" )
+end event
+
+type m_-1 from menu within m_edit
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_selectall from menu within m_edit
+end type
+
+on m_selectall.create
+call super::create
+this.text = "Select All~tCtrl+A"
+this.shortcut = 321
+this.microhelp = "Select All"
+end on
+
+on m_selectall.destroy
+call super::destroy
+end on
+
+event clicked;/****************************************************************************************
+
+     Event: clicked
+   Purpose: Please see PB documentation for this event
+	
+	
+ Revisions: Date     Developer     Description
+            ======== ============= ======================================================
+				4/30/2001 K. Claver    Added function call to select the contents of the object.
+											  
+****************************************************************************************/
+fm_EditOperation( "SELECTALL" )
+end event
+
+type m_features from menu within m_record_survey_results
+m_createmaintaincase m_createmaintaincase
+m_workdesk m_workdesk
+m_documentsfullinterface m_documentsfullinterface
+m_sleepmode m_sleepmode
+end type
+
+on m_features.create
+call super::create
+this.text = "Fea&tures"
+this.m_createmaintaincase=create m_createmaintaincase
+this.m_workdesk=create m_workdesk
+this.m_documentsfullinterface=create m_documentsfullinterface
+this.m_sleepmode=create m_sleepmode
+this.Item[UpperBound(this.Item)+1]=this.m_createmaintaincase
+this.Item[UpperBound(this.Item)+1]=this.m_workdesk
+this.Item[UpperBound(this.Item)+1]=this.m_documentsfullinterface
+this.Item[UpperBound(this.Item)+1]=this.m_sleepmode
+end on
+
+on m_features.destroy
+call super::destroy
+destroy(this.m_createmaintaincase)
+destroy(this.m_workdesk)
+destroy(this.m_documentsfullinterface)
+destroy(this.m_sleepmode)
+end on
+
+type m_createmaintaincase from menu within m_features
+event clicked ( )
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Create/Maintain Case window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_create_maintain_case, -1)
+end on
+
+on m_createmaintaincase.create
+call super::create
+this.text = "&Create/Maintain Case"
+this.microhelp = "Opens the Create and Maintain Case window"
+this.toolbaritemvisible = false
+this.toolbaritemtext = "Create/Maintain Case"
+this.toolbaritemspace = 2
+end on
+
+on m_createmaintaincase.destroy
+call super::destroy
+end on
+
+type m_workdesk from menu within m_features
+event clicked ( )
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Reminders window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_reminders, -1)
+end on
+
+on m_workdesk.create
+call super::create
+this.text = "&Work Desk"
+this.microhelp = "Opens the Work Desk window"
+this.toolbaritemvisible = false
+end on
+
+on m_workdesk.destroy
+call super::destroy
+end on
+
+type m_documentsfullinterface from menu within m_features
+event clicked ( )
+end type
+
+event clicked;//***************************************************************************************
+//
+//  Event:    clicked
+//  Purpose:  Opens the Document Full Interface Window
+//
+//***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_docs_full_interface, -1)
+
+
+end event
+
+on m_documentsfullinterface.create
+call super::create
+this.text = "&Documents Full Interface"
+this.microhelp = "Opens the Documents Full Interface Window"
+end on
+
+on m_documentsfullinterface.destroy
+call super::destroy
+end on
+
+type m_sleepmode from menu within m_features
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Place the application into sleep mode
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	05/25/01 M. Caruso    Created.
+*****************************************************************************************/
+
+w_mdi.fw_Sleep ()
+end event
+
+on m_sleepmode.create
+call super::create
+this.visible = false
+this.text = "Sleep Mode"
+this.enabled = false
+this.microhelp = "Place the application in Sleep Mode."
+this.toolbaritemvisible = false
+this.toolbaritemname = "Custom015!"
+this.toolbaritemtext = "Enter Sleep Mode"
+end on
+
+on m_sleepmode.destroy
+call super::destroy
+end on
+
+type m_administration from menu within m_record_survey_results
+m_userlicenses m_userlicenses
+m_options m_options
+m_batchprocessing m_batchprocessing
+m_casehousekeeping m_casehousekeeping
+m_tablemaintenance m_tablemaintenance
+m_supervisorportal m_supervisorportal
+m_lockedrecords m_lockedrecords
+end type
+
+on m_administration.create
+call super::create
+this.text = "&Administration"
+this.m_userlicenses=create m_userlicenses
+this.m_options=create m_options
+this.m_batchprocessing=create m_batchprocessing
+this.m_casehousekeeping=create m_casehousekeeping
+this.m_tablemaintenance=create m_tablemaintenance
+this.m_supervisorportal=create m_supervisorportal
+this.m_lockedrecords=create m_lockedrecords
+this.Item[UpperBound(this.Item)+1]=this.m_userlicenses
+this.Item[UpperBound(this.Item)+1]=this.m_options
+this.Item[UpperBound(this.Item)+1]=this.m_batchprocessing
+this.Item[UpperBound(this.Item)+1]=this.m_casehousekeeping
+this.Item[UpperBound(this.Item)+1]=this.m_tablemaintenance
+this.Item[UpperBound(this.Item)+1]=this.m_supervisorportal
+this.Item[UpperBound(this.Item)+1]=this.m_lockedrecords
+end on
+
+on m_administration.destroy
+call super::destroy
+destroy(this.m_userlicenses)
+destroy(this.m_options)
+destroy(this.m_batchprocessing)
+destroy(this.m_casehousekeeping)
+destroy(this.m_tablemaintenance)
+destroy(this.m_supervisorportal)
+destroy(this.m_lockedrecords)
+end on
+
+type m_userlicenses from menu within m_administration
+m_updatelicenseinformation m_updatelicenseinformation
+m_manageuserlogins m_manageuserlogins
+end type
+
+on m_userlicenses.create
+call super::create
+this.text = "&User Licenses"
+this.m_updatelicenseinformation=create m_updatelicenseinformation
+this.m_manageuserlogins=create m_manageuserlogins
+this.Item[UpperBound(this.Item)+1]=this.m_updatelicenseinformation
+this.Item[UpperBound(this.Item)+1]=this.m_manageuserlogins
+end on
+
+on m_userlicenses.destroy
+call super::destroy
+destroy(this.m_updatelicenseinformation)
+destroy(this.m_manageuserlogins)
+end on
+
+type m_updatelicenseinformation from menu within m_userlicenses
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Open the user license maintenance window
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	8/7/00   M. Caruso    Created.
+*****************************************************************************************/
+
+SetPointer (HOURGLASS!)
+
+FWCA.MGR.fu_OpenWindow (w_slu_main)
+end event
+
+on m_updatelicenseinformation.create
+call super::create
+this.text = "&Update License Information"
+this.microhelp = "Opens the Update License Information window"
+end on
+
+on m_updatelicenseinformation.destroy
+call super::destroy
+end on
+
+type m_manageuserlogins from menu within m_userlicenses
+event clicked ( )
+end type
+
+event clicked;/*****************************************************************************************
+   Event:      clicked
+   Purpose:    Open the user login maintenance window
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	8/7/00   M. Caruso    Created.
+*****************************************************************************************/
+
+SetPointer (HOURGLASS!)
+
+FWCA.MGR.fu_OpenWindow (w_slu_login_mgr)
+end event
+
+on m_manageuserlogins.create
+call super::create
+this.text = "&Manage User Logins"
+this.microhelp = "Opens the User Login Management window"
+end on
+
+on m_manageuserlogins.destroy
+call super::destroy
+end on
+
+type m_options from menu within m_administration
+event clicked ( )
+end type
+
+event clicked;//*********************************************************************************************
+//  Event:   clicked
+//  Purpose: Acces the system options window.
+//  
+//  Date     Developer   Describe
+//  -------- ----------- ----------------------------------------------------------------------
+//  12/08/00 M. Caruso   Created.
+//*********************************************************************************************
+
+SetPointer (HOURGLASS!)
+FWCA.MGR.fu_OpenWindow (w_system_options)
+end event
+
+on m_options.create
+call super::create
+this.text = "&Options"
+this.toolbaritemvisible = false
+end on
+
+on m_options.destroy
+call super::destroy
+end on
+
+type m_batchprocessing from menu within m_administration
+event clicked ( )
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Batch Processing window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_batch_correspondence, -1)
+end on
+
+on m_batchprocessing.create
+call super::create
+this.text = "&Batch Correspondence"
+this.microhelp = "Opens the Batch Correspondence window"
+end on
+
+on m_batchprocessing.destroy
+call super::destroy
+end on
+
+type m_casehousekeeping from menu within m_administration
+event clicked ( )
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Case Housekeeping window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_case_housekeeping, -1)
+end on
+
+on m_casehousekeeping.create
+call super::create
+this.text = "Case &Housekeeping"
+this.microhelp = "Opens the Case Housekeeping window"
+end on
+
+on m_casehousekeeping.destroy
+call super::destroy
+end on
+
+type m_tablemaintenance from menu within m_administration
+event clicked ( )
+end type
+
+on clicked;/***************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Table Maintenance window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_table_maintenance, -1)
+end on
+
+on m_tablemaintenance.create
+call super::create
+this.text = "&Table Maintenance"
+this.microhelp = "Opens the Table Maintenance window"
+end on
+
+on m_tablemaintenance.destroy
+call super::destroy
+end on
+
+type m_supervisorportal from menu within m_administration
+end type
+
+event clicked;/**************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Supervisor Portal Window
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_supervisor_portal, -1)
+end event
+
+on m_supervisorportal.create
+call super::create
+this.text = "&Supervisor Portal"
+this.microhelp = "Opens the Supervisor Portal window"
+end on
+
+on m_supervisorportal.destroy
+call super::destroy
+end on
+
+type m_lockedrecords from menu within m_administration
+end type
+
+event clicked;/**************************************************************************************
+
+			Event:	clicked
+			Purpose:	To open the Record Lock Administration window.
+
+***************************************************************************************/
+
+SetPointer(HOURGLASS!)
+FWCA.MGR.fu_OpenWindow(w_lock_admin, -1)
+end event
+
+on m_lockedrecords.create
+call super::create
+this.text = "&Locked Records"
+this.microhelp = "Locked Records"
+this.toolbaritemtext = "Record Locks"
+end on
+
+on m_lockedrecords.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_record_survey_results
+m_tile m_tile
+m_layer m_layer
+m_cascade m_cascade
+m_windowsep1 m_windowsep1
+m_arrangeicons m_arrangeicons
+m_windowsep2 m_windowsep2
+m_closeall m_closeall
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Window
+//  Event         : Clicked
+//  Description   : Enable the window menus
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+m_Window.m_ArrangeIcons.Enabled = FWCA.MGR.i_MDIValid
+m_Window.m_Cascade.Enabled      = FWCA.MGR.i_MDIValid
+m_Window.m_Layer.Enabled        = FWCA.MGR.i_MDIValid
+m_Window.m_Tile.Enabled         = FWCA.MGR.i_MDIValid
+m_Window.m_Closeall.Enabled     = FWCA.MGR.i_MDIValid
+end on
+
+on m_window.create
+call super::create
+this.text = "&Window"
+this.m_tile=create m_tile
+this.m_layer=create m_layer
+this.m_cascade=create m_cascade
+this.m_windowsep1=create m_windowsep1
+this.m_arrangeicons=create m_arrangeicons
+this.m_windowsep2=create m_windowsep2
+this.m_closeall=create m_closeall
+this.Item[UpperBound(this.Item)+1]=this.m_tile
+this.Item[UpperBound(this.Item)+1]=this.m_layer
+this.Item[UpperBound(this.Item)+1]=this.m_cascade
+this.Item[UpperBound(this.Item)+1]=this.m_windowsep1
+this.Item[UpperBound(this.Item)+1]=this.m_arrangeicons
+this.Item[UpperBound(this.Item)+1]=this.m_windowsep2
+this.Item[UpperBound(this.Item)+1]=this.m_closeall
+end on
+
+on m_window.destroy
+call super::destroy
+destroy(this.m_tile)
+destroy(this.m_layer)
+destroy(this.m_cascade)
+destroy(this.m_windowsep1)
+destroy(this.m_arrangeicons)
+destroy(this.m_windowsep2)
+destroy(this.m_closeall)
+end on
+
+type m_tile from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Tile
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that no windows in
+//                  the MDI frame overlap but all windows are
+//                  visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Tile!)
+END IF
+end on
+
+on m_tile.create
+call super::create
+this.text = "&Tile"
+this.microhelp = "Arrange windows as tiled"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Tile!"
+this.toolbaritemtext = "Tile"
+end on
+
+on m_tile.destroy
+call super::destroy
+end on
+
+type m_layer from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Layer
+//  Event         : Clicked
+//  Description   : Arrange the open windows so that all windows are
+//                  sized to use the full screen and are layered on
+//                  top of one another.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Layer!)
+END IF
+end on
+
+on m_layer.create
+call super::create
+this.text = "La&yer"
+this.microhelp = "Arrange the windows as layered"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Layer!"
+this.toolbaritemtext = "Layer"
+end on
+
+on m_layer.destroy
+call super::destroy
+end on
+
+type m_cascade from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Cascade
+//  Event         : Clicked
+//  Description   : Arrange the open windows so they overlap each
+//                  other with the title bar of each window
+//                  remaining visible.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Cascade!)
+END IF
+end on
+
+on m_cascade.create
+call super::create
+this.text = "&Cascade"
+this.microhelp = "Arrange the windows as cascaded"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Cascade!"
+this.toolbaritemtext = "Cascade"
+end on
+
+on m_cascade.destroy
+call super::destroy
+end on
+
+type m_windowsep1 from menu within m_window
+end type
+
+on m_windowsep1.create
+call super::create
+this.text = "-"
+end on
+
+on m_windowsep1.destroy
+call super::destroy
+end on
+
+type m_arrangeicons from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_ArrangeIcons
+//  Event         : Clicked
+//  Description   : Arrange the open windows that have been
+//                  minimized to icons.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   ArrangeSheets(FWCA.MGR.i_MDIFrame, Icons!)
+END IF
+end on
+
+on m_arrangeicons.create
+call super::create
+this.text = "&Arrange Icons"
+this.microhelp = "Arrange the window icons"
+this.toolbaritemvisible = false
+this.toolbaritemname = "ArrangeIcons!"
+this.toolbaritemtext = "Icons"
+end on
+
+on m_arrangeicons.destroy
+call super::destroy
+end on
+
+type m_windowsep2 from menu within m_window
+end type
+
+on m_windowsep2.create
+call super::create
+this.text = "-"
+end on
+
+on m_windowsep2.destroy
+call super::destroy
+end on
+
+type m_closeall from menu within m_window
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_CloseAll
+//  Event         : Clicked
+//  Description   : Close all the windows in the MDI frame that
+//                  have been open using the Window_Open function.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+IF FWCA.MGR.i_MDIValid THEN
+   TriggerEvent(FWCA.MGR.i_MDIFrame, "pc_CloseAll")
+END IF
+end on
+
+on m_closeall.create
+call super::create
+this.text = "C&lose All"
+this.microhelp = "Close all the open windows"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Sort!"
+this.toolbaritemtext = "Close All"
+end on
+
+on m_closeall.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_record_survey_results
+m_index m_index
+m_usinghelp m_usinghelp
+m_helpsep1 m_helpsep1
+m_about m_about
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_Help
+//  Event         : Clicked
+//  Description   : Set up the text in the help menu.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+IF IsValid(m_Help.m_About) THEN
+   m_Help.m_About.Text = "&About " + FWCA.MGR.i_ApplicationName
+END IF
+end on
+
+on m_help.create
+call super::create
+this.text = "&Help"
+this.m_index=create m_index
+this.m_usinghelp=create m_usinghelp
+this.m_helpsep1=create m_helpsep1
+this.m_about=create m_about
+this.Item[UpperBound(this.Item)+1]=this.m_index
+this.Item[UpperBound(this.Item)+1]=this.m_usinghelp
+this.Item[UpperBound(this.Item)+1]=this.m_helpsep1
+this.Item[UpperBound(this.Item)+1]=this.m_about
+end on
+
+on m_help.destroy
+call super::destroy
+destroy(this.m_index)
+destroy(this.m_usinghelp)
+destroy(this.m_helpsep1)
+destroy(this.m_about)
+end on
+
+type m_index from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Help.m_Index
+//  Event         : Clicked
+//  Description   : Display the help file for the application.
+//                  Replace <application_file> with the name of
+//                  the application help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//  6/21/99  M. Caruso  Added code to call the CF help file.
+//  4/26/00  M. Caruso  Changed code to call the new help file.
+//  1/16/01  M. Caruso  Updated the help file name.
+//******************************************************************
+//  Copyright ServerLogic 1992-1994.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+//ShowHelp("jtdoc2.hlp", Index!)
+Run ("hh.EXE CFuser.chm")
+end event
+
+on m_index.create
+call super::create
+this.text = "&Index"
+this.microhelp = "Display help"
+this.toolbaritemvisible = false
+this.toolbaritemname = "Help!"
+this.toolbaritemtext = "Help"
+this.toolbaritemorder = 3
+this.toolbaritemspace = 17
+end on
+
+on m_index.destroy
+call super::destroy
+end on
+
+type m_usinghelp from menu within m_help
+end type
+
+on clicked;//******************************************************************
+//  PC Module     : m_Main.m_UsingHelp
+//  Event         : Clicked
+//  Description   : Display the "Windows Help" help file.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+ShowHelp("winhelp.hlp", Index!)
+end on
+
+on m_usinghelp.create
+call super::create
+this.text = "&Using Help"
+this.microhelp = "Display ~"Using Windows Help~""
+end on
+
+on m_usinghelp.destroy
+call super::destroy
+end on
+
+type m_helpsep1 from menu within m_help
+end type
+
+on m_helpsep1.create
+call super::create
+this.text = "-"
+end on
+
+on m_helpsep1.destroy
+call super::destroy
+end on
+
+type m_about from menu within m_help
+end type
+
+event clicked;//******************************************************************
+//  PC Module     : m_Main.m_About
+//  Event         : Clicked
+//  Description   : Open a window that describes something about
+//                  the application.  By default, this window will
+//                  display the application name and revision that
+//                  are stored in the PCCA structure.  This window
+//                  can be redefined if a custom window is desired.
+//
+//  Change History:
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1992-1993.  All Rights Reserved.
+//******************************************************************
+
+SetPointer(HourGlass!)
+Open(w_cf_about)
+end event
+
+on m_about.create
+call super::create
+this.text = "&About"
+this.microhelp = "Display information about the application"
+end on
+
+on m_about.destroy
+call super::destroy
+end on
+

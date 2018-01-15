@@ -1,0 +1,22 @@
+﻿$PBExportHeader$s_report_parms_hg.srs
+$PBExportComments$Generic report parameter structure.
+global type s_report_parms_hg from structure
+	string		user_type
+	string		user_list
+	string		user_array[]
+	string		source_type
+	string		received_resolved
+	string		lob
+	string		region
+	string		consolidated_group
+	string		group
+	string		pcp
+	string		start_date
+	string		end_date
+	string		category_id
+	string		category_array[]
+	string		report_type
+	string		appeal_level
+	string		note_selection
+end type
+

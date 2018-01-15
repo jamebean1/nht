@@ -1,0 +1,9 @@
+﻿$PBExportHeader$str_expressionbuilder_category.srs
+global type str_expressionbuilder_category from structure
+	string		category
+	string		columnname[]
+	string		columndisplay[]
+	string		columndescription[]
+	long		sourceid[]
+end type
+

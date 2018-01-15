@@ -1,0 +1,37 @@
+﻿$PBExportHeader$d_tm_dateexclusion.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=decimal(0) update=yes updatewhereclause=yes key=yes identity=yes name=dateexclusionid dbname="dateexclusion.dateexclusionid" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="dateexclusion.name" )
+ column=(type=datetime update=yes updatewhereclause=yes name=excludeddate dbname="dateexclusion.excludeddate" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isholiday dbname="dateexclusion.isholiday" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="dateexclusion.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="dateexclusion.updated_timestamp" )
+ retrieve="SELECT  cusfocus.dateexclusion.dateexclusionid ,
+           cusfocus.dateexclusion.name ,
+           cusfocus.dateexclusion.excludeddate ,
+           cusfocus.dateexclusion.isholiday ,
+           cusfocus.dateexclusion.updated_by ,
+           cusfocus.dateexclusion.updated_timestamp     
+        FROM cusfocus.dateexclusion    " update="cusfocus.dateexclusion" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="ID" border="6" color="33554432" x="9" y="8" height="64" width="306" html.valueishtml="0"  name=dateexclusionid_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Name" border="6" color="33554432" x="325" y="8" height="64" width="2770" html.valueishtml="0"  name=name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Date" border="6" color="33554432" x="3104" y="8" height="64" width="599" html.valueishtml="0"  name=excludeddate_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Holiday" border="6" color="33554432" x="3712" y="8" height="64" width="302" html.valueishtml="0"  name=isholiday_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Updated By" border="6" color="33554432" x="4023" y="8" height="64" width="539" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="33554432" x="4571" y="8" height="64" width="603" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="33554432" x="9" y="8" height="76" width="306" format="[general]" html.valueishtml="0"  name=dateexclusionid visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="33554432" x="325" y="8" height="76" width="2770" format="[general]" html.valueishtml="0"  name=name visible="1" edit.limit=100 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="33554432" x="3104" y="8" height="76" width="599" format="[shortdate] " html.valueishtml="0"  name=excludeddate visible="1" editmask.mask="mm/dd/yyyy" editmask.imemode=0 editmask.focusrectangle=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="2" tabsequence=30 border="0" color="33554432" x="3712" y="8" height="76" width="302" format="[general]" html.valueishtml="0"  name=isholiday visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="33554432" x="4023" y="8" height="76" width="539" format="[general]" html.valueishtml="0"  name=updated_by visible="1" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="33554432" x="4571" y="8" height="76" width="603" format="[shortdate] [time]" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

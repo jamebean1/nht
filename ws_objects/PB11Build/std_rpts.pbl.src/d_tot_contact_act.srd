@@ -1,0 +1,22 @@
+﻿$PBExportHeader$d_tot_contact_act.srd
+$PBExportComments$Annual Contact Activity Report
+release 7;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=384 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=1356 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("start_dt", datetime),("end_dt", datetime),("user_name", string)) )
+compute(band=header alignment="0" expression="'Annual Contact Activity - ' + String(Year(Today()))"border="0" color="0" x="27" y="20" height="92" width="1285" format="[GENERAL]"  name=compute_6  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="~"Date Range:  ~" + date(start_dt) + ~" - ~" + date(end_dt)"border="0" color="0" x="27" y="124" height="88" width="2117" format="[general]"  name=compute_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="User Name:" border="0" color="0" x="27" y="224" height="64" width="357"  name=cc_user_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+report(band=detail dataobject="d_tot_contact_act_sub2" x="9" y="1236" height="100" width="3099" border="0"  height.autosize=yes criteria="" nest_arguments=((" start_dt "),(" end_dt ")) trail_footer = no  name=dw_2 )
+report(band=detail dataobject="d_tot_contact_act_sub1" x="9" y="28" height="1196" width="3104" border="0"  height.autosize=yes criteria="" nest_arguments=((" start_dt "),(" end_dt "),(" user_name ")) trail_footer = no  name=dw_1 )
+compute(band=footer alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="0" y="4" height="76" width="1179" format="[general]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" user_name "border="0" color="0" x="393" y="224" height="64" width="2121" format="[general]"  name=compute_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=background alignment="1" text="Run Date:" border="0" color="0" x="2368" y="124" height="64" width="370"  name=t_1  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=header alignment="0" expression="today()"border="0" color="0" x="2752" y="124" height="64" width="366" format="[General]"  name=compute_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="" border="0" color="0" x="2359" y="32" height="80" width="759"  name=t_owner  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

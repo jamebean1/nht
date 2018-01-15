@@ -1,0 +1,23 @@
+﻿$PBExportHeader$d_tot_contact.srd
+$PBExportComments$Total Contact Activity Report
+release 7;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=5 HTMLDW=no print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=412 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=88 color="536870912" )
+detail(height=568 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=a dbname="a" )
+ unbound = "yes"arguments=(("user_name", string),("end_date", date)) )
+text(band=background alignment="1" text="" border="0" color="0" x="2446" y="32" height="80" width="896"  name=t_owner  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=background alignment="2" expression="today()"border="0" color="0" x="3031" y="116" height="64" width="311" format="mm/dd/yyyy"  name=compute_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=background alignment="1" text="Run Date: " border="0" color="0" x="2651" y="116" height="64" width="370"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Total Contact Activity" border="0" color="0" x="114" y="20" height="92" width="901"  name=t_1  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="~"Period Ending: ~" + String(Today(),~"m/d/yyyy~")"border="0" color="0" x="114" y="116" height="84" width="1006" format="[general]"  name=compute_1  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="User Name: " border="0" color="0" x="114" y="204" height="64" width="370"  name=cc_user_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="none" border="0" color="0" x="489" y="204" height="64" width="1554"  name=cc_user_name  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="d_tcar_open_cases" x="0" y="20" height="120" width="3365" border="0"  height.autosize=yes criteria="" nest_arguments=((" end_date ")) trail_footer = yes  name=d_open_cases  slideup=directlyabove )
+report(band=detail dataobject="d_tcar_closed_cases" x="0" y="192" height="120" width="3365" border="0"  height.autosize=yes criteria="" nest_arguments=((" end_date ")) trail_footer = yes  name=d_closed_cases  slideup=directlyabove )
+report(band=detail dataobject="d_tcar_total_cases" x="0" y="364" height="120" width="3365" border="0"  height.autosize=yes criteria="" nest_arguments=((" end_date ")) trail_footer = yes  name=d_total_cases  slideup=directlyabove )
+compute(band=footer alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="0" y="4" height="76" width="1179" format="[general]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

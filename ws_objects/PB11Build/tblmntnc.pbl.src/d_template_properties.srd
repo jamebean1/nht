@@ -1,0 +1,79 @@
+﻿$PBExportHeader$d_template_properties.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=732 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=template_key dbname="form_templates.template_key" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=case_types dbname="form_templates.case_types" )
+ column=(type=char(4) update=yes updatewhereclause=yes name=source_types dbname="form_templates.source_types" )
+ column=(type=char(200) update=yes updatewhereclause=yes name=template_name dbname="form_templates.template_name" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=template_description dbname="form_templates.template_description" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=dw_header dbname="form_templates.dw_header" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=dw_comments dbname="form_templates.dw_comments" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=special_create_comments dbname="form_templates.special_create_comments" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=special_review_comments dbname="form_templates.special_review_comments" )
+ column=(type=ulong update=yes updatewhereclause=yes name=force_user_notify dbname="form_templates.force_user_notify" values="Force User Notify	1/Force User Notify	0" )
+ column=(type=ulong update=yes updatewhereclause=yes name=active dbname="form_templates.active" values="Active	1/Active	0" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="form_templates.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="form_templates.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cc_inquiry dbname="cc_inquiry" values="Inquiry	I/Inquiry	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_issueconc dbname="cc_issueconc" values="Iss//Conc	C/Iss//Conc	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_proactive dbname="cc_proactive" values="Proactive	P/Proactive	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_configurable dbname="cc_configurable" values="	M/	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_member dbname="cc_member" values="Member	C/Member	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_group dbname="cc_group" values="Group	E/Group	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_provider dbname="cc_provider" values="Provider	P/Provider	0" )
+ column=(type=char(1) updatewhereclause=yes name=cc_other dbname="cc_other" values="Other	O/Other	0" )
+ retrieve="  SELECT cusfocus.form_templates.template_key,   
+         cusfocus.form_templates.case_types,   
+         cusfocus.form_templates.source_types,   
+         cusfocus.form_templates.template_name,   
+         cusfocus.form_templates.template_description,   
+         cusfocus.form_templates.dw_header,   
+         cusfocus.form_templates.dw_comments,   
+         cusfocus.form_templates.special_create_comments,   
+         cusfocus.form_templates.special_review_comments,   
+         cusfocus.form_templates.force_user_notify,   
+         cusfocus.form_templates.active,   
+         cusfocus.form_templates.updated_by,   
+         cusfocus.form_templates.updated_timestamp,   
+         ' ' as cc_inquiry,   
+         ' ' as cc_issueconc,   
+         ' ' as cc_proactive,   
+         ' ' as cc_configurable,
+         ' ' as cc_member,   
+         ' ' as cc_group,   
+         ' ' as cc_provider,   
+         ' ' as cc_other  
+    FROM cusfocus.form_templates
+   WHERE cusfocus.form_templates.template_key = :a_ctemplatekey    
+" update="cusfocus.form_templates" updatewhere=0 updatekeyinplace=no arguments=(("a_ctemplatekey", string)) )
+groupbox(band=detail text="Source Type(s) Available"border="5" color="0" x="2322" y="384" height="316" width="777"  name=gb_2  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+groupbox(band=detail text="Case Type(s) Available"border="5" color="0" x="2322" y="36" height="324" width="777"  name=gb_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+groupbox(band=detail text="Form Template Properties"border="5" color="0" x="9" y="0" height="720" width="3118"  name=gb_3  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=detail alignment="0" text="Template Name:" border="0" color="0" x="46" y="72" height="64" width="439"  name=template_name_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=10 border="5" color="0" x="46" y="148" height="68" width="969" format="[general]"  name=template_name edit.limit=200 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=10 alignment="1" tabsequence=30 border="0" color="0" x="1595" y="148" height="64" width="539" format="[general]"  name=force_user_notify visible="1~t0" checkbox.text="Force User Notify" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="1" tabsequence=20 border="0" color="0" x="1115" y="148" height="64" width="242" format="[general]"  name=active checkbox.text="Active" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Template Description:" border="0" color="0" x="46" y="240" height="64" width="576"  name=t_1  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="0" tabsequence=40 border="5" color="0" x="46" y="312" height="288" width="690" format="[general]"  name=template_description edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Spec Create Comments:" border="0" color="0" x="814" y="240" height="64" width="663"  name=special_create_comments_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=8 alignment="0" tabsequence=50 border="5" color="0" x="818" y="312" height="288" width="690" format="[general]"  name=special_create_comments edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+text(band=detail alignment="0" text="Spec Review Comments:" border="0" color="0" x="1591" y="240" height="64" width="663"  name=special_review_comments_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=9 alignment="0" tabsequence=60 border="5" color="0" x="1595" y="312" height="288" width="690" format="[general]"  name=special_review_comments edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autovscroll=yes edit.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="1090519039" )
+column(band=detail id=15 alignment="0" tabsequence=80 border="0" color="0" x="2757" y="128" height="64" width="311" format="[general]"  name=cc_issueconc checkbox.text="Iss/Conc" checkbox.on="C" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=21 alignment="0" tabsequence=140 border="0" color="0" x="2830" y="596" height="64" width="233" format="[general]"  name=cc_other checkbox.text="Other" checkbox.on="O" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=19 alignment="0" tabsequence=120 border="0" color="0" x="2830" y="480" height="64" width="233" format="[general]"  name=cc_group checkbox.text="Group" checkbox.on="E" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=detail alignment="0" text="Updated By:" border="0" color="0" x="50" y="632" height="64" width="343"  name=updated_by_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=12 alignment="0" tabsequence=32766 border="5" color="0" x="416" y="632" height="64" width="494" format="[general]"  name=updated_by edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Updated Timestamp:" border="0" color="0" x="1015" y="632" height="64" width="553"  name=updated_timestamp_t  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="0" tabsequence=32766 border="5" color="0" x="1591" y="628" height="68" width="695" format="mm/dd/yyyy hh:mm:ss AM/PM"  name=updated_timestamp edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=14 alignment="0" tabsequence=70 border="0" color="0" x="2478" y="128" height="64" width="247" format="[general]"  name=cc_inquiry checkbox.text="Inquiry" checkbox.on="I" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=17 alignment="0" tabsequence=90 border="0" color="0" x="2656" y="248" height="64" width="69" format="[general]"  name=cc_configurable checkbox.text="" checkbox.on="M" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=18 alignment="0" tabsequence=110 border="0" color="0" x="2441" y="480" height="64" width="283" format="[general]"  name=cc_member checkbox.text="Member" checkbox.on="C" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=20 alignment="0" tabsequence=130 border="0" color="0" x="2441" y="596" height="64" width="283" format="[general]"  name=cc_provider checkbox.text="Provider" checkbox.on="P" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=16 alignment="0" tabsequence=100 border="0" color="0" x="2752" y="248" height="64" width="311" format="[general]"  name=cc_proactive checkbox.text="Proactive" checkbox.on="P" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=detail alignment="1" text="" border="0" color="0" x="2345" y="248" height="64" width="311"  name=t_configurable  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

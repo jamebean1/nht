@@ -1,0 +1,83 @@
+﻿$PBExportHeader$d_critical_detail.srd
+$PBExportComments$Reminder Case List DataWindow
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no grid.lines=0 )
+header(height=68 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=84 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=case_log_case_number dbname="case_log.case_number" )
+ column=(type=char(55) updatewhereclause=yes name=case_log_source_name dbname="case_log.source_name" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_case_log_taken_by dbname="case_log.case_log_taken_by" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_case_log_case_rep dbname="case_log.case_log_case_rep" )
+ column=(type=long updatewhereclause=yes name=case_log_confidentiality_level dbname="case_log.confidentiality_level" )
+ column=(type=datetime updatewhereclause=yes name=case_log_case_log_opnd_date dbname="case_log.case_log_opnd_date" )
+ column=(type=char(40) updatewhereclause=yes name=cusfocus_user_dept_dept_desc dbname="cusfocus_user_dept.dept_desc" )
+ column=(type=char(40) updatewhereclause=yes name=source_types_source_desc dbname="source_types.source_desc" )
+ column=(type=char(40) updatewhereclause=yes name=confidentiality_levels_confid_desc dbname="confidentiality_levels.confid_desc" )
+ column=(type=char(1) updatewhereclause=yes name=case_log_case_priority dbname="case_log.case_priority" values="High	H/Normal	N/Low	L/" )
+ column=(type=char(30) updatewhereclause=yes name=case_types_case_type_desc dbname="case_types.case_type_desc" )
+ column=(type=char(2) updatewhereclause=yes name=case_log_case_type dbname="case_log.case_type" )
+ column=(type=char(10) updatewhereclause=yes name=case_log_master_case_number dbname="master_case_number" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="case_log.active" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="case_log.active" )
+ retrieve="  SELECT cusfocus.case_log.case_number,   
+         cusfocus.case_log.source_name,   
+         cusfocus.case_log.case_log_taken_by,   
+         cusfocus.case_log.case_log_case_rep,   
+         cusfocus.case_log.confidentiality_level,   
+         cusfocus.case_log.case_log_opnd_date,   
+         cusfocus.cusfocus_user_dept.dept_desc,   
+         cusfocus.source_types.source_desc,   
+         cusfocus.confidentiality_levels.confid_desc,   
+         cusfocus.case_log.case_priority,   
+         cusfocus.case_types.case_type_desc,   
+         cusfocus.case_log.case_type,   
+         Case cusfocus.case_log.master_case_number
+				When  NULL Then 'Not Linked'  
+				Else cusfocus.case_log.master_case_number End master_case_number,    
+         cusfocus_user_a.active,   
+         cusfocus_user_b.active  
+    FROM cusfocus.case_log,   
+         cusfocus.cusfocus_user cusfocus_user_a,   
+         cusfocus.cusfocus_user_dept,   
+         cusfocus.source_types,   
+         cusfocus.confidentiality_levels,   
+         cusfocus.case_types,   
+         cusfocus.cusfocus_user cusfocus_user_b  
+   WHERE ( cusfocus_user_a.user_dept_id *= cusfocus.cusfocus_user_dept.user_dept_id) and  
+         ( cusfocus.case_log.case_log_case_rep = cusfocus_user_a.user_id ) and  
+         ( cusfocus.case_log.source_type = cusfocus.source_types.source_type ) and  
+         ( cusfocus.case_log.confidentiality_level = cusfocus.confidentiality_levels.confidentiality_level ) and  
+         ( cusfocus.case_log.case_type = cusfocus.case_types.case_type ) and  
+         ( cusfocus.case_log.case_log_taken_by = cusfocus_user_b.user_id ) and  
+         ( ( cusfocus.case_log.case_status_id = 'O' ) )    "  sort="case_log_case_log_opnd_date D case_num_numeric A " )
+line(band=footer x1="1175" y1="4" x2="6871" y2="0"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+compute(band=footer alignment="0" expression="'Cases: ' + rowcount()"border="0" color="0" x="9" y="16" height="60" width="439" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Priority" border="6" color="0" x="9" y="4" height="56" width="439" html.valueishtml="0"  name=case_log_case_priority_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Days Open" border="6" color="0" x="457" y="4" height="56" width="352" html.valueishtml="0"  name=days_open_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Opened Date/Time" border="6" color="0" x="818" y="4" height="56" width="544" html.valueishtml="0"  name=case_log_case_log_opnd_date_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Case Type" border="6" color="0" x="1371" y="4" height="56" width="494" html.valueishtml="0"  name=case_types_case_type_desc_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Source Type" border="6" color="0" x="1874" y="4" height="56" width="471" html.valueishtml="0"  name=source_types_source_desc_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Current Rep" border="6" color="0" x="2354" y="4" height="56" width="498" html.valueishtml="0"  name=case_log_case_log_case_rep_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Taken By" border="6" color="0" x="2862" y="4" height="56" width="507" html.valueishtml="0"  name=case_log_case_log_taken_by_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Master Case Number" border="6" color="0" x="3378" y="4" height="56" width="576" html.valueishtml="0"  name=master_case_numeric_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Case Number" border="6" color="0" x="3963" y="4" height="56" width="453" html.valueishtml="0"  name=case_num_numeric_t  tag="" visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+text(band=header alignment="2" text="Case Security" border="6" color="0" x="4425" y="4" height="56" width="1271" html.valueishtml="0"  name=confidentiality_levels_confid_desc_t visible="1"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="80269524" )
+column(band=detail id=10 alignment="0" tabsequence=32766 border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="9" y="0" height="64" width="439" format="[general]" html.valueishtml="0"  name=case_log_case_priority visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="818" y="0" height="64" width="544" format="[shortdate] [time]" html.valueishtml="0"  name=case_log_case_log_opnd_date visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="1371" y="0" height="64" width="494" format="[general]" html.valueishtml="0"  name=case_types_case_type_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=9 alignment="0" tabsequence=32766 border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="4425" y="0" height="64" width="1271" format="[general]" html.valueishtml="0"  name=confidentiality_levels_confid_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="daysafter(   case_log_case_log_opnd_date , Today() )"border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="457" y="0" height="64" width="352" format="[GENERAL]" html.valueishtml="0"  name=days_open visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="Long(  case_log_case_number )"border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="3963" y="0" height="64" width="453" format="[GENERAL]" html.valueishtml="0"  name=case_num_numeric visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="if( isNull( case_log_master_case_number ), 'Not Linked',  case_log_master_case_number  )"border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="3378" y="0" height="64" width="576" format="[General]" html.valueishtml="0"  name=master_case_display visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" if ( (   cusfocus_user_active  = 'N' ),  case_log_case_log_taken_by + ' (inactive)',
+ case_log_case_log_taken_by ) "border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="2862" y="0" height="64" width="507" format="[GENERAL]" html.valueishtml="0"  name=cc_case_log_case_log_taken_by visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=8 alignment="0" tabsequence=32766 border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="1874" y="0" height="64" width="471" format="[general]" html.valueishtml="0"  name=source_types_source_desc visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression=" if ( (   cusfocus_user_active  = 'N' ),  case_log_case_log_case_rep + ' (inactive)' ,
+ case_log_case_log_case_rep )"border="0" color="0~tcase(    case_log_case_priority when ~"H~" then RGB( 255, 0, 0 )  when ~"L~" then RGB( 0, 0, 255 )  else RGB( 0, 0, 0 ) )" x="2354" y="0" height="64" width="498" format="[GENERAL]" html.valueishtml="0"  name=cc_case_log_case_log_case_rep visible="1"  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,38 @@
+﻿$PBExportHeader$d_manage_view_filters.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes identity=yes name=rprtdfltid dbname="reportconfigdefault.rprtdfltid" )
+ column=(type=long update=yes updatewhereclause=yes name=rprtcnfgid dbname="reportconfigdefault.rprtcnfgid" )
+ column=(type=long update=yes updatewhereclause=yes name=userid dbname="reportconfigdefault.userid" )
+ column=(type=char(100) update=yes updatewhereclause=yes name=name dbname="reportconfigdefault.name" )
+ column=(type=long update=yes updatewhereclause=yes name=createdbyuserid dbname="reportconfigdefault.createdbyuserid" )
+ column=(type=char(53) updatewhereclause=yes name=itemicon dbname="ItemIcon" )
+ column=(type=char(10) updatewhereclause=yes name=createdbyusername dbname="cusfocus_user.createdbyusername" )
+ retrieve="  SELECT cusfocus.reportconfigdefault.rprtdfltid,   
+         cusfocus.reportconfigdefault.rprtcnfgid,   
+         cusfocus.reportconfigdefault.userid,   
+         cusfocus.reportconfigdefault.name,   
+         cusfocus.reportconfigdefault.createdbyuserid,   
+         Case When cusfocus.reportconfigdefault.userid Is Null Then 'Module - Reporting Desktop - Filter View (Global).bmp' Else 'Module - Reporting Desktop - Filter View.bmp' End ItemIcon  ,
+			cusfocus.cusfocus_user.user_id as createdbyusername
+    FROM cusfocus.reportconfigdefault, 
+			cusfocus.cusfocus_user
+   WHERE ( cusfocus.reportconfigdefault.rprtcnfgid = :al_reportconfigid ) AND  
+         (cusfocus.reportconfigdefault.userid = :al_userid OR  
+         cusfocus.reportconfigdefault.userid is Null
+			OR :as_globalviewadmin = 'Y') AND  
+         cusfocus.reportconfigdefault.Name <> '' AND  
+         cusfocus.reportconfigdefault.Type = 'Filter'  AND
+			cusfocus.reportconfigdefault.createdbyuserid = cusfocus.cusfocus_user.id
+" update="cusfocus.reportconfigdefault" updatewhere=0 updatekeyinplace=yes arguments=(("al_reportconfigid", number),("al_userid", number),("as_globalviewadmin", string)) )
+column(band=detail id=6 alignment="0" tabsequence=32766 border="0" color="0" x="0" y="0" height="76" width="1760" format="[general]" html.valueishtml="0"  name=itemicon visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=5 alignment="0" tabsequence=32766 border="0" color="0" x="1760" y="0" height="76" width="96" format="[general]" html.valueishtml="0"  name=createdbyuserid visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+column(band=detail id=7 alignment="0" tabsequence=32766 border="0" color="0" x="1856" y="0" height="76" width="1344" format="[general]" html.valueishtml="0"  name=createdbyusername visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Arial" font.height="-12" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="12632256" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_manage_view_pivots.srd
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=long update=yes updatewhereclause=yes key=yes name=rprtcnfgpvttbleid dbname="ReportConfigPivotTable.RprtCnfgPvtTbleID" )
+ column=(type=long update=yes updatewhereclause=yes name=rprtcnfgid dbname="ReportConfigPivotTable.RprtCnfgID" )
+ column=(type=long update=yes updatewhereclause=yes name=userid dbname="ReportConfigPivotTable.UserID" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=description dbname="ReportConfigPivotTable.Description" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isdefault dbname="ReportConfigPivotTable.IsDefault" )
+ column=(type=char(255) update=yes updatewhereclause=yes name=xmldocument dbname="ReportConfigPivotTable.XMLDocument" )
+ column=(type=long update=yes updatewhereclause=yes name=createdbyuserid dbname="ReportConfigPivotTable.CreatedByUserID" )
+ column=(type=char(58) updatewhereclause=yes name=collapsedbitmapname dbname="collapsedbitmapname" )
+ column=(type=long update=yes updatewhereclause=yes name=dtaobjctstteidnty dbname="ReportConfigPivotTable.DtaObjctStteIdnty" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=isnavigationdestination dbname="ReportConfigPivotTable.IsNavigationDestination" initial="N" )
+ column=(type=char(42) updatewhereclause=yes name=createdbyusername dbname="CreatedByUserName" )
+ retrieve="  SELECT ReportConfigPivotTable.RprtCnfgPvtTbleID,   
+         ReportConfigPivotTable.RprtCnfgID,   
+         ReportConfigPivotTable.UserID,   
+         ReportConfigPivotTable.Description,   
+         ReportConfigPivotTable.IsDefault,   
+         ReportConfigPivotTable.XMLDocument,   
+         ReportConfigPivotTable.CreatedByUserID,   
+         Case When ReportConfigPivotTable.UserID Is Null Then 'Module - Reporting Desktop - Pivot Table View (Global).bmp' Else 'Module - Reporting Desktop - Pivot Table View.bmp' End collapsedbitmapname,   
+         ReportConfigPivotTable.DtaObjctStteIdnty,   
+         ReportConfigPivotTable.IsNavigationDestination,
+			Contact.CntctLstNme + ', ' + Contact.CntctFrstNme as CreatedByUserName
+    FROM ReportConfigPivotTable, Users, Contact
+   WHERE ( ReportConfigPivotTable.RprtCnfgID = :al_reportconfigid ) AND  
+         (ReportConfigPivotTable.UserID = :al_userid OR  
+         ReportConfigPivotTable.UserID is Null
+			OR :as_globalviewadmin = 'Y') AND
+			ReportConfigPivotTable.CreatedByUserID = Users.UserID AND
+			Users.UserCntctID = Contact.CntctID" update="ReportConfigPivotTable" updatewhere=0 updatekeyinplace=yes arguments=(("al_reportconfigid", number),("al_userid", number),("as_globalviewadmin", string))  sort="description A " )
+column(band=detail id=4 alignment="0" tabsequence=40 border="0" color="0" x="18" y="4" height="64" width="4393" format="[general]"  name=description edit.limit=255 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="4411" y="0" height="52" width="965" format="[general]"  name=createdbyusername edit.limit=0 edit.case=any edit.autoselect=yes  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

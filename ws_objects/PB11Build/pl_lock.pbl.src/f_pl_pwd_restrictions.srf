@@ -1,0 +1,36 @@
+﻿$PBExportHeader$f_pl_pwd_restrictions.srf
+global type f_pl_pwd_restrictions from function_object
+end type
+
+forward prototypes
+global function boolean f_pl_pwd_restrictions (string pwd)
+end prototypes
+
+global function boolean f_pl_pwd_restrictions (string pwd);//******************************************************************
+//  Function      : f_pl_pwd_restrictions
+//  Description   : Checks that the password complies with any 
+//						  application or company specific restrictions (i.e. 
+//						  password must be at least 8 characters long).   
+//						  This is a stub function that the developer can copy  
+//						  into their own application library and modify.  
+//						  This function is expected to display any applicable
+//						  error messages regarding a password violation.
+//
+//  Parameters    : STRING Pwd -
+//                     Password to test.
+//
+//  Return Value  : Boolean -
+//                     Returns boolean for success or failure.
+//
+//  Change History: 
+//
+//  Date     Person     Description of Change
+//  -------- ---------- --------------------------------------------
+//
+//******************************************************************
+//  Copyright ServerLogic 1994-1997.  All Rights Reserved.
+//******************************************************************
+
+Return TRUE
+end function
+

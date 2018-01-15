@@ -1,0 +1,560 @@
+﻿$PBExportHeader$m_editing.srm
+$PBExportComments$Word document editing menu.
+forward
+global type m_editing from menu
+end type
+type m_file from menu within m_editing
+end type
+type m_save from menu within m_file
+end type
+type m_- from menu within m_file
+end type
+type m_pagesetup from menu within m_file
+end type
+type m_print from menu within m_file
+end type
+type m_0 from menu within m_file
+end type
+type m_insertpicture from menu within m_file
+end type
+type m_-1 from menu within m_file
+end type
+type m_exit from menu within m_file
+end type
+type m_file from menu within m_editing
+m_save m_save
+m_- m_-
+m_pagesetup m_pagesetup
+m_print m_print
+m_0 m_0
+m_insertpicture m_insertpicture
+m_-1 m_-1
+m_exit m_exit
+end type
+type m_edit from menu within m_editing
+end type
+type m_window from menu within m_editing
+end type
+type m_help from menu within m_editing
+end type
+global type m_editing from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+end forward
+
+global type m_editing from menu
+m_file m_file
+m_edit m_edit
+m_window m_window
+m_help m_help
+end type
+global m_editing m_editing
+
+type variables
+
+end variables
+
+on m_editing.create
+m_editing=this
+call super::create
+this.text = "m_editing_temp"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_file=create m_file
+this.m_edit=create m_edit
+this.m_window=create m_window
+this.m_help=create m_help
+this.Item[UpperBound(this.Item)+1]=this.m_file
+this.Item[UpperBound(this.Item)+1]=this.m_edit
+this.Item[UpperBound(this.Item)+1]=this.m_window
+this.Item[UpperBound(this.Item)+1]=this.m_help
+end on
+
+on m_editing.destroy
+call super::destroy
+destroy(this.m_file)
+destroy(this.m_edit)
+destroy(this.m_window)
+destroy(this.m_help)
+end on
+
+type m_file from menu within m_editing
+m_save m_save
+m_- m_-
+m_pagesetup m_pagesetup
+m_print m_print
+m_0 m_0
+m_insertpicture m_insertpicture
+m_-1 m_-1
+m_exit m_exit
+end type
+
+on m_file.create
+call super::create
+this.text = "&File"
+this.mergeoption = filemenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+this.m_save=create m_save
+this.m_-=create m_-
+this.m_pagesetup=create m_pagesetup
+this.m_print=create m_print
+this.m_0=create m_0
+this.m_insertpicture=create m_insertpicture
+this.m_-1=create m_-1
+this.m_exit=create m_exit
+this.Item[UpperBound(this.Item)+1]=this.m_save
+this.Item[UpperBound(this.Item)+1]=this.m_-
+this.Item[UpperBound(this.Item)+1]=this.m_pagesetup
+this.Item[UpperBound(this.Item)+1]=this.m_print
+this.Item[UpperBound(this.Item)+1]=this.m_0
+this.Item[UpperBound(this.Item)+1]=this.m_insertpicture
+this.Item[UpperBound(this.Item)+1]=this.m_-1
+this.Item[UpperBound(this.Item)+1]=this.m_exit
+end on
+
+on m_file.destroy
+call super::destroy
+destroy(this.m_save)
+destroy(this.m_-)
+destroy(this.m_pagesetup)
+destroy(this.m_print)
+destroy(this.m_0)
+destroy(this.m_insertpicture)
+destroy(this.m_-1)
+destroy(this.m_exit)
+end on
+
+type m_save from menu within m_file
+end type
+
+on m_save.create
+call super::create
+this.text = "&Save ...~tCtrl+S"
+this.shortcut = 339
+this.toolbaritemname = "save-it.ico"
+this.toolbaritemtext = "Save As"
+this.toolbaritemorder = 1
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_save.destroy
+call super::destroy
+end on
+
+event clicked;/*****************************************************************************************
+   Event:	clicked
+   Purpose: Save the current document to a file.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	11/19/01 M. Caruso    Created.
+	03/29/02 M. Caruso    Set i_bDocModified to TRUE to ensure saving of the document.
+*****************************************************************************************/
+
+W_WORD_WINDOW	l_wParentWindow
+
+IF IsValid (FWCA.MGR.i_WindowCurrent) THEN
+
+	l_wParentWindow = FWCA.MGR.i_WindowCurrent
+	// Assume manual changes were made to the document
+	l_wParentWindow.i_bDocModified = TRUE
+	l_wParentWindow.fw_SaveDoc (l_wParentWindow.c_SaveDoc)
+	
+END IF
+end event
+
+type m_- from menu within m_file
+end type
+
+on m_-.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-.destroy
+call super::destroy
+end on
+
+type m_pagesetup from menu within m_file
+end type
+
+event clicked;W_WORD_WINDOW	l_wParentWindow
+
+IF IsValid (FWCA.MGR.i_WindowCurrent) THEN
+
+	l_wParentWindow = FWCA.MGR.i_WindowCurrent
+	l_wParentWindow.of_page_setup()
+	
+END IF
+end event
+
+on m_pagesetup.create
+call super::create
+this.visible = false
+this.text = "Page Set&up..."
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_pagesetup.destroy
+call super::destroy
+end on
+
+type m_print from menu within m_file
+end type
+
+on m_print.create
+call super::create
+this.text = "&Print~tCtrl+P"
+this.shortcut = 336
+this.toolbaritemname = "wi0146-48.ico"
+this.toolbaritemorder = 2
+this.toolbaritemspace = 1
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_print.destroy
+call super::destroy
+end on
+
+event clicked;/*****************************************************************************************
+   Event:	clicked
+   Purpose: Print the current document.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	01/16/02 M. Caruso    Created.
+*****************************************************************************************/
+
+W_WORD_WINDOW	l_wParentWindow
+
+IF IsValid (FWCA.MGR.i_WindowCurrent) THEN
+
+	l_wParentWindow = FWCA.MGR.i_WindowCurrent
+	l_wParentWindow.i_uDocMgr.uf_PrintDoc (0)
+	
+END IF
+end event
+
+type m_0 from menu within m_file
+end type
+
+on m_0.create
+call super::create
+this.visible = false
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_0.destroy
+call super::destroy
+end on
+
+type m_insertpicture from menu within m_file
+end type
+
+event clicked;W_WORD_WINDOW	l_wParentWindow
+
+IF IsValid (FWCA.MGR.i_WindowCurrent) THEN
+
+	l_wParentWindow = FWCA.MGR.i_WindowCurrent
+//	l_wParentWindow.of_insert_picture()
+	
+END IF
+end event
+
+on m_insertpicture.create
+call super::create
+this.visible = false
+this.text = "I&nsert Picture"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_insertpicture.destroy
+call super::destroy
+end on
+
+type m_-1 from menu within m_file
+end type
+
+on m_-1.create
+call super::create
+this.text = "-"
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_-1.destroy
+call super::destroy
+end on
+
+type m_exit from menu within m_file
+end type
+
+on m_exit.create
+call super::create
+this.text = "E&xit"
+this.toolbaritemvisible = false
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_exit.destroy
+call super::destroy
+end on
+
+event clicked;/*****************************************************************************************
+   Event:	clicked
+   Purpose: Close the current document.
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	11/20/01 M. Caruso    Created.
+*****************************************************************************************/
+
+W_WORD_WINDOW	l_wParentWindow
+
+IF IsValid (FWCA.MGR.i_WindowCurrent) THEN
+
+	l_wParentWindow = FWCA.MGR.i_WindowCurrent
+	Close (l_wParentWindow)
+	
+END IF
+end event
+
+type m_edit from menu within m_editing
+end type
+
+on m_edit.create
+call super::create
+this.visible = false
+this.text = "&Edit"
+this.enabled = false
+this.toolbaritemvisible = false
+this.mergeoption = editmenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_edit.destroy
+call super::destroy
+end on
+
+type m_window from menu within m_editing
+end type
+
+on m_window.create
+call super::create
+this.visible = false
+this.text = "&Window"
+this.enabled = false
+this.toolbaritemvisible = false
+this.mergeoption = windowmenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_window.destroy
+call super::destroy
+end on
+
+type m_help from menu within m_editing
+end type
+
+on m_help.create
+call super::create
+this.visible = false
+this.text = "&Help"
+this.enabled = false
+this.toolbaritemvisible = false
+this.mergeoption = helpmenu!
+this.menutextcolor = 134217735
+this.menubackcolor = 134217732
+this.menuhighlightcolor = 134217741
+this.textsize = 8
+this.weight = 400
+this.facename = "Tahoma"
+this.titlebackcolor = 134217730
+this.bitmapbackcolor = 12632256
+this.menubitmaps = true
+this.titlegradient = true
+this.toolbartextcolor = 134217746
+this.toolbarbackcolor = 67108864
+this.toolbarhighlightcolor = 134217741
+this.toolbargradient = true
+this.bitmapgradient = true
+end on
+
+on m_help.destroy
+call super::destroy
+end on
+

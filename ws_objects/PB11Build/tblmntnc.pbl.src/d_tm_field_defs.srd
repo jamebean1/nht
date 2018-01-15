@@ -1,0 +1,80 @@
+﻿$PBExportHeader$d_tm_field_defs.srd
+$PBExportComments$Table Maintenance - Configurable Field Definitions.
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no grid.lines=0 )
+header(height=80 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=92 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=definition_id dbname="field_definitions.definition_id" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=source_type dbname="field_definitions.source_type" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=column_name dbname="field_definitions.column_name" validationmsg="'You must specify a Column Name for each column definition.'" )
+ column=(type=char(30) update=yes updatewhereclause=yes name=field_label dbname="field_definitions.field_label" validationmsg="'You must specify a Field Label for each column definition.'" )
+ column=(type=long update=yes updatewhereclause=yes name=field_order dbname="field_definitions.field_order" validationmsg="'You must specify the display order for each field definition.'" )
+ column=(type=long update=yes updatewhereclause=yes name=field_length dbname="field_definitions.field_length" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=visible dbname="field_definitions.visible" initial="Y" values="	Y/	N" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=searchable dbname="field_definitions.searchable" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=format_id dbname="field_definitions.format_id" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="field_definitions.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="field_definitions.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=display_in_results dbname="field_definitions.display_in_results" values="	Y/	N" )
+ retrieve="  SELECT cusfocus.field_definitions.definition_id,   
+         cusfocus.field_definitions.source_type,   
+         cusfocus.field_definitions.column_name,   
+         cusfocus.field_definitions.field_label,   
+         cusfocus.field_definitions.field_order,   
+         cusfocus.field_definitions.field_length,   
+         cusfocus.field_definitions.visible,   
+         cusfocus.field_definitions.searchable,   
+         cusfocus.field_definitions.format_id,   
+         cusfocus.field_definitions.updated_by,   
+         cusfocus.field_definitions.updated_timestamp,   
+         cusfocus.cusfocus_user.active, 
+  			cusfocus.field_definitions.display_in_results 
+    FROM cusfocus.field_definitions,   
+         cusfocus.cusfocus_user  
+   WHERE (cusfocus.field_definitions.field_order > 0) AND
+			(( cusfocus.field_definitions.updated_by = cusfocus.cusfocus_user.user_id ) OR 
+			( cusfocus.field_definitions.updated_by = 'cusfocus' ))   
+ORDER BY cusfocus.field_definitions.source_type ASC,   
+         cusfocus.field_definitions.field_order ASC   " update="cusfocus.field_definitions" updatewhere=0 updatekeyinplace=no )
+text(band=header alignment="2" text="ID" border="6" color="0" x="9" y="8" height="64" width="334" html.valueishtml="0"  name=definition_id_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Source Type" border="6" color="0" x="352" y="8" height="64" width="485" html.valueishtml="0"  name=source_type_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Column Name" border="6" color="0" x="846" y="8" height="64" width="658" html.valueishtml="0"  name=column_name_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Field Label" border="6" color="0" x="1513" y="8" height="64" width="649" html.valueishtml="0"  name=field_label_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Order" border="6" color="0" x="2171" y="8" height="64" width="183" html.valueishtml="0"  name=field_order_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Length" border="6" color="0" x="2363" y="8" height="64" width="233" html.valueishtml="0"  name=field_length_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Visible" border="6" color="0" x="2606" y="8" height="64" width="224" html.valueishtml="0"  name=visible_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Search" border="6" color="0" x="2839" y="8" height="64" width="233" html.valueishtml="0"  name=searchable_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Format" border="6" color="0" x="3776" y="8" height="64" width="494" html.valueishtml="0"  name=format_id_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="4279" y="8" height="64" width="530" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="4818" y="8" height="64" width="800" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+text(band=header alignment="2" text="Display In Results" border="6" color="0" x="3081" y="8" height="64" width="686" html.valueishtml="0"  name=field_definitions_display_in_results_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+column(band=detail id=1 alignment="1" tabsequence=32766 border="0" color="0" x="9" y="8" height="76" width="334" format="[general]" html.valueishtml="0"  name=definition_id visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.required=yes edit.autohscroll=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="352" y="8" height="76" width="485" format="[general]" html.valueishtml="0"  name=source_type visible="1" dddw.name=dddw_source_types dddw.displaycolumn=source_desc dddw.datacolumn=source_type dddw.percentwidth=110 dddw.lines=4 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="0" color="0" x="846" y="8" height="76" width="658" format="[general]" html.valueishtml="0"  name=column_name visible="1" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.nilisnull=yes ddlb.vscrollbar=yes ddlb.useasborder=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=30 border="0" color="0" x="1513" y="8" height="76" width="649" format="[general]" html.valueishtml="0"  name=field_label visible="1" edit.limit=18 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.nilisnull=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=5 alignment="2" tabsequence=40 border="0" color="0" x="2171" y="8" height="76" width="183" format="[general]" html.valueishtml="0"  name=field_order visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.required=yes edit.nilisnull=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=6 alignment="2" tabsequence=50 border="0" color="0" x="2363" y="8" height="76" width="233" format="[general]" html.valueishtml="0"  name=field_length visible="1" edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.nilisnull=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=7 alignment="2" tabsequence=60 border="0" color="0" x="2606" y="8" height="76" width="224" format="[general]" html.valueishtml="0"  name=visible visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+column(band=detail id=8 alignment="2" tabsequence=70 border="0" color="0" x="2839" y="8" height="76" width="233" format="[general]" html.valueishtml="0"  name=searchable visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79741120" )
+compute(band=detail alignment="0" expression="Max( Long( definition_id ) )"border="0" color="0" x="5627" y="12" height="64" width="123" format="[GENERAL]" html.valueishtml="0"  name=maxvalue visible="0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="long( definition_id )"border="0" color="0" x="5760" y="8" height="64" width="197" format="[GENERAL]" html.valueishtml="0"  name=sort_column visible="0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=9 alignment="0" tabsequence=90 border="0" color="0" x="3776" y="8" height="76" width="494" format="[general]" html.valueishtml="0"  name=format_id visible="1" dddw.name=dddw_display_formats dddw.displaycolumn=format_desc dddw.datacolumn=format_id dddw.percentwidth=200 dddw.lines=0 dddw.limit=0 dddw.allowedit=no dddw.useasborder=yes dddw.case=any dddw.required=yes dddw.nilisnull=yes dddw.vscrollbar=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="4279" y="8" height="76" width="530" format="[GENERAL]" html.valueishtml="0"  name=cc_updated_by visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=11 alignment="0" tabsequence=32766 border="0" color="0" x="4818" y="8" height="76" width="800" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=no  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=13 alignment="2" tabsequence=80 border="0" color="0" x="3081" y="8" height="76" width="686" format="[general]" html.valueishtml="0"  name=display_in_results visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="67108864" )
+line(band=footer x1="0" y1="4" x2="5627" y2="0"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowCount()"border="0" color="0" x="9" y="12" height="64" width="334" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

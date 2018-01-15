@@ -1,0 +1,14 @@
+﻿$PBExportHeader$s_doc_info.srs
+$PBExportComments$Structure for storing useful information about a correspondence document.
+global type s_doc_info from structure
+	string		a_cdocid
+	boolean		a_bfilled
+	string		a_ccasenumber
+	string		a_ccasetype
+	blob		a_blbdocimage
+	datetime		a_dtsent
+	string		a_cdocname
+	string		a_allow_edit_sent
+	long		a_lcharacter_count
+end type
+

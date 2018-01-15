@@ -1,0 +1,9 @@
+﻿$PBExportHeader$s_report_parms_phcs.srs
+$PBExportComments$Report Parameter structure for the PHCS custom report.
+global type s_report_parms_phcs from structure
+	string		customer_list[]
+	date		start_date
+	date		end_date
+	string		summary_ind
+end type
+

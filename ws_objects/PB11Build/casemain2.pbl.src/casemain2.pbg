@@ -1,0 +1,33 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "casemain2.pbl" "";
+@end;
+@begin Objects 
+ "d_appeal_props.srd" "casemain2.pbl";
+ "d_case_prop_field_currval.srd" "casemain2.pbl";
+ "d_case_prop_field_histchg.srd" "casemain2.pbl";
+ "d_case_prop_field_lastchg.srd" "casemain2.pbl";
+ "d_case_prop_hist_audit.srd" "casemain2.pbl";
+ "d_categories_treeview.srd" "casemain2.pbl";
+ "d_close_case.srd" "casemain2.pbl";
+ "d_close_codes.srd" "casemain2.pbl";
+ "d_contacthistory_field_list.srd" "casemain2.pbl";
+ "d_criteria_contacthistory.srd" "casemain2.pbl";
+ "d_cross_reference.srd" "casemain2.pbl";
+ "d_data_caseprop_field_def.srd" "casemain2.pbl";
+ "d_data_contacthistoryfields.srd" "casemain2.pbl";
+ "d_data_syntaxstorage.srd" "casemain2.pbl";
+ "d_record_security.srd" "casemain2.pbl";
+ "d_search_contact_history.srd" "casemain2.pbl";
+ "dddw_other_close_codes.srd" "casemain2.pbl";
+ "dddw_rec_confid_levels.srd" "casemain2.pbl";
+ "f_column_data.srf" "casemain2.pbl";
+ "f_column_label.srf" "casemain2.pbl";
+ "f_lastcaseworked.srf" "casemain2.pbl";
+ "u_contacthistory_field_list.sru" "casemain2.pbl";
+ "u_cross_reference.sru" "casemain2.pbl";
+ "u_search_contacthistory.sru" "casemain2.pbl";
+ "w_category_popup.srw" "casemain2.pbl";
+ "w_close_case.srw" "casemain2.pbl";
+ "w_record_security.srw" "casemain2.pbl";
+@end;

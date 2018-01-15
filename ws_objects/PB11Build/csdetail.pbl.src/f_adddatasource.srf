@@ -1,0 +1,172 @@
+﻿$PBExportHeader$f_adddatasource.srf
+$PBExportComments$Function to add a new data source to an array of datasources.
+global type f_adddatasource from function_object
+end type
+
+forward prototypes
+global function integer f_adddatasource (integer a_ndsnid, ref transaction a_trobjects[], ref string a_cerror, boolean a_bconnectprompt)
+end prototypes
+
+global function integer f_adddatasource (integer a_ndsnid, ref transaction a_trobjects[], ref string a_cerror, boolean a_bconnectprompt);/*****************************************************************************************
+   Function:	f_adddatasource
+   Purpose:    Maintain a list of datasources being used in defining IIM view datawindows
+   Parameters: INTEGER 		a_nDSNID - The ID of the datasource to add
+					TRANSACTION	a_trObjects[] - array of transaction objects [BY REFERENCE]
+					STRING		a_cError - the error returned by the database [BY REFERENCE]
+   Returns:    INTEGER - The array index of the datasource to reference
+
+   Revisions:
+   Date     Developer    Description
+   ======== ============ =================================================================
+	2/28/00  M. Caruso    Created.
+	3/17/00  M. Caruso    If a user ID and password are not entered for a DSN, set these
+								 parameters to VOID
+	4/15/00  M. Caruso    Since the System DSN will not always be a_nDSNID = 1, implemented
+								 a new method to determine if the System DSN is specified
+	11/13/02 C. Jackson   Add ",StripParmNames='Yes',DisableBind=1"" to connect string to
+	                      allow running stored procedures in IIM.
+	11/25/2002 K. Claver  Removed check for empty password string as the client may choose
+								 to use a username without a password.
+	12/10/2002 K. Claver  Added code to set the autocommit property on the transaction
+								 object to true.
+*****************************************************************************************/
+
+STRING		l_cDSN, l_cUID, l_cPWD, l_cErrorMsgs[]
+INTEGER		l_nIndex, l_nCounter
+BOOLEAN		l_bFound, l_bLoginPrompt, l_bConnected
+S_DSN_PARMS	l_sDSNParms
+
+// build the transaction object and establish a connection with it
+SELECT iim_source_name, iim_source_uid, iim_source_pwd
+  INTO :l_cDSN, :l_cUID, :l_cPWD
+  FROM cusfocus.iim_datasources
+ WHERE iim_source_id = :a_nDSNID
+ USING SQLCA;
+ 
+CHOOSE CASE SQLCA.SQLCode
+	CASE -1
+		a_cError = SQLCA.SQLErrText
+		RETURN -1
+		
+	CASE 0
+		// see if the current DSN is already set up
+		
+		IF Match (SQLCA.DBParm, l_cDSN) THEN
+			
+			// use SQLCA as the transaction object because the system DSN is specified.
+			RETURN 0
+		
+		ELSE
+			
+			FOR l_nIndex = 1 TO upperbound (a_trObjects[])
+				
+				IF Match (a_trObjects[l_nIndex].DBParm, l_cDSN) THEN
+					
+					IF Match (a_trObjects[l_nIndex].DBParm, "UID=VOID") THEN
+						// prompt the user to connect again if specified.
+						IF a_bConnectPrompt THEN
+							l_bConnected = FALSE
+						ELSE
+							l_bConnected = TRUE
+						END IF
+					ELSE
+						l_bConnected = TRUE
+					END IF
+					l_bFound = TRUE
+					EXIT
+					
+				END IF
+				
+			NEXT
+			
+			IF (NOT l_bFound) OR (NOT l_bConnected) THEN
+				
+				IF NOT l_bFound THEN	l_nIndex = Upperbound (a_trObjects[]) + 1
+				
+				// add a new transaction to the array
+				IF IsNull (l_cUID) THEN	l_cUID = ""
+				IF	IsNull (l_cPWD) THEN l_cPWD = ""
+				IF (l_cUID = "") THEN
+					l_bLoginPrompt = TRUE
+				ELSE
+					l_bLoginPrompt = FALSE
+				END IF
+				
+				// allow 3 attempts to connect before continuing
+				FOR l_nCounter = 1 TO 3
+				
+					IF l_bLoginPrompt THEN
+						
+						// prompt the user to enter a username and password
+						l_sDSNParms.dsn_name = l_cDSN
+						l_sDSNParms.username = l_cUID
+						l_sDSNParms.password = l_cPWD
+						FWCA.MGR.fu_OpenWindow (w_dsn_login_prompt, l_sDSNParms)
+						l_sDSNParms = message.powerobjectparm
+						l_cUID = l_sDSNParms.username
+						l_cPWD = l_sDSNParms.password
+						
+					END IF
+						
+					// report error if connection info not entered.
+					IF l_cUID = "" THEN
+							
+						l_cUID = "VOID"
+						l_cPWD = "VOID"
+							
+					END IF
+					
+					a_trObjects[l_nIndex] = CREATE transaction
+					a_trObjects[l_nIndex].DBMS = "ODBC"
+					a_trObjects[l_nIndex].AutoCommit = TRUE
+					a_trObjects[l_nIndex].DBParm = "ConnectString='DSN=" + l_cDSN + &
+															 ";UID=" + l_cUID + ";PWD=" + l_cPWD + "',StripParmNames='Yes',DisableBind=1"
+															 
+					IF l_cUID = "VOID" THEN
+						EXIT
+					ELSE
+						
+						CONNECT USING a_trObjects[l_nIndex];
+						CHOOSE CASE a_trObjects[l_nIndex].SQLCode
+							CASE 0
+								DISCONNECT USING a_trObjects[l_nIndex];
+								EXIT
+								
+							CASE ELSE
+								IF l_nCounter = 3 THEN
+									messagebox (gs_AppName, &
+													'Unable to connect to the data source.  Information from~r~n' + &
+													'this source will not be available.')
+									a_trObjects[l_nIndex].DBParm = "ConnectString='DSN=" + l_cDSN + ";UID=VOID;PWD=VOID'"
+									EXIT
+								ELSE
+									messagebox (gs_AppName, &
+													'Data source connection failed.  Please verify that the data source~r~n' + &
+													'exists on your computer and that the username and password you~r~n' + &
+													'supplied are correct.  You have ' + STRING (3 - l_nCounter) + &
+													' attempt(s) remaining.')
+									l_bLoginPrompt = TRUE
+								END IF
+								
+						END CHOOSE
+						
+					END IF
+					
+				NEXT
+				
+			END IF
+			
+			IF l_cUID = "VOID" THEN
+				RETURN -3
+			ELSE
+				RETURN l_nIndex
+			END IF
+			
+		END IF
+			
+	CASE 100
+		RETURN -2
+		
+END CHOOSE
+end function
+

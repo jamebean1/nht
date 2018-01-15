@@ -1,0 +1,15 @@
+﻿$PBExportHeader$d_show_fields_external_columns_warning2.srd
+release 7;
+datawindow(units=1 timer_interval=0 color=80269524 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 24 print.margin.right = 24 print.margin.top = 24 print.margin.bottom = 24 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=105 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=0 color="536870912" )
+table(column=(type=char(10) updatewhereclause=yes name=dummy dbname="dummy" )
+ )
+text(band=header alignment="0" text="" border="2" color="0" x="4" y="4" height="30" width="427"  name=t_2  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="65535" )
+ellipse(band=header x="7" y="6" height="15" width="15"  name=oval_1 brush.hatch="6" brush.color="16711680" pen.style="0" pen.width="1" pen.color="0"  background.mode="2" background.color="0" )
+text(band=header alignment="0" text="Adding criteria to this report could adversely affect performance.  All new criteria should be tested on a small dataset to make sure it performs reasonably." border="0" color="0" x="26" y="5" height="29" width="389"  name=t_1  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="!" border="0" color="16777215" x="12" y="8" height="12" width="9"  name=t_8  font.face="Terminal" font.height="-9" font.weight="400"  font.family="1" font.pitch="1" font.charset="255" background.mode="1" background.color="553648127" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

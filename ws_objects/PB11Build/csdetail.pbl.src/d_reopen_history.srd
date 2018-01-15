@@ -1,0 +1,31 @@
+﻿$PBExportHeader$d_reopen_history.srd
+$PBExportComments$List of reopen events for a specific case.
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=224 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) update=yes updatewhereclause=yes name=case_number dbname="reopen_log.case_number" )
+ column=(type=char(1024) updatewhereclause=yes name=reopened_reason dbname="reopen_log.reopened_reason" )
+ column=(type=datetime update=yes updatewhereclause=yes name=last_closed_timestamp dbname="reopen_log.last_closed_timestamp" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=reopened_by dbname="reopen_log.reopened_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=reopened_timestamp dbname="reopen_log.reopened_timestamp" )
+ column=(type=char(10) updatewhereclause=yes name=last_closed_by dbname="reopen_log.last_closed_by" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_a_active dbname="reopen_log.active" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_b_active dbname="reopen_log.active" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.reopen_log~" )  TABLE(NAME=~"cusfocus.cusfocus_user~" ALIAS=~"cusfocus_user_a~" )  TABLE(NAME=~"cusfocus.cusfocus_user~" ALIAS=~"cusfocus_user_b~" ) COLUMN(NAME=~"cusfocus.reopen_log.case_number~") COLUMN(NAME=~"cusfocus.reopen_log.reopened_reason~") COLUMN(NAME=~"cusfocus.reopen_log.last_closed_timestamp~") COLUMN(NAME=~"cusfocus.reopen_log.reopened_by~") COLUMN(NAME=~"cusfocus.reopen_log.reopened_timestamp~") COLUMN(NAME=~"cusfocus.reopen_log.last_closed_by~") COLUMN(NAME=~"cusfocus_user_a.active~") COLUMN(NAME=~"cusfocus_user_b.active~")    JOIN (LEFT=~"cusfocus.reopen_log.last_closed_by~"    OP =~"=~"RIGHT=~"cusfocus_user_a.user_id~" )    JOIN (LEFT=~"cusfocus.reopen_log.reopened_by~"    OP =~"=~"RIGHT=~"cusfocus_user_b.user_id~" )WHERE(    EXP1 =~"cusfocus.reopen_log.case_number~"   OP =~"=~"    EXP2 =~":case_number~" ) ) ORDER(NAME=~"cusfocus.reopen_log.reopened_timestamp~" ASC=no) ARG(NAME = ~"case_number~" TYPE = string) " arguments=(("case_number", string)) )
+line(band=detail x1="0" y1="220" x2="2999" y2="220"  name=l_1 visible="1"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Reason:" border="0" color="0" x="14" y="76" height="60" width="242" html.valueishtml="0"  name=roepened_reason_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="0" tabsequence=32766 border="0" color="0" x="261" y="76" height="60" width="2450" format="[general]" html.valueishtml="0"  name=reopened_reason visible="1" height.autosize=yes edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=detail alignment="0" text="Last Closed:" border="0" color="0" x="14" y="148" height="60" width="361" html.valueishtml="0"  name=last_closed_timestamp_t visible="1"  slideup=directlyabove  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="'Case # ' +  case_number  + ' was reopened by ' + 
+( if ( ( cusfocus_user_b_active = 'N' ), UPPER(reopened_by) + ' (inactive)',  UPPER(reopened_by) ) ) +
+' on ' + STRING ( DATE (reopened_timestamp), 'mm/dd/yyyy' ) + ' at ' + STRING (TIME ( reopened_timestamp ), 'h:mm AM/PM')"border="0" color="0" x="9" y="8" height="60" width="2693" format="[GENERAL]" html.valueishtml="0"  name=last_reopened_info visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=detail alignment="0" expression="STRING (DATE ( last_closed_timestamp ), 'mm/dd/yyyy') + ' at ' + STRING (TIME ( last_closed_timestamp ), 'h:mm AM/PM') + ' by ' + 
+( if ( ( cusfocus_user_a_active = 'N' ), UPPER(last_closed_by) + ' (inactive)', UPPER(last_closed_by) ) )
+"border="0" color="0" x="375" y="148" height="60" width="1819" format="[GENERAL]" html.valueishtml="0"  name=last_closed_info visible="1"  slideup=directlyabove  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

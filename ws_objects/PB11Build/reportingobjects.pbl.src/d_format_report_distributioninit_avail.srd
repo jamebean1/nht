@@ -1,0 +1,37 @@
+﻿$PBExportHeader$d_format_report_distributioninit_avail.srd
+$PBExportComments$Datawindow that retrieves the valid Distribution Methods that have been setup for a particular report.
+release 9;
+datawindow(units=0 timer_interval=0 color=80263581 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=decimal(0) updatewhereclause=yes identity=yes name=reportdocumenttypedistributionmethod_id dbname="reportconfigdistributionmethod.ID" )
+ column=(type=long updatewhereclause=yes name=rprtcnfgid dbname="reportconfigdistributionmethod.RprtCnfgID" )
+ column=(type=char(4099) updatewhereclause=no name=reportdistributionmethodoption dbname="ReportDistributionMethodOption" )
+ column=(type=char(20) updatewhereclause=yes name=reportdocumenttypedistributionmethod_distributionmethod dbname="reportconfigdistributionmethod.DistributionMethod" )
+ column=(type=char(50) updatewhereclause=yes name=reportdocumenttypedistributionmethod_description dbname="reportconfigdistributionmethod.Description" )
+ column=(type=char(40) updatewhereclause=yes name=reportdocumenttypedistributionmethod_distributionoptionsgui dbname="reportconfigdistributionmethod.DistributionOptionsGUI" )
+ column=(type=char(4099) updatewhereclause=yes name=defaultdistributionoptions dbname="DefaultDistributionOptions" )
+ column=(type=char(4099) updatewhereclause=no name=distributioninit dbname="DistributionInit" )
+ column=(type=char(1) updatewhereclause=yes name=usethisoption dbname="UseThisOption" values="	Y/	N" )
+ retrieve="  SELECT ReportDocumentTypeDistributionMethod.ID,   
+         ReportConfigDistributionMethod.RprtCnfgID,   
+         Convert(text,ReportConfigDistributionMethod.ReportDistribMethodOptions) ReportDistributionMethodOptions,
+			ReportDocumentTypeDistributionMethod. DistributionMethod,
+			ReportDocumentTypeDistributionMethod. Description,
+			ReportDocumentTypeDistributionMethod. DistributionOptionsGUI,
+			Convert(text,ReportDocumentTypeDistributionMethod.DefaultDistributionOptions) DefaultDistributionOptions,
+Convert(Text, '') DistributionInit,
+'N' UseThisOption
+    FROM cusfocus.ReportConfigDistributionMethod ReportConfigDistributionMethod,
+			cusfocus.ReportDocTypeDistribMethod ReportDocumentTypeDistributionMethod
+Where	ReportDocumentTypeDistributionMethod.ID = ReportConfigDistributionMethod.ID 
+And	ReportConfigDistributionMethod.RprtCnfgID 	= :al_rprtcnfgid
+" arguments=(("al_rprtcnfgid", number)) )
+compute(band=detail alignment="0" expression="~"Specify ~" +   reportdistributionmethodoption   + ~" Options...~" "border="0" color="16711680" x="55" y="16" height="56" width="955" format="[GENERAL]" html.valueishtml="0"  name=cf_options visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" font.underline="1" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Restore Default Options" border="0" color="16711680~tIf( Len( distributioninit ) > 0, 16711680, 8421440)" x="1061" y="16" height="52" width="530" html.valueishtml="0"  name=button_clear visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0"font.underline="1~tIf( Len( distributioninit ) > 0, 1, 0)"  background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

@@ -1,0 +1,23 @@
+﻿$PBExportHeader$d_fwca_menu_main.srd
+$PBExportComments$DataWindow with the original menu item names
+release 5;
+datawindow(units=0 timer_interval=0 color=12632256 processing=0 print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no )
+header(height=73 color="536870912" )
+summary(height=1 color="536870912" )
+footer(height=73 color="536870912" )
+detail(height=73 color="536870912" )
+table(column=(type=char(20) updatewhereclause=yes name=id dbname="id" )
+ column=(type=char(40) updatewhereclause=yes name=label dbname="label" )
+ column=(type=char(4) updatewhereclause=yes name=location dbname="location" values="File	FILE/Edit	EDIT/" )
+ column=(type=number updatewhereclause=yes name=current dbname="current" )
+ )
+data("File","&File","", 0,"Edit","&Edit","", 0,"NewFile","&New","FILE", 0,"Open","&Open","FILE", 0,"Close","&Close","FILE", 0,"FileSep","-","FILE", 0,"Cancel","&Cancel","FILE", 0,"Accept","&Accept","FILE", 0,"SaveSep","-","FILE", 0,"Save","&Save","FILE", 0,"SaveRowsAs","Save Ro&ws As...","FILE", 0,"PrintSep","-","FILE", 0,"Print","&Print","FILE", 0,"PrintSetup","Prin&ter Setup...","FILE", 0,"ExitSep","-","FILE", 0,"Exit","E&xit","FILE", 0,"New","&New","EDIT", 0,"View","&View","EDIT", 0,"Modify","&Modify","EDIT", 0,"Insert","&Insert","EDIT", 0,"Delete","&Delete","EDIT", 0,"Copy","&Copy","EDIT", 0,"ScrollSep","-","EDIT", 0,"First","&First","EDIT", 0,"Previous","P&revious","EDIT", 0,"Next","Ne&xt","EDIT", 0,"Last","&Last","EDIT", 0,"SearchSep","-","EDIT", 0,"Query","&Query","EDIT", 0,"Search","S&earch","EDIT", 0,"Filter","Fil&ter","EDIT", 0,"Sort","S&ort","EDIT", 0,) 
+text(band=header alignment="2" text="Menu ID"border="0" color="0" x="14" y="4" height="57" width="202"  name=id_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Label"border="0" color="0" x="572" y="4" height="57" width="138"  name=text_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="2" text="Location"border="0" color="0" x="1198" y="0" height="57" width="215"  name=status_t  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="1" y1="68" x2="1441" y2="68" pen.style="0" pen.width="10" pen.color="0"  background.mode="1" background.color="553648127" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="5" color="0" x="14" y="4" height="57" width="540" format="[general]"  name=id edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.required=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="5" color="0" x="572" y="4" height="57" width="609" format="[general]"  name=label edit.limit=0 edit.case=any edit.focusrectangle=no edit.autoselect=no edit.required=yes edit.autohscroll=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="553648127~tif(current = 1, 16777215, 12632256)" )
+column(band=detail id=3 alignment="0" tabsequence=20 border="5" color="0" x="1198" y="4" height="57" width="225" format="[general]"  name=location visible="1~tif(location = '', 0, 1)" ddlb.limit=0 ddlb.allowedit=no ddlb.case=any ddlb.required=yes  font.face="Arial" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="0" background.color="536870912~tif(current = 1, 16777215, 12632256)" )
+compute(band=footer alignment="0" expression="~"Menu Items:  ~" + String(RowCount(), ~"#,##0~")"border="0" color="0" x="14" y="12" height="57" width="618" format="[general]"  font.face="Arial" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="5" y1="4" x2="1445" y2="4" pen.style="0" pen.width="10" pen.color="0"  background.mode="1" background.color="553648127" )

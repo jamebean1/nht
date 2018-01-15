@@ -1,0 +1,9 @@
+﻿$PBExportHeader$s_detail_parms.srs
+$PBExportComments$Parameters being passed to the Detail View window
+global type s_detail_parms from structure
+	u_iim		uo_iim
+	string		c_dwsyntax
+	integer		trarrayindex
+	integer		l_nPrntWinTabNum
+end type
+

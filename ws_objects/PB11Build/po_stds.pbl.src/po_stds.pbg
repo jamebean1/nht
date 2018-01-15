@@ -1,0 +1,12 @@
+﻿Save Format v3.0(19990112)
+@begin Libraries
+ "po_stds.pbl" "";
+@end;
+@begin Objects 
+ "d_objca_db_std.srd" "po_stds.pbl";
+ "d_objca_init_std.srd" "po_stds.pbl";
+ "d_objca_mgr_std.srd" "po_stds.pbl";
+ "d_objca_msg_std.srd" "po_stds.pbl";
+ "d_objca_timer_std.srd" "po_stds.pbl";
+ "d_objca_win_std.srd" "po_stds.pbl";
+@end;

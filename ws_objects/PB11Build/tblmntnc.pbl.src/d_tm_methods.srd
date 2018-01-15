@@ -1,0 +1,66 @@
+﻿$PBExportHeader$d_tm_methods.srd
+$PBExportComments$Table Maintenance - Contact Methods
+release 11;
+datawindow(units=0 timer_interval=0 color=16777215 processing=1 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes print.preview.outline=yes hidegrayline=no showbackcoloronxp=no grid.lines=0 )
+header(height=84 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=84 color="536870912" )
+table(column=(type=char(10) update=yes updatewhereclause=yes key=yes name=method_id dbname="methods.method_id" )
+ column=(type=char(40) update=yes updatewhereclause=yes name=method_desc dbname="methods.method_desc" )
+ column=(type=char(1) update=yes updatewhereclause=yes name=active dbname="methods.active" initial="Y" values="	Y/	N" )
+ column=(type=char(10) update=yes updatewhereclause=yes name=updated_by dbname="methods.updated_by" )
+ column=(type=datetime update=yes updatewhereclause=yes name=updated_timestamp dbname="methods.updated_timestamp" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_active dbname="cusfocus_user.active" )
+ retrieve="  SELECT cusfocus.methods.method_id,   
+         cusfocus.methods.method_desc,   
+         cusfocus.methods.active,   
+         cusfocus.methods.updated_by,   
+         cusfocus.methods.updated_timestamp,   
+         cusfocus.cusfocus_user.active  
+    FROM cusfocus.methods,   
+         cusfocus.cusfocus_user  
+   WHERE ( cusfocus.methods.updated_by = cusfocus.cusfocus_user.user_id ) and
+			( cusfocus.methods.updated_by <> 'cusfocus' ) and
+         ( cusfocus.methods.method_id <> '1' )    
+
+UNION
+
+  SELECT cusfocus.methods.method_id,   
+         cusfocus.methods.method_desc,   
+         cusfocus.methods.active,   
+         cusfocus.methods.updated_by,   
+         cusfocus.methods.updated_timestamp,   
+         ''  
+    FROM cusfocus.methods 
+   WHERE ( cusfocus.methods.updated_by = 'cusfocus' ) and  
+         ( cusfocus.methods.method_id <> '1' )    
+
+" update="cusfocus.methods" updatewhere=0 updatekeyinplace=yes  sort="method_id_sort A " )
+text(band=header alignment="2" text="Method ID" border="6" color="0" x="9" y="8" height="68" width="462" html.valueishtml="0"  name=method_id_sort_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Description" border="6" color="0" x="480" y="8" height="68" width="1664" html.valueishtml="0"  name=method_desc_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Active" border="6" color="0" x="2153" y="8" height="68" width="297" html.valueishtml="0"  name=active_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="0" text="text" border="6" color="0" x="3675" y="8" height="68" width="256" html.valueishtml="0"  name=maxvalue_t visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Method ID" border="6" color="0" x="3941" y="8" height="64" width="466" html.valueishtml="0"  name=method_id_t visible="1~t0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Updated By" border="6" color="0" x="2459" y="8" height="68" width="517" html.valueishtml="0"  name=updated_by_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+text(band=header alignment="2" text="Updated Timestamp" border="6" color="0" x="2985" y="8" height="68" width="681" html.valueishtml="0"  name=updated_timestamp_t visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+column(band=detail id=2 alignment="0" tabsequence=10 border="0" color="0" x="480" y="4" height="76" width="1664" format="[general]" html.valueishtml="0"  name=method_desc visible="1" edit.limit=40 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=3 alignment="2" tabsequence=20 border="0" color="0" x="2153" y="4" height="76" width="297" format="[general]" html.valueishtml="0"  name=active visible="1" checkbox.text="" checkbox.on="Y" checkbox.off="N" checkbox.scale=no checkbox.threed=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="79748288" )
+compute(band=detail alignment="0" expression="if ( (  updated_by = 'cusfocus' ) ,  updated_by ,  ( if ( ( cusfocus_user_active = 'N' ) ,  updated_by + ' (inactive)'  ,updated_by  ) ) )"border="0" color="0" x="2459" y="4" height="76" width="517" format="[GENERAL]" html.valueishtml="0"  name=cc_updated_by visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+column(band=detail id=5 alignment="0" tabsequence=30 border="0" color="0" x="2985" y="4" height="76" width="681" format="mm/dd/yyyy hh:mm:ss AM/PM" html.valueishtml="0"  name=updated_timestamp visible="1" edit.limit=0 edit.case=any edit.format="mm/dd/yyyy hh:mm:ss AM/PM" edit.focusrectangle=no edit.autoselect=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Long ( method_id )"border="0" color="0" x="9" y="4" height="76" width="462" format="[GENERAL]" html.valueishtml="0"  name=method_id_sort visible="1"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=detail alignment="0" expression="Max( Long( method_id ) )"border="0" color="0" x="3675" y="4" height="76" width="256" format="[GENERAL]" html.valueishtml="0"  name=maxvalue visible="0"  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="3941" y="4" height="76" width="466" format="[general]" html.valueishtml="0"  name=method_id visible="0" edit.limit=10 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.displayonly=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=footer x1="0" y1="4" x2="3685" y2="4"  name=l_1 visible="1" pen.style="0" pen.width="9" pen.color="0"  background.mode="1" background.color="553648127" )
+compute(band=footer alignment="0" expression="~"Rows: ~" + rowcount()"border="0" color="0" x="9" y="12" height="64" width="462" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" pagingmethod=0 generatedddwframes="1" )
+xhtmlgen() cssgen(sessionspecific="0" )
+xmlgen(inline="0" )
+xsltgen()
+jsgen()
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
+export.xhtml()
+ 

@@ -1,0 +1,39 @@
+﻿$PBExportHeader$d_cdhr_transfer_log.srd
+$PBExportComments$Case Detail History Report - Transfer Log Section
+release 9;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 2 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 1 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=172 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=156 color="536870912"  height.autosize=yes)
+table(column=(type=char(10) updatewhereclause=yes name=case_transfer_to dbname="case_transfer.case_transfer_to" )
+ column=(type=char(10) updatewhereclause=yes name=case_transfer_from dbname="case_transfer.case_transfer_from" )
+ column=(type=datetime updatewhereclause=yes name=case_transfer_date dbname="case_transfer.case_transfer_date" )
+ column=(type=char(255) updatewhereclause=yes name=case_transfer_notes dbname="case_transfer.case_transfer_notes" )
+ column=(type=char(1) updatewhereclause=yes name=case_transfer_type dbname="case_transfer.case_transfer_type" )
+ column=(type=ulong updatewhereclause=yes name=return_for_close dbname="case_transfer.return_for_close" values="Return For Close:	1/Return For Close:	0" )
+ column=(type=ulong updatewhereclause=yes name=notify_originator_close dbname="case_transfer.notify_originator_close" values="Notify When Closed:	1/Notify When Closed:	0" )
+ column=(type=datetime updatewhereclause=yes name=case_transfer_deadline dbname="case_transfer.case_transfer_deadline" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_a_active dbname="case_transfer.active" )
+ column=(type=char(1) updatewhereclause=yes name=cusfocus_user_b_active dbname="case_transfer.active" )
+ retrieve="PBSELECT( VERSION(400) TABLE(NAME=~"cusfocus.case_transfer~" )  TABLE(NAME=~"cusfocus.cusfocus_user~" ALIAS=~"cusfocus_user_a~" )  TABLE(NAME=~"cusfocus.cusfocus_user~" ALIAS=~"cusfocus_user_b~" ) COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_to~") COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_from~") COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_date~") COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_notes~") COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_type~") COLUMN(NAME=~"cusfocus.case_transfer.return_for_close~") COLUMN(NAME=~"cusfocus.case_transfer.notify_originator_close~") COLUMN(NAME=~"cusfocus.case_transfer.case_transfer_deadline~") COLUMN(NAME=~"cusfocus_user_a.active~") COLUMN(NAME=~"cusfocus_user_b.active~")    JOIN (LEFT=~"cusfocus.case_transfer.case_transfer_from~"    OP =~"=~"RIGHT=~"cusfocus_user_a.user_id~" )    JOIN (LEFT=~"cusfocus.case_transfer.case_transfer_to~"    OP =~"=~"RIGHT=~"cusfocus_user_b.user_id~" )WHERE(    EXP1 =~"cusfocus.case_transfer.case_number~"   OP =~"=~"    EXP2 =~":case_number~"    LOGIC =~"and~" ) WHERE(    EXP1 =~"cusfocus.case_transfer.copy_deleted~"   OP =~"is~"    EXP2 =~"null~" ) ) ORDER(NAME=~"cusfocus.case_transfer.case_transfer_date~" ASC=yes ) ARG(NAME = ~"case_number~" TYPE = string) " arguments=(("case_number", string))  sort="case_transfer_date D case_transfer_type D " )
+text(band=header alignment="0" text="Current Transfer Information:" border="0" color="0" x="9" y="8" height="64" width="887" html.valueishtml="0"  name=t_1 visible="1"  font.face="Tahoma" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" font.italic="1" background.mode="1" background.color="536870912" )
+line(band=header x1="0" y1="76" x2="3461" y2="76"  name=l_1 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="0" y1="164" x2="3461" y2="164"  name=l_3 visible="1" pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=detail x1="119" y1="144" x2="3461" y2="144"  name=l_2 visible="1~tif (getrow () < rowcount (), 1, 0)"  slideup=directlyabove pen.style="0" pen.width="5" pen.color="8421504"  background.mode="2" background.color="16777215" )
+column(band=header id=8 alignment="0" tabsequence=32766 border="0" color="0" x="750" y="92" height="64" width="736" format="mm/dd/yyyy h:mm:ss AM/PM" html.valueishtml="0"  name=case_transfer_deadline visible="1" edit.limit=0 edit.case=any edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="0" text="Processing Deadline:" border="0" color="0" x="114" y="92" height="52" width="613" html.valueishtml="0"  name=t_2 visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+column(band=header id=6 alignment="0" tabsequence=32766 border="0" color="0" x="1723" y="92" height="64" width="709" format="[general]" html.valueishtml="0"  name=return_for_close visible="1" checkbox.text="Return For Close:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=no  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=header id=7 alignment="0" tabsequence=32766 border="0" color="0" x="2729" y="92" height="64" width="731" format="[general]" html.valueishtml="0"  name=notify_originator_close visible="1" checkbox.text="Notify When Closed:" checkbox.on="1" checkbox.off="0" checkbox.lefttext=yes checkbox.scale=no checkbox.threed=no  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=detail alignment="0" text="Transfer Notes:" border="0" color="0" x="119" y="72" height="52" width="462" html.valueishtml="0"  name=case_transfer_notes_t visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="upper ( case_transfer_from ) + 
+( if ( (  cusfocus_user_a_active = 'N'), ' (inactive)', '' ) ) +
+if ( case_transfer_type = 'O', ' transferred ownership of this case to ', ' copied this case to ') + upper ( case_transfer_to ) + 
+( if ( (  cusfocus_user_b_active = 'N'), ' (inactive)', '' ) ) +
+' on ' + String (Date ( case_transfer_date ), 'mm/dd/yyyy') + ' at ' + String (Time ( case_transfer_date ), 'h:mm:ss AM/PM')"border="0" color="0" x="123" y="4" height="64" width="3342" format="[GENERAL]" html.valueishtml="0"  name=transfer_info visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="0" x="567" y="72" height="64" width="2894" format="[general]" html.valueishtml="0"  name=case_transfer_notes visible="1" height.autosize=yes edit.limit=255 edit.case=any edit.focusrectangle=no edit.autoselect=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )

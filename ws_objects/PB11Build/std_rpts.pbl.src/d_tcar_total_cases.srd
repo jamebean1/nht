@@ -1,0 +1,38 @@
+﻿$PBExportHeader$d_tcar_total_cases.srd
+$PBExportComments$Total Case section of the Total Contact Activity Report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=240 color="536870912" )
+summary(height=80 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=72 color="536870912" )
+table(column=(type=char(41) updatewhereclause=yes name=case_types_case_type_desc dbname="case_log.case_type_desc" )
+ column=(type=long updatewhereclause=yes name=total_cases_by_type dbname="total_cases_by_type" )
+ retrieve="select ct.case_type_desc as case_type_desc,
+		 count(ct.case_type_desc) as total_cases_by_type
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id in ('O','C') and
+		 ct.case_type = cl.case_type and
+		 (cl.case_log_appld IS NULL OR cl.case_log_appld = 0)
+group by ct.case_type_desc
+UNION
+select ct.case_type_desc + ' - Appealed' as case_type_desc,
+		 count(ct.case_type_desc) as total_cases_by_type
+from   cusfocus.case_log cl, cusfocus.case_types ct
+where  cl.case_status_id in ('O','C') and
+		 ct.case_type = cl.case_type and
+		 cl.case_log_appld > 0
+group by ct.case_type_desc
+order by ct.case_type_desc" )
+text(band=header alignment="2" text="Total Cases" border="0" color="0" x="1591" y="32" height="64" width="334"  name=title_label  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+line(band=header x1="114" y1="12" x2="3401" y2="12"  name=l_2 pen.style="0" pen.width="9" pen.color="0"  background.mode="2" background.color="16777215" )
+text(band=header alignment="1" text="Total" border="0" color="0" x="2446" y="168" height="64" width="256"  name=total_cases_by_type_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+line(band=summary x1="1801" y1="0" x2="2766" y2="0"  name=l_1 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="1801" y1="236" x2="2766" y2="236"  name=l_3 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+line(band=header x1="114" y1="112" x2="3401" y2="112"  name=l_4 pen.style="0" pen.width="5" pen.color="0"  background.mode="2" background.color="16777215" )
+column(band=detail id=1 alignment="0" tabsequence=32766 border="0" color="0" x="114" y="4" height="64" width="1152" format="[general]"  name=case_types_case_type_desc edit.limit=41 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+column(band=detail id=2 alignment="1" tabsequence=32766 border="0" color="0" x="2075" y="4" height="64" width="626" format="[general]"  name=total_cases_by_type edit.limit=0 edit.case=any edit.autoselect=yes edit.autohscroll=yes  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=summary alignment="1" expression="sum( total_cases_by_type for all )"border="0" color="0" x="2075" y="12" height="64" width="626" format="[GENERAL]"  name=grand_total  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=summary alignment="0" text="Grand Total:" border="0" color="0" x="114" y="12" height="64" width="361"  name=grand_total_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

@@ -1,0 +1,36 @@
+﻿$PBExportHeader$d_group_contact_nested.srd
+$PBExportComments$Group contact activity report
+release 7;
+datawindow(units=0 timer_interval=0 color=16777215 processing=0 HTMLDW=no print.documentname="" print.orientation = 1 print.margin.left = 110 print.margin.right = 110 print.margin.top = 97 print.margin.bottom = 97 print.paper.source = 0 print.paper.size = 0 print.prompt=no print.buttons=no print.preview.buttons=no )
+header(height=396 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=80 color="536870912" )
+detail(height=156 color="536870912"  height.autosize=yes)
+table(column=(type=char(20) updatewhereclause=yes name=employer_group_group_id dbname="employer_group.group_id" )
+ column=(type=char(55) updatewhereclause=yes name=employer_group_employ_group_name dbname="employer_group.employ_group_name" )
+ retrieve="  SELECT DISTINCT cusfocus.employer_group.group_id,   
+         cusfocus.employer_group.employ_group_name  
+    FROM cusfocus.case_log,   
+         cusfocus.employer_group  
+   WHERE ( cusfocus.case_log.case_log_opnd_date >= :date ) and
+			( cusfocus.case_log.case_log_opnd_date <= :end_date ) AND
+			( cusfocus.employer_group.group_id = cusfocus.case_log.case_subject_id ) and  
+         ( cusfocus.case_log.case_status_id <> 'V' ) AND  
+         ( cusfocus.case_log.source_type = 'E' )  AND  
+         cusfocus.case_log.case_subject_id = :group_id    
+" arguments=(("date", date),("end_date", date),("user_name", string),("group_id", string))  sort="employer_group_group_id A " )
+group(level=1 header.height=0 trailer.height=0 by=("employer_group_group_id" ) newpage=yes header.color="536870912" trailer.color="536870912" )
+text(band=background alignment="1" text="" border="0" color="0" x="3552" y="32" height="80" width="896"  name=t_owner  font.face="Arial" font.height="-12" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=background alignment="1" text="Run Date:" border="0" color="0" x="3735" y="116" height="64" width="370"  name=t_5  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+compute(band=background alignment="2" expression="today()"border="0" color="0" x="4137" y="116" height="64" width="311" format="mm/dd/yyyy"  name=compute_11  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Group Contact Activity" border="0" color="0" x="114" y="32" height="92" width="1536"  name=t_1  font.face="Arial" font.height="-14" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+report(band=detail dataobject="d_group_contact_act" x="0" y="12" height="136" width="4485" border="0"  height.autosize=yes criteria="" nest_arguments=((" date "),(" end_date "),(" employer_group_group_id ")) trail_footer = yes  name=dw_1  slideup=directlyabove )
+compute(band=footer alignment="2" expression="'Page ' + page() + ' of ' + pageCount()"border="0" color="0" x="1934" y="4" height="72" width="727" format="[general]"  name=compute_4  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression=" user_name "border="0" color="0" x="475" y="128" height="64" width="1243" format="[GENERAL]"  name=cc_user_name  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="User Name:" border="0" color="0" x="114" y="128" height="64" width="357"  name=cc_user_name_t  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="553648127" )
+text(band=header alignment="0" text="Group:  " border="0" color="0" x="114" y="224" height="64" width="242"  name=t_2  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Year:" border="0" color="0" x="114" y="308" height="64" width="151"  name=t_3  font.face="Arial" font.height="-10" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="employer_group_group_id + ' - ' + employer_group_employ_group_name"border="0" color="0" x="375" y="224" height="64" width="1637" format="[GENERAL]"  name=compute_3  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+compute(band=header alignment="0" expression="String(Year(  end_date  ))"border="0" color="0" x="375" y="308" height="64" width="229" format="[GENERAL]"  name=compute_5  font.face="Arial" font.height="-10" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+htmltable(border="0" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" )

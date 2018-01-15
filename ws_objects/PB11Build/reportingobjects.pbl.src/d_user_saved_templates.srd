@@ -1,0 +1,90 @@
+﻿$PBExportHeader$d_user_saved_templates.srd
+release 9;
+datawindow(units=0 timer_interval=0 color=1073741824 processing=0 HTMLDW=no print.printername="" print.documentname="" print.orientation = 0 print.margin.left = 110 print.margin.right = 110 print.margin.top = 96 print.margin.bottom = 96 print.paper.source = 0 print.paper.size = 0 print.canusedefaultprinter=yes print.prompt=no print.buttons=no print.preview.buttons=no print.cliptext=no print.overrideprintjob=no print.collate=yes hidegrayline=no )
+header(height=204 color="536870912" )
+summary(height=0 color="536870912" )
+footer(height=0 color="536870912" )
+detail(height=68 color="536870912" )
+table(column=(type=long updatewhereclause=yes name=savedreport_svdrprtid dbname="savedreport.svdrprtid" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtfldrid dbname="savedreport.svdrprtfldrid" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtblbobjctid dbname="savedreport.svdrprtblbobjctid" )
+ column=(type=char(80) updatewhereclause=yes name=savedreport_svdrprtdscrptn dbname="savedreport.svdrprtdscrptn" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtrprtcnfgid dbname="savedreport.svdrprtrprtcnfgid" )
+ column=(type=char(3) updatewhereclause=yes name=savedreport_svdrprttpe dbname="savedreport.svdrprttpe" )
+ column=(type=char(255) updatewhereclause=yes name=savedreport_svdrprtdstrbtnmthd dbname="savedreport.svdrprtdstrbtnmthd" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtuserid dbname="savedreport.svdrprtuserid" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtrvsnusrid dbname="savedreport.svdrprtrvsnusrid" )
+ column=(type=long updatewhereclause=yes name=savedreport_svdrprtrvsnlvl dbname="savedreport.svdrprtrvsnlvl" )
+ column=(type=datetime updatewhereclause=yes name=savedreport_svdrprtrvsndte dbname="savedreport.svdrprtrvsndte" )
+ column=(type=char(1) updatewhereclause=yes name=savedreport_svdrprtdstrbtd dbname="savedreport.svdrprtdstrbtd" )
+ column=(type=long updatewhereclause=yes name=savedreport_dcmntarchvtypid dbname="savedreport.dcmntarchvtypid" )
+ column=(type=char(50) updatewhereclause=yes name=reportconfig_rprtcnfgdscrptn dbname="reportconfig.rprtcnfgdscrptn" )
+ column=(type=char(255) updatewhereclause=yes name=reportconfig_rprtcnfgdtaobjct dbname="reportconfig.rprtcnfgdtaobjct" )
+ column=(type=char(1) updatewhereclause=yes name=rowfocusindicator dbname="rowfocusindicator" )
+ column=(type=char(1) updatewhereclause=yes name=selectrowindicator dbname="selectrowindicator" )
+ column=(type=char(1) updatewhereclause=yes name=expanded dbname="expanded" )
+ column=(type=long updatewhereclause=yes name=sortcolumn dbname="sortcolumn" )
+ retrieve="  SELECT cusfocus.savedreport.svdrprtid,   
+         cusfocus.savedreport.svdrprtfldrid,   
+         cusfocus.savedreport.svdrprtblbobjctid,   
+         cusfocus.savedreport.svdrprtdscrptn,   
+         cusfocus.savedreport.svdrprtrprtcnfgid,   
+         cusfocus.savedreport.svdrprttpe,   
+         cusfocus.savedreport.svdrprtdstrbtnmthd,   
+         cusfocus.savedreport.svdrprtuserid,   
+         cusfocus.savedreport.svdrprtrvsnusrid,   
+         cusfocus.savedreport.svdrprtrvsnlvl,   
+         cusfocus.savedreport.svdrprtrvsndte,   
+         cusfocus.savedreport.svdrprtdstrbtd,   
+         cusfocus.savedreport.dcmntarchvtypid,   
+         cusfocus.reportconfig.rprtcnfgdscrptn,   
+         cusfocus.reportconfig.rprtcnfgdtaobjct,   
+			'' as rowfocusindicator,
+			'' as selectrowindicator,
+			'' as expanded,
+			0 as sortcolumn
+    FROM cusfocus.savedreport,   
+         cusfocus.reportconfig  
+   WHERE ( cusfocus.savedreport.svdrprtrprtcnfgid = cusfocus.reportconfig.rprtcnfgid ) and  
+         ( ( cusfocus.reportconfig.rprtcnfgid = :an_report_config_id ) AND  
+         ( cusfocus.savedreport.svdrprttpe = 'T' ) )    
+   UNION
+  SELECT 0,   
+         0,   
+         -1,   
+         '<<< Delete Template - Revert to System Default >>>',   
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+         NULL,
+			'' as rowfocusindicator,
+			'' as selectrowindicator,
+			'' as expanded,
+			0 as sortcolumn
+ORDER BY 3" arguments=(("an_report_config_id", number)) )
+line(band=header x1="9" y1="196" x2="2565" y2="196"  name=l_header visible="1" pen.style="0" pen.width="5" pen.color="12632256"  background.mode="2" background.color="16777215" )
+text(band=header alignment="0" text="Choose from your saved templates" border="0" color="0" x="82" y="32" height="52" width="2473" html.valueishtml="0"  name=report_title visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="2" background.color="16777215" )
+text(band=header alignment="2" text="Saved Report Description" border="0" color="33554432" x="73" y="140" height="52" width="1819" html.valueishtml="0"  name=savedreport_svdrprtdscrptn_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+rectangle(band=detail x="0" y="0" height="68" width="2638"  name=r_1 visible="0" brush.hatch="6~tif( getrow() = Currentrow() , 7, 6 )" brush.color="65280~tIF(  mod(getrow(),2) = 0, rgb(237,243,254), 536870912 )" pen.style="5" pen.width="5" pen.color="65280"  background.mode="2" background.color="0" )
+column(band=detail id=4 alignment="0" tabsequence=32766 border="0" color="33554432" x="73" y="4" height="60" width="1819" format="[general]" html.valueishtml="0"  name=savedreport_svdrprtdscrptn visible="1" edit.limit=80 edit.case=any edit.autoselect=yes edit.autohscroll=yes edit.imemode=0  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+text(band=header alignment="2" text="Area" border="0" color="33554432" x="1911" y="140" height="52" width="718" html.valueishtml="0"  name=reportconfig_rprtcnfgdscrptn_srt visible="1"  font.face="Tahoma" font.height="-8" font.weight="700"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+compute(band=detail alignment="0" expression="case( reportconfig_rprtcnfgdscrptn  
+	when ~"Search Open Cases~" then  ~"Inbox~"
+	when ~"Search Work Tracker~" then ~"Work Dashboard~" 
+	when ~"Search Contact History~" then ~"Contact History~" 
+	when ~"Search Letters~" then ~"Letters~" 
+	when ~"Search Work Queues~" then ~"Work Queues~" 
+	when ~"Search FAX Queues~" then ~"FAX Queues~" 
+else reportconfig_rprtcnfgdscrptn) "border="0" color="33554432" x="1911" y="8" height="60" width="718" format="[GENERAL]" html.valueishtml="0"  name=compute_1 visible="1"  font.face="Tahoma" font.height="-8" font.weight="400"  font.family="2" font.pitch="2" font.charset="0" background.mode="1" background.color="536870912" )
+htmltable(border="1" )
+htmlgen(clientevents="1" clientvalidation="1" clientcomputedfields="1" clientformatting="0" clientscriptable="0" generatejavascript="1" encodeselflinkargs="1" netscapelayers="0" )
+export.xml(headgroups="1" includewhitespace="0" metadatatype=0 savemetadata=0 )
+import.xml()
+export.pdf(method=0 distill.custompostscript="0" xslfop.print="0" )
